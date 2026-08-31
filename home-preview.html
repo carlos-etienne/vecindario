@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurante Bar en Cuernavaca | Vecindario Beer Garden</title>
+<meta name="description" content="Restaurante bar en Cuernavaca con cerveza artesanal, 10 cervezas de barril, pizzas, hamburguesas, terraza pet friendly y eventos. Visítanos en Av. Teopanzolco.">
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vbg-verde: #2d5a3d;
+    --vbg-verde-claro: #6da05d;
+    --vbg-ambar: #c4721e;
+    --vbg-negro: #141210;
+    --vbg-negro-2: #1a1815;
+    --vbg-claro: #f7f4ed;
+    --vbg-claro-2: #efe9db;
+    --vbg-blanco: #ffffff;
+    --vbg-carbon: #1f1c18;
+    --vbg-gris-texto: #6b6358;
+    --vbg-gris-linea: #d8d3c4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', -apple-system, sans-serif;
+    color: var(--vbg-carbon);
+    background: var(--vbg-claro);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ====== HEADER ====== */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.scrolled {
+    background: rgba(20,18,16,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0.9rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  }
+  .site-logo { height: 42px; }
+  .nav-main { display: flex; gap: 1.8rem; align-items: center; }
+  .nav-main a {
+    font-size: 0.9rem; font-weight: 500; color: #fff;
+    position: relative; padding: 0.3rem 0;
+  }
+  .nav-main a::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    width: 0; height: 2px; background: var(--vbg-ambar);
+    transition: width 0.25s ease;
+  }
+  .nav-main a:hover::after { width: 100%; }
+  .header-cta {
+    background: var(--vbg-ambar); color: #fff;
+    padding: 0.6rem 1.3rem; font-size: 0.86rem; font-weight: 600; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s;
+  }
+  .header-cta:hover { background: #a85d18; }
+  .header-cta svg { width: 14px; height: 14px; }
+
+  /* ====== HERO ====== */
+  .hero {
+    position: relative; color: #fff;
+    min-height: 92vh;
+    display: flex; align-items: center;
+    overflow: hidden; background: var(--vbg-negro);
+    padding-bottom: 140px; padding-top: 80px;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(95deg, rgba(20,18,16,0.94) 0%, rgba(20,18,16,0.78) 40%, rgba(20,18,16,0.35) 75%, rgba(20,18,16,0.10) 100%),
+      linear-gradient(to top, rgba(20,18,16,0.95) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 2; max-width: 1280px; width: 100%; margin: 0 auto; padding: 0 1.5rem; }
+  .hero-text { max-width: 640px; display: flex; flex-direction: column; }
+  .hero-label { order: -1; }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--vbg-verde-claro);
+    border-left: 3px solid var(--vbg-ambar);
+    padding-left: 0.8rem; margin-bottom: 1.2rem;
+  }
+  .hero-h1 {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(2.2rem, 6vw, 4.6rem); line-height: 0.95; letter-spacing: -0.015em;
+    margin-bottom: 1.2rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+  .hero-h1 .accent { color: var(--vbg-ambar); }
+  .hero-h1 .line { display: block; }
+  .hero-sub {
+    font-size: 1.1rem; color: #d8d2c2; margin-bottom: 1.8rem;
+    max-width: 500px; line-height: 1.55; text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+  }
+  .hero-sub strong { color: var(--vbg-ambar); font-weight: 600; }
+  .hero-ctas { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+  .btn-primary {
+    background: var(--vbg-ambar); color: #fff;
+    padding: 0.9rem 1.9rem; font-weight: 600; font-size: 0.93rem; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #a85d18; transform: translateY(-1px); }
+  .btn-wa {
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(4px); color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.9rem 1.5rem; font-weight: 500; font-size: 0.93rem; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-wa:hover { border-color: var(--vbg-verde-claro); background: rgba(109,160,93,0.2); }
+  .btn-wa svg { width: 18px; height: 18px; }
+  .hero-badge-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: #c8c0b0; }
+  .hero-rating {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+    padding: 0.4rem 0.8rem; border-radius: 2px;
+  }
+  .hero-rating .stars { color: var(--vbg-ambar); letter-spacing: 1px; }
+  .hero-rating strong { color: #fff; font-weight: 600; }
+  .hero-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+
+  /* ====== TAP WALL FLOTANTE ====== */
+  .tapwall-float {
+    position: relative; z-index: 10;
+    max-width: 1280px; margin: -120px auto 0; padding: 0 1.5rem 5rem;
+  }
+  .tapwall-card {
+    background: var(--vbg-negro);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: 3px solid var(--vbg-ambar);
+    border-radius: 4px;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.4), 0 20px 50px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  .tapwall-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .tapwall-bar .tw-live { color: var(--vbg-verde-claro); }
+  .tapwall-bar .tw-live::before { content: "●"; margin-right: 0.35rem; animation: pulse 2.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .tapwall-bar .tw-updated { color: #9a9183; }
+  .tapwall-bar .tw-link { color: var(--vbg-ambar); font-weight: 600; }
+  .tap-grid-compact { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); grid-auto-flow: column; }
+  .tap-c {
+    display: grid; grid-template-columns: 82px 1fr auto;
+    gap: 0.7rem; align-items: center;
+    padding: 0.7rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.15s;
+  }
+  .tap-c:nth-child(2n) { border-right: none; }
+  .tap-c:nth-last-child(-n+2) { border-bottom: none; }
+  .tap-c:hover { background: rgba(196,114,30,0.06); }
+  .tap-c-numwrap { display: flex; flex-direction: row; align-items: center; gap: 0.3rem; }
+  .tap-c-vaso { width: 32px; height: 32px; flex-shrink: 0; filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.5)); }
+  .tap-c-num { font-family: 'Anton', sans-serif; font-size: 1.2rem; color: var(--vbg-ambar); line-height: 0.85; letter-spacing: -0.03em; }
+  .tap-c-info .tap-c-name { font-weight: 600; color: #f3ebd9; font-size: 0.86rem; margin-bottom: 0.1rem; line-height: 1.2; }
+  .tap-c-info .tap-c-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--vbg-verde-claro); font-weight: 500; }
+  .tap-c-info .tap-c-brew { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #9a9183; text-transform: uppercase; letter-spacing: 0.03em; }
+  .tap-c-prices { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; text-align: right; white-space: nowrap; }
+  .tap-c-prices .p-ch, .tap-c-prices .p-g { color: var(--vbg-verde-claro); font-weight: 600; }
+  .tap-c-prices small { color: #9a9183; font-size: 0.56rem; margin-left: 0.15rem; }
+  .tap-c-prices .p-sep { color: rgba(255,255,255,0.2); margin: 0 0.2rem; }
+  .tap-c.agotada { opacity: 0.4; }
+  .tap-c.agotada .tap-c-name { text-decoration: line-through; color: #9a9183; }
+
+  /* ====== SECCIONES ====== */
+  section { padding: 4rem 0; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--vbg-ambar); margin-bottom: 0.6rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::before { content: ""; width: 24px; height: 2px; background: var(--vbg-ambar); }
+  .section-title {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem); color: var(--vbg-verde);
+    letter-spacing: 0.01em; line-height: 1.05;
+  }
+  .section-sub { color: var(--vbg-gris-texto); max-width: 620px; margin-top: 0.6rem; font-size: 1rem; }
+
+  /* ====== COCINA ====== */
+  .cocina { background: var(--vbg-blanco); }
+  .cocina-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .plato-card {
+    background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px;
+    overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .plato-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+  .plato-img { aspect-ratio: 4/3; overflow: hidden; }
+  .plato-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .plato-card:hover .plato-img img { transform: scale(1.05); }
+  .plato-body { padding: 1.2rem 1.3rem 1.4rem; }
+  .plato-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vbg-ambar); margin-bottom: 0.4rem; }
+  .plato-name { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.3rem; color: var(--vbg-verde); margin-bottom: 0.5rem; }
+  .plato-desc { font-size: 0.88rem; color: var(--vbg-gris-texto); line-height: 1.55; margin-bottom: 0.9rem; }
+  .plato-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--vbg-gris-linea); padding-top: 0.8rem; }
+  .plato-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: 1.1rem; }
+  .plato-pair { font-size: 0.76rem; color: var(--vbg-verde); font-style: italic; }
+
+  /* ====== CÁMARA FRÍA ====== */
+  .camara-fria { background: var(--vbg-verde); color: #f3ebd9; }
+  .camara-fria-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center;
+  }
+  .camara-fria-text .cf-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--vbg-ambar); margin-bottom: 0.7rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .camara-fria-text .cf-tag::before { content: ""; width: 24px; height: 2px; background: var(--vbg-ambar); }
+  .camara-fria-text h2 {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(1.7rem, 4vw, 2.6rem); color: #f3ebd9;
+    line-height: 1; margin-bottom: 0.8rem;
+  }
+  .camara-fria-text h2 .accent { color: var(--vbg-ambar); }
+  .camara-fria-text p { font-size: 1rem; color: #c8d8c0; max-width: 560px; line-height: 1.6; }
+  .camara-fria-numero { text-align: center; border-left: 1px solid rgba(243,235,217,0.2); padding-left: 2.5rem; }
+  .camara-fria-numero .cf-big {
+    font-family: 'Anton', sans-serif; font-size: clamp(3rem, 6vw, 4.5rem);
+    color: #f3ebd9; line-height: 0.9; letter-spacing: -0.02em;
+  }
+  .camara-fria-numero .cf-lab {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: #a8b8a0; text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 0.3rem; max-width: 160px;
+  }
+
+  /* ====== DIFERENCIADORES ====== */
+  .diferenciadores { background: var(--vbg-claro-2); }
+  .dif-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+  .dif-card { background: #fff; border: 1px solid var(--vbg-gris-linea); padding: 2rem 1.6rem; border-radius: 4px; border-top: 3px solid var(--vbg-verde-claro); }
+  .dif-card:nth-child(2) { border-top-color: var(--vbg-ambar); }
+  .dif-card:nth-child(3) { border-top-color: var(--vbg-verde-claro); }
+  .dif-icon { width: 48px; height: 48px; margin-bottom: 1rem; color: var(--vbg-verde); }
+  .dif-card:nth-child(2) .dif-icon { color: var(--vbg-ambar); }
+  .dif-num { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--vbg-gris-texto); letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+  .dif-title { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.2rem; color: var(--vbg-verde); margin-bottom: 0.5rem; }
+  .dif-text { font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.55; }
+
+  /* ====== RESEÑAS (slider) ====== */
+  .reviews { background: var(--vbg-blanco); }
+  .reviews-summary {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 2rem; padding: 1.3rem 1.6rem;
+    background: var(--vbg-claro); border-radius: 4px; border-left: 4px solid var(--vbg-ambar);
+  }
+  .reviews-score { font-family: 'Anton', sans-serif; font-size: 3rem; color: var(--vbg-verde); line-height: 1; }
+  .reviews-score small { font-size: 1.1rem; color: var(--vbg-gris-texto); }
+  .reviews-meta { flex: 1; }
+  .reviews-meta .stars { color: var(--vbg-ambar); font-size: 1.1rem; letter-spacing: 2px; }
+  .reviews-meta .count { font-size: 0.86rem; color: var(--vbg-gris-texto); margin-top: 0.2rem; }
+  .reviews-source { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--vbg-gris-texto); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .reviews-slider-wrap { position: relative; }
+  .reviews-slider {
+    display: flex; gap: 1.2rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; padding-bottom: 0.5rem;
+    scroll-behavior: smooth;
+  }
+  .reviews-slider::-webkit-scrollbar { display: none; }
+  .review-card {
+    flex: 0 0 calc(33.333% - 0.8rem);
+    min-width: 280px;
+    scroll-snap-align: start;
+    background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea);
+    border-radius: 4px; padding: 1.3rem 1.4rem;
+  }
+  .review-stars { color: var(--vbg-ambar); letter-spacing: 1px; font-size: 0.9rem; margin-bottom: 0.6rem; }
+  .review-text { font-size: 0.9rem; color: var(--vbg-carbon); line-height: 1.55; font-style: italic; margin-bottom: 0.9rem; }
+  .review-author { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--vbg-gris-texto); display: flex; align-items: center; gap: 0.5rem; }
+  .review-author::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--vbg-verde-claro); opacity: 0.3; }
+
+  .slider-nav { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem; }
+  .slider-nav button {
+    background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea);
+    width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--vbg-verde); transition: all 0.2s;
+  }
+  .slider-nav button:hover { background: var(--vbg-verde); color: #fff; border-color: var(--vbg-verde); }
+
+  /* ====== EVENTOS ====== */
+  .eventos { background: var(--vbg-claro-2); }
+  .eventos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .evento-card {
+    display: grid; grid-template-columns: 80px 1fr; gap: 1.2rem;
+    background: #fff; border: 1px solid var(--vbg-gris-linea);
+    border-radius: 4px; padding: 1.3rem; align-items: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .evento-card:hover { border-color: var(--vbg-ambar); transform: translateY(-2px); }
+  .evento-date { background: var(--vbg-verde); border-radius: 3px; padding: 0.7rem 0.5rem; text-align: center; height: 80px; display: flex; flex-direction: column; justify-content: center; }
+  .evento-date .day { font-family: 'Anton', sans-serif; font-size: 1.8rem; line-height: 1; color: #fff; }
+  .evento-date .month { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; color: var(--vbg-verde-claro); }
+  .evento-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--vbg-ambar); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .evento-name { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.1rem; color: var(--vbg-verde); margin-bottom: 0.3rem; line-height: 1.1; }
+  .evento-meta { font-size: 0.82rem; color: var(--vbg-gris-texto); }
+
+  /* ====== FAQ ====== */
+  .faq { background: var(--vbg-blanco); }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; margin-bottom: 0.6rem; overflow: hidden; }
+  .faq-q { padding: 1.1rem 1.4rem; font-weight: 600; color: var(--vbg-verde); display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; font-size: 0.96rem; }
+  .faq-q::after { content: "+"; font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--vbg-ambar); font-weight: 400; transition: transform 0.2s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { padding: 0 1.4rem 1.2rem; font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ====== MAPA ANCHO COMPLETO ====== */
+  .map-full {
+    width: 100%; height: 450px; position: relative;
+    background: var(--vbg-negro);
+    overflow: hidden;
+  }
+  .map-full iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; border: 0;
+  }
+  .map-overlay {
+    position: absolute; top: 50%; left: 2rem;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(20,18,16,0.92); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--vbg-ambar);
+    padding: 1.5rem 2rem; border-radius: 4px; max-width: 340px;
+    color: #f3ebd9;
+  }
+  .map-overlay .mo-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vbg-verde-claro); margin-bottom: 0.5rem; }
+  .map-overlay .mo-addr { font-size: 1.05rem; color: #fff; line-height: 1.5; margin-bottom: 0.8rem; }
+  .map-overlay .mo-hours { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #c8c0b0; line-height: 1.7; }
+  .map-overlay .mo-hours .hoy { color: var(--vbg-ambar); font-weight: 600; }
+
+  /* ====== FOOTER (columnas) ====== */
+  .site-footer { background: var(--vbg-negro); padding: 3rem 0 1.5rem; }
+  .footer-grid-cols { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; }
+  .footer-brand img { height: 40px; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.84rem; line-height: 1.6; max-width: 280px; color: #9a9183; margin-bottom: 1rem; }
+  .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vbg-verde-claro); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; font-size: 0.88rem; color: #c8c0b0; }
+  .footer-col a:hover { color: var(--vbg-ambar); }
+  .footer-horarios .fh-row { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 0.25rem 0; color: #c8c0b0; border-bottom: 1px dotted rgba(255,255,255,0.08); }
+  .footer-horarios .fh-row.cerrado { color: #6b6358; }
+  .footer-horarios .fh-row.hoy { color: var(--vbg-ambar); font-weight: 600; }
+  .footer-social { display: flex; gap: 0.7rem; }
+  .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: #c8c0b0; transition: all 0.2s; }
+  .footer-social a:hover { background: var(--vbg-ambar); color: #fff; border-color: var(--vbg-ambar); }
+  .footer-social svg { width: 18px; height: 18px; }
+  .footer-bottom { max-width: 1280px; margin: 2.5rem auto 0; padding: 1.5rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; font-size: 0.76rem; color: #6b6358; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; flex-wrap: wrap; gap: 1rem; }
+
+  @media (max-width: 900px) {
+    .hero { min-height: auto; padding: 100px 0 110px; }
+    .tap-grid-compact { grid-template-columns: 1fr; }
+    .tap-c { border-right: none !important; }
+    .tapwall-float { margin-top: -90px; }
+    .cocina-grid, .dif-grid { grid-template-columns: 1fr 1fr; }
+    .eventos-grid { grid-template-columns: 1fr; }
+    .camara-fria-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .camara-fria-numero { border-left: none; border-top: 1px solid rgba(243,235,217,0.2); padding-left: 0; padding-top: 1.5rem; text-align: left; display: flex; align-items: baseline; gap: 1rem; }
+    .review-card { flex: 0 0 85%; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .nav-main { display: none; }
+    .map-overlay { position: relative; top: auto; left: auto; transform: none; max-width: none; margin: 1.5rem; }
+    .map-full { height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG sprite del vaso pinta americana (color dinámico por estilo) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="vaso" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M17 2a2 2 0 0 1 1.995 1.85L19 4v4c0 1.335-.229 2.386-.774 3.692l-.157.363l-.31.701a8.9 8.9 0 0 0-.751 3.242l-.008.377V20a2 2 0 0 1-1.85 1.995L15 22H9a2 2 0 0 1-1.995-1.85L7 20v-3.625c0-1.132-.21-2.25-.617-3.28l-.142-.34l-.31-.699c-.604-1.358-.883-2.41-.925-3.698L5 8V4a2 2 0 0 1 1.85-1.995L7 2zm0 2H7v3h10z" />
+  </symbol>
+</svg>
+
+<!-- ====== HEADER ====== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#"><img src="assets/logo-transparente.svg" alt="Vecindario Beer Garden" class="site-logo"></a>
+    <nav class="nav-main">
+      <a href="#">Inicio</a>
+      <a href="menu-preview.html">Menú</a>
+      <a href="#">Cervezas</a>
+      <a href="hub-preview.html">Hamburguesas</a>
+      <a href="#">Eventos</a>
+      <a href="#mapa">Contacto</a>
+    </nav>
+    <a href="menu-preview.html" class="header-cta">
+      Ver menú
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="images-extraidas/hero/tostada-hamburguesa-cerveza.jpg" alt="Tostadas, hamburguesa y cerveza de barril en Vecindario Beer Garden">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-h1">
+        <span class="line">Restaurante bar en</span>
+        <span class="line"><span class="accent">Cuernavaca</span> con</span>
+        <span class="line">cerveza artesanal</span>
+      </h1>
+      <div class="hero-label">Cerveza artesanal · Cocina casual · Cuernavaca</div>
+      <p class="hero-sub">
+        Cocina casual, diez cervezas de barril en rotación y una terraza pet friendly para comer, beber y pasarla bien en uno de los espacios cerveceros más especiales de Cuernavaca.
+      </p>
+      <div class="hero-ctas">
+        <a href="menu-preview.html" class="btn-primary">
+          Ver el menú
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://wa.me/5217774972223" class="btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.8-1.2-4.4 0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.8 8.2-8.4 8.2z" fill-rule="evenodd"/></svg>
+          Reservar por WhatsApp
+        </a>
+      </div>
+      <div class="hero-badge-row">
+        <span class="hero-rating">
+          <span class="stars">★★★★★</span>
+          <strong>4.9</strong>
+          <span>· 241 reseñas en Google</span>
+        </span>
+        <span class="hero-sep"></span>
+        <span>Pet friendly 🐾</span>
+        <span class="hero-sep"></span>
+        <span>Terraza</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TAP WALL FLOTANTE ====== -->
+<div class="tapwall-float">
+  <div style="margin-bottom: 1rem; padding: 0 0.5rem;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--vbg-verde-claro); margin-bottom: 0.4rem;">En rotación · 10 líneas</div>
+    <h2 style="font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.5rem, 3vw, 2rem); color: #f3ebd9; line-height: 1; margin: 0;">Cervezas de barril en rotación</h2>
+  </div>
+  <div class="tapwall-card">
+    <div class="tapwall-bar">
+      <span class="tw-live">CERVEZA ARTESANAL · EN ROTACIÓN</span>
+      <span class="tw-updated">Actualizado hoy · 10 líneas</span>
+    </div>
+    <div class="tap-grid-compact">
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#01</span><svg class="tap-c-vaso" style="color:#f4d03f;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Ícono Light Lager</div><div class="tap-c-meta">Light Lager · 3.5%</div><div class="tap-c-brew">Ícono · Mexicali</div></div><div class="tap-c-prices"><span class="p-ch">$80<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$90<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#02</span><svg class="tap-c-vaso" style="color:#e8a317;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Insurgente La Lupulosa</div><div class="tap-c-meta">IPA · 6.5% · 65 IBU</div><div class="tap-c-brew">Insurgente · Tijuana</div></div><div class="tap-c-prices"><span class="p-ch">$95<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$110<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#03</span><svg class="tap-c-vaso" style="color:#f0c419;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Agua Mala Mantarraya</div><div class="tap-c-meta">Cream Ale · 4.8%</div><div class="tap-c-brew">Agua Mala · Ensenada</div></div><div class="tap-c-prices"><span class="p-ch">$90<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$105<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#04</span><svg class="tap-c-vaso" style="color:#e6c200;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Vecindario Saison</div><div class="tap-c-meta">Saison · 5.2%</div><div class="tap-c-brew">Vecindario · Colab</div></div><div class="tap-c-prices"><span class="p-ch">$100<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$115<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#05</span><svg class="tap-c-vaso" style="color:#000000;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Minerva Stout</div><div class="tap-c-meta">Imperial Stout · 8%</div><div class="tap-c-brew">Minerva · Guadalajara</div></div><div class="tap-c-prices"><span class="p-ch">$110<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$130<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#06</span><svg class="tap-c-vaso" style="color:#c4721e;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Ramuri Ambar</div><div class="tap-c-meta">Vienna Lager · 5.1%</div><div class="tap-c-brew">Ramuri · Naucalpan</div></div><div class="tap-c-prices"><span class="p-ch">$90<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$105<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#07</span><svg class="tap-c-vaso" style="color:#ddb845;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Calavera Weizen</div><div class="tap-c-meta">Hefeweizen · 5.3%</div><div class="tap-c-brew">Calavera · Toluca</div></div><div class="tap-c-prices"><span class="p-ch">$90<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$105<small>G</small></span></div></div>
+      <div class="tap-c agotada"><div class="tap-c-numwrap"><span class="tap-c-num">#08</span><svg class="tap-c-vaso" style="color:#d4a017;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Cru Crú Belgian Tripel</div><div class="tap-c-meta">Belgian Tripel · 9%</div><div class="tap-c-brew">Cru Crú · Querétaro</div></div><div class="tap-c-prices"><span style="color:#9a9183;">Agotada</span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#09</span><svg class="tap-c-vaso" style="color:#e8c547;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Colima Portal del Sol</div><div class="tap-c-meta">Honey Lager · 4.4%</div><div class="tap-c-brew">Colima · Colima</div></div><div class="tap-c-prices"><span class="p-ch">$85<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$100<small>G</small></span></div></div>
+      <div class="tap-c"><div class="tap-c-numwrap"><span class="tap-c-num">#10</span><svg class="tap-c-vaso" style="color:#dac649;"><use href="#vaso"/></svg></div><div class="tap-c-info"><div class="tap-c-name">Loba Short Fuse</div><div class="tap-c-meta">Hazy IPA · 6.2%</div><div class="tap-c-brew">Loba · Zapopan</div></div><div class="tap-c-prices"><span class="p-ch">$95<small>CH</small></span><span class="p-sep">·</span><span class="p-g">$110<small>G</small></span></div></div>
+    </div>
+    <div class="tapwall-bar" style="border-top: 1px solid rgba(255,255,255,0.06); border-bottom: none;">
+      <a href="#" class="tw-link">Conoce nuestra selección de cerveza artesanal →</a>
+      <span class="tw-updated">CH = chico · G = grande</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== COCINA (antes que cámara fría) ====== -->
+<section class="cocina">
+  <div class="container">
+    <div style="margin-bottom: 2.2rem;">
+      <div class="section-label">Lo que sale de la cocina</div>
+      <h2 class="section-title">Qué comer en Vecindario</h2>
+      <p class="section-sub">Pizzas napolitanas, hamburguesas premium y entrantes para compartir. Una cocina casual pensada para disfrutar junto con nuestra selección de cerveza artesanal.</p>
+    </div>
+    <div class="cocina-grid">
+      <a href="#" class="plato-card" style="text-decoration:none;color:inherit;">
+        <div class="plato-img"><img src="images-extraidas/pizza-eureka.jpg" alt="Pizzas napolitanas"></div>
+        <div class="plato-body">
+          <div class="plato-tag">Horno napolitano</div>
+          <h3 class="plato-name">Pizzas napolitanas</h3>
+          <p class="plato-desc">Masa de fermentación larga, salsa San Marzano, mozzarella fior di latte. Para una o dos personas.</p>
+          <div class="plato-foot"><span class="plato-pair">Ver nuestras pizzas →</span></div>
+        </div>
+      </a>
+      <a href="hub-preview.html" class="plato-card" style="text-decoration:none;color:inherit;">
+        <div class="plato-img"><img src="images-extraidas/hamburguesa-vecindario.jpg" alt="Hamburguesas"></div>
+        <div class="plato-body">
+          <div class="plato-tag">Parrilla abierta</div>
+          <h3 class="plato-name">Hamburguesas</h3>
+          <p class="plato-desc">Pan brioche, carne premium molida del día, cocinada a la parrilla. Pensadas para acompañar una buena cerveza de barril.</p>
+          <div class="plato-foot"><span class="plato-pair">Ver nuestras hamburguesas →</span></div>
+        </div>
+      </a>
+      <a href="menu-preview.html" class="plato-card" style="text-decoration:none;color:inherit;">
+        <div class="plato-img"><img src="images-extraidas/tostadas-de-atun.jpg" alt="Entrantes para compartir"></div>
+        <div class="plato-body">
+          <div class="plato-tag">Para compartir</div>
+          <h3 class="plato-name">Entrantes para compartir</h3>
+          <p class="plato-desc">Tostadas de atún, papas gajo, tiras de pollo y otras opciones para empezar la mesa o acompañar unas cervezas.</p>
+          <div class="plato-foot"><span class="plato-pair">Ver el menú completo →</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== DIFERENCIADORES ====== -->
+<section class="diferenciadores">
+  <div class="container">
+    <div style="margin-bottom: 2.2rem;">
+      <div class="section-label">Por qué Vecindario</div>
+      <h2 class="section-title">Lo que hace diferente a Vecindario</h2>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card">
+        <svg class="dif-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 8h20l-2 8H16z"/><line x1="24" y1="16" x2="24" y2="38"/><circle cx="24" cy="40" r="3"/>
+          <path d="M14 12c-3 0-5 2-5 5s2 5 5 5"/><path d="M34 12c3 0 5 2 5 5s-2 5-5 5"/>
+        </svg>
+        <div class="dif-num">10 LÍNEAS</div>
+        <h3 class="dif-title">Cervezas que siempre cambian</h3>
+        <p class="dif-text">Diez líneas de barril con cervecerías independientes y una selección que cambia constantemente para que siempre haya algo nuevo por descubrir.</p>
+      </div>
+      <div class="dif-card">
+        <svg class="dif-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="14" width="28" height="26" rx="2"/><path d="M18 14V8h12v6"/><line x1="10" y1="24" x2="38" y2="24"/>
+        </svg>
+        <div class="dif-num">ÚNICOS EN MORELOS</div>
+        <h3 class="dif-title">Cámara fría cervecera</h3>
+        <p class="dif-text">La única cámara fría del estado para almacenar y servir cerveza en condiciones óptimas. Frescura garantizada en cada pinta.</p>
+      </div>
+      <div class="dif-card">
+        <svg class="dif-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 8c-6 4-10 10-10 18 0 6 4 12 10 14 6-2 10-8 10-14 0-8-4-14-10-18z"/><path d="M24 8v32"/>
+        </svg>
+        <div class="dif-num">EQUIPO CERVECERO</div>
+        <h3 class="dif-title">Te ayudamos a elegir</h3>
+        <p class="dif-text">¿No conoces un estilo? Cuéntanos qué te gusta y nuestro equipo te recomienda una cerveza que vaya contigo.</p>
+      </div>
+      <div class="dif-card">
+        <svg class="dif-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="18" r="4"/><circle cx="16" cy="30" r="4"/><path d="M24 14l8 8-8 8"/><path d="M32 22h6"/>
+        </svg>
+        <div class="dif-num">TERRAZA</div>
+        <h3 class="dif-title">Terraza pet friendly</h3>
+        <p class="dif-text">Ven con tu perro y disfruta de nuestra terraza abierta en un ambiente relajado y sin pretensiones. <a href="#" style="color: var(--vbg-verde); font-weight: 600; text-decoration: underline;">Conoce nuestro espacio pet friendly →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== RESEÑAS (slider) ====== -->
+<section class="reviews">
+  <div class="container">
+    <div style="margin-bottom: 2.2rem;">
+      <div class="section-label">4.9 en Google</div>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="reviews-summary">
+      <div class="reviews-score">4.9<small>/5</small></div>
+      <div class="reviews-meta">
+        <div class="stars">★★★★★</div>
+        <div class="count">241 reseñas verificadas</div>
+      </div>
+      <div class="reviews-source">Fuente: Google Business Profile</div>
+    </div>
+    <div class="reviews-slider-wrap">
+      <div class="reviews-slider" id="reviewsSlider">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"La mejor cerveza artesanal de Cuernavaca, sin duda. Y la pizza es una sorpresa enorme, no esperaba que estuviera tan buena en un beer garden."</p>
+          <div class="review-author">Mariana G. · hace 2 semanas</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Vinimos por la cerveza y regresamos por la hamburguesa. El personal te explica y recomienda según lo que te gusta. Terraza hermosa."</p>
+          <div class="review-author">Roberto M. · hace 1 mes</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Atención de expertos. Te explican cada estilo, te recomiendan maridaje. Se nota que saben de cerveza, no es un restaurante más."</p>
+          <div class="review-author">Alejandra P. · hace 1 mes</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"El lugar tiene una vibra increíble. Llevé a mi perro y nos trataron súper bien. Las cervezas que no conoces te las explican con paciencia."</p>
+          <div class="review-author">Fernando L. · hace 3 semanas</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"La cámara fría se nota. La cerveza llega a la mesa como debe estar. Pocos lugares en México cuidan así la cerveza."</p>
+          <div class="review-author">Daniela R. · hace 2 meses</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Pizzas riquísimas, ambiente relajado y cervezas que no encuentras en otro lado. Un restaurante diferente en Cuernavaca."</p>
+          <div class="review-author">Carlos T. · hace 1 mes</div>
+        </div>
+      </div>
+      <div class="slider-nav">
+        <button onclick="document.getElementById('reviewsSlider').scrollBy({left:-320,behavior:'smooth'})" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button onclick="document.getElementById('reviewsSlider').scrollBy({left:320,behavior:'smooth'})" aria-label="Siguiente">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== EVENTOS ====== -->
+<section class="eventos">
+  <div class="container">
+    <div style="margin-bottom: 2.2rem;">
+      <div class="section-label">Próximos eventos</div>
+      <h2 class="section-title">Próximos eventos en Cuernavaca</h2>
+      <p class="section-sub">Catas de cerveza, música en vivo y noches especiales. Consulta nuestra agenda y descubre qué tenemos preparado. <a href="#" style="color: var(--vbg-verde); font-weight: 600;">Ver todos los eventos →</a></p>
+    </div>
+    <div class="eventos-grid">
+      <article class="evento-card">
+        <div class="evento-date"><div class="day">22</div><div class="month">AGO</div></div>
+        <div>
+          <div class="evento-tag">Cata de cerveza</div>
+          <h3 class="evento-name">Cata: estilos belgas</h3>
+          <p class="evento-meta">Viernes 22 de agosto · 19:00 · Cupo limitado · $350</p>
+        </div>
+      </article>
+      <article class="evento-card">
+        <div class="evento-date"><div class="day">06</div><div class="month">SEP</div></div>
+        <div>
+          <div class="evento-tag">Música en vivo</div>
+          <h3 class="evento-name">Sesión acústica</h3>
+          <p class="evento-meta">Sábado 6 de septiembre · 20:00 · Entrada libre · Consumación mínima</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 2.2rem;">
+      <div class="section-label" style="justify-content:center;">Antes de tu visita</div>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">¿Son un restaurante bar pet friendly en Cuernavaca?</div>
+        <div class="faq-a">Sí. Somos un restaurante y bar pet friendly con terraza abierta donde puedes venir con tu perro, grande o pequeño. Trae agua para tu mascota si gustas; si se te olvida, con gusto le damos un recipiente. <a href="#" style="color: var(--vbg-verde); font-weight: 600; text-decoration: underline;">Conoce nuestro espacio pet friendly →</a></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Tienen terraza?</div>
+        <div class="faq-a">Sí. Nuestra terraza es uno de los espacios principales de Vecindario y es además el área ideal para venir con mascotas. Es un ambiente relajado, sin pretensiones, perfecto para disfrutar de una cerveza y algo de comer al aire libre.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué tipo de cerveza tienen?</div>
+        <div class="faq-a">Tenemos diez cervezas artesanales de barril en rotación, además de una selección de cervezas en lata y botella de cervecerías nacionales e importadas. También servimos cervezas comerciales (Corona, Victoria, Heineken, Bohemia) y otras bebidas: mezcal, coctelería básica y bebidas sin alcohol. <a href="#" style="color: var(--vbg-verde); font-weight: 600; text-decoration: underline;">Conoce nuestra selección de cerveza artesanal →</a></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué se puede comer en Vecindario?</div>
+        <div class="faq-a">Nuestra cocina ofrece pizzas napolitanas de horno, hamburguesas a la parrilla, entrantes para compartir, postres y otras opciones. Es cocina casual pensada para acompañar la cerveza. <a href="menu-preview.html" style="color: var(--vbg-verde); font-weight: 600; text-decoration: underline;">Ver el menú →</a></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Es necesario reservar?</div>
+        <div class="faq-a">No es obligatorio, pero recomendamos reservar especialmente viernes, sábados y durante eventos especiales. Para asegurar mesa en horario pico, escríbenos por WhatsApp con anticipación. En horarios menos concurridos (miércoles, jueves temprano) normalmente hay lugar sin reserva.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Pueden entrar menores de edad al restaurante?</div>
+        <div class="faq-a">Sí. Somos un restaurante-bar familiar donde los menores son bienvenidos. No se les sirve alcohol, pero pueden disfrutar de la cocina y el ambiente de terraza. Es un lugar apto para familias que buscan comer bien en Cuernavaca mientras los adultos disfrutan de una buena cerveza.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Tienen opciones vegetarianas en el menú?</div>
+        <div class="faq-a">Sí. En el menú del restaurante tenemos opciones vegetarianas como ensaladas y la "Entrada Vecindario" que lleva hummus con pan pita y vegetales frescos. También contamos con una hamburguesa vegetariana de portobello a la parrilla con queso de cabra. Si tienes una restricción específica, pregúntanos — la cocina se adapta cuando puede.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== UBICACIÓN + MAPA (SEO local) ====== -->
+<section id="mapa" style="background: var(--vbg-negro); padding: 4rem 0 0;">
+  <div class="container" style="margin-bottom: 2.5rem;">
+    <div class="section-label" style="color: var(--vbg-verde-claro);">Ven a visitarnos</div>
+    <h2 class="section-title" style="color: #f3ebd9;">Restaurante bar en Cuernavaca, sobre Av. Teopanzolco</h2>
+    <p style="color: #c8c0b0; max-width: 620px; margin-top: 0.6rem;">Estamos en Av. Teopanzolco, en Cuernavaca, Morelos. Consulta nuestro horario, ubicación y las opciones para llegar.</p>
+  </div>
+  <div class="map-full">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.6778272916135!2d-99.22514579999999!3d18.9456493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cddf005ddb36b1%3A0x3d976952384a58c4!2sVecindario%20Beer%20Garden!5e0!3m2!1ses-419!2smx!4v1786640283723!5m2!1ses-419!2smx" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" title="Ubicación de Vecindario Beer Garden en Google Maps"></iframe>
+  </div>
+</section>
+
+<!-- ====== FOOTER (columnas + horarios completos) ====== -->
+<footer class="site-footer">
+  <div class="footer-grid-cols">
+    <div class="footer-brand">
+      <img src="assets/logo-transparente.svg" alt="Vecindario Beer Garden">
+      <p>Restaurante bar con cerveza artesanal y la única cámara fría cervecera de Morelos.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zm0 10.16A4 4 0 1116 12a4 4 0 01-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+        <a href="#" aria-label="Google 4.9 estrellas"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.29v3.72h6.12c-.24 1.57-1.8 4.6-6.12 4.6-3.68 0-6.69-3.05-6.69-6.81s3.01-6.81 6.69-6.81c2.1 0 3.5.9 4.3 1.66l2.93-2.83C18.1 2.71 15.45 1.6 12.24 1.6 6.59 1.6 2 6.19 2 11.84s4.59 10.24 10.24 10.24c5.91 0 9.83-4.15 9.83-10 0-.67-.07-1.18-.16-1.69z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explora</h4>
+      <ul>
+        <li><a href="menu-preview.html">Menú</a></li>
+        <li><a href="#">Cervezas de barril</a></li>
+        <li><a href="hub-preview.html">Hamburguesas</a></li>
+        <li><a href="#">Pizzas</a></li>
+        <li><a href="#">Eventos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horarios</h4>
+      <div class="footer-horarios">
+        <div class="fh-row cerrado"><span>Lunes</span><span>Cerrado</span></div>
+        <div class="fh-row cerrado"><span>Martes</span><span>Cerrado</span></div>
+        <div class="fh-row hoy"><span>Miércoles</span><span>17:00–23:30</span></div>
+        <div class="fh-row"><span>Jueves</span><span>17:00–23:30</span></div>
+        <div class="fh-row"><span>Viernes</span><span>17:00–23:30</span></div>
+        <div class="fh-row"><span>Sábado</span><span>15:00–23:30</span></div>
+        <div class="fh-row"><span>Domingo</span><span>15:00–22:00</span></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>Av. Teopanzolco 665</li>
+        <li>Reforma, 62260 Cuernavaca</li>
+        <li><a href="tel:+527774972223">777 497 2223</a></li>
+        <li><a href="#">vecindario665@gmail.com</a></li>
+        <li><a href="https://wa.me/5217774972223">WhatsApp →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Vecindario Beer Garden</span>
+    <span>Aviso de privacidad · Términos</span>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 500);
+  });
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+  // Auto-scroll del slider de reseñas
+  const slider = document.getElementById('reviewsSlider');
+  if (slider) {
+    let autoScroll;
+    const startAuto = () => {
+      autoScroll = setInterval(() => {
+        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+          slider.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          slider.scrollBy({ left: 320, behavior: 'smooth' });
+        }
+      }, 5000);
+    };
+    const stopAuto = () => clearInterval(autoScroll);
+    startAuto();
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+  }
+</script>
+
+</body>
+</html>

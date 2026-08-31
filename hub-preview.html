@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamburguesas en Cuernavaca | Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<meta name="description" content="Hamburguesas en Cuernavaca con pan brioche, carne premium y parrilla abierta. Maridadas con cerveza artesanal de barril en Vecindario Beer Garden.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vbg-verde: #2d5a3d;
+    --vbg-verde-claro: #6da05d;
+    --vbg-ambar: #c4721e;
+    --vbg-negro: #141210;
+    --vbg-negro-2: #1a1815;
+    --vbg-claro: #f7f4ed;
+    --vbg-claro-2: #efe9db;
+    --vbg-blanco: #ffffff;
+    --vbg-carbon: #1f1c18;
+    --vbg-gris-texto: #6b6358;
+    --vbg-gris-linea: #d8d3c4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', -apple-system, sans-serif;
+    color: var(--vbg-carbon);
+    background: var(--vbg-claro);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ====== HEADER ====== */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.scrolled {
+    background: rgba(20,18,16,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .site-logo { height: 42px; }
+  .nav-main { display: flex; gap: 1.8rem; align-items: center; }
+  .nav-main a { font-size: 0.9rem; font-weight: 500; color: #fff; position: relative; padding: 0.3rem 0; }
+  .nav-main a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--vbg-ambar); transition: width 0.25s; }
+  .nav-main a:hover::after { width: 100%; }
+  .header-cta { background: var(--vbg-ambar); color: #fff; padding: 0.6rem 1.3rem; font-size: 0.86rem; font-weight: 600; border-radius: 2px; display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s; }
+  .header-cta:hover { background: #a85d18; }
+  .header-cta svg { width: 14px; height: 14px; }
+
+  /* ====== HERO full-bleed ====== */
+  .hub-hero { position: relative; color: #fff; min-height: 70vh; display: flex; align-items: center; overflow: hidden; background: var(--vbg-negro); padding-top: 80px; }
+  .hub-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hub-hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .hub-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(95deg, rgba(20,18,16,0.95) 0%, rgba(20,18,16,0.78) 40%, rgba(20,18,16,0.35) 75%, rgba(20,18,16,0.15) 100%), linear-gradient(to top, rgba(20,18,16,0.90) 0%, transparent 50%); }
+  .hub-hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; padding: 3rem 1.5rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+  .hub-hero-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.18em; color: var(--vbg-verde-claro); text-transform: uppercase; border-left: 3px solid var(--vbg-ambar); padding-left: 0.8rem; margin-bottom: 1.2rem; }
+  .hub-hero-h1 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+  .hub-hero-h1 .accent { color: var(--vbg-ambar); }
+  .hub-hero-sub { font-size: 1.05rem; color: #d8d2c2; margin-bottom: 1.6rem; max-width: 460px; line-height: 1.55; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+  .hub-hero-stats { display: flex; gap: 1.8rem; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.2rem; }
+  .hub-stat .hs-num { font-family: 'Anton', sans-serif; font-size: 1.7rem; color: var(--vbg-ambar); line-height: 1; }
+  .hub-stat .hs-lab { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--vbg-gris-texto); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  .hub-hero-img { border-radius: 4px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); aspect-ratio: 4/3; }
+  .hub-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ====== SECCIONES ====== */
+  section { padding: 3.5rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--vbg-ambar); margin-bottom: 0.6rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .section-label::before { content: ""; width: 24px; height: 2px; background: var(--vbg-ambar); }
+  .section-title { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: var(--vbg-verde); letter-spacing: 0.01em; line-height: 1.05; margin-bottom: 1rem; }
+
+  /* ====== HAMBURGUESAS ====== */
+  .burg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1rem; }
+  .burg-card { background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+  .burg-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  .burg-img { aspect-ratio: 4/3; overflow: hidden; }
+  .burg-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .burg-card:hover .burg-img img { transform: scale(1.05); }
+  .burg-body { padding: 1.3rem 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .burg-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vbg-ambar); margin-bottom: 0.4rem; }
+  .burg-name { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.3rem; color: var(--vbg-verde); margin-bottom: 0.5rem; }
+  .burg-desc { font-size: 0.88rem; color: var(--vbg-gris-texto); line-height: 1.55; margin-bottom: 1rem; flex: 1; }
+  .burg-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--vbg-gris-linea); padding-top: 0.8rem; }
+  .burg-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: 1.15rem; }
+  .burg-pair { font-size: 0.76rem; color: var(--vbg-verde); font-style: italic; }
+
+  /* ====== EDITORIAL ====== */
+  .editorial { background: var(--vbg-blanco); }
+  .editorial-prose { font-size: 1.02rem; color: var(--vbg-carbon); line-height: 1.8; }
+  .editorial-prose p { margin-bottom: 1.2rem; }
+  .editorial-prose p.lead { font-size: 1.15rem; color: var(--vbg-verde); font-weight: 500; border-left: 3px solid var(--vbg-ambar); padding-left: 1rem; margin-bottom: 1.6rem; }
+  .editorial-prose strong { color: var(--vbg-verde); }
+  .editorial-prose h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.35rem; color: var(--vbg-verde); margin: 2rem 0 0.8rem; }
+  .editorial-pull { background: var(--vbg-claro); border-top: 3px solid var(--vbg-ambar); padding: 1.5rem; margin: 1.8rem 0; border-radius: 4px; }
+  .editorial-pull .pull-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vbg-ambar); margin-bottom: 0.5rem; }
+  .editorial-pull p { margin: 0; font-size: 0.96rem; color: var(--vbg-carbon); }
+
+  /* ====== MARIDAJE ====== */
+  .maridaje { background: var(--vbg-claro-2); }
+  .maridaje-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .maridaje-card { background: var(--vbg-negro); color: #f3ebd9; border-radius: 4px; padding: 1.6rem; border-left: 4px solid var(--vbg-ambar); }
+  .maridaje-card h4 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.2rem; color: #f3ebd9; margin-bottom: 0.5rem; }
+  .maridaje-card .pair-style { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--vbg-verde-claro); margin-bottom: 0.6rem; font-weight: 500; }
+  .maridaje-card p { font-size: 0.9rem; color: #c8c0b0; line-height: 1.55; margin-bottom: 0.8rem; }
+  .maridaje-card .pair-why { font-size: 0.82rem; color: #9a9183; font-style: italic; border-top: 1px dotted rgba(255,255,255,0.1); padding-top: 0.6rem; }
+  .maridaje-cta { margin-top: 2rem; text-align: center; }
+  .btn-primary { background: var(--vbg-ambar); color: #fff; padding: 0.9rem 2rem; font-weight: 600; font-size: 0.96rem; border-radius: 2px; display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: #a85d18; transform: translateY(-1px); }
+
+  /* ====== FAQ ====== */
+  .faq { background: var(--vbg-blanco); }
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; margin-bottom: 0.6rem; overflow: hidden; }
+  .faq-q { padding: 1.1rem 1.4rem; font-weight: 600; color: var(--vbg-verde); display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; font-size: 0.96rem; }
+  .faq-q::after { content: "+"; font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--vbg-ambar); font-weight: 400; transition: transform 0.2s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { padding: 0 1.4rem 1.2rem; font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ====== CTA FINAL ====== */
+  .cta-final { background: var(--vbg-verde); color: #fff; text-align: center; padding: 3.5rem 1.5rem; }
+  .cta-final h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.8rem; line-height: 1.05; }
+  .cta-final p { color: #c8d8c0; margin-bottom: 1.8rem; font-size: 1.05rem; }
+  .cta-final .btn-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa { background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); padding: 0.9rem 1.8rem; font-weight: 500; font-size: 0.96rem; border-radius: 2px; display: inline-flex; align-items: center; gap: 0.5rem; transition: border-color 0.2s, background 0.2s; }
+  .btn-wa:hover { border-color: var(--vbg-verde-claro); background: rgba(109,160,93,0.25); }
+  .btn-wa svg { width: 18px; height: 18px; }
+
+  /* ====== FOOTER ====== */
+  .site-footer { background: var(--vbg-negro); padding: 3rem 0 1.5rem; }
+  .footer-grid-cols { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; }
+  .footer-brand img { height: 40px; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.84rem; line-height: 1.6; max-width: 280px; color: #9a9183; margin-bottom: 1rem; }
+  .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vbg-verde-claro); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; font-size: 0.88rem; color: #c8c0b0; }
+  .footer-col a:hover { color: var(--vbg-ambar); }
+  .footer-social { display: flex; gap: 0.7rem; }
+  .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: #c8c0b0; transition: all 0.2s; }
+  .footer-social a:hover { background: var(--vbg-ambar); color: #fff; border-color: var(--vbg-ambar); }
+  .footer-social svg { width: 18px; height: 18px; }
+  .footer-bottom { max-width: 1100px; margin: 2.5rem auto 0; padding: 1.5rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; font-size: 0.76rem; color: #6b6358; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; flex-wrap: wrap; gap: 1rem; }
+
+  @media (max-width: 900px) {
+    .hub-hero-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
+    .burg-grid { grid-template-columns: 1fr; }
+    .maridaje-grid { grid-template-columns: 1fr; }
+    .nav-main { display: none; }
+    .footer-grid-cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== HEADER ====== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="home-preview.html"><img src="assets/logo-transparente.svg" alt="Vecindario Beer Garden" class="site-logo"></a>
+    <nav class="nav-main">
+      <a href="home-preview.html">Inicio</a>
+      <a href="menu-preview.html">Menú</a>
+      <a href="#">Cervezas</a>
+      <a href="hub-preview.html">Hamburguesas</a>
+      <a href="#">Eventos</a>
+      <a href="#">Contacto</a>
+    </nav>
+    <a href="menu-preview.html" class="header-cta">Ver menú <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hub-hero" style="padding-top:80px;">
+  <div class="hub-hero-bg">
+    <img src="images-extraidas/hamburguesa-teopanzolco.jpg" alt="Hamburguesa en Vecindario Beer Garden, Cuernavaca">
+  </div>
+  <div class="hub-hero-inner">
+    <div>
+      <div class="hub-hero-label">Hamburguesas · Cuernavaca, Morelos</div>
+      <h1 class="hub-hero-h1">Hamburguesas<br>en <span class="accent">Cuernavaca</span></h1>
+      <p class="hub-hero-sub">Pan brioche, carne premium y parrilla abierta. Maridadas con cerveza artesanal de barril que cambia cada semana.</p>
+      <div class="hub-hero-stats">
+        <div class="hub-stat"><div class="hs-num">4.9★</div><div class="hs-lab">241 reseñas Google</div></div>
+        <div class="hub-stat"><div class="hs-num">3</div><div class="hs-lab">recetas de la casa</div></div>
+        <div class="hub-stat"><div class="hs-num">10</div><div class="hs-lab">taps para maridar</div></div>
+      </div>
+    </div>
+    <div class="hub-hero-img">
+      <img src="images-extraidas/hamburguesa-vecindario.jpg" alt="Hamburguesa Vecindario">
+    </div>
+  </div>
+</section>
+
+<!-- ====== LAS 3 HAMBURGUESAS ====== -->
+<section>
+  <div class="container">
+    <div class="section-label">Nuestras recetas</div>
+    <h2 class="section-title">Tres hamburguesas, una parrilla</h2>
+    <div class="burg-grid">
+      <article class="burg-card">
+        <div class="burg-img"><img src="images-extraidas/hamburguesa-vecindario.jpg" alt="Hamburguesa Vecindario"></div>
+        <div class="burg-body">
+          <div class="burg-tag">La de la casa</div>
+          <h3 class="burg-name">Hamburguesa Vecindario</h3>
+          <p class="burg-desc">Pan brioche, carne premium de 160g, queso cheddar fundido, tocino caramelizado, cebolla encurtida y salsa de la casa.</p>
+          <div class="burg-foot"><span class="burg-price">$185</span><span class="burg-pair">marida con IPA</span></div>
+        </div>
+      </article>
+      <article class="burg-card">
+        <div class="burg-img"><img src="images-extraidas/hamburguesa-teopanzolco.jpg" alt="Hamburguesa Teopanzolco"></div>
+        <div class="burg-body">
+          <div class="burg-tag">Para los hambrientos</div>
+          <h3 class="burg-name">Hamburguesa Teopanzolco</h3>
+          <p class="burg-desc">Doble carne, doble queso americano, pepinillos, mostaza dijon y salsa especial.</p>
+          <div class="burg-foot"><span class="burg-price">$195</span><span class="burg-pair">marida con Stout</span></div>
+        </div>
+      </article>
+      <article class="burg-card">
+        <div class="burg-img"><img src="images-extraidas/papas-flanders.png" alt="Acompañamiento"></div>
+        <div class="burg-body">
+          <div class="burg-tag">Vegetariana</div>
+          <h3 class="burg-name">Hamburguesa Vegetariana</h3>
+          <p class="burg-desc">Portobello a la parrilla, queso de cabra, rúcula, tomate confitado y reducción de balsámico.</p>
+          <div class="burg-foot"><span class="burg-price">$170</span><span class="burg-pair">marida con Saison</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== EDITORIAL ====== -->
+<section class="editorial">
+  <div class="container-narrow">
+    <div class="section-label">Por qué nuestras hamburguesas</div>
+    <h2 class="section-title">Hechas para acompañar cerveza</h2>
+    <div class="editorial-prose">
+      <p class="lead">Una hamburguesa en un beer garden no es comida de acompañamiento: es la mitad del maridaje. Por eso cocinamos cada una pensando en cómo dialoga con la cerveza de barril que tienes en la mano.</p>
+      <h3>Pan brioche, mantequilla de verdad</h3>
+      <p>El pan es lo primero que se nota. Usamos <strong>brioche hecho con mantequilla</strong>, no pan industrial. Tostado en plancha justo antes de armar, aguanta el jugo de la carne sin desarmarse y aporta el toque dulce que equilibra el amargo del lúpulo de una IPA.</p>
+      <h3>Carne premium, parrilla abierta</h3>
+      <p>Trabajamos con proveedor local de Cuernavaca. <strong>Carne recién molida cada día</strong>, cocinada a la parrilla abierta —no plancha cerrada— para que tome sabor a fuego. El punto lo decides tú; recomendamos medio para que el jugo no se pierda.</p>
+      <div class="editorial-pull">
+        <div class="pull-label">¿Sabías que?</div>
+        <p>La grasa de la carne es lo que hace que una cerveza con cuerpo (Stout, Porter o Vienna Lager) funcione tan bien: limpia el paladar entre bocado y bocado.</p>
+      </div>
+      <h3>Ingredientes que importan</h3>
+      <p>Tocino caramelizado en la Vecindario. Queso americano de verdad en la Teopanzolco. Portobello fresco y queso de cabra en la vegetariana. Nada de salsas genéricas de sachet: <strong>cada componente se hace en la cocina</strong>, desde la mayonesa de la casa hasta la reducción de balsámico.</p>
+      <h3>Maridaje: la razón de ser</h3>
+      <p>Cada hamburguesa tiene una cerveza que la hace brillar. La <strong>IPA</strong> corta la grasa del tocino con su amargor. La <strong>Stout</strong> envuelve la doble carne con notas de café y chocolate. La <strong>Saison</strong> —con su especia natural— levanta el portobello y el queso de cabra sin taparlos.</p>
+      <p>Y como las 10 líneas de barril cambian cada semana, el maridaje es siempre una conversación: pregúntale al personal qué hay en tap hoy y qué recomienda para tu hamburguesa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== MARIDAJE ====== -->
+<section class="maridaje">
+  <div class="container">
+    <div class="section-label">Maridaje recomendado</div>
+    <h2 class="section-title">Hamburguesa + cerveza</h2>
+    <div class="maridaje-grid">
+      <div class="maridaje-card">
+        <h4>Vecindario + IPA</h4>
+        <div class="pair-style">American IPA · 6.5% ABV · 65 IBU</div>
+        <p>El amargor del lúpulo corta la grasa del tocino caramelizado y limpia el paladar para el siguiente bocado.</p>
+        <div class="pair-why">El lúpulo cítrico de una IPA resalta la cebolla encurtida.</div>
+      </div>
+      <div class="maridaje-card">
+        <h4>Teopanzolco + Stout</h4>
+        <div class="pair-style">Imperial Stout · 8.0% ABV · 45 IBU</div>
+        <p>Notas de café tostado y chocolate amargo envuelven la doble carne y amplifican el queso americano fundido.</p>
+        <div class="pair-why">El cuerpo de la Stout sostiene una hamburguesa pesada sin apagarse.</div>
+      </div>
+    </div>
+    <div class="maridaje-cta">
+      <a href="menu-preview.html" class="btn-primary">Ver las cervezas de barril <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="faq">
+  <div class="container-narrow">
+    <div class="section-label" style="justify-content:center; text-align:center; display:block;">Preguntas frecuentes</div>
+    <h2 class="section-title" style="text-align:center;">Sobre nuestras hamburguesas</h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">¿La carne es de proveedor local?</div>
+        <div class="faq-a">Sí. Trabajamos con un proveedor de Cuernavaca y la carne se muele cada día. No usamos carne congelada ni preformada.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Tienen opción vegetariana?</div>
+        <div class="faq-a">Sí: la Hamburguesa Vegetariana lleva portobello a la parrilla, queso de cabra, rúcula, tomate confitado y reducción de balsámico.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo pedir sin tocino o sin algún ingrediente?</div>
+        <div class="faq-a">Claro. Pídelo al personal o mándanos un mensaje por WhatsApp antes de venir. Cocinamos al momento, así que adaptar es fácil.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Acompañan las hamburguesas con algo?</div>
+        <div class="faq-a">Cada hamburguesa viene acompañada de papas gajo. Si quieres más, las Papas Flanders (con queso fundido, tocino y jalapeño) son para compartir.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA FINAL ====== -->
+<section class="cta-final" style="padding:3.5rem 1.5rem;">
+  <h2>¿Hamburguesa hoy?</h2>
+  <p>Miércoles a domingo, en la Av. Teopanzolco. Terraza pet friendly, 10 cervezas en tap y la parrilla encendida.</p>
+  <div class="btn-row">
+    <a href="https://wa.me/5217774972223" class="btn-wa">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.8-1.2-4.4 0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.8 8.2-8.4 8.2z" fill-rule="evenodd"/></svg>
+      Reservar por WhatsApp
+    </a>
+    <a href="menu-preview.html" class="btn-primary">Ver menú completo</a>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-footer">
+  <div class="footer-grid-cols">
+    <div class="footer-brand">
+      <img src="assets/logo-transparente.svg" alt="Vecindario Beer Garden">
+      <p>Restaurante bar con cerveza artesanal y la única cámara fría cervecera de Morelos.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zm0 10.16A4 4 0 1116 12a4 4 0 01-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+        <a href="#" aria-label="Google"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.29v3.72h6.12c-.24 1.57-1.8 4.6-6.12 4.6-3.68 0-6.69-3.05-6.69-6.81s3.01-6.81 6.69-6.81c2.1 0 3.5.9 4.3 1.66l2.93-2.83C18.1 2.71 15.45 1.6 12.24 1.6 6.59 1.6 2 6.19 2 11.84s4.59 10.24 10.24 10.24c5.91 0 9.83-4.15 9.83-10 0-.67-.07-1.18-.16-1.69z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explora</h4>
+      <ul>
+        <li><a href="menu-preview.html">Menú</a></li>
+        <li><a href="#">Cervezas de barril</a></li>
+        <li><a href="hub-preview.html">Hamburguesas</a></li>
+        <li><a href="#">Eventos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>Av. Teopanzolco 665</li>
+        <li>Reforma, 62260 Cuernavaca</li>
+        <li><a href="tel:+527774972223">777 497 2223</a></li>
+        <li>Mié–Vie 17–23:30 · Sáb 15–23:30</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Vecindario Beer Garden</span>
+    <span>Aviso de privacidad · Términos</span>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 400);
+  });
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+</script>
+
+</body>
+</html>

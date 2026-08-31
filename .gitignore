@@ -1,0 +1,20 @@
+# Dependencias y builds
+node_modules/
+web/dist/
+web/.astro/
+
+# Python (scripts del brief)
+__pycache__/
+
+# Imágenes fuente pesadas (ya viven en el DOCX original)
+images-extraidas/
+
+# Backups y temporales
+*backup*
+* - copia*
+*.tmp
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db

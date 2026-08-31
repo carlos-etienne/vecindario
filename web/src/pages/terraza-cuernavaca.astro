@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import FAQ from '../components/FAQ.astro';
+import site from '../data/site.json';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Tienen terraza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Nuestra terraza es uno de los espacios principales de Vecindario: abierta, relajada y perfecta para disfrutar de una cerveza de barril y algo de comer al aire libre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La terraza es pet friendly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La terraza es además el área ideal para venir con mascotas — abierta y sin restricciones de tamaño ni raza."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede reservar mesa en terraza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Escríbenos por WhatsApp para reservar mesa en terraza, especialmente viernes y sábados que es cuando más se llena."
+      }
+    }
+  ]
+};
+
+const faqs = [
+  { q: '¿Tienen terraza?', a: 'Sí. Nuestra terraza es uno de los espacios principales de Vecindario: abierta, relajada y perfecta para disfrutar de una cerveza de barril y algo de comer al aire libre.' },
+  { q: '¿La terraza es pet friendly?', a: 'Sí. La terraza es además el área ideal para venir con mascotas — abierta y sin restricciones de tamaño ni raza. <a href="/pet-friendly-cuernavaca/">Conoce nuestro espacio pet friendly →</a>' },
+  { q: '¿Se puede reservar mesa en terraza?', a: 'Sí. Escríbenos por WhatsApp para reservar mesa en terraza, especialmente viernes y sábados que es cuando más se llena.' },
+];
+---
+
+<BaseLayout
+  title="Restaurante con Terraza en Cuernavaca | Vecindario Beer Garden"
+  description="Restaurante con terraza en Cuernavaca: espacio abierto, pet friendly, cerveza artesanal de barril y cocina casual. Visítanos en Av. Teopanzolco."
+  headerVariant="transparent"
+  schema={[faqSchema]}
+>
+  <!-- HERO -->
+  <section class="hub-hero">
+    <div class="hub-hero-bg"><img src="/images/hero/tostada-hamburguesa-cerveza.jpg" alt="Terraza de Vecindario Beer Garden, Cuernavaca" /></div>
+    <div class="hub-hero-inner">
+      <div>
+        <SectionLabel text="Terraza · Cuernavaca, Morelos" />
+        <h1>Restaurante con terraza<br>en <span class="accent">Cuernavaca</span></h1>
+        <p class="hub-sub">Espacio abierto, relajado y pet friendly. El lugar ideal para una cerveza fresca y algo de comer al aire libre.</p>
+        <div class="hero-badge-row">
+          <span class="hero-rating"><span class="stars">★★★★★</span><strong>{site.rating}</strong><span>· {site.reseñas} reseñas en Google</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL -->
+  <section class="editorial"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="Nuestra terraza" />
+        <h2 class="section-title">Un espacio para disfrutar</h2>
+        <div class="prose">
+          <p>Nuestra <strong>terraza es uno de los espacios principales</strong> de Vecindario. Abierta, relajada y sin pretensiones — perfecta para disfrutar de una <a href="/cerveza-artesanal-cuernavaca/">cerveza de barril</a> con algo de comer al aire libre.</p>
+          <p>Es además el área ideal para venir con mascotas: <a href="/pet-friendly-cuernavaca/">pet friendly sin restricciones</a> de tamaño ni raza.</p>
+          <p>El clima de Cuernavaca hace el resto: la "ciudad de la eterna primavera" se disfruta mejor al aire libre, con una cerveza fresca en la mano.</p>
+        </div>
+      </div>
+      <figure class="img-side">
+        <img src="/images/pareja-brindando-cerveza.jpg" alt="Clientes disfrutando en la terraza de Vecindario Beer Garden" loading="lazy" />
+      </figure>
+    </div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq-section"><div class="container-narrow">
+    <div class="section-head" style="text-align:center;"><SectionLabel text="Preguntas frecuentes" centered={true} /><h2 class="section-title">Sobre nuestra terraza</h2></div>
+    <FAQ items={faqs} />
+  </div></section>
+
+  <!-- CTA -->
+  <section class="cta-final">
+    <h2>¿Terraza hoy?</h2>
+    <p>Miércoles a domingo en la Av. Teopanzolco, Cuernavaca. Espacio abierto, pet friendly y 10 cervezas en tap.</p>
+    <div class="btn-row">
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn-wa">Reservar en terraza</a>
+      <a href="/menu/" class="btn-primary">Ver el menú completo</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hub-hero { position: relative; color: #fff; min-height: 55vh; display: flex; align-items: center; overflow: hidden; background: var(--vbg-negro); padding: 90px 0 110px; }
+  .hub-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hub-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hub-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(95deg,rgba(20,18,16,.95) 0%,rgba(20,18,16,.75) 45%,rgba(20,18,16,.3) 100%),linear-gradient(to top,rgba(20,18,16,.9) 0%,transparent 60%); }
+  .hub-hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+  .hub-hero h1 { font-size: clamp(2rem,5vw,3.2rem); line-height: .95; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+  .accent { color: var(--vbg-verde-claro); }
+  .hub-sub { font-size: 1.05rem; color: #d8d2c2; margin-bottom: 1.6rem; max-width: 500px; }
+  .hero-badge-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: #c8c0b0; }
+  .hero-rating { display: inline-flex; align-items: center; gap: .5rem; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); padding: .4rem .8rem; border-radius: 2px; }
+  .hero-rating .stars { color: var(--vbg-ambar); letter-spacing: 1px; }
+  .hero-rating strong { color: #fff; font-weight: 600; }
+
+  /* SECCIONES */
+  section { padding: 4.5rem 0; }
+  .section-head { margin-bottom: 2rem; }
+  .prose { font-size: 1.02rem; color: var(--vbg-carbon); line-height: 1.8; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose strong { color: var(--vbg-verde); }
+  .prose a { color: var(--vbg-verde); font-weight: 600; }
+
+  .editorial { background: var(--vbg-blanco); }
+
+  /* SPLIT */
+  .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; align-items: center; }
+  .split .section-title { margin-bottom: 1.2rem; }
+  .img-side img { width: 100%; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); aspect-ratio: 4/3; object-fit: cover; }
+
+  /* FAQ + CTA */
+  .faq-section { background: var(--vbg-blanco); }
+  .cta-final { background: var(--vbg-verde); color: #fff; text-align: center; padding: 4.5rem 1.5rem; }
+  .cta-final h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: .8rem; }
+  .cta-final p { color: #c8d8c0; margin-bottom: 2rem; }
+  .btn-row { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa svg { width: 18px; height: 18px; }
+
+  @media (max-width: 900px) {
+    .split { grid-template-columns: 1fr; gap: 1.8rem; }
+    .split .img-side { order: 2; }
+  }
+</style>

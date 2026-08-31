@@ -1,0 +1,62 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  headerVariant?: 'transparent' | 'solid';
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description = 'Restaurante bar en Cuernavaca con cerveza artesanal, 10 cervezas de barril, pizzas, hamburguesas, terraza pet friendly.',
+  headerVariant = 'transparent',
+  schema,
+} = Astro.props;
+
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://vecindariobeergarden.com').href;
+---
+
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icono.svg" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:image" content="https://vecindariobeergarden.com/images/hero/tostada-hamburguesa-cerveza.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  {/* Schema JSON-LD */}
+  {schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+</head>
+<body>
+  <Header variant={headerVariant} />
+  <slot />
+  <Footer />
+</body>
+</html>

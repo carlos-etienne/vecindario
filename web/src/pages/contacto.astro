@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout title="Contacto · Vecindario Beer Garden" description="Contacto, ubicación y cómo llegar a Vecindario Beer Garden en Cuernavaca. Av. Teopanzolco 665, Reforma." headerVariant="solid">
+  <div class="menu-topbar" style="margin-top:60px;">
+    <div class="menu-topbar-inner"><span class="open-now">● ABIERTO AHORA</span><div class="topbar-right"><a href={`tel:${site.telefonoTel}`}>{site.telefono}</a></div></div>
+  </div>
+  <div class="menu-body">
+    <div class="section-head"><SectionLabel text="Visítanos" /><h1 class="menu-title">Contacto</h1></div>
+
+    <h2>{site.direccion.calle}</h2>
+    <p class="addr">{site.direccion.zona}, {site.direccion.cp} {site.direccion.ciudad}, {site.direccion.estado}</p>
+
+    <div class="contact-grid">
+      <div>
+        <h3>Horarios</h3>
+        <div class="horarios">
+          {site.horarios.map((h) => <div class="h-row"><span>{h.dia}</span><span>{h.abierto ? `${h.apertura}–${h.cierre}` : 'Cerrado'}</span></div>)}
+        </div>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p><a href={`tel:${site.telefonoTel}`}>{site.telefono}</a></p>
+        <p><a href={`https://wa.me/${site.whatsapp}`}>WhatsApp →</a></p>
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem;">Cómo llegar</h3>
+    <div class="map-full"><iframe src={site.mapaIframe} loading="lazy" allowfullscreen="" title="Ubicación de Vecindario Beer Garden"></iframe></div>
+
+    <h3 style="margin-top:2rem;">¿Preguntas frecuentes?</h3>
+    <p>No tenemos estacionamiento propio. Te puedes estacionar sobre la Av. Teopanzolco.</p>
+    <p>¿Están cerca de la zona arqueológica de Teopanzolco? Sí, sobre la avenida del mismo nombre.</p>
+    <p>¿Cómo llego desde Jiutepec? 10 min por la autopista del Sol.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .menu-topbar { background: var(--vbg-negro); color: #9a9183; font-size: .78rem; padding: .4rem 0; }
+  .menu-topbar-inner { max-width: 900px; margin: 0 auto; padding: 0 1.2rem; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; }
+  .open-now { color: var(--vbg-verde-claro); font-weight: 600; }
+  .menu-body { max-width: 900px; margin: 0 auto; padding: 2rem 1.2rem 3rem; }
+  .section-head { margin-bottom: 2rem; }
+  .menu-title { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 2.5rem; color: var(--vbg-verde); }
+  h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.6rem; color: var(--vbg-verde); margin-bottom: .3rem; }
+  .addr { color: var(--vbg-gris-texto); margin-bottom: 2rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-grid h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.1rem; color: var(--vbg-verde); margin-bottom: .8rem; }
+  .horarios .h-row { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: .85rem; padding: .3rem 0; border-bottom: 1px dotted var(--vbg-gris-linea); }
+  .contact-grid p { margin-bottom: .5rem; }
+  .contact-grid a:hover { color: var(--vbg-ambar); }
+  h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.2rem; color: var(--vbg-verde); margin-bottom: .5rem; }
+  .map-full { width: 100%; height: 400px; border-radius: 4px; overflow: hidden; }
+  .map-full iframe { width: 100%; height: 100%; border: 0; }
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Eventos en Cuernavaca | Vecindario Beer Garden"
+  description="Eventos en Cuernavaca: catas de cerveza, música en vivo y noches especiales en Vecindario Beer Garden. Consulta nuestra agenda."
+  headerVariant="transparent"
+>
+
+  <section class="page-head">
+    <div class="container">
+      <SectionLabel text="Agenda" />
+      <h1>Eventos en Cuernavaca</h1>
+      <p class="page-sub">Catas de cerveza, música en vivo y noches especiales. Reserva por WhatsApp — los eventos tienen cupo limitado.</p>
+    </div>
+  </section>
+
+  <section><div class="container">
+    <div class="eventos-grid">
+      <article class="evento-card">
+        <div class="evento-date"><div class="day">22</div><div class="month">AGO</div></div>
+        <div>
+          <div class="evento-tag">Cata de cerveza</div>
+          <h2 class="evento-name">Cata: estilos belgas</h2>
+          <p class="evento-meta">Viernes 22 de agosto · 19:00 · $350 · Cupo limitado</p>
+        </div>
+      </article>
+      <article class="evento-card">
+        <div class="evento-date"><div class="day">06</div><div class="month">SEP</div></div>
+        <div>
+          <div class="evento-tag">Música en vivo</div>
+          <h2 class="evento-name">Sesión acústica</h2>
+          <p class="evento-meta">Sábado 6 de septiembre · 20:00 · Entrada libre · Consumación mínima</p>
+        </div>
+      </article>
+    </div>
+    <p style="margin-top:2rem;"><a href={`https://wa.me/${site.whatsapp}`} class="btn-primary">Reservar por WhatsApp</a></p>
+  </div></section>
+</BaseLayout>
+
+<style>
+  .page-head { background: var(--vbg-negro); padding: 2rem 0 3rem; }
+  .page-head h1 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.8rem, 4vw, 2.6rem); color: #f3ebd9; margin-bottom: .5rem; }
+  .page-sub { color: #c8c0b0; max-width: 560px; }
+  section { padding: 2rem 0 4rem; }
+  .eventos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .evento-card { display: grid; grid-template-columns: 80px 1fr; gap: 1.2rem; background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.3rem; align-items: center; }
+  .evento-date { background: var(--vbg-verde); border-radius: 3px; padding: .7rem .5rem; text-align: center; height: 80px; display: flex; flex-direction: column; justify-content: center; }
+  .evento-date .day { font-family: 'Anton', sans-serif; font-size: 1.8rem; color: #fff; line-height: 1; }
+  .evento-date .month { font-family: 'JetBrains Mono', monospace; font-size: .66rem; text-transform: uppercase; color: var(--vbg-verde-claro); }
+  .evento-tag { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--vbg-ambar); text-transform: uppercase; margin-bottom: .3rem; }
+  .evento-name { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.1rem; color: var(--vbg-verde); margin-bottom: .3rem; }
+  .evento-meta { font-size: .82rem; color: var(--vbg-gris-texto); }
+  @media (max-width: 700px) { .eventos-grid { grid-template-columns: 1fr; } }
+</style>

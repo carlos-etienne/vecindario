@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import FAQ from '../components/FAQ.astro';
+import site from '../data/site.json';
+
+const pizzas = [
+  { nombre: 'Pizza Eureka', desc: 'Salsa de tomate, mozzarella y albahaca fresca.', precio: 160, foto: '/images/pizza-eureka.jpg', tag: 'La clásica' },
+  { nombre: 'Pizza Pera', desc: 'Mozzarella, pera, queso gorgonzola, nuez y miel.', precio: 180, tag: 'Dulce-salada', tagVeg: true },
+  { nombre: 'Pizza Pechuga Napolitana', desc: 'Pechuga, mozzarella, tomate y orégano.', precio: 175, tag: 'Con pollo' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Para cuántas personas es una pizza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Están pensadas para compartir, idealmente entre dos personas. Si vienen en grupo, mejor pidan varias variedades distintas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo combinar sabores en una sola pizza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No hacemos mitades combinadas: el tamaño de nuestras pizzas no lo permite. Para probar más de un sabor, la mejor forma es pedir variedades distintas y compartirlas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen pizza vegetariana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La Pizza Pera (mozzarella, pera, queso gorgonzola, nuez y miel) y la Pizza Eureka son vegetarianas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Con qué cerveza maridan las pizzas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depende de la pizza: las cervezas ligeras y refrescantes van bien con la Eureka, mientras que las de sabor más intenso como la Pera piden cervezas con más cuerpo. Pregúntale al personal qué hay en tap: te recomienda el maridaje."
+      }
+    }
+  ]
+};
+
+const menuSchema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Pizzas · Vecindario Beer Garden",
+  "hasMenuSection": {
+    "@type": "MenuSection",
+    "name": "Pizzas estilo napolitano",
+    "hasMenuItem": pizzas.map((p) => ({
+      "@type": "MenuItem",
+      "name": p.nombre,
+      "description": p.desc,
+      offers: { "@type": "Offer", "price": p.precio, "priceCurrency": "MXN" }
+    }))
+  }
+};
+
+const faqs = [
+  { q: '¿Para cuántas personas es una pizza?', a: 'Están pensadas para compartir, idealmente entre dos personas. Si vienen en grupo, mejor pidan varias variedades distintas.' },
+  { q: '¿Puedo combinar sabores en una sola pizza?', a: 'No hacemos mitades combinadas: el tamaño de nuestras pizzas no lo permite. Para probar más de un sabor, la mejor forma es pedir variedades distintas y compartirlas.' },
+  { q: '¿Tienen pizza vegetariana?', a: 'Sí. La Pizza Pera (mozzarella, pera, queso gorgonzola, nuez y miel) y la Pizza Eureka son vegetarianas.' },
+  { q: '¿Con qué cerveza maridan las pizzas?', a: 'Depende de la pizza: las cervezas ligeras y refrescantes van bien con la Eureka, mientras que las de sabor más intenso como la Pera piden cervezas con más cuerpo. Pregúntale al personal qué hay en tap: te recomienda el maridaje. <a href="/cerveza-artesanal-cuernavaca/">Conoce nuestra cerveza artesanal →</a>' },
+];
+---
+
+<BaseLayout
+  title="Pizzas en Cuernavaca | Vecindario Beer Garden"
+  description="Pizzas estilo napolitano en Cuernavaca: masa estilo napolitano, recetas de la casa y maridaje con cerveza artesanal de barril. En Vecindario Beer Garden, Av. Teopanzolco."
+  headerVariant="transparent"
+  schema={[menuSchema, faqSchema]}
+>
+  <!-- HERO -->
+  <section class="hub-hero">
+    <div class="hub-hero-bg"><img src="/images/pizza-eureka.jpg" alt="Pizza estilo napolitano en Vecindario Beer Garden, Cuernavaca" /></div>
+    <div class="hub-hero-inner">
+      <div>
+        <SectionLabel text="Cocina · Cuernavaca, Morelos" />
+        <h1>Pizzas<br>en <span class="accent">Cuernavaca</span></h1>
+        <p class="hub-sub">Masa estilo napolitano, recetas de la casa y su maridaje natural: cerveza artesanal de barril en rotación constante.</p>
+        <div class="hero-badge-row">
+          <span class="hero-rating"><span class="stars">★★★★★</span><strong>{site.rating}</strong><span>· {site.reseñas} reseñas en Google</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL -->
+  <section class="editorial"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="De la cocina" />
+        <h2 class="section-title">Pizzas estilo napolitano, hechas al momento</h2>
+        <div class="prose">
+          <p>Nuestras pizzas se hornean al momento con masa estilo napolitano, y cada receta está pensada para acompañar la cerveza, no solo para llenar.</p>
+          <p>El maridaje es parte de la receta: <a href="/cerveza-artesanal-cuernavaca/">nuestras diez cervezas de barril</a> rotan constantemente y el personal sabe qué va bien con cada pizza.</p>
+        </div>
+      </div>
+      <figure class="img-side">
+        <img src="/images/pizza-eureka.jpg" alt="Pizza estilo napolitano recién horneada en Vecindario Beer Garden" loading="lazy" />
+      </figure>
+    </div>
+    <div class="cards-grid mini">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 4 19h16L12 4z" /><circle cx="11" cy="12" r=".9" fill="currentColor" stroke="none" /><circle cx="14" cy="15" r=".9" fill="currentColor" stroke="none" /><circle cx="10" cy="16" r=".9" fill="currentColor" stroke="none" /></svg>
+        <h3>Recetas de la casa</h3>
+        <p>Eureka, Pera y Pechuga Napolitana: <strong>recetas propias</strong>, no catálogo de franquicia.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>
+        <h3>Recién horneadas</h3>
+        <p>Cada pizza se hornea <strong>cuando la pides</strong>: del horno directo a tu mesa.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>
+        <h3>Opción vegetariana</h3>
+        <p>La Pera y la Eureka <strong>no llevan carne</strong>: pide cualquiera de las dos si la estás evitando.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- LAS PIZZAS -->
+  <section class="pizzas-section"><div class="container">
+    <div class="section-head"><SectionLabel text="Nuestras recetas" /><h2 class="section-title">Las pizzas de la casa</h2></div>
+    <div class="cards-grid">
+      {pizzas.map((p) => (
+        <article class="pizza-card">
+          {p.foto ? (
+            <div class="pizza-img"><img src={p.foto} alt={p.nombre} loading="lazy" /></div>
+          ) : (
+            <div class="pizza-img placeholder"><img src="/assets/icono.svg" alt="" loading="lazy" /></div>
+          )}
+          <div class="pizza-body">
+            <div class="pizza-tag">{p.tag}{p.tagVeg && <span class="tag-veg">veg</span>}</div>
+            <h3>{p.nombre}</h3>
+            <p>{p.desc}</p>
+            <div class="pizza-foot"><span class="pizza-price">${p.precio}</span></div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="ver-menu"><a href="/menu/" style="color:var(--vbg-verde);font-weight:600;">Ver el menú completo →</a></p>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq-section"><div class="container-narrow">
+    <div class="section-head" style="text-align:center;"><SectionLabel text="Preguntas frecuentes" centered={true} /><h2 class="section-title">Sobre nuestras pizzas</h2></div>
+    <FAQ items={faqs} />
+  </div></section>
+
+  <!-- CTA -->
+  <section class="cta-final">
+    <h2>¿Pizza hoy?</h2>
+    <p>Miércoles a domingo en la Av. Teopanzolco, Cuernavaca. Terraza pet friendly y 10 cervezas en tap.</p>
+    <div class="btn-row">
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn-wa">Reservar por WhatsApp</a>
+      <a href="/menu/" class="btn-primary">Ver el menú completo</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hub-hero { position: relative; color: #fff; min-height: 55vh; display: flex; align-items: center; overflow: hidden; background: var(--vbg-negro); padding: 90px 0 110px; }
+  .hub-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hub-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hub-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(95deg,rgba(20,18,16,.95) 0%,rgba(20,18,16,.75) 45%,rgba(20,18,16,.3) 100%),linear-gradient(to top,rgba(20,18,16,.9) 0%,transparent 60%); }
+  .hub-hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+  .hub-hero h1 { font-size: clamp(2rem,5vw,3.4rem); line-height: .95; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+  .accent { color: var(--vbg-verde-claro); }
+  .hub-sub { font-size: 1.05rem; color: #d8d2c2; margin-bottom: 1.6rem; max-width: 480px; }
+  .hero-badge-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: #c8c0b0; }
+  .hero-rating { display: inline-flex; align-items: center; gap: .5rem; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); padding: .4rem .8rem; border-radius: 2px; }
+  .hero-rating .stars { color: var(--vbg-ambar); letter-spacing: 1px; }
+  .hero-rating strong { color: #fff; font-weight: 600; }
+
+  /* SECCIONES */
+  section { padding: 4.5rem 0; }
+  .section-head { margin-bottom: 2rem; }
+  .prose { font-size: 1.02rem; color: var(--vbg-carbon); line-height: 1.8; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose strong { color: var(--vbg-verde); }
+  .prose a { color: var(--vbg-verde); font-weight: 600; }
+
+  /* SPLIT */
+  .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; align-items: center; }
+  .split .section-title { margin-bottom: 1.2rem; }
+  .img-side img { width: 100%; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); aspect-ratio: 4/3; object-fit: cover; }
+
+  .editorial { background: var(--vbg-blanco); }
+
+  /* MINI CARDS */
+  .cards-grid.mini { margin-top: 3rem; gap: 1.2rem; }
+  .card { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.8rem 1.5rem; border-top: 3px solid var(--vbg-verde-claro); }
+  .card-icon { width: 40px; height: 40px; margin-bottom: 1rem; color: var(--vbg-verde); }
+  .card h3 { font-size: 1.15rem; color: var(--vbg-verde); margin-bottom: 0.6rem; }
+  .card p { font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; }
+  .card strong { color: var(--vbg-verde); }
+
+  /* CARDS PIZZAS */
+  .pizzas-section { background: var(--vbg-claro-2); }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .pizza-card { background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; overflow: hidden; transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; }
+  .pizza-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,.1); }
+  .pizza-img { aspect-ratio: 4/3; overflow: hidden; background: var(--vbg-claro); }
+  .pizza-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .pizza-img.placeholder img { object-fit: contain; padding: 3rem; opacity: .4; }
+  .pizza-card:hover .pizza-img img { transform: scale(1.05); }
+  .pizza-body { padding: 1.2rem 1.3rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+  .pizza-tag { font-family: 'JetBrains Mono', monospace; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--vbg-ambar); margin-bottom: .4rem; }
+  .tag-veg { color: var(--vbg-verde-claro); border: 1px solid var(--vbg-verde-claro); padding: .05rem .3rem; border-radius: 2px; margin-left: .5rem; }
+  .pizza-body h3 { font-size: 1.3rem; color: var(--vbg-verde); margin-bottom: .5rem; }
+  .pizza-body p { font-size: .88rem; color: var(--vbg-gris-texto); line-height: 1.55; margin-bottom: .9rem; flex: 1; }
+  .pizza-foot { border-top: 1px dashed var(--vbg-gris-linea); padding-top: .8rem; }
+  .pizza-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: 1.1rem; }
+  .ver-menu { margin-top: 2.5rem; text-align: center; }
+
+  /* FAQ + CTA */
+  .faq-section { background: var(--vbg-blanco); }
+  .cta-final { background: var(--vbg-verde); color: #fff; text-align: center; padding: 4.5rem 1.5rem; }
+  .cta-final h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: .8rem; }
+  .cta-final p { color: #c8d8c0; margin-bottom: 2rem; }
+  .btn-row { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa svg { width: 18px; height: 18px; }
+
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 1.8rem; }
+    .split .img-side { order: 2; }
+  }
+</style>

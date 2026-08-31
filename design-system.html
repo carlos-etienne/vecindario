@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compact Design System · Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<style>
+  :root {
+    /* === PALETA PROPUESTA === */
+    --vbg-verde-teopanzolco: #2d5a3d;   /* verde profundo cálido (de marca, derivado de #446a3b) */
+    --vbg-verde-jardin: #6da05d;        /* verde follaje (de marca) */
+    --vbg-ambar-malta: #c4721e;         /* ámbar de cerveza, apetitoso, acento funcional */
+    --vbg-cobre-barril: #8a4f1f;        /* cobre de pailas, profundidad */
+    --vbg-kraft: #f3ebd9;               /* papel kraft, NO el default #F4F1EA */
+    --vbg-carbon: #1f1c18;              /* negro cálido casi marrón */
+    --vbg-blanco: #ffffff;
+    --vbg-gris-pizarra: #38332b;        /* fondo "pizarra" alternativo, no negro puro */
+
+    /* === Tokens del documento mismo === */
+    --primary: #1f1c18;
+    --body: #2b302d;
+    --secondary: #5e6b5c;
+    --surface: #faf8f3;
+    --surface-2: #f0ede3;
+    --divider: #d8d3c4;
+    --warn: #b8860b;
+    --danger: #a0522d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--body);
+    background: #e8e6df;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .brand-bar {
+    background: var(--vbg-verde-teopanzolco);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .brand-bar img.brand-logo { height: 32px; }
+  .brand-bar .brand-sep { width:1px;height:24px;background:rgba(255,255,255,0.3); }
+  .brand-bar .brand-doc { font-size:0.85rem; letter-spacing:0.05em; opacity:0.95; }
+
+  .page {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 3rem 4rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    border-top: 4px solid var(--vbg-verde-jardin);
+  }
+  @media (max-width: 700px) {
+    .page { padding: 1.5rem; margin: 0; border-radius: 0; }
+    .brand-bar { padding: 0.6rem 1rem; }
+  }
+
+  .cover {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, var(--vbg-verde-teopanzolco) 0%, #1f351c 60%, var(--vbg-carbon) 100%);
+    color: #fff;
+    padding: 4rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "";
+    position: absolute; right: -60px; bottom: -60px;
+    width: 320px; height: 320px;
+    background: url("assets/icono.svg") no-repeat center/contain;
+    opacity: 0.06;
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+  .cover .cover-logo {
+    background: rgba(255,255,255,0.96);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .cover .cover-logo img { height: 48px; display: block; }
+  .cover .label {
+    color: var(--vbg-verde-jardin);
+    letter-spacing: 0.3em; font-size: 0.75rem;
+    border-bottom: 2px solid var(--vbg-verde-jardin);
+    display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 3rem; font-weight: 400; line-height: 1.05;
+    margin: 0 0 1rem; letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  .cover .subtitle { color: #c8d8c0; font-style: italic; font-size: 1.1rem; margin-bottom: 2rem; }
+  .cover .meta {
+    border-left: 3px solid var(--vbg-verde-jardin);
+    padding-left: 1rem;
+    color: #c8d8c0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  h1.section {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.7rem; color: var(--vbg-verde-teopanzolco);
+    border-bottom: 3px solid var(--vbg-verde-jardin);
+    padding-bottom: 0.5rem; margin-top: 4rem;
+    letter-spacing: 0.02em;
+  }
+  h2 { font-size: 1.3rem; color: var(--primary); margin-top: 2.5rem; font-weight: 600; }
+  h3 { font-size: 1.05rem; color: var(--vbg-verde-teopanzolco); margin-top: 1.5rem; font-weight: 600; }
+
+  p { margin: 0.6rem 0; }
+  strong { color: var(--primary); font-weight: 600; }
+  em { font-style: italic; }
+  ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+  li { margin: 0.3rem 0; }
+  a { color: var(--vbg-verde-teopanzolco); text-decoration: underline; text-decoration-color: var(--vbg-verde-jardin); text-underline-offset: 2px; }
+  code { background: var(--surface-2); padding: 0.1rem 0.3rem; border-radius: 2px; font-size: 0.9em; color: var(--vbg-verde-teopanzolco); font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  pre { background: var(--vbg-carbon); color: #f3ebd9; padding: 0.9rem 1.1rem; border-radius: 4px; font-size: 0.85rem; overflow-x: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; line-height: 1.5; }
+
+  .card {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-verde-jardin);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .card.warn { border-left-color: var(--warn); background: #fdf6e3; }
+  .card.danger { border-left-color: var(--danger); background: #fbeae5; }
+  .card.amber { border-left-color: var(--vbg-ambar-malta); background: #fdf3e1; }
+  .card-label {
+    font-size: 0.7rem; font-weight: 700;
+    color: var(--vbg-verde-teopanzolco);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border-top: 3px solid var(--vbg-verde-teopanzolco);
+    border-bottom: 3px solid var(--vbg-verde-teopanzolco);
+    font-size: 0.92rem;
+  }
+  table.data th {
+    background: var(--vbg-verde-teopanzolco);
+    color: #fff;
+    padding: 0.7rem 0.7rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  table.data td {
+    padding: 0.6rem 0.7rem;
+    border-top: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  table.data tr:nth-child(even) td { background: var(--surface); }
+
+  /* === Paleta visual === */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .swatch {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .swatch .color-block {
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.6rem;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+  .swatch .color-info {
+    background: #fff;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .swatch .color-info strong {
+    display: block;
+    color: var(--vbg-verde-teopanzolco);
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.2rem;
+  }
+  .swatch .color-info small {
+    color: var(--secondary);
+    font-size: 0.78rem;
+  }
+
+  /* === Muestra tipográfica === */
+  .type-sample {
+    background: var(--surface);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--vbg-verde-jardin);
+    border-radius: 0 4px 4px 0;
+  }
+  .type-display {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--vbg-verde-teopanzolco);
+    letter-spacing: 0.01em;
+    margin: 0 0 0.3rem 0;
+  }
+  .type-display.amber { color: var(--vbg-ambar-malta); }
+  .type-display.carbon { color: var(--vbg-carbon); }
+  .type-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--body);
+    margin: 0.3rem 0;
+  }
+  .type-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--vbg-cobre-barril);
+    letter-spacing: 0.02em;
+    margin: 0.3rem 0;
+    font-weight: 500;
+  }
+  .type-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+  }
+
+  /* === Wireframe ASCII === */
+  .wireframe {
+    background: var(--vbg-carbon);
+    color: #f3ebd9;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .wireframe .label-wf { color: var(--vbg-ambar-malta); }
+  .wireframe .image-wf { color: #8a8270; }
+  .wireframe .cta-wf { color: var(--vbg-verde-jardin); font-weight: bold; }
+  .wireframe .num-wf { color: var(--vbg-ambar-malta); font-weight: bold; }
+
+  /* === Firma: Tap Wall preview === */
+  .tap-wall-preview {
+    background: var(--vbg-gris-pizarra);
+    color: #f3ebd9;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--vbg-cobre-barril);
+  }
+  .tap-wall-preview .tw-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--vbg-verde-jardin);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px dashed rgba(243, 235, 217, 0.2);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tap-list { display: grid; gap: 0.8rem; }
+  .tap-row {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted rgba(243, 235, 217, 0.15);
+  }
+  .tap-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.4rem;
+    color: var(--vbg-ambar-malta);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .tap-info .tap-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #f3ebd9;
+    font-size: 0.98rem;
+    margin: 0;
+  }
+  .tap-info .tap-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: #a8a294;
+    margin: 0.1rem 0 0 0;
+    letter-spacing: 0.03em;
+  }
+  .tap-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--vbg-verde-jardin);
+    font-size: 0.95rem;
+  }
+  .tap-status {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--vbg-ambar-malta);
+    border: 1px solid var(--vbg-ambar-malta);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .tap-num { font-size: 1.8rem; }
+    .tap-row { grid-template-columns: 50px 1fr; gap: 0.6rem; }
+    .tap-price { grid-column: 2; }
+  }
+
+  .closing {
+    border-top: 3px solid var(--vbg-verde-jardin);
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    font-style: italic;
+    color: var(--secondary);
+    text-align: center;
+  }
+  .toc {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-verde-jardin);
+    padding: 1rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+    margin: 1.5rem 0;
+  }
+  .toc ol { margin: 0.3rem 0; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="brand-bar">
+  <img src="assets/logo-color.svg" alt="Vecindario Beer Garden" class="brand-logo">
+  <div class="brand-sep"></div>
+  <div class="brand-doc">Compact Design System · Identidad visual del nuevo sitio</div>
+</div>
+
+<div class="cover">
+  <div class="cover-logo">
+    <img src="assets/logo-color.svg" alt="Vecindario Beer Garden">
+  </div>
+  <div class="label">D E S I G N &nbsp; S Y S T E M</div>
+  <h1>Compact Design System</h1>
+  <div class="subtitle">Paleta, tipografías, layout y firma memorable del nuevo sitio web</div>
+  <div class="meta">
+    Insumos: brief aprobado + análisis SEO + arquitectura web + KWR + semillas aceptadas<br>
+    Antipatrones AI defaults: identificados y evitados<br>
+    Hero: comida + cerveza juntos ("se me hizo la boca agua")
+  </div>
+</div>
+
+<div class="page">
+
+<h2 style="border-bottom: 3px solid var(--vbg-verde-jardin); padding-bottom: 0.5rem; font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.7rem; color: var(--vbg-verde-teopanzolco);">Contenido</h2>
+<div class="toc">
+<ol>
+  <li><a href="#anclaje">Anclaje: sujeto, audiencia, job</a></li>
+  <li><a href="#paleta">Paleta — 6 colores con nombre y hex</a></li>
+  <li><a href="#tipografia">Tipografías — 3 roles (display, body, mono)</a></li>
+  <li><a href="#layout">Layout — concepto y wireframes</a></li>
+  <li><a href="#firma">La firma memorable: "El Tap Wall"</a></li>
+  <li><a href="#critica">Auto-crítica contra antipatrones AI</a></li>
+  <li><a href="#aplicacion">Aplicación concreta en páginas principales</a></li>
+  <li><a href="#pendientes">Decisiones que faltan y próximos pasos</a></li>
+</ol>
+</div>
+
+<!-- ============ 1. ANCLAJE ============ -->
+<h1 class="section" id="anclaje">1 · Anclaje</h1>
+
+<p>Antes de elegir colores y tipografías, anclo el diseño a una tesis para que cada decisión responda a algo concreto y no derive en default.</p>
+
+<table class="data">
+  <thead><tr><th>Eje</th><th>Definición</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Sujeto</strong></td>
+      <td>Vecindario Beer Garden: beer garden en Cuernavaca con 10 líneas de cerveza artesanal en barril, pivoting a restaurante-bar de cocina gourmet casual (pizza napolitana, hamburguesas gourmet) sin perder la identidad cervecera. Equipo certificado Cicerone/BJCP. Terraza pet-friendly. Música en vivo 1-2 veces al mes.</td>
+    </tr>
+    <tr>
+      <td><strong>Audiencia actual</strong></td>
+      <td>Cerveceros conocedores 25-45 años que ya los buscan por nombre ("vecindario beer garden" → 140 clics en 16m) y por "beer garden cuernavaca" (son #1.2).</td>
+    </tr>
+    <tr>
+      <td><strong>Audiencia objetivo nuevo</strong></td>
+      <td>Foodies urbanos, parejas de cita, grupos de amigos del fin de semana, familias jóvenes pet lovers. Gente que NO los conoce pero busca "pizza/hamburguesa gourmet cuernavaca" o "restaurante con terraza pet friendly".</td>
+    </tr>
+    <tr>
+      <td><strong>Job de la home</strong></td>
+      <td>En 3 segundos, hacer que el visitante piense <em>"¡se me hizo la boca agua! Aquí no solo se viene a tomar cerveza, la comida se ve increíble"</em>. Cerveza + comida juntos en el hero, no separados.</td>
+    </tr>
+    <tr>
+      <td><strong>Job de /menu/</strong></td>
+      <td>Cargar en menos de 1 segundo en 4G para el cliente con QR en mano. Velocidad sobre riqueza.</td>
+    </tr>
+    <tr>
+      <td><strong>Tono</strong></td>
+      <td>Amigable, acogedor, relajado, sentido de comunidad (del brief). NOtecnoide, NO nocturno, NO premium pretencioso.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============ 2. PALETA ============ -->
+<h1 class="section" id="paleta">2 · Paleta — 6 colores</h1>
+
+<p>Tres principios para la paleta:</p>
+<ol>
+  <li><strong>Mantener los verdes de marca</strong> (#446a3b derivado, #6da05d) — ya están en el logo, las redes, los manteles. No reinventar.</li>
+  <li><strong>Sumar ámbar/cobre para apetito</strong> — los verdes son refrescantes pero no despiertan hambre. El ámbar de la malta tostada SÍ. Se usa solo como acento funcional (CTA, precio destacado, hover).</li>
+  <li><strong>Kraft como textura, no como fondo omnipresente</strong> — papel kraft de etiquetas serigrafiadas, pero solo donde se justifica. El fondo principal es blanco.</li>
+</ol>
+
+<div class="palette-grid">
+  <div class="swatch">
+    <div class="color-block" style="background: #2d5a3d;">#2D5A3D</div>
+    <div class="color-info">
+      <strong>Verde Teopanzolco</strong>
+      Primario · headings, fondos oscuros<br>
+      <small>Derivado cálido de #446a3b de marca</small>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background: #6da05d;">#6DA05D</div>
+    <div class="color-info">
+      <strong>Verde Jardín</strong>
+      Acento de marca · links, badges<br>
+      <small>De marca actual</small>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background: #c4721e;">#C4721E</div>
+    <div class="color-info">
+      <strong>Ámbar Malta</strong>
+      Acento funcional · CTA, precio, hover<br>
+      <small>Apetitoso, evoca cerveza</small>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background: #8a4f1f;">#8A4F1F</div>
+    <div class="color-info">
+      <strong>Cobre Barril</strong>
+      Detalles · bordes, líneas, mono<br>
+      <small>Profundidad, metal cálido</small>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background: #f3ebd9; color: #8a4f1f;">#F3EBD9</div>
+    <div class="color-info">
+      <strong>Kraft</strong>
+      Textura · fondos suaves, cards<br>
+      <small>NO el default #F4F1EA — más cálido</small>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background: #1f1c18;">#1F1C18</div>
+    <div class="color-info">
+      <strong>Carbón</strong>
+      Texto principal · body<br>
+      <small>Negro cálido casi marrón</small>
+    </div>
+  </div>
+</div>
+
+<h3>Distribución funcional</h3>
+<table class="data">
+  <thead><tr><th>Elemento</th><th>Color</th><th>Razón</th></tr></thead>
+  <tbody>
+    <tr><td>Fondo principal</td><td>Blanco #FFFFFF</td><td>Limpieza, velocidad, deja respirar fotos de comida</td></tr>
+    <tr><td>Backgrounds alternativos</td><td>Kraft #F3EBD9</td><td>Secciones secundarias, cards, "warmth" sin saturar</td></tr>
+    <tr><td>Secciones oscuras (footer, Tap Wall)</td><td>Verde Teopanzolco #2D5A3D o Gris Pizarra #38332B</td><td>NO negro puro (más cálido, más beer garden menos tech)</td></tr>
+    <tr><td>Texto body</td><td>Carbón #1F1C18 sobre blanco/kraft</td><td>Máximo contraste sin ser negro frío</td></tr>
+    <tr><td>Headings</td><td>Verde Teopanzolco #2D5A3D</td><td>Marca, autoridad</td></tr>
+    <tr><td>CTAs principales</td><td>Ámbar Malta #C4721E fondo + blanco texto</td><td>Apetitoso, llama a la acción, distinto del verde "informativo"</td></tr>
+    <tr><td>Precios</td><td>Cobre Barril #8A4F1F mono</td><td>Estilo carta de cervezas, autoridad</td></tr>
+    <tr><td>Links</td><td>Verde Jardín #6DA05D</td><td>De marca</td></tr>
+    <tr><td>Hover states</td><td>Ámbar Malta #C4721E</td><td>Refuerza interactividad con calor</td></tr>
+    <tr><td>Disponibilidad ("disponible")</td><td>Verde Jardín #6DA05D</td><td>Semáforo natural</td></tr>
+    <tr><td>Agotado</td><td>Gris #8a8270 + tachado</td><td>Sin alarma, honesto</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 3. TIPOGRAFÍA ============ -->
+<h1 class="section" id="tipografia">3 · Tipografías — 3 roles</h1>
+
+<p>Las tipografías actuales de marca son <strong>Pricedown + Eurostile</strong> (logo) y <strong>Anton + Poppins</strong> (menú impreso). Mantengo Anton y Poppins para coherencia, y sumo un utility mono nuevo para reforzar el "formato carta de cervezas" (semilla aceptada).</p>
+
+<div class="type-sample">
+  <div class="type-display">Anton</div>
+  <p class="type-body">Display · hero, títulos de sección, hub, firma Tap Wall</p>
+  <p class="type-meta">Google Fonts · sans-serif condensed bold · weight 400 (único)</p>
+</div>
+
+<div class="type-sample">
+  <div class="type-body" style="font-size: 1.4rem;">Poppins Regular / Medium / SemiBold / Bold</p>
+  <p class="type-body">Body · texto corrido, párrafos, navegación, formularios</p>
+  <p class="type-meta">Google Fonts · sans-serif humanista · weights 400, 500, 600, 700</p>
+</div>
+
+<div class="type-sample">
+  <div class="type-mono" style="font-size: 1.4rem;">JetBrains Mono</p>
+  <p class="type-body">Mono · datos: ABV, IBU, precios, número de tap (#01-#10)</p>
+  <p class="type-meta">Google Fonts · monoespaciada · weights 400, 500, 600 — refuerza "carta de cervezas"</p>
+</div>
+
+<h3>Escala tipográfica</h3>
+<table class="data">
+  <thead><tr><th>Uso</th><th>Familia</th><th>Tamaño base</th><th>Responsive (clamp)</th></tr></thead>
+  <tbody>
+    <tr><td>H1 hero (home)</td><td>Anton</td><td>4.5rem</td><td><code>clamp(2.5rem, 7vw, 4.5rem)</code></td></tr>
+    <tr><td>H1 interior</td><td>Anton</td><td>3rem</td><td><code>clamp(2rem, 5vw, 3rem)</code></td></tr>
+    <tr><td>H2 sección</td><td>Anton</td><td>2rem</td><td><code>clamp(1.5rem, 4vw, 2rem)</code></td></tr>
+    <tr><td>H3 subsección</td><td>Poppins 600</td><td>1.3rem</td><td><code>clamp(1.1rem, 2.5vw, 1.3rem)</code></td></tr>
+    <tr><td>Body</td><td>Poppins 400</td><td>1rem (16px)</td><td>fijo</td></tr>
+    <tr><td>Body small</td><td>Poppins 400</td><td>0.875rem (14px)</td><td>fijo</td></tr>
+    <tr><td>Número de tap (#01-#10)</td><td>Anton</td><td>3rem</td><td><code>clamp(2rem, 6vw, 3rem)</code></td></tr>
+    <tr><td>Datos (ABV, IBU, precio)</td><td>JetBrains Mono 500</td><td>0.95rem</td><td>fijo</td></tr>
+    <tr><td>Caption / label</td><td>JetBrains Mono 400</td><td>0.75rem uppercase + letter-spacing</td><td>fijo</td></tr>
+  </tbody>
+</table>
+
+<h3>Detalles tipográficos intencionales</h3>
+<ul>
+  <li><strong>Anton SIEMPRE en mayúsculas</strong> para títulos — refuerza el lenguaje de cartel de bar / menú impreso.</li>
+  <li><strong>Letter-spacing negativo en H1 con Anton</strong> (-0.01em) — Anton es ancha, necesita compactarse.</li>
+  <li><strong>JetBrains Mono para datos numéricos SIEMPRE</strong> — precio, ABV, IBU, número de tap. Es la seña de "carta de cervezas profesional".</li>
+  <li><strong>Labels en mono uppercase con letter-spacing 0.1em</strong> — estilo "etiqueta de cerveza": <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vbg-cobre-barril);">CERVEZA DE BARRIL · EN ROTACIÓN</span></li>
+</ul>
+
+<!-- ============ 4. LAYOUT ============ -->
+<h1 class="section" id="layout">4 · Layout — concepto y wireframes</h1>
+
+<p><strong>Concepto</strong>: layout editorial cálido con secciones que respiran. Nada de grids infinitos de cards idénticas. El peso visual lo cargan las fotos de comida+cerveza y el Tap Wall. El resto es disciplinado.</p>
+
+<h3>Hero home — comida + cerveza, NO centrado</h3>
+<pre class="wireframe">┌────────────────────────────────────────────────────────────────────┐
+│  <span class="label-wf">[LOGO]    Inicio  Menú  Eventos  Contacto           [Ver menú ↗]</span>   │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│  <span class="label-wf">CERVEZA ARTESANAL · COCINA GOURMET · CUERNAVACA</span>          │
+│                                                                    │
+│  <span style="color:#f3ebd9; font-family: Anton; font-size: 1.4rem;">Pizzería napolitana</span>           <span class="image-wf">┌────────────────────────┐</span>  │
+│  <span style="color:#f3ebd9; font-family: Anton; font-size: 1.4rem;">y 10 líneas en tap,</span>            <span class="image-wf">│                        │</span>  │
+│  <span style="color:#f3ebd9; font-family: Anton; font-size: 1.4rem;">en Cuernavaca.</span>                 <span class="image-wf">│   FOTO PIZZA + CERVA    │</span>  │
+│                                    <span class="image-wf">│   (primer plano,        │</span>  │
+│  Pizza que sale del horno          <span class="image-wf">│    apetitosa, hiénico)   │</span>  │
+│  junto a la cerveza de barril      <span class="image-wf">│                        │</span>  │
+│  que cada semana cambia.           <span class="image-wf">└────────────────────────┘</span>  │
+│                                                                    │
+│  <span class="cta-wf">[Ver menú]</span>   <span class="cta-wf">[Reservar por WhatsApp]</span>                  │
+│                                                                    │
+│  <span style="color:#6da05d;">★ 4.9 · 241 reseñas en Google</span>  ·  Pet friendly  ·  Terraza       │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘</pre>
+
+<p>El hero NO está centrado. Texto a la izquierda (con H1 en Anton mayúsculas, peso visual), foto grande a la derecha. Badge con rating de GBP + diferenciadores (pet friendly, terraza).</p>
+
+<h3>/menu/ — QR destination, sticky tabs</h3>
+<pre class="wireframe">┌────────────────────────────────────────────────────────────────────┐
+│  <span class="label-wf">[← Volver]    VECINDARIO BEER GARDEN · MENÚ          [WhatsApp]</span>   │
+├────────────────────────────────────────────────────────────────────┤
+│  <span style="background:#2d5a3d; color:#f3ebd9; padding: 0 6px;">CERVEZAS DE BARRIL</span>  Alimentos  Lata/Botella (1150)  Otras   │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│   <span class="num-wf">#01</span>  <span style="color:#c4721e;">Ícono Light Lager</span>     Light Lager · 3.5% ABV       <span style="color:#6da05d;">$80</span>   │
+│        Cervecería Ícono · Mexicali                  300ml       <span style="color:#6da05d;">$90</span>   │
+│                                                                    │
+│   <span class="num-wf">#02</span>  <span style="color:#c4721e;">Insurgente La Lupulosa</span>  IPA · 6.5% ABV · 65 IBU        <span style="color:#6da05d;">$95</span>   │
+│        Cervecería Insurgente · Tijuana              420ml      <span style="color:#6da05d;">$110</span>   │
+│                                                                    │
+│   <span class="num-wf">#03</span>  <span style="color:#8a8270; text-decoration: line-through;">Agua Mala Mantarraya</span>   <span style="color:#8a8270;">AGOTADA</span>                      —     │
+│                                                                    │
+│   [...]  (7 cervezas más)                                           │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘</pre>
+
+<p>Velocidad sobre todo. Nada de fotos por defecto. Tap #01-#10 grande en Anton, nombre en ámbar, meta en mono, precio en mono verde. Status agotado en gris tachado.</p>
+
+<h3>Hub SEO (ej. /hamburguesas-cuernavaca/)</h3>
+<pre class="wireframe">┌────────────────────────────────────────────────────────────────────┐
+│  Inicio &gt; Hamburguesas Cuernavaca                                  │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│  <span style="color:#2d5a3d; font-family: Anton; font-size: 1.2rem;">HAMBURGUESAS GOURMET</span>                                              │
+│  <span style="color:#2d5a3d; font-family: Anton; font-size: 1.2rem;">EN CUERNAVACA</span>                                                     │
+│                                                                    │
+│  Pan brioche, carne premium, maridadas con cerveza artesanal.      │
+│                                                                    │
+│  <span class="image-wf">┌──────────────┐  ┌──────────────┐  ┌──────────────┐</span>      │
+│  <span class="image-wf">│   FOTO 1     │  │   FOTO 2     │  │   FOTO 3     │</span>      │
+│  <span class="image-wf">│  Hamburguesa │  │  Hamburguesa │  │  Hamburguesa │</span>      │
+│  <span class="image-wf">│  Vecindario  │  │ Teopanzolco  │  │ Vegetariana │</span>      │
+│  <span class="image-wf">│   $185       │  │   $195       │  │   $170       │</span>      │
+│  <span class="image-wf">└──────────────┘  └──────────────┘  └──────────────┘</span>      │
+│                                                                    │
+│  <span style="color:#2d5a3d; font-family: Anton; font-size: 1rem;">POR QUÉ NUESTRAS HAMBURGUESAS</span>                                      │
+│  (~400 palabras de contenido editorial: pan brioche, origen de     │
+│   la carne, maridaje con cerveza de barril, etc.)                  │
+│                                                                    │
+│  <span style="color:#2d5a3d; font-family: Anton; font-size: 1rem;">MARIDAJE RECOMENDADO</span>  →  <span class="cta-wf">[Ver cervezas en tap]</span>                  │
+│                                                                    │
+│  <span style="color:#2d5a3d; font-family: Anton; font-size: 1rem;">PREGUNTAS FRECUENTES</span>                                              │
+│  · ¿Tienen opción vegetariana?                                      │
+│  · ¿La carne es de proveedor local?                                 │
+│  · ¿Puedo pedir sin tocino?                                         │
+│                                                                    │
+│  <span class="cta-wf">[Reservar por WhatsApp]</span>                                            │
+└────────────────────────────────────────────────────────────────────┘</pre>
+
+<!-- ============ 5. FIRMA ============ -->
+<h1 class="section" id="firma">5 · La firma memorable: "El Tap Wall"</h1>
+
+<div class="card amber">
+  <div class="card-label" style="color: var(--vbg-ambar-malta);">Tesis de la firma</div>
+  <p style="margin:0.3rem 0;">El diseño necesita <strong>UN elemento memorable</strong>. Para Vecindario es <strong>"El Tap Wall"</strong>: la sección de cervezas de barril renderizada como un muro físico de mangas, con cada cerveza teniendo su número <code>#01-#10</code> tipográficamente ENORME en Anton, sobre fondo verde profundo o gris pizarra. Honra la rotación constante y es específico de un beer garden de verdad.</p>
+</div>
+
+<h3>Por qué esta firma y no otra</h3>
+
+<p>De las 4 firmas propuestas en el brief (pizarrón vivo, numeración carta cervezas, marca de barril en hero, calendario eventos), <strong>esta combina #1 + #2 en una sola idea coherente</strong>. Las otras dos se descartan como firma central:</p>
+
+<ul>
+  <li>❌ <strong>Marca de barril en hero</strong> — el hero debe ser comida+cerveza apetitoso (brief: "se me hizo la boca agua"). Una marca de barril pelearía con esa intención.</li>
+  <li>❌ <strong>Calendario como cartelera</strong> — sería firma de la sección eventos, no del sitio. Y los eventos son 1-2 al mes, no sostienen una identidad completa.</li>
+  <li>✅ <strong>Tap Wall (pizarrón + numeración)</strong> — combina la honestidad del pizarrón (el menú cambia, lo decimos) con la autoridad de la numeración (#01-#10 como mangas físicas). Es específico de tu operación real.</li>
+</ul>
+
+<h3>Vista previa</h3>
+
+<div class="tap-wall-preview">
+  <div class="tw-header">
+    <span>CERVEZA DE BARRIL · 10 LÍNEAS · EN ROTACIÓN</span>
+    <span>Actualizado hoy</span>
+  </div>
+  <div class="tap-list">
+    <div class="tap-row">
+      <div class="tap-num">#01</div>
+      <div class="tap-info">
+        <p class="tap-name">Ícono Light Lager <span class="tap-status">Light</span></p>
+        <p class="tap-meta">CERVEZERÍA ÍCONO · MEXICALI · LIGHT LAGER · 3.5% ABV</p>
+      </div>
+      <div class="tap-price">$80 / $90</div>
+    </div>
+    <div class="tap-row">
+      <div class="tap-num">#02</div>
+      <div class="tap-info">
+        <p class="tap-name">Insurgente La Lupulosa</p>
+        <p class="tap-meta">INSURGENTE · TIJUANA · IPA · 6.5% ABV · 65 IBU</p>
+      </div>
+      <div class="tap-price">$95 / $110</div>
+    </div>
+    <div class="tap-row">
+      <div class="tap-num" style="color:#8a8270;">#03</div>
+      <div class="tap-info">
+        <p class="tap-name" style="color:#8a8270; text-decoration: line-through;">Agua Mala Mantarraya <span class="tap-status" style="color:#8a8270; border-color:#8a8270;">Agotada</span></p>
+        <p class="tap-meta">AGUA MALA · ENSENADA · CREAM ALE</p>
+      </div>
+      <div class="tap-price" style="color:#8a8270;">—</div>
+    </div>
+    <div class="tap-row">
+      <div class="tap-num">#04</div>
+      <div class="tap-info">
+        <p class="tap-name">Vecindario Saison</p>
+        <p class="tap-meta">VECINDARIO · CUERNAVACA · SAISON · 5.2% ABV · COLABORACIÓN</p>
+      </div>
+      <div class="tap-price">$100 / $115</div>
+    </div>
+  </div>
+</div>
+
+<h3>Aplicación de la firma en el sitio</h3>
+<table class="data">
+  <thead><tr><th>Dónde</th><th>Cómo</th></tr></thead>
+  <tbody>
+    <tr><td>/menu/ sección 1 (cervezas de barril)</td><td>Versión compacta para velocidad QR</td></tr>
+    <tr><td>/menu/cervezas-de-barril/</td><td>Versión rich: con descripciones, maridaje, fotos opcionales</td></tr>
+    <tr><td>/ (home) sección preview de taps</td><td>4-6 cervezas destacadas con look Tap Wall</td></tr>
+    <tr><td>Favicon / app icon</td><td>Número #01 o icono de manga estilizado</td></tr>
+    <tr><td>Material impreso (carta física, manteles)</td><td>Mismo Tap Wall — coherencia online/offline</td></tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <div class="card-label">Motif recurrente sin saturar</div>
+  <p style="margin:0;">El <code>#01-#10</code> numérico puede aparecer como motif sutil en: separadores de sección, paginación del catálogo de latas/botellas, badges de eventos numerados. <strong>Pero NO en TODOS lados</strong> — el principio de Chanel: quitarse una accessory antes de salir. La firma vive fuerte en el Tap Wall y se asoma discretamente en otros lugares.</p>
+</div>
+
+<!-- ============ 6. CRÍTICA ============ -->
+<h1 class="section" id="critica">6 · Auto-crítica contra antipatrones AI</h1>
+
+<p>La skill de frontend-design advierte sobre 3 looks que la IA produce por default, independientemente del tema. Reviso cada uno:</p>
+
+<h3>Antipatrón 1 · Fondo crema (#F4F1EA) + serif alto contraste + terracota</h3>
+<table class="data">
+  <thead><tr><th>Mi propuesta</th><th>¿Default?</th><th>Twist que lo aleja</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Kraft #F3EBD9 + Anton + Ámbar #C4721E</td>
+      <td>⚠ Cerca</td>
+      <td>
+        <ul style="margin:0;">
+          <li><strong>Tipografía</strong>: Anton (sans condensada) NO es serif alto contraste. Es cartel de bar, no editorial de revista.</li>
+          <li><strong>Kraft como textura, no fondo omnipresente</strong>: el fondo principal es blanco. Kraft solo en cards y secciones secundarias.</li>
+          <li><strong>Ámbar #C4721E más saturado y específico</strong> que el terracota default — evoca cerveza, no cerámica genérica.</li>
+          <li><strong>Verde Teopanzolco como primario</strong> (no kraft+terracota) rompe el combo default.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Antipatrón 2 · Negro casi puro + verde ácido o bermellón</h3>
+<table class="data">
+  <thead><tr><th>Mi propuesta</th><th>¿Default?</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Carbón #1F1C18 + Verde Jardín #6DA05D</td>
+      <td>✅ Evitado</td>
+    </tr>
+    <tr>
+      <td colspan="2">El verde es follaje musgo cálido (no ácido/neón). El "negro" es carbón casi marrón. No hay nada tecnoide. Encaja con el tono "cálido, relajado" del brief.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Antipatrón 3 · Broadsheet (reglas finas, sin border-radius, columnas densas)</h3>
+<table class="data">
+  <thead><tr><th>Mi propuesta</th><th>¿Default?</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Editorial cálido + border-radius 4-8px + secciones que respiran</td>
+      <td>✅ Evitado</td>
+    </tr>
+    <tr>
+      <td colspan="2">Bordes suaves, espaciado generoso entre secciones, fotos de comida protagonistas. NO es broadsheet frío.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Otros defaults que también evito</h3>
+<ul>
+  <li>❌ Iconos lucide/feather genéricos → usar SVG dibujados para Vecindario o del mundo cervecero (lúpulo, vaso, mango de tap).</li>
+  <li>❌ Gradientes azul-violeta → ninguno en el sistema.</li>
+  <li>❌ Cards en grid de 3 columnas idénticas → solo cuando el contenido lo justifique (ej. 3 hamburguesas en hub).</li>
+  <li>❌ Inter/Geist como única familia → Anton + Poppins + JetBrains Mono, todas con rol específico.</li>
+  <li>❌ Contadores animados de números, parallax decorativo → cero. Motion solo cuando comunica (ej. transición suave entre tabs de /menu/).</li>
+  <li>❌ Microcopy en inglés → 100% español, tono cercano.</li>
+</ul>
+
+<h3>Riesgo honesto que asumo</h3>
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ La paleta por sí sola no es rompedora</div>
+  <p style="margin:0.3rem 0;">Verde + ámbar + kraft SÍ es una combinación relativamente común para cervecerías artesanales. <strong>La distintividad NO viene de la paleta aislada</strong>, viene del <em>sistema completo</em>: paleta + uso tipográfico Anton + JetBrains Mono + firma Tap Wall + fotografía real del lugar.</p>
+  <p style="margin:0.3rem 0;">Si quieres una paleta más arriesgada (ej. descartar kraft por algo más frío, o ir hacia un acento inesperado tipo magenta), podemos explorarlo. Pero el principio de Chanel aplica: <strong>gastar el boldness en un solo lugar</strong>. Ese lugar es el Tap Wall. Lo demás se queda disciplinado y coherente con la marca existente.</p>
+</div>
+
+<!-- ============ 7. APLICACIÓN ============ -->
+<h1 class="section" id="aplicacion">7 · Aplicación concreta en páginas principales</h1>
+
+<h3>Home (<code>/</code>)</h3>
+<ul>
+  <li>Hero: comida+cerveza foto grande derecha, H1 Anton mayúsculas izquierda, CTAs en ámbar, badge rating en verde.</li>
+  <li>Sección "En tap esta semana": preview del Tap Wall con 4-6 cervezas destacadas (la firma se asoma).</li>
+  <li>Sección "Cocina que marida": 3 platos estrella (pizza, hamburguesa, entradas) con foto + precio.</li>
+  <li>Diferenciadores: 3 cards (10 líneas en rotación · Terraza pet-friendly · Cocina gourmet casual) — NO iconos genéricos, ilustraciones SVG simples.</li>
+  <li>Reseñas Google: 4-6 transcritas con aggregateRating visible.</li>
+  <li>Próximos eventos: 3 cards con schema Event.</li>
+  <li>FAQ hiperlocal: 6 preguntas (las logísticas del brief).</li>
+  <li>NAP + mapa embed con place_id + horarios.</li>
+</ul>
+
+<h3>Menú (<code>/menu/</code>) — velocidad sobre todo</h3>
+<ul>
+  <li>Sin hero. Header slim con logo + WhatsApp.</li>
+  <li>Sticky tabs: <code>Cervezas de barril · Alimentos · Lata/Botella · Otras</code></li>
+  <li>Tab 1 (default al cargar): Tap Wall compacto, los 10 taps.</li>
+  <li>Tab 2: Alimentos en cards compactas (sin foto por defecto).</li>
+  <li>Tab 3: Catálogo lata/botella con filtros facetados (lazy load al activar tab).</li>
+  <li>Tab 4: Otras bebidas en lista compacta.</li>
+  <li>Performance: LCP &lt; 1s en 4G, sin JS salvo filtros del catálogo.</li>
+</ul>
+
+<h3>Hub hamburguesas (<code>/hamburguesas-cuernavaca/</code>)</h3>
+<ul>
+  <li>Hero corto: H1 + subtítulo + 3 fotos de hamburguesas.</li>
+  <li>Contenido editorial ~600-800 palabras (pan brioche, origen carne, etc.).</li>
+  <li>Sección "Maridaje con cerveza" → cross-link a /menu/cervezas-de-barril/.</li>
+  <li>FAQ específica 2-3 preguntas.</li>
+  <li>Breadcrumb Home → Hamburguesas Cuernavaca.</li>
+</ul>
+
+<h3>Footer (todas las páginas)</h3>
+<pre class="wireframe">┌──────────────────────────────────────────────────────────────────┐
+│  <span style="color:#6da05d;">[LOGO VBG]</span>   <span class="label-wf">EXPLORA</span>          <span class="label-wf">CONTACTO</span>            <span class="label-wf">HORARIOS</span>         │
+│                                                          Av. Teopanzolco 665   Mié–Vie 17–23:30 │
+│              Cervezas de barril                          62450 Cuernavaca      Sáb 15–23:30       │
+│              Hamburguesas                                Morelos               Dom 15–22:00      │
+│              Pizzas                                      <span style="color:#c4721e;">777 497 2223</span>        Lun–Mar cerrado   │
+│              Eventos                                     hola@vecindario...                       │
+│              Pet friendly                                                                          │
+│                                                          <span class="cta-wf">[WhatsApp]</span>  <span class="cta-wf">[Reseña Google]</span>     │
+├──────────────────────────────────────────────────────────────────┤
+│  © 2026 Vecindario Beer Garden · Aviso de privacidad · Términos    │
+└──────────────────────────────────────────────────────────────────┘</pre>
+
+<!-- ============ 8. PENDIENTES ============ -->
+<h1 class="section" id="pendientes">8 · Decisiones que faltan y próximos pasos</h1>
+
+<h3>Decisiones de diseño que necesito de ti ✏️</h3>
+<table class="data">
+  <thead><tr><th>Decisión</th><th>Impacto</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>¿La paleta te parece bien o quieres más arriesgada?</td>
+      <td>Si quieres más arriesgada, podemos descartar kraft y probar algo más frío o un acento inesperado. Pero recomiendo NO — gastar el boldness en el Tap Wall.</td>
+    </tr>
+    <tr>
+      <td>¿Anton como display está bien?</td>
+      <td>Ya la usan en menú impreso. Mantener da coherencia offline-online. Alternativa más fresca: Oswald o Bebas Neue.</td>
+    </tr>
+    <tr>
+      <td>¿La firma "Tap Wall" te hace sentido como elemento memorable?</td>
+      <td>Es la decisión más importante del design system. Si no te convence, replanteamos.</td>
+    </tr>
+    <tr>
+      <td>Fotos del hero: ¿tienes pizza + cerveza juntas en una toma, o hay que componer?</td>
+      <td>Si hay que componer, podemos armar collage de fotos existentes + foto nueva.</td>
+    </tr>
+    <tr>
+      <td>Iconos: ¿dibujados a mano para VBG o SVG genéricos con twist cervecero?</td>
+      <td>Dibujados a mano = más distintivos pero más trabajo. Twist cervecero = buenos y rápidos.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Próximos pasos cuando apruebes</h3>
+<ol>
+  <li>Iterar el design system según tus ajustes (si los hay).</li>
+  <li><strong>Diseñar visualmente 2-3 páginas clave en HTML/CSS real</strong> (home + /menu/ + una hub) para que veas el design system aplicado, no solo descrito.</li>
+  <li>Cuando apruebes las páginas visuales, pasamos a <strong>implementación en Astro</strong> (Fase 1 del MVP).</li>
+</ol>
+
+<div class="card amber">
+  <div class="card-label" style="color: var(--vbg-ambar-malta);">Resumen</div>
+  <p style="margin:0.3rem 0;"><strong>Paleta:</strong> 6 colores (verde teopanzolco, verde jardín, ámbar malta, cobre barril, kraft, carbón).</p>
+  <p style="margin:0.3rem 0;"><strong>Tipografías:</strong> Anton (display) + Poppins (body) + JetBrains Mono (datos).</p>
+  <p style="margin:0.3rem 0;"><strong>Layout:</strong> editorial cálido, hero no centrado, /menu/ con sticky tabs priorizando velocidad.</p>
+  <p style="margin:0.3rem 0;"><strong>Firma:</strong> El Tap Wall — muro de 10 cervezas con números enormes, sobre verde profundo o pizarra.</p>
+  <p style="margin:0;"><strong>Antipatrones AI:</strong> los 3 defaults evitados con twists justificados. Riesgo honesto asumido (paleta por sí sola no rompe, el sistema completo sí).</p>
+</div>
+
+<div class="closing">
+  <p>Este design system es la <strong>última capa de planificación</strong> antes de escribir código. Cuando lo apruebes o ajustemos, el siguiente paso es diseñar visualmente 2-3 páginas clave para que veas el sistema aplicado, no solo descrito.</p>
+</div>
+
+</div>
+
+</body>
+</html>

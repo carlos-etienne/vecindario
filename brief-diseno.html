@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief de Diseño · Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<style>
+  /* === Paleta de marca Vecindario Beer Garden === */
+  :root {
+    /* Colores oficiales de marca (extraídos del logo) */
+    --vbg-green-deep: #446a3b;   /* verde profundo - primario */
+    --vbg-green:      #6da05d;   /* verde follaje - acento */
+    /* Neutrales cálidos */
+    --primary:   #1f2421;        /* negro cálido - texto headings */
+    --body:      #2b302d;        /* gris-verdoso muy oscuro - body */
+    --secondary: #5e6b5c;        /* gris-verdoso medio - captions */
+    --surface:   #faf8f3;        /* crema/papel - fondos suaves */
+    --surface-2: #f0ede3;        /* crema oscuro - zebra rows */
+    --divider:   #d8d3c4;        /* línea súa saturada */
+    --placeholder: #8a8270;
+    /* Tags */
+    --have: #446a3b;             /* verde profundo = ya lo sé */
+    --need: #8a5a2b;             /* cobrizo = necesito de ti (contraste con verdes) */
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Calibri, sans-serif;
+    color: var(--body);
+    background: #e8e6df;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* === Top brand bar (always visible) === */
+  .brand-bar {
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .brand-bar img.brand-logo {
+    height: 32px;
+    width: auto;
+  }
+  .brand-bar .brand-sep {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,0.3);
+  }
+  .brand-bar .brand-doc {
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    opacity: 0.95;
+  }
+
+  /* === Page container === */
+  .page {
+    max-width: 820px;
+    margin: 2rem auto;
+    background: #FFFFFF;
+    padding: 3rem 4rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    border-top: 4px solid var(--vbg-green);
+  }
+  @media (max-width: 700px) {
+    .page { padding: 1.5rem; margin: 0; border-radius: 0; }
+    .brand-bar { padding: 0.6rem 1rem; }
+    .brand-bar img.brand-logo { height: 26px; }
+  }
+
+  /* === Cover === */
+  .cover {
+    max-width: 820px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, var(--vbg-green-deep) 0%, #2c4a26 60%, #1f351c 100%);
+    color: #FFFFFF;
+    padding: 4rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    /* subtle hop-leaf decorative texture using the icono */
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 320px;
+    height: 320px;
+    background: url("assets/icono.svg") no-repeat center/contain;
+    opacity: 0.06;
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+  .cover .cover-logo {
+    background: rgba(255,255,255,0.96);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .cover .cover-logo img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+  .cover .label {
+    color: var(--vbg-green);
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    border-bottom: 2px solid var(--vbg-green);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .cover .subtitle {
+    color: #c8d8c0;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+  .cover .meta {
+    border-left: 3px solid var(--vbg-green);
+    padding-left: 1rem;
+    color: #c8d8c0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+  .cover .footer {
+    margin-top: 3rem;
+    border-top: 1px solid rgba(109,160,93,0.4);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+  }
+
+  /* === Headings === */
+  h1.section {
+    font-size: 1.8rem;
+    color: var(--vbg-green-deep);
+    border-bottom: 3px solid var(--vbg-green);
+    padding-bottom: 0.5rem;
+    margin-top: 4rem;
+    page-break-before: always;
+    letter-spacing: -0.01em;
+  }
+  h1.section:first-of-type { page-break-before: avoid; }
+  h2 {
+    font-size: 1.35rem;
+    color: var(--primary);
+    margin-top: 2.5rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: var(--vbg-green-deep);
+    margin-top: 1.5rem;
+  }
+
+  /* === Body text === */
+  p { margin: 0.6rem 0; }
+  .body { margin: 0.8rem 0; }
+  strong { color: var(--primary); }
+  em { font-style: italic; }
+  ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+  li { margin: 0.3rem 0; }
+  a { color: var(--vbg-green-deep); text-decoration: underline; text-decoration-color: var(--vbg-green); text-underline-offset: 2px; }
+  a:hover { color: var(--vbg-green); }
+
+  /* === Tags: ✅ / ✏️ === */
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .tag.have { background: var(--have); color: white; }
+  .tag.need { background: var(--need); color: white; }
+
+  /* === Tables === */
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border-top: 3px solid var(--vbg-green-deep);
+    border-bottom: 3px solid var(--vbg-green-deep);
+  }
+  table.data th {
+    background: var(--vbg-green-deep);
+    color: white;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  table.data td {
+    padding: 0.7rem 0.8rem;
+    border-top: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  table.data tr:nth-child(even) td { background: var(--surface); }
+  table.data td:first-child { font-weight: 700; color: var(--vbg-green-deep); }
+
+  /* === Info card === */
+  .card {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-green);
+    padding: 0.8rem 1rem;
+    margin: 0.8rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .card .card-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--vbg-green-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  /* === Image placeholder === */
+  .image-box {
+    border: 2px dashed var(--divider);
+    padding: 2rem;
+    text-align: center;
+    margin: 1rem 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(109,160,93,0.04) 10px, rgba(109,160,93,0.04) 20px);
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--placeholder);
+    border-radius: 3px;
+  }
+  .image-box .hint {
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  .image-box .caption {
+    font-size: 0.8rem;
+    color: var(--secondary);
+    margin-top: 0.3rem;
+  }
+  .image-box img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.5rem auto;
+    border: 1px solid var(--divider);
+    border-radius: 3px;
+  }
+  .image-box.has-image {
+    border-style: solid;
+    border-color: var(--vbg-green);
+    background: transparent;
+    padding: 1rem;
+    min-height: auto;
+  }
+  .image-box.has-image .hint { display: none; }
+
+  /* === User-filled input field === */
+  .input-field {
+    border-bottom: 2px dotted var(--divider);
+    padding: 0.5rem 0.5rem;
+    min-height: 2.5rem;
+    margin: 0.5rem 0;
+    color: var(--body);
+    background: rgba(109,160,93,0.03);
+    border-radius: 2px;
+  }
+  .input-field.filled {
+    background: rgba(68,106,59,0.06);
+    border-bottom-color: var(--vbg-green-deep);
+  }
+  .input-field .field-label {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    font-style: italic;
+    margin-bottom: 0.3rem;
+  }
+  .input-field .field-content {
+    color: var(--primary);
+  }
+
+  /* === Page utilities === */
+  .page-break { page-break-before: always; }
+  .closing {
+    border-top: 3px solid var(--vbg-green);
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    font-style: italic;
+    color: var(--secondary);
+    text-align: center;
+  }
+  code { background: var(--surface-2); padding: 0.1rem 0.3rem; border-radius: 2px; font-size: 0.9em; color: var(--vbg-green-deep); }
+</style>
+</head>
+<body>
+
+<!-- ============ BRAND BAR ============ -->
+<div class="brand-bar">
+  <img src="assets/logo-color.svg" alt="Vecindario Beer Garden" class="brand-logo">
+  <div class="brand-sep"></div>
+  <div class="brand-doc">Brief de Diseño · Sitio web</div>
+</div>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="cover-logo">
+    <img src="assets/logo-color.svg" alt="Vecindario Beer Garden">
+  </div>
+  <div class="label">B R I E F &nbsp; D E &nbsp; D I S E Ñ O</div>
+  <h1>Rediseño del sitio web</h1>
+  <div class="subtitle">Cuestionario guiado para definir la identidad visual del nuevo sitio</div>
+  <div class="meta">
+    <div>Proyecto: Nuevo sitio web + panel de administración</div>
+    <div>Objetivo: Reorientación como restaurante-bar · SEO local</div>
+    <div>Versión: 1.0 · Pre-llenada con datos del sitio y briefing de marca</div>
+  </div>
+  <div class="footer">
+    <span>Cuernavaca, Morelos</span>
+    <span>2026</span>
+  </div>
+</div>
+
+<!-- ============ BODY ============ -->
+<div class="page">
+
+<h2 style="border-bottom: 3px solid var(--vbg-green-deep); padding-bottom: 0.5rem; font-size: 1.8rem; color: var(--primary);">Cómo usar este documento</h2>
+<p>Este brief ya tiene casi todo el trabajo pesado hecho. Tomé la información del sitio actual (vecindariobeergarden.com) y del briefing de marca que llenaron al abrir, y lo crucé con las decisiones técnicas que ya tomamos. Tu trabajo aquí es <strong>completar las partes que solo tú sabes</strong>: referencias visuales, fotos reales, y las decisiones de gusto personal.</p>
+<p>Cada sección está marcada con uno de estos dos indicadores:</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+  <div class="card" style="margin: 0;">
+    <div class="card-label"><span class="tag have">✅ YA LO SÉ</span></div>
+    <div style="font-size: 0.9rem;">Información que ya tengo de las fuentes mencionadas. Solo revísala por si algo cambió.</div>
+  </div>
+  <div class="card" style="margin: 0;">
+    <div class="card-label"><span class="tag need">✏️ NECESITO DE TÍ</span></div>
+    <div style="font-size: 0.9rem;">Espacios donde tienes que aportar. Tómate tu tiempo, no hay respuestas correctas o incorrectas.</div>
+  </div>
+</div>
+<p><strong style="color: var(--vbg-green-deep);">Tip:</strong> Si una sección no te dice nada, déjala en blanco. Es mejor ningún input que uno forzado. Podemos iterar.</p>
+<p><strong style="color: var(--vbg-green-deep);">Para editar:</strong> abre este archivo (<code>brief-diseno.html</code>) en cualquier editor de texto (VS Code, Sublime, Notepad++, incluso el bloc de notas). Las imágenes van en la carpeta <code>images-extraidas/</code> y se referencian con <code>&lt;img src="images-extraidas/..."&gt;</code> — nunca se recortan.</p>
+
+<!-- ============ 1. IDENTIDAD ============ -->
+<h1 class="section">1 · Identidad y esencia del lugar</h1>
+
+<h2>Propuesta de valor <span class="tag have">✅ YA LO SÉ</span></h2>
+<div class="card">
+  <div class="card-label">Fuente: Briefing de marca</div>
+  <div><em>"El lugar donde la comunidad cervecera se encuentra."</em></div>
+</div>
+<p>Vecindario Beer Garden se distingue por ofrecer una experiencia personalizada, con cervezas de calidad, servicio experto y un ambiente relajado. Es el único lugar en Cuernavaca donde los amantes de la cerveza encuentran un ambiente acogedor y profesional, con amplia variedad de productos almacenados de forma óptima y personal capacitado para guiar la experiencia cervecera.</p>
+
+<h2>Personalidad de marca <span class="tag have">✅ YA LO SÉ</span></h2>
+<p><strong>Amigable, acogedor, relajado, comprometido con la calidad y la comunidad.</strong> Vecindario busca transmitir un ambiente natural donde tanto conocedores como novatos en el mundo de la cerveza se sientan bienvenidos.</p>
+
+<h2>Valores clave <span class="tag have">✅ YA LO SÉ</span></h2>
+<p>Comunidad · Calidad · Sostenibilidad · Apoyo a productores locales · Excelencia en la experiencia cervecera.</p>
+
+<h2>Inspiración y origen <span class="tag have">✅ YA LO SÉ</span></h2>
+<p>Surge de una historia personal que mezcla la pasión por la hospitalidad (adquirida desde la infancia en un restaurante familiar) con la experiencia en el mundo de la cerveza artesanal. Vecindario busca rescatar esa esencia de comunidad y calidad que el dueño siempre quiso transmitir en su propio negocio.</p>
+
+<h2>Misión y visión <span class="tag have">✅ YA LO SÉ</span></h2>
+<p><strong>Misión:</strong> Ofrecer un espacio que conecte a productores locales de cerveza con los consumidores, brindando una experiencia sensorial única y accesible, donde la calidad y la calidez sean los pilares del servicio.</p>
+<p><strong>Visión:</strong> Convertirse en el punto de referencia para amantes de la cerveza artesanal y turistas en Cuernavaca, así como un pilar de la comunidad cervecera local.</p>
+
+<h2>3-5 adjetivos que describan cómo debe SENTIRSE el sitio <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>El briefing ya sugiere: <em>amigable, acogedor, relajado, cálido, natural</em>. Confirma, ajusta o reemplaza. Piensa en adjetivos que NO se apliquen igual a cualquier bar — ¿qué palabra usarías tú para describir el lugar que nadie más usaría?</p>
+<div class="input-field filled">
+  <div class="field-content">Confirmo lo que dice el briefing. Agrego seguro, sentido de comunidad</div>
+</div>
+
+<!-- ============ 2. DATOS OPERATIVOS ============ -->
+<h1 class="section">2 · Datos operativos (NAP)</h1>
+<p>Estos datos son <strong>críticos para SEO local</strong> — alimentan el panel de Google Business Profile y el schema BarOrPub del sitio. Deben ser idénticos en TODOS los puntos de contacto (sitio, GBP, redes, directorios).</p>
+
+<h2>Datos pre-llenados del sitio actual</h2>
+<div class="card"><div class="card-label">Dirección</div>Av. Teopanzolco #665, Cuernavaca, Morelos</div>
+<div class="card"><div class="card-label">Teléfono</div>+52 777 497 2223</div>
+<div class="card"><div class="card-label">WhatsApp</div>wa.me/527774972223</div>
+<div class="card"><div class="card-label">Horarios (sitio actual)</div>
+  Miércoles a viernes: 17:00 – 23:30<br>
+  Sábado: 15:00 – 23:30<br>
+  Domingo: 15:00 – 22:00<br>
+  Lunes y martes: cerrado
+</div>
+<div class="card" style="background: var(--surface-2);"><div class="card-label">Horarios (PDF briefing)</div>
+  Miércoles a sábado: 17:00 – 00:00<br>
+  Domingo: 14:30 – 20:00
+</div>
+<p><strong style="color: var(--need);">⚠️ Discrepancia detectada:</strong> los horarios del sitio y los del PDF briefing de marca no coinciden. ¿Cuáles son los actuales y correctos?</p>
+<div class="input-field filled">
+  <div class="field-content">Los correctos son los del sitio.</div>
+</div>
+
+<h2>Redes sociales y enlaces</h2>
+<div class="input-field filled">
+  <div class="field-label">URLs exactas de Facebook, Instagram, GBP:</div>
+  <div class="field-content">
+    Facebook: <a href="https://www.facebook.com/vecindariobeergarden">https://www.facebook.com/vecindariobeergarden</a><br>
+    Instagram: <a href="https://www.instagram.com/vecindariobeergarden">https://www.instagram.com/vecindariobeergarden</a><br>
+    Google Business Profile: <a href="https://maps.google.com/?cid=4438131759649544388">https://maps.google.com/?cid=4438131759649544388</a>
+  </div>
+</div>
+
+<h2>Capacidad y servicio</h2>
+<div class="card"><div class="card-label">Del briefing de marca</div>
+  Capacidad: 60 personas, con áreas de barra, mesas al aire libre y salón.<br>
+  Servicio: relajado, con meseros y personal altamente capacitado.<br>
+  Equipo certificado: Beer Servers por Cicerone y jueces BJCP.
+</div>
+
+<!-- ============ 3. PÚBLICO ============ -->
+<h1 class="section">3 · Público: actual vs. objetivo</h1>
+
+<h2>Público actual (del briefing de marca)</h2>
+<div class="card"><div class="card-label">Perfil</div>
+  Edad: 25 a 45 años<br>
+  Género: mixto<br>
+  Nivel socioeconómico: medio y medio-alto<br>
+  Intereses: aficionados a cerveza artesanal, curiosos por nuevos sabores, turistas que buscan experiencias locales, residentes de la zona que buscan ambiente relajado y comunitario.<br>
+  Segmentos secundarios: aficionados al mezcal, pulque y café; interesados en gastronomía casual y de calidad.
+</div>
+
+<h2>Público objetivo nuevo (lo que queremos captar)</h2>
+<p>Ya están <strong>bien posicionados para cerveza artesanal</strong> (poca competencia en la zona). El reto ahora es captar a quienes buscan <strong style="color: var(--vbg-green-deep);">comida en Cuernavaca</strong> y aún no asocian Vecindario con pizza, hamburguesas, etc.</p>
+<p>Tu propuesta: crear <strong>hubs SEO por categoría</strong> (pizza, hamburguesas, etc.) con página individual por plato. Esto se definirá con el KW research que proveerás aparte.</p>
+
+<h2>¿Quién es la persona que NO te conoce pero debería llegar al sitio? <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>Describe a este cliente ideal con la mayor especificidad posible. No digas "adultos jóvenes"; di "parejas de 30-40 años que buscan dónde cenar un sábado en Cuernavaca centro y miran Google Maps".</p>
+<div class="input-field filled">
+  <div class="field-content">
+    <strong>1. "Los Foodies Urbanos / Parejas de Cita"</strong><br>
+    <strong>2. "El Grupo de Amigos / Reunión Fin de Semana"</strong><br>
+    <strong>3. "Familias Jóvenes y Pet Lovers / Comida de Fin de Semana"</strong>
+  </div>
+</div>
+
+<!-- ============ 4. DECISIONES TÉCNICAS ============ -->
+<h1 class="section">4 · Decisiones técnicas ya tomadas</h1>
+<p>Para que el diseño se haga sobre fundamentos realistas, esto es lo que <strong>ya decidimos en la conversación inicial</strong>. No necesitas responder nada aquí, solo confirmar que sigues al tanto.</p>
+
+<table class="data">
+  <thead><tr><th>Decisión</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Stack</td><td>Astro (frontend estático) + panel admin propio (mobile-first)</td></tr>
+    <tr><td>Base de datos</td><td>Cloudflare D1 (SQLite en el edge, gratis)</td></tr>
+    <tr><td>Hosting</td><td>Cloudflare Pages (gratis, ya tienes el dominio en Cloudflare)</td></tr>
+    <tr><td>Email</td><td>Se conservan los MX de Hostinger (NO tocar; preserva los emails @vecindariobeergarden.com)</td></tr>
+    <tr><td>Foco primario de uso</td><td>Clientes escaneando QR en las mesas → velocidad móvil es prioritaria</td></tr>
+    <tr><td>Foco secundario</td><td>SEO local para captar clientes como restaurante-bar</td></tr>
+    <tr><td>Reservaciones</td><td>Solo WhatsApp/teléfono (sin sistema online)</td></tr>
+    <tr><td>Idiomas</td><td>Español primero; arquitectura preparada para i18n (inglés después)</td></tr>
+    <tr><td>Editor del menú</td><td>1 sola persona (tú) — login simple</td></tr>
+    <tr><td>Edición de cervezas</td><td>Drag-and-drop que SÍ funcione en móvil (SortableJS)</td></tr>
+    <tr><td>Lanzamiento</td><td>Por fases: MVP (sitio + menú editable) → eventos → hubs SEO</td></tr>
+    <tr><td>Roadmap futuro (no MVP)</td><td>Agente Hermes por Telegram para crear/publicar cervezas por comando en lenguaje natural. Backend se diseña desde el inicio preparado para esto (ver sección siguiente).</td></tr>
+  </tbody>
+</table>
+
+<h2>Roadmap futuro: agente por Telegram (Hermes)</h2>
+<p><strong style="color: var(--vbg-green-deep);">Esto no es para el MVP, pero lo documento aquí para que el backend se diseñe desde el inicio con esta capacidad en mente</strong> — y no haya que rediseñar después.</p>
+<p>Idea: poder dar una instrucción en lenguaje natural por Telegram, como: <em>"investiga la cerveza La Lupulosa de Insurgente, crea una descripción para el menú, llena sus datos y publícala en el tap número 2"</em>. El agente (Hermes) ejecuta los 4 pasos: investigar → redactar → mapear datos → publicar.</p>
+
+<h3>Implicaciones que ya quedan en el diseño del backend</h3>
+<ul>
+  <li><strong>API programática:</strong> El panel admin y el agente consumen la MISMA API REST/JSON. Ninguna lógica de negocio vive solo en la UI. Endpoints como <code>POST /beers</code>, <code>PUT /beers/:id/publish-to-tap/:n</code>.</li>
+  <li><strong>Drafts + estados:</strong> Cervezas con estado draft / published. Permite que el agente proponga y tú apruebes, o publique directo según modo configurado.</li>
+  <li><strong>Auditoría y origen:</strong> Campo <code>source</code> (manual | agent) y log mínimo de cambios (quién, qué, cuándo). Saber qué creó el agente vs qué creaste tú.</li>
+  <li><strong>Tap number = slot fijo:</strong> Los taps 1-10 son slots fijos (como mangas físicas), no posiciones en lista ordenada. El comando "publícala en el tap 2" requiere este modelo.</li>
+  <li><strong>Tono de marca documentado:</strong> Para que el agente redacte descripciones coherentes, el tono/voz debe estar escrito en un archivo que él pueda leer (style guide en el repo).</li>
+</ul>
+
+<h2>Preguntas para cuando diseñemos el agente <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>No las respondas ahora, pero quédalas en mente. Las retomamos cuando llegue el momento.</p>
+<ul>
+  <li>¿El agente publica automáticamente o solo propone y tú apruebas por Telegram antes de que el sitio se regenere?</li>
+  <li>¿Qué tan estricto debe ser el match de "La Lupulosa de Insurgente"? ¿Puede el agente decir "no la encuentro con certeza, ¿confirmas?" o asume la más probable?</li>
+  <li>¿El agente puede quitar/rotar taps también (ej: "saca la del tap 5, ponla como agotada")?</li>
+  <li>¿Puede crear eventos, o solo cervezas? Si solo cervezas al inicio, ¿cuándo abrimos eventos?</li>
+  <li>¿Quién más del equipo puede dar instrucciones al bot por Telegram? ¿Solo tú, o también un socio/staff?</li>
+  <li>¿El agente debe poder deshacer (undo) lo que hizo? ¿Por cuánto tiempo?</li>
+  <li>¿Cómo manejar descripciones que el agente genera pero tú quieres reescribir? ¿Edita por UI o por chat?</li>
+</ul>
+
+<!-- ============ 5. REFERENCIAS QUE SÍ ============ -->
+<h1 class="section">5 · Referencias visuales que SÍ te gustan</h1>
+<h2>3 a 5 referencias <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p><strong>No tienen que ser bares.</strong> Pueden ser una revista, una marca de café, una tienda de discos, una cervecería específica, el sitio de un restaurante que te cayó bien, lo que sea con "ese feeling". Cuanto más variadas, mejor — me ayuda a encontrar el patrón común.</p>
+<p>Para cada referencia, dime <strong style="color: var(--vbg-green-deep);">qué te gusta específicamente</strong> (¿la tipografía? ¿la paleta? ¿el manejo del espacio? ¿la actitud?) y <strong style="color: var(--vbg-green-deep);">qué NO copiaría</strong>. Pegar captura (o URL) + texto está perfecto.</p>
+
+<h3>Referencia 1</h3>
+<div class="image-box has-image">
+  <img src="images-extraidas/referencia-1-taproomofny.png" alt="Captura de taproomofny.com">
+</div>
+<p><strong>URL o fuente:</strong></p>
+<div class="input-field filled">
+  <div class="field-content"><a href="https://taproomofny.com/">https://taproomofny.com/</a></div>
+</div>
+<p><strong>¿Qué te gusta?:</strong></p>
+<div class="input-field filled">
+  <div class="field-content">Me gusta el estilo del hero y header, es similar a lo que tenemos actualmente en <a href="https://vecindariobeergarden.com">vecindariobeergarden.com</a>, fue una de las inspiraciones.</div>
+</div>
+<p><strong>¿Qué NO copiar?:</strong></p>
+<div class="input-field"><div class="field-label">Ej: la tipografía es muy genérica</div></div>
+
+<h3>Referencia 2</h3>
+<div class="image-box has-image">
+  <img src="images-extraidas/referencia-2-sdtaproom.png" alt="Captura de sdtaproom.com">
+</div>
+<p><strong>URL o fuente:</strong></p>
+<div class="input-field filled">
+  <div class="field-content"><a href="https://www.sdtaproom.com/">https://www.sdtaproom.com/</a></div>
+</div>
+<p><strong>¿Qué te gusta?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué te llamó la atención?</div></div>
+<p><strong>¿Qué NO copiar?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué evitar?</div></div>
+
+<h3>Referencia 3</h3>
+<div class="image-box has-image">
+  <img src="images-extraidas/referencia-3-mockup-chatgpt.png" alt="Mockup generado con ChatGPT">
+</div>
+<p><strong>URL o fuente:</strong></p>
+<div class="input-field filled">
+  <div class="field-content">Mockup generado con ChatGPT basado en el sitio actual y la primera referencia</div>
+</div>
+<p><strong>¿Qué te gusta?:</strong></p>
+<div class="input-field filled">
+  <div class="field-content">Creé esta imagen con ChatGPT basada en el sitio actual y la primera referencia que puse aquí, en general me gusta, habría que pulir los iconos, tipografía y otros detalles, pero es un buen punto de partida.</div>
+</div>
+<p><strong>¿Qué NO copiar?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué evitar?</div></div>
+
+<h3>Referencia 4</h3>
+<div class="image-box">
+  <div class="hint">📎 Pega aquí la imagen (o agregala en <code>images-extraidas/</code> y referénciala)</div>
+  <div class="caption">Captura de la referencia 4</div>
+</div>
+<p><strong>URL o fuente:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+<p><strong>¿Qué te gusta?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué te llamó la atención?</div></div>
+<p><strong>¿Qué NO copiar?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué evitar?</div></div>
+
+<h3>Referencia 5</h3>
+<div class="image-box">
+  <div class="hint">📎 Pega aquí la imagen</div>
+  <div class="caption">Captura de la referencia 5</div>
+</div>
+<p><strong>URL o fuente:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+<p><strong>¿Qué te gusta?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué te llamó la atención?</div></div>
+<p><strong>¿Qué NO copiar?:</strong></p>
+<div class="input-field"><div class="field-label">¿Qué evitar?</div></div>
+
+<!-- ============ 6. REFERENCIAS QUE NO ============ -->
+<h1 class="section">6 · Referencias que NO te gustan</h1>
+<h2>2 a 3 anti-referencias <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>Igual de útil que lo que sí te gusta. Si hay un sitio de bar o restaurante que te da <em>"olor a plantilla"</em> o que simplemente no te representa, dímelo. Define el límite.</p>
+
+<h3>Anti-referencia 1</h3>
+<div class="image-box"><div class="hint">📎 Captura o descripción 1</div></div>
+<p><strong>URL, marca o descripción:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+<p><strong>¿Qué es lo que NO quieres?:</strong></p>
+<div class="input-field"><div class="field-label">Ej: demasiado oscuro, tipografía muy moderna, se siente como cadena de franquicia.</div></div>
+
+<h3>Anti-referencia 2</h3>
+<div class="image-box"><div class="hint">📎 Captura o descripción 2</div></div>
+<p><strong>URL, marca o descripción:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+<p><strong>¿Qué es lo que NO quieres?:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+
+<h3>Anti-referencia 3</h3>
+<div class="image-box"><div class="hint">📎 Captura o descripción 3</div></div>
+<p><strong>URL, marca o descripción:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+<p><strong>¿Qué es lo que NO quieres?:</strong></p>
+<div class="input-field"><div class="field-label"></div></div>
+
+<!-- ============ 7. IDENTIDAD VISUAL EXISTENTE ============ -->
+<h1 class="section">7 · Identidad visual existente</h1>
+<p>Necesito ver qué ya existe para no proponer algo que pelee con la marca que ya está en la calle, en los manteles, en las redes.</p>
+
+<h2>Logo actual (todas las versiones que tengas) <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>Principal, secundario, versión para fondos oscuros, ícono o isologo. Si tienes un manual de marca, mejor.</p>
+<div class="image-box has-image">
+  <img src="images-extraidas/logo-v1.png" alt="Logo principal">
+</div>
+<div class="image-box has-image">
+  <img src="images-extraidas/logo-v2.png" alt="Logo versión alternativa">
+</div>
+
+<h2>Colores actuales de marca <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>Si tienen HEX definidos, perfecto. Si solo los "sientes", describe con tus palabras.</p>
+<div class="input-field filled">
+  <div class="field-label">Colores actuales o sensaciones de color:</div>
+  <div class="field-content">
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.3rem 0;">
+      <div style="width: 24px; height: 24px; background: #446a3b; border-radius: 3px; border: 1px solid #ccc;"></div>
+      <code>#446a3b</code> <span style="color: var(--secondary); font-size: 0.85rem;">— verde musgo profundo</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.3rem 0;">
+      <div style="width: 24px; height: 24px; background: #6da05d; border-radius: 3px; border: 1px solid #ccc;"></div>
+      <code>#6da05d</code> <span style="color: var(--secondary); font-size: 0.85rem;">— verde follaje claro</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.3rem 0;">
+      <div style="width: 24px; height: 24px; background: #000000; border-radius: 3px; border: 1px solid #ccc;"></div>
+      <code>negro</code>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.3rem 0;">
+      <div style="width: 24px; height: 24px; background: #ffffff; border-radius: 3px; border: 1px solid #ccc;"></div>
+      <code>blanco</code>
+    </div>
+  </div>
+</div>
+
+<h2>Tipografías actuales (si las hay) <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<div class="input-field filled">
+  <div class="field-label">Nombre(s) de fuentes usadas en logo, menú impreso, redes:</div>
+  <div class="field-content">
+    <strong>Logo:</strong> Pricedown (la del juego GTA) y EurostileExtended-Roman-DTC<br>
+    <strong>Menú impreso:</strong> Anton y Poppins, aunque no fue hecho profesionalmente, lo hice yo en Canva
+  </div>
+</div>
+
+<h2>Material gráfico ya existente (opcional pero útil) <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>Menú impreso, cartas de cerveza, flyers de eventos, etiquetas — cualquier cosa que ya tenga identidad visual consolidada.</p>
+<div class="image-box has-image">
+  <img src="images-extraidas/material-1.png" alt="Material gráfico 1">
+</div>
+<div class="image-box has-image">
+  <img src="images-extraidas/material-2.png" alt="Material gráfico 2">
+</div>
+<div class="image-box has-image">
+  <img src="images-extraidas/material-3.png" alt="Material gráfico 3">
+</div>
+<div class="image-box has-image">
+  <img src="images-extraidas/material-4.png" alt="Material gráfico 4">
+</div>
+
+<!-- ============ 8. FOTOGRAFÍA ============ -->
+<h1 class="section">8 · Fotografía del lugar</h1>
+<p><strong style="color: var(--vbg-green-deep);">El sitio debe sentir el lugar real, no un bar genérico.</strong> Esta es la sección donde pegas (o referencias en <code>images-extraidas/</code>) las fotos del lugar.</p>
+
+<h2>Fotos del espacio (interior, terraza, barra)</h2>
+<div class="image-box"><div class="hint">
+  <p>📎 Foto del espacio 1 — vista general</p>
+    <p><img src="images-extraidas/IMG_0881.jpg" alt="Decoración" width="3947" height="4950"></p>
+  <p><img src="images-extraidas/IMG_0884.jpg" alt="Decoración" width="3769" height="5234"></p>
+</div></div>
+<div class="image-box"><div class="hint">
+  <p>📎 Foto del espacio 2 — barra / área de cervezas</p>
+  <p><img src="images-extraidas/slide2.webp" alt="Barra con cervezas de barril"></p>
+
+</div></div>
+<div class="image-box"><div class="hint">📎 Foto del espacio 3 — terraza / exterior</div></div>
+
+<h2>Fotos de producto (cervezas, comida)</h2>
+<div class="image-box"><div class="hint">
+  <p>📎 Cervezas de barril / torres / mangas</p>
+  <p><img src="images-extraidas/IMG_5155.jpg" alt="Grifos de cerveza de barril" width="2268" height="4032"></p>
+  <p><img src="images-extraidas/IMG_0906.jpg" alt="Cerveza de lata" width="400" height="600"></p>
+</div></div>
+<div class="image-box"><div class="hint">
+  <p>📎 Platillo estrella 1 (pizza / hamburguesa / etc.)</p>
+  <p><img src="images-extraidas/pizza-eureka.jpg" alt="Pizza Eureka"></p>
+  <p><img src="images-extraidas/hamburguesa-vecindario.jpg" alt="Hamburguesa Vecindario"></p>
+  <p><img src="images-extraidas/slide3.webp" alt="Pizza pera"></p>
+</div></div>
+<div class="image-box"><div class="hint">
+  <p>📎 Platillo estrella 2</p>
+  <p>&nbsp;</p>
+  <p><img src="images-extraidas/tiras-de-pollo.jpg" alt="Tiras de pollo"></p>
+  <p><img src="images-extraidas/papas-flanders.png" alt="Tiras de pollo" width="1448" height="1086"></p>
+  <p><img src="images-extraidas/pechuga-napolitana.png" alt="Tiras de pollo" width="1448" height="1086"></p>
+  <p><img src="images-extraidas/slide1.webp" alt="Tostadas de aún, hamburguesa y cerveza"></p>
+</div></div>
+
+<h2>Fotos de ambiente y eventos</h2>
+<div class="image-box"><div class="hint">
+  <p>📎 Evento en vivo / ambiente lleno</p>
+  <p><img src="images-extraidas/IMG_0217.jpg" alt="Evento 1er Aniversario" width="600" height="400"></p>
+  <p><img src="images-extraidas/IMG_0251.jpg" alt="Evento 1er Aniversario 2" width="600" height="400"></p>
+</div></div>
+
+<h2>Notas sobre las fotos</h2>
+<p><strong>Mencionaste:</strong> "algunas profesionales y otras caseras más recientes, las puedo editar con IA". Dime cuáles son las profesionales (para usarlas como heroes) y cuáles necesitan retoque.</p>
+<div class="input-field"><div class="field-label">Notas sobre qué fotos priorizar, cuáles retocar, qué falta fotografiar:</div></div>
+
+<!-- ============ 9. MUNDO DEL PROYECTO ============ -->
+<h1 class="section">9 · Mundo del proyecto (semillas para la identidad)</h1>
+<p><strong style="color: var(--vbg-green-deep);">Esta es la sección más importante para evitar el "olor a IA".</strong> Las decisiones visuales con personalidad propia no vienen de tendencias web; vienen del universo propio del lugar. Aquí van semillas concretas que resuenan con Vecindario. <strong>Elige, descarta o suma las tuyas.</strong></p>
+
+<h2>Semillas que propongo (del mundo cervecero y de tu contexto)</h2>
+
+<h3>Cobre, latón y acero de barriles</h3>
+<p>Los materiales reales del mundo cervecero: el cobre de las pailas, el acero inoxidable de los kegs, el latón de las mangas de tap. Paleta metálica pero cálida, no fría.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Si quieres añadir contexto propio, escríbelo aquí: Sí </div>
+</div>
+
+<h3>Maltas tostadas y cáscara de cebada</h3>
+<p>Tonos tierra tostados: ámbar, ámbar oscuro, marrón rojizo, negro cálido (no negro puro). Es la paleta natural de la cerveza y del pan.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Sí </div>
+</div>
+
+<h3>El pizarrón de tiza</h3>
+<p>El menú cambia cada semana — igual que un pizarrón de bar. Tipografía manuscrita o de pizarrón para el menú rotativo transmite honestidad sobre lo efímero de la oferta.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Sí </div>
+</div>
+
+<h3>Etiqueta serigrafiada de cervecería artesanal</h3>
+<p>Las etiquetas de cerveza indie tienen una estética propia: tinta de un solo color sobre papel kraft, tipografía robusta con personalidad, ilustración de línea. Es un lenguaje visual que tu público reconoce.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Sí </div>
+</div>
+
+<h3>"Vecindario": la vecindad mexicana</h3>
+<p>El concepto del nombre. En México, "vecindad" evoca comunidad, calidez, puerta abierta. Hay una arquitectura visual (azulejos, patios centrales, puertas de madera) que puede inspirar sin caer en clichés folklóricos.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? No </div>
+</div>
+
+<h3>Cuernavaca, la eterna primavera</h3>
+<p>El clima cálido y la vegetación de Cuernavaca piden estar afuera. El diseño puede evocar jardín, terraza, sombra — no el interior de un bar oscuro. Verde follaje (musgo, no neón) como acento opcional.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Sí </div>
+</div>
+
+<h3>El formato "carta de cervezas"</h3>
+<p>Una carta de cervezas tiene una estructura editorial específica: estilo, ABV, IBU, origen, descripción corta. Honrar esa estructura tipográfica en el sitio da autoridad y conecta con el público conocedor.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Sí </div>
+</div>
+
+<h3>Música en vivo y comunidad</h3>
+<p>Hacen jazz, salsa, funk, catas. Hay una estética de cartel de evento en vivo (tipografía display, alto contraste) que puede aparecer en la sección de eventos sin dominar el sitio.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late (sí/no/adjust)? Sí, algunas referencias ya están en la sección &quot;Material gráfico ya existente (opcional pero útil)&quot; </div>
+</div>
+
+<h2>Tus propias semillas <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>¿Qué del lugar, del barrio, de la historia personal, del equipo, de los clientes, NO aparece arriba y debería informar el diseño?</p>
+<div class="input-field" style="min-height: 6rem;"><div class="field-label">Añade tus propias semillas/detalles/objetos/colores que para ti significan Vecindario:</div></div>
+
+<!-- ============ 10. ANTIPATRONES ============ -->
+<h1 class="section">10 · Antipatrones a evitar (defaults "AI-generated")</h1>
+<p>Estos tres looks aparecen en cualquier sitio generado por IA sin importar el tema. <strong>Son legítimos cuando el brief los pide explícitamente, pero son defaults, no elecciones.</strong> Voy a evitarlos salvo que tú los pidas o que de verdad sean la mejor opción para Vecindario.</p>
+
+<h3>01 · Fondo crema (#F4F1EA) + serif de alto contraste + acento terracota</h3>
+<p>Es EL look por defecto de cualquier sitio de café/bar/restaurante generado por IA. Tu briefing SÍ pide paleta cálida y terrenales, así que el riesgo de caer aquí sin querer es alto. Hay que darle un giro específico (¿texturas de papel kraft? ¿acentos de cobre real? ¿tipografía que no sea Playfair?) para que no se lea como default.</p>
+
+<h3>02 · Negro casi puro + verde ácido o bermellón</h3>
+<p>El "dark mode genérico de bar moderno". No es Vecindario: tu briefing pide cálido, relajado, natural, no tecnoide ni nocturno. Descartado salvo que lo pidas.</p>
+
+<h3>03 · Layout tipo broadsheet: reglas finas, sin border-radius, columnas densas</h3>
+<p>Parece editorial pero se siente a plantilla. Funciona para revistas y marcas minimalistas; no para un beer garden comunitario.</p>
+
+<h2>Otros defaults que voy a evitar</h2>
+<ul>
+  <li><strong style="color: var(--need);">✗</strong> Iconos genéricos de línea (lucide/feather) sin contexto. Si hay iconos, que sean dibujados para Vecindario o que vengan del mundo cervecero.</li>
+  <li><strong style="color: var(--need);">✗</strong> Gradientes genéricos de azul-violeta (#667eea → #764ba2).</li>
+  <li><strong style="color: var(--need);">✗</strong> Cards con sombra suave en grid de 3 columnas idénticas. Si hay cards, que tengan razón de existir.</li>
+  <li><strong style="color: var(--need);">✗</strong> Tipografías Inter/Geist/Plus Jakarta Sans como única familia. Sin identidad propia.</li>
+  <li><strong style="color: var(--need);">✗</strong> Contadores animados de números, parallax decorativo y motion que no comunica nada.</li>
+  <li><strong style="color: var(--need);">✗</strong> Microcopy en inglés ("Get started", "Learn more") cuando el sitio es 100% en español.</li>
+</ul>
+
+<!-- ============ 11. FIRMA MEMORABLE ============ -->
+<h1 class="section">11 · Firma memorable (el signature element)</h1>
+<p><strong style="color: var(--vbg-green-deep);">El diseño necesita UN elemento memorable</strong> — la cosa por la que el sitio se recuerda y que nadie más tiene. El resto del sitio se queda disciplinado alrededor de esta firma. <em>Gastamos el carácter en un solo lugar, no en toda la página.</em></p>
+<p>Ejemplos para hacerte una idea (no son propuestas finales, son ilustrativos):</p>
+
+<h3>El menú como pizarrón vivo</h3>
+<p>La sección de cervezas en tap se renderiza como un pizarrón de bar real, con tipografía manuscrita y la sensación de tiza. Refleja honestamente que el menú cambia — la interfaz misma lo dice. Ningún otro bar de Cuernavaca lo hace.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late como firma? (sí/no/adjust) Sí </div>
+</div>
+
+<h3>Numeración estilo carta de cervezas</h3>
+<p>Cada cerveza en tap tiene su número (#01 a #10) tipográficamente enorme, como las mangas de tap físicas. El orden importa y se hace visible.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late como firma? (sí/no/adjust) Sí </div>
+</div>
+
+<h3>Marca de barril en el hero</h3>
+<p>Un elemento visual en el hero inspirado en las marcas/mangas de tap físicas: estampado, textura metálica, número de línea. Ancla el sitio al mundo real del bar.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late como firma? (sí/no/adjust) Sí </div>
+</div>
+
+<h3>Calendario de eventos como cartelera</h3>
+<p>La sección de eventos con estética de cartel de música en vivo (tipografía display, alto contraste), NO como un feed genérico de cards.</p>
+<div class="input-field">
+  <div class="field-label">¿Te late como firma? (sí/no/adjust) Sí </div>
+</div>
+
+<h2>Tu propia idea de firma <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>¿Hay algo del lugar, un detalle, un gesto, que siempre has querido que se vea online y nunca ha podido? Esta es tu oportunidad.</p>
+<div class="input-field" style="min-height: 5rem;"><div class="field-label">Describe tu idea (no tiene que ser realista todavía):</div></div>
+
+<!-- ============ 12. ALCANCE ============ -->
+<h1 class="section">12 · Alcance y prioridades de páginas</h1>
+
+<h2>Páginas del MVP (Fase 1)</h2>
+<table class="data">
+  <thead><tr><th>Página</th><th>Función</th></tr></thead>
+  <tbody>
+    <tr><td>Home</td><td>Hero + pilares + preview de cervezas en tap + CTAs a WhatsApp. Primera impresión del sitio.</td></tr>
+    <tr><td>Menú principal</td><td>/menu/ — índice de todo el menú, indexable para SEO.</td></tr>
+    <tr><td>Cervezas de barril</td><td>/menu/cervezas-de-barril/ — las 10 líneas con todos sus datos. Actualizables desde el panel admin.</td></tr>
+    <tr><td>Alimentos y Pizzas</td><td>Secciones del menú actual (migración). Estructura preparada para convertirse en hubs SEO en Fase 3.</td></tr>
+    <tr><td>Contacto</td><td>NAP, mapa embebido, horarios, WhatsApp. Hoy son 404 — se pierde pillar page local.</td></tr>
+    <tr><td>Legales</td><td>Aviso de privacidad + términos y condiciones (migración).</td></tr>
+  </tbody>
+</table>
+
+<h2>Fases 2 y 3 (post-MVP)</h2>
+<ul>
+  <li><strong>Fase 2:</strong> Migrar 20 eventos existentes + schema Event + editor de eventos en el panel admin.</li>
+  <li><strong>Fase 3:</strong> Hubs SEO por categoría de comida (pizza, hamburguesa, etc.) con página individual por plato. Necesito el KW research.</li>
+  <li><strong>Fase 4:</strong> Pulido (i18n inglés, analítica, integración con GBP, modo "especial del día").</li>
+</ul>
+
+<h2>¿Cuál es la PRIMERA impresión que el sitio debe dar? <span class="tag need">✏️ NECESITO DE TÍ</span></h2>
+<p>Si un cliente abre el sitio por primera vez (por QR o por Google) y en 3 segundos decide si se queda o se va — ¿qué quieres que sienta/piense?</p>
+<div class="input-field"><div class="field-label">
+  <p data-path-to-node="3,0"><strong data-path-to-node="3,0" data-index-in-node="0">Lo que deben sentir/pensar en 3 segundos:</strong> <em data-path-to-node="3,0" data-index-in-node="42">"¡Se me hizo la boca agua! Aquí no solo se viene a tomar cerveza, la comida se ve increíble."</em></p>
+  <p data-path-to-node="3,1" id="p-rc_d484583634e93a47-56"><span data-path-to-node="3,1,2">Queremos que la primera imagen/video (Hero Section) muestre de inmediato un primer plano apetitoso e higiénico de una pizza napolitana saliendo del horno o una hamburguesa gourmet en pan brioche</span><span data-path-to-node="3,1,3">
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+    </span><span data-path-to-node="3,1,4">. </span><span data-path-to-node="3,1,5"> </span><span data-path-to-node="3,1,6">La persona debe sentir un "antojo visual" instantáneo que le diga que este lugar tiene una propuesta de cocina de alta calidad en un ambiente relajado</span><span data-path-to-node="3,1,7">
+      <!---->
+    </span><span data-path-to-node="3,1,8">.</span> </p>
+</div></div>
+
+<!-- ============ 13. RESTRICCIONES ============ -->
+<h1 class="section">13 · Restricciones y requisitos no negociables</h1>
+<table class="data">
+  <thead><tr><th>Restricción</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr><td>Mobile-first absoluto</td><td>El uso principal es QR en mesas con señal variable. Velocidad y legibilidad en móvil importan más que desktop.</td></tr>
+    <tr><td>Velocidad de carga &lt; 1s en móvil</td><td>Astro estático + edge CDN. Cero JavaScript que no sea esencial.</td></tr>
+    <tr><td>Accesibilidad AA</td><td>Contraste WCAG, navegación por teclado, alt en imágenes, foco visible.</td></tr>
+    <tr><td>SEO local fuerte</td><td>Schema BarOrPub/Restaurant, Menu, Event en cada página relevante. Datos NAP idénticos en todas partes.</td></tr>
+    <tr><td>i18n-ready</td><td>Arquitectura preparada para añadir inglés sin reescribir el sitio.</td></tr>
+    <tr><td>Accesibilidad de edición</td><td>El panel admin debe ser usable desde un celular promedio con mala señal.</td></tr>
+    <tr><td>Preservación de URLs</td><td>Las URLs actuales (/menu/, /eventos/[slug]/, etc.) se mantienen para no perder indexación.</td></tr>
+    <tr><td>Email no se rompe</td><td>Los MX de Hostinger NO se tocan. El correo @vecindariobeergarden.com sigue funcionando.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 14. PRÓXIMOS PASOS ============ -->
+<h1 class="section">14 · Próximos pasos</h1>
+<h2>Lo que necesito de ti para empezar</h2>
+<table class="data">
+  <thead><tr><th>Qué</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr><td>Este brief lleno</td><td>Especialmente las secciones marcadas como ✏️. Lo demás revísalo por si algo cambió.</td></tr>
+    <tr><td>KW research</td><td>Para definir los hubs SEO de comida (pizza, hamburguesa, etc.). Lo proveerás aparte.</td></tr>
+    <tr><td>Logo en alta resolución</td><td>Si tienes archivos vectoriales (.svg, .ai, .eps), mejor que .png.</td></tr>
+    <tr><td>Fotos organizadas</td><td>Profesionales por un lado, caseras por otro, marcadas las que se pueden retocar.</td></tr>
+    <tr><td>Acceso a Cloudflare</td><td>Para crear el subdominio de prueba (nuevo.vecindariobeergarden.com) sin tocar producción.</td></tr>
+  </tbody>
+</table>
+
+<h2>Lo que yo entregaré cuando reciba el brief</h2>
+<ul>
+  <li>Compact design system (paleta de 4-6 colores con HEX nombrados, 2 tipografías con rol, concepto de layout con wireframes ASCII comparando opciones).</li>
+  <li>Una propuesta de firma memorable.</li>
+  <li>Crítica mía de la propuesta contra el brief y contra los antipatrones (qué cambié y por qué).</li>
+  <li>Iteración hasta aprobación. Recién ahí construyo.</li>
+</ul>
+
+<!-- ============ 15. DASHBOARD ============ -->
+<h1 class="section">15 · Roadmap futuro: dashboard operacional</h1>
+<p><strong style="color: var(--vbg-green-deep);">Esto no es para el MVP, pero lo documento aquí para que el backend se diseñe desde el inicio con esta capacidad en mente</strong> — y no haya que rediseñar después.</p>
+<p>La idea: extender el panel admin hasta convertirlo en un <strong>centro de operaciones del bar</strong>. Las funciones siguen el patrón <em>capturar dato (desde donde sea) → guardarlo en D1 → verlo en dashboard / notificar</em>. Cada función nueva es agregar un comando más al mismo sistema, no construir algo aparte.</p>
+
+<h2>Perfiles de usuario previstos</h2>
+<p>El dashboard pasa de 1 solo usuario a varios perfiles. Esto fuerza que la autenticación se diseñe multi-usuario con roles desde el inicio (aunque al principio solo exista tu cuenta).</p>
+<table class="data">
+  <thead><tr><th>Perfil</th><th>Qué puede hacer</th><th>Cómo accede</th></tr></thead>
+  <tbody>
+    <tr><td>Tú</td><td>Todo (admin, configuración, todos los módulos)</td><td>Dashboard + Telegram</td></tr>
+    <tr><td>Socio</td><td>Gastos, ver reportes (vistas limitadas)</td><td>Dashboard + Telegram</td></tr>
+    <tr><td>Encargado barra</td><td>Marcar barril terminado, registrar limpieza de líneas</td><td>Solo Telegram (sin dashboard)</td></tr>
+    <tr><td>Encargado cocina</td><td>Lista de compras, reportar faltantes de insumos</td><td>Solo Telegram (sin dashboard)</td></tr>
+  </tbody>
+</table>
+
+<h2>Funciones futuras previstas</h2>
+<table class="data">
+  <thead><tr><th>Tipo</th><th>Función</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>Operacional</td><td>Marcar barril terminado (Telegram)</td><td>Conecta directo con el menú: el tap se marca como agotado automáticamente.</td></tr>
+    <tr><td>Operacional</td><td>Calendario de limpieza de líneas</td><td>Regla configurable (ej: 14 días). Cron diario notifica si una línea no se ha limpiado.</td></tr>
+    <tr><td>Planificación</td><td>Calendario de eventos y festividades cerveceras</td><td>Cron semanal investiga festividades relevantes (LLM + web search). Estado 'sugerida' → apruebas/editas/rechazas por Telegram.</td></tr>
+    <tr><td>Planificación</td><td>Calendario de ausencias de personal</td><td>Vacaciones, días libres. Notificaciones para planear cuberturas.</td></tr>
+    <tr><td>Administrativa</td><td>Lista de compras</td><td>Encargado de cocina agrega insumos por Telegram (texto). Vista consolidada en dashboard.</td></tr>
+    <tr><td>Administrativa</td><td>Gastos por Telegram (texto/voz/foto)</td><td>Socio reporta gastos. Voz → transcripción (Whisper). Foto de ticket → LLM extrae monto/concepto. Categorización configurable.</td></tr>
+    <tr><td>Administrativa</td><td>Reportes de gastos</td><td>Tabla + totales por mes/categoría. Exportable.</td></tr>
+  </tbody>
+</table>
+
+<h2>Lo sencillo vs. lo que tiene miga</h2>
+<h3>Sencillo (mismo esfuerzo que Hermes)</h3>
+<ul>
+  <li>Marcar barril terminado por Telegram</li>
+  <li>Lista de compras por texto</li>
+  <li>Gasto por texto con categoría</li>
+  <li>Reportes básicos (tabla + gráfico de totales por mes/categoría)</li>
+</ul>
+<h3>Con miga (no imposible, pero requiere iteración de calidad)</h3>
+<ul>
+  <li><strong>Voz → texto:</strong> transcripción (Whisper o similar). Funciona bien pero a veces equivoca nombres de cervezas o montos. Requiere confirmación antes de guardar.</li>
+  <li><strong>Foto de ticket → gasto estructurado:</strong> visión LLM lee el ticket y extrae monto, fecha, concepto. Funciona en el 80-90% de los casos; los tickets oscuros/arrugados fallan. El flujo debe incluir revisión/edición antes de confirmar.</li>
+  <li><strong>Categorización automática:</strong> hay que definir un catálogo de categorías contables con ustedes (no adivinarlo). Es un mini trabajo de setup, no técnico.</li>
+</ul>
+<p>Nada de esto es bloqueante. Solo que las funciones de voz/foto no son 'magia que siempre sale perfecta' — son 'magia que a veces requiere confirmación', y eso se diseña así desde el inicio.</p>
+
+<h2>Orden de prioridades interno sugerido</h2>
+<p>El dashboard crece en alcance. Cada sub-fase entrega valor de uso inmediato. No se construye todo de golpe.</p>
+<ul>
+  <li><strong>4a.</strong> Multi-usuario con roles (fundación; todo depende de esto)</li>
+  <li><strong>4b.</strong> Marcar barril terminado (conecta directo con el menú, alto valor, simple)</li>
+  <li><strong>4c.</strong> Calendario de eventos + festividades (conecta con sitio público)</li>
+  <li><strong>4d.</strong> Limpieza de líneas con notificaciones</li>
+  <li><strong>4e.</strong> Lista de compras</li>
+  <li><strong>4f.</strong> Gastos por Telegram (texto primero, voz/foto después)</li>
+  <li><strong>4g.</strong> Reportes de gastos</li>
+</ul>
+
+<!-- ============ 16. ESTRATEGIA DE PRODUCTO ============ -->
+<h1 class="section">16 · Estrategia de producto: instancias personalizables</h1>
+<p><strong>Decisión:</strong> producto base + instancias independientes por cliente (<strong style="color: var(--vbg-green-deep);">no multi-tenant</strong>). La intención a futuro es ofrecer sistemas similares a otros negocios (bares, cafeterías, restaurantes) partiendo de la base de Vecindario, adaptando módulos comunes y agregando particularidades.</p>
+<p>Vecindario es la primera instancia y, al mismo tiempo, la fundación del producto base.</p>
+
+<h2>Organización del código: 2 repos</h2>
+<p>Desde el inicio se trabaja con dos repositorios Git separados:</p>
+<ul>
+  <li><strong style="color: var(--vbg-green-deep);">producto-base:</strong> módulos comunes reusables (panel admin, auth+roles, dashboard, bot Telegram, API REST, módulos comunes como gastos/calendario/compras). Configurable pero no específico a un negocio.</li>
+  <li><strong style="color: var(--vbg-green-deep);">vecindario:</strong> instancia que usa el producto base + sus particularidades (módulos específicos de bar de cerveza: limpieza líneas, rotación taps, festividades cerveceras). Configuración propia (nombre, logo, colores, dominio).</li>
+</ul>
+<p>Cuando llegue un cliente nuevo: se clona producto-base, se configura, se seleccionan módulos, se agregan particularidades, se despliega como proyecto separado.</p>
+
+<h2>Diferencia con multi-tenant (lo que NO estamos haciendo)</h2>
+<table class="data">
+  <thead><tr><th></th><th>Multi-tenant</th><th>Producto base + instancias (este proyecto)</th></tr></thead>
+  <tbody>
+    <tr><td>Bases de datos</td><td>1 compartida</td><td>1 por cliente</td></tr>
+    <tr><td>Logins</td><td>Compartidos entre negocios</td><td>Independientes por negocio</td></tr>
+    <tr><td>Actualización de módulos comunes</td><td>Afecta a todos a la vez</td><td>Hay que mergear el cambio a cada instancia</td></tr>
+    <tr><td>Personalización</td><td>Limitada</td><td>Total</td></tr>
+    <tr><td>Esfuerzo inicial</td><td>Alto</td><td>Bajo</td></tr>
+    <tr><td>Mantenimiento N clientes</td><td>Centralizado</td><td>Distribuido (N instancias)</td></tr>
+  </tbody>
+</table>
+
+<h2>Reglas de organización del código desde el inicio</h2>
+<p>Estas reglas son básicamente buenas prácticas de desarrollo; cuestan prácticamente lo mismo que desarrollar sin pensar en reutilizar, pero te ahorran dolores de cabeza cuando clones.</p>
+<ul>
+  <li><strong>Configuración en archivos, no hardcodeada:</strong> el nombre 'Vecindario', los colores, el logo, el WhatsApp, los horarios, etc. viven en un archivo de config. Cuando clonas para la cafetería, cambias ese archivo y casi todo se adapta.</li>
+  <li><strong>/modules con cada función separada:</strong> el código del dashboard organizado en carpetas por función (/modules/barriles, /modules/gastos, /modules/calendario). Para la cafetería, borras /modules/barriles y no afecta al resto.</li>
+  <li><strong>Nada de suposiciones del negocio embebidas:</strong> por ejemplo, no asumir 'siempre hay 10 taps'. Ese '10' debería ser configurable, porque la cafetería no tiene taps, y otro bar puede tener 6.</li>
+  <li><strong>Cada módulo marcado como 'común' o 'específico de bar de cerveza':</strong> cuando desarrollas una función para Vecindario, te preguntas: ¿esto es común a cualquier negocio similar, o es específico de un bar de cerveza? Los comunes van al producto base limpios y documentados.</li>
+</ul>
+
+<h2>El coste del modelo (y cuándo reconsiderar)</h2>
+<p><strong>El 'costo' de este modelo:</strong> cuando arreglas un bug en un módulo común (ej: el módulo de gastos), tienes que mergear ese cambio a cada instancia. Con <strong>pocos clientes (3-5) es manejable</strong>. Con <strong>muchos (50+) se vuelve un problema</strong> — pero para cuando tengas 50 clientes, ya sabrás bien qué modelo te conviene y puedes migrar a multi-tenant si vale la pena.</p>
+<p><strong>Conclusión:</strong> no se construye multi-tenancy ahora. Se construye Vecindario bien, con código modular y configurable, y se evalúa la migración a multi-tenant solo cuando el volumen de clientes lo justifique.</p>
+
+<!-- ============ CLOSING ============ -->
+<div class="closing">
+  <p>Tómate tu tiempo. Este documento es el punto de partida — cuando vuelvas con esto y el KW research, armamos el design system y empezamos.</p>
+</div>
+
+</div><!-- /.page -->
+</body>
+</html>

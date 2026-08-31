@@ -1,0 +1,33 @@
+{
+  "nombre": "Vecindario Beer Garden",
+  "tipo": "Restaurante bar con cerveza artesanal",
+  "direccion": {
+    "calle": "Av. Teopanzolco 665",
+    "zona": "Zona 1, Reforma",
+    "cp": "62260",
+    "ciudad": "Cuernavaca",
+    "estado": "Morelos",
+    "completa": "Av. Teopanzolco 665, Zona 1, Reforma, 62260 Cuernavaca, Morelos"
+  },
+  "telefono": "777 497 2223",
+  "telefonoTel": "+527774972223",
+  "whatsapp": "5217774972223",
+  "email": "vecindario665@gmail.com",
+  "rating": 4.9,
+  "reseñas": 241,
+  "horarios": [
+    { "dia": "Lunes", "abierto": false },
+    { "dia": "Martes", "abierto": false },
+    { "dia": "Miércoles", "abierto": true, "apertura": "17:00", "cierre": "23:30" },
+    { "dia": "Jueves", "abierto": true, "apertura": "17:00", "cierre": "23:30" },
+    { "dia": "Viernes", "abierto": true, "apertura": "17:00", "cierre": "23:30" },
+    { "dia": "Sábado", "abierto": true, "apertura": "15:00", "cierre": "23:30" },
+    { "dia": "Domingo", "abierto": true, "apertura": "15:00", "cierre": "22:00" }
+  ],
+  "mapaIframe": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.6778272916135!2d-99.22514579999999!3d18.9456493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cddf005ddb36b1%3A0x3d976952384a58c4!2sVecindario%20Beer%20Garden!5e0!3m2!1ses-419!2smx!4v1786640283723!5m2!1ses-419!2smx",
+  "redes": {
+    "instagram": "#",
+    "facebook": "#",
+    "google": "#"
+  }
+}

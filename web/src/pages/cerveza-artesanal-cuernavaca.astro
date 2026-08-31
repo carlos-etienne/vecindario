@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TapWall from '../components/TapWall.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import FAQ from '../components/FAQ.astro';
+import BeerGlass from '../components/BeerGlass.astro';
+import site from '../data/site.json';
+import taps from '../data/taps.json';
+
+const base = 'https://vecindariobeergarden.com';
+
+const menuSchema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Cervezas de barril · Vecindario Beer Garden",
+  "hasMenuSection": {
+    "@type": "MenuSection",
+    "name": "Cerveza artesanal de barril",
+    "hasMenuItem": taps.map((tap) => ({
+      "@type": "MenuItem",
+      "name": tap.nombre,
+      "description": `${tap.estilo} de ${tap.cerveceria} (${tap.origen}). ${tap.descripcion}`,
+      ...(tap.disponible && {
+        offers: {
+          "@type": "Offer",
+          "price": tap.precioCh,
+          "priceCurrency": "MXN"
+        }
+      })
+    }))
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es la cerveza artesanal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es la cerveza producida en lotes pequeños por cervecerías independientes, que priorizan los ingredientes y la variedad de estilos sobre la producción masiva. En Vecindario servimos cerveza artesanal de cervecerías mexicanas e importadas, en barril, lata y botella."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen cerveza \"normal\"?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Además de la cerveza artesanal, servimos cervezas comerciales como Corona, Victoria, Heineken y Bohemia, junto con destilados, coctelería y bebidas sin alcohol."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen cerveza artesanal sin alcohol?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Contamos con varias opciones de cerveza sin alcohol en lata y botella, de diferentes estilos y tanto nacionales como importadas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La carta de barril siempre es la misma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. La carta está en rotación constante: siempre hay cervezas nuevas por descubrir en cada visita."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué estilos de cerveza artesanal tienen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La rotación incluye lagers ligeras, IPAs, stouts, cervezas de trigo, sours y estilos belgas, entre otros. Siempre hay cervezas de varios perfiles, desde ligeras y refrescantes hasta oscuras e intensas."
+      }
+    }
+  ]
+};
+
+const faqs = [
+  { q: '¿Qué es la cerveza artesanal?', a: 'Es la cerveza producida en lotes pequeños por cervecerías independientes, que priorizan los ingredientes y la variedad de estilos sobre la producción masiva. En Vecindario servimos cerveza artesanal de cervecerías mexicanas e importadas, en barril, lata y botella.' },
+  { q: '¿Tienen cerveza "normal"?', a: 'Sí. Además de la cerveza artesanal, servimos cervezas comerciales como Corona, Victoria, Heineken y Bohemia, junto con destilados, coctelería y bebidas sin alcohol.' },
+  { q: '¿Tienen cerveza artesanal sin alcohol?', a: 'Sí. Contamos con varias opciones de cerveza sin alcohol en lata y botella, de diferentes estilos y tanto nacionales como importadas.' },
+  { q: '¿La carta de barril siempre es la misma?', a: 'No. La carta está en rotación constante: siempre hay cervezas nuevas por descubrir en cada visita.' },
+  { q: '¿Qué estilos de cerveza artesanal tienen?', a: 'La rotación incluye lagers ligeras, IPAs, stouts, cervezas de trigo, sours y estilos belgas, entre otros. Siempre hay cervezas de varios perfiles, desde ligeras y refrescantes hasta oscuras e intensas.' },
+];
+---
+
+<BaseLayout
+  title="Cerveza Artesanal en Cuernavaca | Vecindario Beer Garden"
+  description="Cerveza artesanal en Cuernavaca: 10 líneas de barril en rotación, cervecerías mexicanas e importadas y la única cámara fría cervecera de Morelos. Visítanos en Av. Teopanzolco."
+  headerVariant="transparent"
+  schema={[menuSchema, faqSchema]}
+>
+
+  <!-- HERO -->
+  <section class="hub-hero">
+    <div class="hub-hero-bg"><img src="/images/hero/tostada-hamburguesa-cerveza.jpg" alt="Cerveza artesanal de barril en Vecindario Beer Garden, Cuernavaca" /></div>
+    <div class="hub-hero-inner">
+      <div>
+        <SectionLabel text="Tap room · Cuernavaca, Morelos" />
+        <h1>Cerveza artesanal<br>en <span class="accent">Cuernavaca</span></h1>
+        <p class="hub-sub">Diez líneas de barril en rotación constante, una selección curada de lata y botella y la única cámara fría cervecera del estado. El lugar para descubrir la cerveza artesanal en Cuernavaca.</p>
+        <div class="hero-badge-row">
+          <span class="hero-rating"><span class="stars">★★★★★</span><strong>{site.rating}</strong><span>· {site.reseñas} reseñas en Google</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL -->
+  <section class="editorial"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="El tap room" />
+        <h2 class="section-title">El lugar para descubrir la cerveza artesanal en Cuernavaca</h2>
+        <p class="intro">Vecindario nació como un tap room dedicado a la cerveza artesanal en Cuernavaca, y esa sigue siendo su columna vertebral.</p>
+        <p class="split-text">La cerveza artesanal no es solo la bebida: es la excusa. Un espacio relajado para compartir y crear comunidad, donde tanto conocedores como quienes apenas empiezan encuentran algo para su gusto.</p>
+      </div>
+      <figure class="img-side">
+        <img src="/images/cerveza-slide.jpg" alt="Cerveza artesanal en Vecindario Beer Garden, Cuernavaca" loading="lazy" />
+      </figure>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5c4.97 0 9 2.69 9 6c0 1.68-1.04 3.2-2.71 4.29c1.07-.87 1.71-1.97 1.71-3.16C20 9.29 16.42 7 12 7v3L8 6l4-4zm0 14c-4.97 0-9-2.69-9-6c0-1.68 1.04-3.2 2.71-4.29C4.64 9.58 4 10.68 4 11.88C4 14.71 7.58 17 12 17v3l4-4l-4 4z" /></svg>
+        <h3>Rotación constante</h3>
+        <p>Nuestras <strong>diez líneas de barril</strong> cambian constantemente: siempre hay cervezas nuevas por descubrir en cada visita.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon glass-icon"><BeerGlass color="var(--vbg-verde)" size={40} /></div>
+        <h3>Cervecerías locales e independientes</h3>
+        <p>Damos espacio a <strong>productores locales e independientes</strong> de todo el país, además de cervezas importadas que casi no encuentras en otro lado de Cuernavaca.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M9 2c0 1.5-2 2-2 4v12c0 1.5 2 2.5 5 2.5s5-1 5-2.5V6c0-2-2-2.5-2-4" /><path d="M7 15c1.5 1 3 1.5 5 1.5s3.5-.5 5-1.5" /></svg>
+        <h3>Lata y botella curada</h3>
+        <p>Una <strong>selección curada</strong> en lata y botella — desde clásicos que siempre están hasta rarezas y ediciones limitadas para explorar.</p>
+      </div>
+    </div>
+    <p class="outro">Y si vienes con hambre, la cocina está pensada para acompañar cada cerveza: entradas para compartir, <a href="/pizzas-cuernavaca/">pizzas</a> y <a href="/hamburguesas-cuernavaca/">hamburguesas</a> que maridan con la rotación del barril.</p>
+  </div></section>
+
+  <!-- TAP WALL (compact, más abajo) -->
+  <section class="tapwall-section"><div class="container">
+    <div class="section-head"><SectionLabel text="Lo que hay en tap" /><h2 class="section-title">Cervezas de barril en rotación</h2><p class="section-sub">La carta de barril está en rotación constante. Esto es lo que hay ahora mismo en la barra.</p></div>
+    <TapWall variant="compact" />
+  </div></section>
+
+  <!-- CÁMARA FRÍA -->
+  <section class="camara"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="Únicos en Morelos" />
+        <h2 class="section-title">Cerveza siempre fresca</h2>
+        <div class="prose">
+          <p>Somos los únicos en Morelos con una <strong>cámara fría cervecera</strong>. La cerveza — de barril, lata y botella — se conserva a temperatura constante y en condiciones óptimas desde que llega hasta que se sirve en tu vaso.</p>
+          <p>Esa es la diferencia entre una cerveza bien servida y una extraordinaria: <strong>la cadena de frío nunca se rompe</strong>.</p>
+        </div>
+      </div>
+      <figure class="img-side">
+        <img src="/images/cerveza-mikkeller-1.jpg" alt="Cerveza artesanal frente a cuadros decorativos de Mikkeller en Vecindario Beer Garden" loading="lazy" />
+      </figure>
+    </div>
+  </div></section>
+
+  <!-- TE AYUDAMOS -->
+  <section class="editorial"><div class="container">
+    <div class="split reverse">
+      <figure class="img-side">
+        <img src="/images/pareja-brindando-cerveza.jpg" alt="Pareja brindando con cervezas artesanales en Vecindario Beer Garden, Cuernavaca" loading="lazy" />
+      </figure>
+      <div>
+        <SectionLabel text="Equipo cervecero" />
+        <h2 class="section-title">Te ayudamos a elegir</h2>
+        <div class="prose">
+          <p>¿No sabes por dónde empezar? Dinos qué te gusta — <strong>ligero, amargo, oscuro, dulce</strong> — y el personal te recomienda una cerveza que vaya con tu paladar.</p>
+          <p>Nuestro equipo conoce cada estilo que hay en la barra, desde clásicos que nunca fallan hasta rarezas de edición limitada. Tú pides, nosotros recomendamos.</p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- LATA / BOTELLA -->
+  <section class="lata"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="Catálogo curado" />
+        <h2 class="section-title">Cervezas en lata y botella</h2>
+        <div class="prose">
+          <p>Además del barril, tenemos una <strong>selección curada de cervecerías nacionales e importadas</strong> en lata y botella. Lo que ves en la vitrina es solo una parte: si buscas algo específico, pregunta al personal — hay muchas más guardadas en la cámara fría.</p>
+        </div>
+      </div>
+      <figure class="img-side">
+        <img src="/images/lata-cerveza-vitrina.jpg" alt="Lata de cerveza artesanal frente a la vitrina de Vecindario Beer Garden" loading="lazy" />
+      </figure>
+    </div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq-section"><div class="container-narrow">
+    <div class="section-head" style="text-align:center;"><SectionLabel text="Preguntas frecuentes" centered={true} /><h2 class="section-title">Sobre nuestra cerveza</h2></div>
+    <FAQ items={faqs} />
+  </div></section>
+
+  <!-- CTA -->
+  <section class="cta-final">
+    <h2>¿Una cerveza hoy?</h2>
+    <p>Miércoles a domingo en la Av. Teopanzolco, Cuernavaca. Diez líneas en rotación y personal que te recomienda según tu gusto.</p>
+    <div class="btn-row">
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn-wa">Reservar por WhatsApp</a>
+      <a href="/menu/" class="btn-primary">Ver el menú completo</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+
+  /* HERO */
+  .hub-hero { position: relative; color: #fff; min-height: 55vh; display: flex; align-items: center; overflow: hidden; background: var(--vbg-negro); padding: 90px 0 110px; }
+  .hub-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hub-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hub-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(95deg,rgba(20,18,16,.95) 0%,rgba(20,18,16,.75) 45%,rgba(20,18,16,.3) 100%),linear-gradient(to top,rgba(20,18,16,.9) 0%,transparent 60%); }
+  .hub-hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+  .hub-hero h1 { font-size: clamp(2rem,5vw,3.4rem); line-height: .95; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+  .accent { color: var(--vbg-verde-claro); }
+  .hub-sub { font-size: 1.05rem; color: #d8d2c2; margin-bottom: 1.6rem; max-width: 520px; }
+  .hero-badge-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: #c8c0b0; }
+  .hero-rating { display: inline-flex; align-items: center; gap: .5rem; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); padding: .4rem .8rem; border-radius: 2px; }
+  .hero-rating .stars { color: var(--vbg-ambar); letter-spacing: 1px; }
+  .hero-rating strong { color: #fff; font-weight: 600; }
+
+  /* SECCIONES */
+  section { padding: 4.5rem 0; }
+  .section-head { margin-bottom: 2rem; }
+  .section-sub { color: var(--vbg-gris-texto); max-width: 620px; margin-top: 0.6rem; font-size: 1rem; }
+
+  /* EDITORIAL */
+  .editorial { background: var(--vbg-blanco); }
+  .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; align-items: center; }
+  .split .section-title { margin-bottom: 1.2rem; }
+  .split.reverse .img-side { order: -1; }
+  .split .intro { font-size: 1.15rem; color: var(--vbg-verde); font-weight: 500; border-left: 3px solid var(--vbg-verde-claro); padding-left: 1rem; margin-bottom: 1.2rem; }
+  .split-text { font-size: 1rem; color: var(--vbg-carbon); line-height: 1.7; }
+  .img-side img { width: 100%; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); aspect-ratio: 4/3; object-fit: cover; }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem; }
+  .card { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.8rem 1.5rem; border-top: 3px solid var(--vbg-verde-claro); }
+  .card-icon { width: 40px; height: 40px; margin-bottom: 1rem; color: var(--vbg-verde); }
+  .glass-icon { display: flex; align-items: center; height: 40px; margin-bottom: 1rem; }
+  .card h3 { font-size: 1.15rem; color: var(--vbg-verde); margin-bottom: 0.6rem; }
+  .card p { font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; }
+  .card strong { color: var(--vbg-verde); }
+  .outro { font-size: 1rem; color: var(--vbg-carbon); line-height: 1.8; max-width: 760px; margin-top: 2.5rem; }
+  .outro a { color: var(--vbg-verde); font-weight: 600; }
+
+  /* TAP WALL */
+  .tapwall-section { background: var(--vbg-claro-2); }
+
+  /* CÁMARA FRÍA */
+  .camara { background: var(--vbg-verde); color: #f3ebd9; }
+  .camara .section-title { color: #f3ebd9; }
+  .prose { font-size: 1.02rem; color: var(--vbg-carbon); line-height: 1.8; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose strong { color: var(--vbg-verde); }
+  .camara .prose { color: #c8d8c0; }
+  .camara .prose strong { color: #f3ebd9; }
+
+  .lata { background: var(--vbg-claro-2); }
+
+  /* FAQ + CTA */
+  .faq-section { background: var(--vbg-blanco); }
+  .cta-final { background: var(--vbg-verde); color: #fff; text-align: center; padding: 4.5rem 1.5rem; }
+  .cta-final h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: .8rem; }
+  .cta-final p { color: #c8c0b0; margin-bottom: 2rem; }
+  .btn-row { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa svg { width: 18px; height: 18px; }
+
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 1.8rem; }
+    .split .img-side, .split.reverse .img-side { order: 2; }
+  }
+</style>

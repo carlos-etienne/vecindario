@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú · Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vbg-verde: #2d5a3d;
+    --vbg-verde-claro: #6da05d;
+    --vbg-ambar: #c4721e;
+    --vbg-negro: #141210;
+    --vbg-negro-2: #1a1815;
+    --vbg-claro: #f7f4ed;
+    --vbg-blanco: #ffffff;
+    --vbg-carbon: #1f1c18;
+    --vbg-gris-texto: #6b6358;
+    --vbg-gris-linea: #d8d3c4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', -apple-system, sans-serif;
+    color: var(--vbg-carbon);
+    background: var(--vbg-claro);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ====== HEADER SLIM (oscuro, QR destination) ====== */
+  .menu-header {
+    background: var(--vbg-negro); color: #fff;
+    border-bottom: 3px solid var(--vbg-ambar);
+    padding: 0.7rem 0;
+  }
+  .menu-header-inner {
+    max-width: 900px; margin: 0 auto; padding: 0 1.2rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .menu-header-left { display: flex; align-items: center; gap: 0.8rem; }
+  .menu-header img { height: 32px; }
+  .menu-header-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--vbg-verde-claro);
+    border-left: 1px solid rgba(255,255,255,0.15); padding-left: 0.8rem;
+  }
+  .menu-header-title strong { color: #fff; display: block; font-size: 0.92rem; letter-spacing: 0.02em; font-family: 'Poppins'; }
+  .menu-wa-btn {
+    background: rgba(255,255,255,0.08); color: #fff;
+    padding: 0.5rem 1rem; border-radius: 2px; font-size: 0.82rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s;
+  }
+  .menu-wa-btn:hover { background: rgba(255,255,255,0.16); }
+  .menu-wa-btn svg { width: 16px; height: 16px; }
+
+  /* ====== STICKY TABS ====== */
+  .menu-tabs {
+    background: var(--vbg-blanco);
+    border-bottom: 1px solid var(--vbg-gris-linea);
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .menu-tabs-inner {
+    max-width: 900px; margin: 0 auto; padding: 0 1.2rem;
+    display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  }
+  .menu-tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: none; border: none;
+    padding: 1rem 1.2rem; font-family: 'Poppins', sans-serif;
+    font-size: 0.86rem; font-weight: 600; color: var(--vbg-gris-texto);
+    cursor: pointer; white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .tab-btn:hover { color: var(--vbg-verde); }
+  .tab-btn.active { color: var(--vbg-verde); border-bottom-color: var(--vbg-ambar); }
+  .tab-btn .tab-count {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+    background: var(--vbg-claro); color: var(--vbg-ambar);
+    padding: 0.1rem 0.4rem; border-radius: 2px; font-weight: 500;
+  }
+
+  /* ====== TAB CONTENT ====== */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .menu-body { max-width: 900px; margin: 0 auto; padding: 2rem 1.2rem 3rem; }
+
+  .menu-section-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--vbg-ambar);
+    margin-bottom: 0.4rem; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .menu-section-label::before { content: ""; width: 20px; height: 2px; background: var(--vbg-ambar); }
+  .menu-section-title {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--vbg-verde);
+    line-height: 1; margin-bottom: 0.4rem;
+  }
+  .menu-section-sub { color: var(--vbg-gris-texto); font-size: 0.9rem; margin-bottom: 1.8rem; }
+
+  /* ====== TAP WALL (card oscura sobre fondo claro) ====== */
+  .tapwall {
+    background: var(--vbg-negro); color: #f3ebd9; border-radius: 4px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08); border-top: 3px solid var(--vbg-ambar);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+  .tapwall-bar {
+    background: rgba(0,0,0,0.25); padding: 0.7rem 1.2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .tapwall-bar .tw-live { color: var(--vbg-verde-claro); }
+  .tapwall-bar .tw-live::before { content: "●"; margin-right: 0.35rem; animation: pulse 2.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .tapwall-bar .tw-updated { color: #9a9183; }
+
+  .tapwall-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-auto-flow: column;
+  }
+  .tap-row-full {
+    display: grid; grid-template-columns: 88px 1fr auto; gap: 0.8rem;
+    align-items: center; padding: 0.9rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.15s;
+  }
+  .tap-row-full:nth-child(2n) { border-right: none; }
+  .tap-row-full:nth-last-child(-n+2) { border-bottom: none; }
+  .tap-row-full:hover { background: rgba(196,114,30,0.05); }
+  .tap-row-full.agotada { opacity: 0.45; }
+
+  .tap-num-wrap { display: flex; flex-direction: row; align-items: center; gap: 0.35rem; }
+  .tap-vaso-full { width: 32px; height: 32px; flex-shrink: 0; filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.5)); }
+  .tap-num-full {
+    font-family: 'Anton', sans-serif; font-size: 1.8rem;
+    color: var(--vbg-ambar); line-height: 0.85; letter-spacing: -0.03em; text-align: center;
+  }
+  .tap-info-full .tap-name-full {
+    font-weight: 600; color: #f3ebd9; font-size: 1rem;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.2rem;
+  }
+  .tap-info-full .tap-name-full.agotada-name { color: #9a9183; text-decoration: line-through; }
+  .tap-info-full .tap-style-full {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.86rem;
+    color: var(--vbg-verde-claro); font-weight: 500; margin-bottom: 0.2rem;
+  }
+  .tap-info-full .tap-brewery-full {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    color: #9a9183; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .tap-info-full .tap-abv-full {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: #a8a294; margin-top: 0.15rem;
+  }
+  .tap-badge-full {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+    color: var(--vbg-ambar); border: 1px solid var(--vbg-ambar);
+    padding: 0.1rem 0.4rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .tap-badge-full.collab { color: var(--vbg-verde-claro); border-color: var(--vbg-verde-claro); }
+  .tap-badge-full.new { color: #fff; border-color: var(--vbg-ambar); background: var(--vbg-ambar); }
+  .tap-badge-full.agotada-badge { color: #9a9183; border-color: #9a9183; }
+
+  .tap-prices-full {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tap-price-line { color: var(--vbg-verde-claro); font-weight: 600; font-size: 0.93rem; white-space: nowrap; }
+  .tap-price-line small { color: #9a9183; font-weight: 400; font-size: 0.64rem; margin-left: 0.3rem; text-transform: uppercase; }
+  .tap-row-full.agotada .tap-prices-full { color: #9a9183; }
+
+  /* ====== ALIMENTOS ====== */
+  .cat-head {
+    display: flex; align-items: baseline; gap: 0.8rem;
+    margin-bottom: 1rem; padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--vbg-verde-claro);
+  }
+  .cat-head h3 {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: 1.4rem; color: var(--vbg-verde);
+  }
+  .cat-head .cat-count {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: var(--vbg-gris-texto); letter-spacing: 0.05em;
+  }
+  .plato-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem;
+    padding: 0.9rem 0; border-bottom: 1px dotted var(--vbg-gris-linea); align-items: baseline;
+  }
+  .plato-row:last-child { border-bottom: none; }
+  .plato-row-name { font-weight: 600; color: var(--vbg-carbon); font-size: 0.96rem; margin-bottom: 0.2rem; }
+  .plato-row-desc { font-size: 0.84rem; color: var(--vbg-gris-texto); line-height: 1.5; }
+  .plato-row-price {
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    color: var(--vbg-ambar); font-size: 1.05rem; white-space: nowrap;
+  }
+  .plato-tag-veg {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+    color: var(--vbg-verde-claro); border: 1px solid var(--vbg-verde-claro);
+    padding: 0.05rem 0.35rem; border-radius: 2px; margin-left: 0.5rem;
+    letter-spacing: 0.05em; text-transform: uppercase; vertical-align: middle;
+  }
+
+  /* ====== LATA/BOTELLA ====== */
+  .filtros-bar {
+    background: var(--vbg-blanco); padding: 1rem 1.2rem;
+    border-radius: 4px; margin-bottom: 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    border: 1px solid var(--vbg-gris-linea);
+  }
+  .filtro-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--vbg-gris-texto); margin-right: 0.3rem;
+  }
+  .filtro-chip {
+    background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea);
+    color: var(--vbg-carbon); font-size: 0.8rem; padding: 0.4rem 0.8rem;
+    border-radius: 20px; cursor: pointer; transition: all 0.15s; font-weight: 500;
+  }
+  .filtro-chip:hover { border-color: var(--vbg-verde-claro); }
+  .filtro-chip.active { background: var(--vbg-verde); color: #fff; border-color: var(--vbg-verde); }
+  .filtro-count { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--vbg-ambar); margin-left: 0.3rem; }
+  .lata-search {
+    margin-left: auto; background: var(--vbg-claro);
+    border: 1px solid var(--vbg-gris-linea); border-radius: 2px;
+    padding: 0.4rem 0.8rem; font-size: 0.84rem; color: var(--vbg-carbon);
+    font-family: inherit; min-width: 180px;
+  }
+  .lata-search::placeholder { color: var(--vbg-gris-texto); }
+  .lata-search:focus { outline: none; border-color: var(--vbg-verde-claro); }
+
+  .lata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.8rem; }
+  .lata-card {
+    background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea);
+    border-radius: 4px; padding: 0.9rem 1rem; transition: border-color 0.15s;
+  }
+  .lata-card:hover { border-color: var(--vbg-verde-claro); }
+  .lata-card .lc-name { font-weight: 600; font-size: 0.9rem; color: var(--vbg-carbon); margin-bottom: 0.2rem; line-height: 1.25; }
+  .lata-card .lc-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--vbg-gris-texto); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+  .lata-card .lc-style { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--vbg-verde); font-weight: 500; margin-bottom: 0.4rem; }
+  .lata-card .lc-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 0.3rem; }
+  .lata-card .lc-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: 0.92rem; }
+  .lata-card .lc-abv { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--vbg-gris-texto); }
+
+  .lata-pagination {
+    margin-top: 2rem; display: flex; justify-content: center; align-items: center;
+    gap: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+  }
+  .lata-pagination button {
+    background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea);
+    color: var(--vbg-carbon); padding: 0.4rem 0.8rem; border-radius: 2px;
+    cursor: pointer; font-family: inherit; font-size: 0.8rem;
+  }
+  .lata-pagination button:hover { border-color: var(--vbg-verde-claro); }
+  .lata-pagination button.active { background: var(--vbg-verde); color: #fff; border-color: var(--vbg-verde); }
+  .lata-pagination .pag-info { color: var(--vbg-gris-texto); margin: 0 0.5rem; font-size: 0.76rem; }
+
+  /* ====== OTRAS BEBIDAS ====== */
+  .otras-cat h3 {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: 1.2rem; color: var(--vbg-verde); margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem; border-bottom: 2px solid var(--vbg-verde-claro);
+  }
+  .otras-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem; }
+  .otras-item {
+    display: flex; justify-content: space-between;
+    padding: 0.5rem 0; border-bottom: 1px dotted var(--vbg-gris-linea);
+    font-size: 0.9rem; align-items: baseline;
+  }
+  .otras-item span { color: var(--vbg-carbon); }
+  .otras-item .oi-price { font-family: 'JetBrains Mono', monospace; color: var(--vbg-ambar); font-weight: 600; }
+
+  /* ====== QR BANNER ====== */
+  .qr-banner {
+    background: var(--vbg-verde); color: #f3ebd9; padding: 1.2rem; margin-top: 2.5rem;
+    border-radius: 4px; font-size: 0.84rem; text-align: center;
+  }
+  .qr-banner strong { color: #fff; }
+
+  @media (max-width: 700px) {
+    .menu-header-title { display: none; }
+    .tap-row-full { grid-template-columns: 44px 1fr; gap: 0.7rem; border-right: none !important; }
+    .tapwall-grid { grid-template-columns: 1fr; grid-auto-flow: row; }
+    .tap-num-full { font-size: 1.9rem; }
+    .tap-prices-full { grid-column: 2; flex-direction: row; gap: 0.8rem; align-items: flex-start; }
+    .otras-list { grid-template-columns: 1fr; }
+    .lata-search { width: 100%; margin-left: 0; margin-top: 0.5rem; }
+    .plato-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .plato-row-price { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG sprite del vaso pinta americana -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="vaso" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M17 2a2 2 0 0 1 1.995 1.85L19 4v4c0 1.335-.229 2.386-.774 3.692l-.157.363l-.31.701a8.9 8.9 0 0 0-.751 3.242l-.008.377V20a2 2 0 0 1-1.85 1.995L15 22H9a2 2 0 0 1-1.995-1.85L7 20v-3.625c0-1.132-.21-2.25-.617-3.28l-.142-.34l-.31-.699c-.604-1.358-.883-2.41-.925-3.698L5 8V4a2 2 0 0 1 1.85-1.995L7 2zm0 2H7v3h10z" />
+  </symbol>
+</svg>
+
+<!-- ====== HEADER SLIM ====== -->
+<header class="menu-header">
+  <div class="menu-header-inner">
+    <div class="menu-header-left">
+      <a href="home-preview.html"><img src="assets/logo-transparente.svg" alt="Vecindario Beer Garden"></a>
+      <div class="menu-header-title">Carta<strong>Vecindario Beer Garden</strong></div>
+    </div>
+    <a href="https://wa.me/5217774972223" class="menu-wa-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3c-.8-1.3-1.2-2.8-1.2-4.4 0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.8 8.2-8.4 8.2z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ====== STICKY TABS ====== -->
+<nav class="menu-tabs">
+  <div class="menu-tabs-inner">
+    <button class="tab-btn active" data-tab="taps">Cervezas de barril <span class="tab-count">10</span></button>
+    <button class="tab-btn" data-tab="alimentos">Alimentos</button>
+    <button class="tab-btn" data-tab="lata">Lata / Botella <span class="tab-count">1150</span></button>
+    <button class="tab-btn" data-tab="otras">Otras bebidas</button>
+  </div>
+</nav>
+
+<!-- ====== TAB 1: TAP WALL ====== -->
+<div class="tab-content active" id="taps">
+  <div class="menu-body">
+    <div class="menu-section-label">En rotación · actualizado hoy</div>
+    <h1 class="menu-section-title">Cervezas de barril</h1>
+    <p class="menu-section-sub">Diez líneas con cervecerías mexicanas independientes. Cambia cada semana — lo que ves aquí es lo que hay ahora mismo en la barra.</p>
+
+    <div class="tapwall">
+      <div class="tapwall-bar">
+        <span class="tw-live">10 LÍNEAS EN SERVICIO</span>
+        <span class="tw-updated">Última actualización: hoy 16:42</span>
+      </div>
+
+      <div class="tapwall-grid">
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#01</div><svg class="tap-vaso-full" style="color:#f4d03f;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Ícono Light Lager <span class="tap-badge-full">Light</span></div><div class="tap-style-full">Light Lager</div><div class="tap-brewery-full">Ícono · Mexicali, BC</div><div class="tap-abv-full">3.5% ABV · 12 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$80<small>CH</small></span><span class="tap-price-line">$90<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#02</div><svg class="tap-vaso-full" style="color:#e8a317;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Insurgente La Lupulosa</div><div class="tap-style-full">American IPA</div><div class="tap-brewery-full">Insurgente · Tijuana, BC</div><div class="tap-abv-full">6.5% ABV · 65 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$95<small>CH</small></span><span class="tap-price-line">$110<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#03</div><svg class="tap-vaso-full" style="color:#f0c419;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Agua Mala Mantarraya</div><div class="tap-style-full">Cream Ale</div><div class="tap-brewery-full">Agua Mala · Ensenada, BC</div><div class="tap-abv-full">4.8% ABV · 22 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$90<small>CH</small></span><span class="tap-price-line">$105<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#04</div><svg class="tap-vaso-full" style="color:#e6c200;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Vecindario Saison <span class="tap-badge-full collab">Colab</span> <span class="tap-badge-full new">Nueva</span></div><div class="tap-style-full">Saison</div><div class="tap-brewery-full">Vecindario · Cuernavaca</div><div class="tap-abv-full">5.2% ABV · 30 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$100<small>CH</small></span><span class="tap-price-line">$115<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#05</div><svg class="tap-vaso-full" style="color:#000000;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Minerva Imperial Stout</div><div class="tap-style-full">Imperial Stout</div><div class="tap-brewery-full">Minerva · Guadalajara, Jal</div><div class="tap-abv-full">8.0% ABV · 45 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$110<small>CH</small></span><span class="tap-price-line">$130<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#06</div><svg class="tap-vaso-full" style="color:#c4721e;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Ramuri Ambar</div><div class="tap-style-full">Vienna Lager</div><div class="tap-brewery-full">Ramuri · Naucalpan, Méx</div><div class="tap-abv-full">5.1% ABV · 28 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$90<small>CH</small></span><span class="tap-price-line">$105<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#07</div><svg class="tap-vaso-full" style="color:#ddb845;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Calavera Weizen</div><div class="tap-style-full">Hefeweizen</div><div class="tap-brewery-full">Calavera · Toluca, Méx</div><div class="tap-abv-full">5.3% ABV · 15 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$90<small>CH</small></span><span class="tap-price-line">$105<small>G</small></span></div></div>
+      <div class="tap-row-full agotada"><div class="tap-num-wrap"><div class="tap-num-full">#08</div><svg class="tap-vaso-full" style="color:#d4a017;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full agotada-name">Cru Crú Belgian Tripel <span class="tap-badge-full agotada-badge">Agotada</span></div><div class="tap-style-full" style="color:#9a9183;">Belgian Tripel</div><div class="tap-brewery-full">Cru Crú · Querétaro, Qro</div><div class="tap-abv-full">9.0% ABV · 35 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line" style="color:#9a9183;">—</span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#09</div><svg class="tap-vaso-full" style="color:#e8c547;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Colima Portal del Sol</div><div class="tap-style-full">Honey Lager</div><div class="tap-brewery-full">Colima · Colima, Col</div><div class="tap-abv-full">4.4% ABV · 18 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$85<small>CH</small></span><span class="tap-price-line">$100<small>G</small></span></div></div>
+      <div class="tap-row-full"><div class="tap-num-wrap"><div class="tap-num-full">#10</div><svg class="tap-vaso-full" style="color:#dac649;"><use href="#vaso"/></svg></div><div class="tap-info-full"><div class="tap-name-full">Loba Short Fuse</div><div class="tap-style-full">Hazy IPA</div><div class="tap-brewery-full">Loba · Zapopan, Jal</div><div class="tap-abv-full">6.2% ABV · 55 IBU</div></div><div class="tap-prices-full"><span class="tap-price-line">$95<small>CH</small></span><span class="tap-price-line">$110<small>G</small></span></div></div>
+      </div>
+    </div>
+
+    <div class="qr-banner">
+      ¿No sabes qué pedir? Pregunta al personal — te recomienda según tu gusto. <strong>Las cervezas de barril cambian cada semana.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB 2: ALIMENTOS ====== -->
+<div class="tab-content" id="alimentos">
+  <div class="menu-body">
+    <div class="menu-section-label">Cocina casual</div>
+    <h1 class="menu-section-title">Alimentos</h1>
+    <p class="menu-section-sub">Pizza napolitana de horno, hamburguesas a la parrilla y entrantes para compartir. Cocina abierta en horario de servicio.</p>
+
+    <div class="alimentos-cat">
+      <div class="cat-head"><h3>Para empezar</h3><span class="cat-count">4 opciones</span></div>
+      <div class="plato-row"><div><div class="plato-row-name">Tostadas de atún <span class="plato-tag-veg">pp</span></div><div class="plato-row-desc">Atún fresco, aguacate, chipotle, sésamo sobre tostada crujiente.</div></div><div class="plato-row-price">$140</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Papas Flanders</div><div class="plato-row-desc">Papas gajo, queso fundido, tocino, jalapeño.</div></div><div class="plato-row-price">$120</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Entrada Vecindario <span class="plato-tag-veg">veg</span></div><div class="plato-row-desc">Hummus de la casa, pan pita, vegetales frescos.</div></div><div class="plato-row-price">$110</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Tiras de pollo</div><div class="plato-row-desc">Empanizadas, salsa buffalo o BBQ.</div></div><div class="plato-row-price">$130</div></div>
+    </div>
+
+    <div class="alimentos-cat">
+      <div class="cat-head"><h3>Hamburguesas</h3><span class="cat-count">3 opciones · pan brioche</span></div>
+      <div class="plato-row"><div><div class="plato-row-name">Hamburguesa Vecindario</div><div class="plato-row-desc">Carne premium, queso cheddar, tocino caramelizado, cebolla encurtida, salsa de la casa.</div></div><div class="plato-row-price">$185</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Hamburguesa Teopanzolco</div><div class="plato-row-desc">Doble carne, doble queso, pepinillos, mostaza dijon.</div></div><div class="plato-row-price">$195</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Hamburguesa Vegetariana <span class="plato-tag-veg">veg</span></div><div class="plato-row-desc">Portobello a la parrilla, queso de cabra, rúcula, tomate confitado.</div></div><div class="plato-row-price">$170</div></div>
+    </div>
+
+    <div class="alimentos-cat">
+      <div class="cat-head"><h3>Pizzas napolitanas</h3><span class="cat-count">3 opciones · 1-2 personas</span></div>
+      <div class="plato-row"><div><div class="plato-row-name">Pizza Eureka</div><div class="plato-row-desc">Salsa San Marzano, mozzarella fior di latte, albahaca.</div></div><div class="plato-row-price">$160</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Pizza Pera</div><div class="plato-row-desc">Mozzarella, pera, queso gorgonzola, nuez, miel.</div></div><div class="plato-row-price">$180</div></div>
+      <div class="plato-row"><div><div class="plato-row-name">Pizza Pechuga Napolitana <span class="plato-tag-veg">pp</span></div><div class="plato-row-desc">Pechuga, mozzarella, tomate, orégano.</div></div><div class="plato-row-price">$175</div></div>
+    </div>
+
+    <div class="alimentos-cat">
+      <div class="cat-head"><h3>Postres</h3></div>
+      <div class="plato-row"><div><div class="plato-row-name">Brownie</div><div class="plato-row-desc">Chocolate, helado de vainilla.</div></div><div class="plato-row-price">$90</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB 3: LATA/BOTELLA ====== -->
+<div class="tab-content" id="lata">
+  <div class="menu-body">
+    <div class="menu-section-label">Catálogo completo</div>
+    <h1 class="menu-section-title">Cervezas lata / botella</h1>
+    <p class="menu-section-sub">Cervecerías nacionales e importadas. Filtra por estilo, cervecería o país.</p>
+
+    <div class="filtros-bar">
+      <span class="filtro-label">Estilo:</span>
+      <button class="filtro-chip active">Todas <span class="filtro-count">1150</span></button>
+      <button class="filtro-chip">IPA <span class="filtro-count">187</span></button>
+      <button class="filtro-chip">Stout <span class="filtro-count">94</span></button>
+      <button class="filtro-chip">Lager <span class="filtro-count">156</span></button>
+      <button class="filtro-chip">Sour <span class="filtro-count">43</span></button>
+      <button class="filtro-chip">Wheat <span class="filtro-count">67</span></button>
+      <input type="text" class="lata-search" placeholder="Buscar cerveza o cervecería...">
+    </div>
+
+    <div class="lata-grid">
+      <div class="lata-card"><div class="lc-name">Tropical IPA</div><div class="lc-meta">INSURGENTE · TIJUANA · LATA 473ML</div><div class="lc-style">Hazy IPA</div><div class="lc-foot"><span class="lc-price">$75</span><span class="lc-abv">6.5% ABV</span></div></div>
+      <div class="lata-card"><div class="lc-name">Mantarraya</div><div class="lc-meta">AGUA MALA · ENSENADA · LATA 355ML</div><div class="lc-style">Cream Ale</div><div class="lc-foot"><span class="lc-price">$68</span><span class="lc-abv">4.8% ABV</span></div></div>
+      <div class="lata-card"><div class="lc-name">Payne's Killer Ale</div><div class="lc-meta">PRINCIPAL · CDMX · BOTELLA 355ML</div><div class="lc-style">Strong Ale</div><div class="lc-foot"><span class="lc-price">$82</span><span class="lc-abv">6.8% ABV</span></div></div>
+      <div class="lata-card"><div class="lc-name">Weihenstephaner Hefe</div><div class="lc-meta">WEIHENSTEPHAN · ALEMANIA · BOTELLA 500ML</div><div class="lc-style">Hefeweizen · Importada</div><div class="lc-foot"><span class="lc-price">$115</span><span class="lc-abv">5.4% ABV</span></div></div>
+      <div class="lata-card"><div class="lc-name">Saison de la Maison</div><div class="lc-meta">CRU CRÚ · QUERÉTARO · LATA 473ML</div><div class="lc-style">Saison</div><div class="lc-foot"><span class="lc-price">$88</span><span class="lc-abv">6.0% ABV</span></div></div>
+      <div class="lata-card"><div class="lc-name">Búho Common</div><div class="lc-meta">BÚHO · OAXACA · LATA 355ML</div><div class="lc-style">California Common</div><div class="lc-foot"><span class="lc-price">$72</span><span class="lc-abv">5.2% ABV</span></div></div>
+    </div>
+
+    <div class="lata-pagination">
+      <button>← Anterior</button>
+      <button class="active">1</button><button>2</button><button>3</button><button>...</button><button>192</button>
+      <button>Siguiente →</button>
+      <span class="pag-info">Mostrando 1-6 de 1150</span>
+    </div>
+
+    <div class="qr-banner">
+      <strong>¿No ves la cerveza que buscas en vitrina?</strong> Pregunta al personal — tenemos muchas más en la cámara fría que no caben en exhibición.
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB 4: OTRAS BEBIDAS ====== -->
+<div class="tab-content" id="otras">
+  <div class="menu-body">
+    <div class="menu-section-label">Además de cerveza</div>
+    <h1 class="menu-section-title">Otras bebidas</h1>
+    <p class="menu-section-sub">Para quien no quiere cerveza artesanal: destilados, coctelería y bebidas sin alcohol.</p>
+
+    <div class="otras-cat">
+      <h3>Cervezas comerciales</h3>
+      <div class="otras-list">
+        <div class="otras-item"><span>Corona</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Victoria</span><span class="oi-price">$40</span></div>
+        <div class="otras-item"><span>Heineken</span><span class="oi-price">$50</span></div>
+        <div class="otras-item"><span>Bohemia</span><span class="oi-price">$45</span></div>
+      </div>
+    </div>
+
+    <div class="otras-cat">
+      <h3>Destilados y coctelería</h3>
+      <div class="otras-list">
+        <div class="otras-item"><span>Mezcal (joven, reposado)</span><span class="oi-price">desde $90</span></div>
+        <div class="otras-item"><span>Ron</span><span class="oi-price">desde $85</span></div>
+        <div class="otras-item"><span>Whiskey</span><span class="oi-price">desde $110</span></div>
+        <div class="otras-item"><span>Ginebra</span><span class="oi-price">desde $95</span></div>
+        <div class="otras-item"><span>Mezcalita</span><span class="oi-price">$120</span></div>
+        <div class="otras-item"><span>Gin tonic cítricos / frutos rojos</span><span class="oi-price">$130</span></div>
+        <div class="otras-item"><span>Cuba</span><span class="oi-price">$110</span></div>
+      </div>
+    </div>
+
+    <div class="otras-cat">
+      <h3>Sin alcohol</h3>
+      <div class="otras-list">
+        <div class="otras-item"><span>Limonada / Naranjada</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Rusa</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Refresco</span><span class="oi-price">$35</span></div>
+        <div class="otras-item"><span>Kombucha</span><span class="oi-price">$55</span></div>
+        <div class="otras-item"><span>Cerveza sin alcohol</span><span class="oi-price">$70</span></div>
+        <div class="otras-item"><span>Café</span><span class="oi-price">$40</span></div>
+      </div>
+    </div>
+
+    <div class="qr-banner">
+      <strong>Nota:</strong> ya no manejamos pulque. Si tienes duda sobre alguna bebida, pregunta al personal.
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tab).classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  });
+  document.querySelectorAll('.filtro-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filtro-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

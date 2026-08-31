@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Previsualizaciones · Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vbg-verde-teopanzolco: #2d5a3d;
+    --vbg-verde-jardin: #6da05d;
+    --vbg-ambar-malta: #c4721e;
+    --vbg-cobre-barril: #8a4f1f;
+    --vbg-kraft: #f3ebd9;
+    --vbg-carbon: #1f1c18;
+    --vbg-pizarra: #38332b;
+    --vbg-gris-linea: #e2dccd;
+    --vbg-gris-texto: #6b6358;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(160deg, var(--vbg-pizarra) 0%, var(--vbg-verde-teopanzolco) 100%);
+    min-height: 100vh;
+    color: var(--vbg-carbon);
+    padding: 2rem 1rem 4rem;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  .head { text-align: center; margin-bottom: 2.5rem; color: #fff; }
+  .head img { height: 56px; margin: 0 auto 1.2rem; filter: brightness(0) invert(1); display: block; }
+  .head .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--vbg-verde-jardin); margin-bottom: 0.6rem;
+  }
+  .head h1 {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.05; margin-bottom: 0.6rem;
+  }
+  .head h1 .accent { color: var(--vbg-ambar-malta); }
+  .head p { color: #c8d8c0; font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+
+  .cards { display: grid; gap: 1.2rem; }
+  .card-link {
+    background: #fff; border-radius: 6px; overflow: hidden;
+    display: grid; grid-template-columns: 80px 1fr auto; gap: 1.2rem;
+    align-items: center; padding: 1.3rem 1.5rem;
+    text-decoration: none; color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid var(--vbg-verde-jardin);
+  }
+  .card-link:hover { transform: translateX(4px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+  .card-link:nth-child(2) { border-left-color: var(--vbg-ambar-malta); }
+  .card-link:nth-child(3) { border-left-color: var(--vbg-cobre-barril); }
+  .cl-num {
+    font-family: 'Anton', sans-serif; font-size: 2.6rem;
+    color: var(--vbg-verde-teopanzolco); line-height: 0.85; text-align: center;
+  }
+  .card-link:nth-child(2) .cl-num { color: var(--vbg-ambar-malta); }
+  .card-link:nth-child(3) .cl-num { color: var(--vbg-cobre-barril); }
+  .cl-body .cl-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--vbg-gris-texto); margin-bottom: 0.3rem;
+  }
+  .cl-body h2 {
+    font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+    font-size: 1.5rem; color: var(--vbg-verde-teopanzolco); margin-bottom: 0.3rem; line-height: 1.05;
+  }
+  .cl-body p { font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.5; }
+  .cl-arrow {
+    font-family: 'JetBrains Mono', monospace; color: var(--vbg-ambar-malta);
+    font-size: 1.4rem; font-weight: 500;
+  }
+  .foot-note {
+    margin-top: 2.5rem; text-align: center; color: #a8a294;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.7;
+  }
+  .foot-note strong { color: var(--vbg-verde-jardin); }
+  @media (max-width: 600px) {
+    .card-link { grid-template-columns: 60px 1fr; gap: 0.9rem; padding: 1.1rem 1.2rem; }
+    .cl-arrow { display: none; }
+    .cl-num { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <img src="assets/logo-color.svg" alt="Vecindario Beer Garden">
+    <div class="label">Design system aplicado</div>
+    <h1>Previsualizaciones <span class="accent">visuales</span></h1>
+    <p>Tres páginas clave con el design system aprobado aplicado en HTML/CSS real. Ábrelas en una pestaña nueva para verlas a tamaño completo.</p>
+  </div>
+
+  <div class="cards">
+    <a href="home-preview.html" class="card-link">
+      <div class="cl-num">01</div>
+      <div class="cl-body">
+        <div class="cl-tag">/ &nbsp;· Página principal</div>
+        <h2>Home</h2>
+        <p>Hero comida+cerveza, Tap Wall preview, cocina que marida, reseñas, eventos, FAQ y NAP.</p>
+      </div>
+      <div class="cl-arrow">→</div>
+    </a>
+    <a href="menu-preview.html" class="card-link">
+      <div class="cl-num">02</div>
+      <div class="cl-body">
+        <div class="cl-tag">/menu/ &nbsp;· Destino QR · &lt;1s carga</div>
+        <h2>Menú</h2>
+        <p>Sticky tabs con las 4 secciones: cervezas de barril (Tap Wall completo), alimentos, lata/botella con filtros y otras bebidas.</p>
+      </div>
+      <div class="cl-arrow">→</div>
+    </a>
+    <a href="hub-preview.html" class="card-link">
+      <div class="cl-num">03</div>
+      <div class="cl-body">
+        <div class="cl-tag">/hamburguesas-cuernavaca/ &nbsp;· Hub SEO comercial</div>
+        <h2>Hub Hamburguesas</h2>
+        <p>Breadcrumb, hero corto, las 3 hamburguesas, contenido editorial, maridaje con cerveza y FAQ específica.</p>
+      </div>
+      <div class="cl-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="foot-note">
+    Paleta: <strong>verde teopanzolco · verde jardín · ámbar malta · cobre · kraft · carbón</strong><br>
+    Tipografías: Anton (display) · Poppins (body) · JetBrains Mono (datos)<br>
+    Firma: El Tap Wall — 10 cervezas numeradas #01-#10
+  </div>
+</div>
+</body>
+</html>

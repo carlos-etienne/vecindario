@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import FAQ from '../components/FAQ.astro';
+import site from '../data/site.json';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Son pet friendly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Somos un restaurante y bar pet friendly en Cuernavaca con terraza abierta donde puedes venir con tu perro, grande o pequeño. No hay restricciones de tamaño ni raza."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo llevar a mi perro a la terraza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La terraza es el área ideal para venir con mascotas: abierta, relajada y espaciosa. Trae agua para tu perro si gustas; si se te olvida, con gusto le damos un recipiente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Aceptan perros grandes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. No hay restricciones de tamaño ni raza. Perros grandes y pequeños son bienvenidos en la terraza."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen área para mascotas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nuestra terraza abierta es el espacio pet friendly. Es un ambiente relajado donde tu mascota puede estar cómoda junto a tu mesa."
+      }
+    }
+  ]
+};
+
+const faqs = [
+  { q: '¿Son pet friendly?', a: 'Sí. Somos un restaurante y bar pet friendly en Cuernavaca con terraza abierta donde puedes venir con tu perro, grande o pequeño. No hay restricciones de tamaño ni raza.' },
+  { q: '¿Puedo llevar a mi perro a la terraza?', a: 'Sí. La terraza es el área ideal para venir con mascotas: abierta, relajada y espaciosa. Trae agua para tu perro si gustas; si se te olvida, con gusto le damos un recipiente.' },
+  { q: '¿Aceptan perros grandes?', a: 'Sí. No hay restricciones de tamaño ni raza. Perros grandes y pequeños son bienvenidos en la terraza.' },
+  { q: '¿Tienen área para mascotas?', a: 'Nuestra terraza abierta es el espacio pet friendly. Es un ambiente relajado donde tu mascota puede estar cómoda junto a tu mesa.' },
+];
+---
+
+<BaseLayout
+  title="Restaurante Pet Friendly en Cuernavaca | Vecindario Beer Garden"
+  description="Restaurante pet friendly en Cuernavaca con terraza abierta donde puedes venir con tu perro. Cerveza artesanal, pizzas y hamburguesas en Vecindario Beer Garden."
+  headerVariant="transparent"
+  schema={[faqSchema]}
+>
+  <!-- HERO -->
+  <section class="hub-hero">
+    <div class="hub-hero-bg"><img src="/images/pareja-brindando-cerveza.jpg" alt="Terraza pet friendly de Vecindario Beer Garden, Cuernavaca" /></div>
+    <div class="hub-hero-inner">
+      <div>
+        <SectionLabel text="Pet friendly · Cuernavaca, Morelos" />
+        <h1>Restaurante pet friendly<br>en <span class="accent">Cuernavaca</span></h1>
+        <p class="hub-sub">Terraza abierta donde tu perro es bienvenido. Cerveza artesanal, cocina casual y buena compañía — incluyendo la de cuatro patas.</p>
+        <div class="hero-badge-row">
+          <span class="hero-rating"><span class="stars">★★★★★</span><strong>{site.rating}</strong><span>· {site.reseñas} reseñas en Google</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL -->
+  <section class="editorial"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="Con tu mascota" />
+        <h2 class="section-title">Tu perro es bienvenido</h2>
+        <div class="prose">
+          <p>Somos un <strong>restaurante y bar pet friendly en Cuernavaca</strong>. Nuestra terraza es el espacio ideal para venir con tu perro, <strong>grande o pequeño</strong> — no hay restricciones de tamaño ni raza.</p>
+          <p>Si traes agua para tu mascota, perfecto. Si se te olvida, <strong>con gusto le damos un recipiente</strong>. Lo importante es que disfruten la tarde juntos: una cerveza para ti, sombra y espacio para él.</p>
+          <p>La terraza es relajada y espaciosa — <a href="/terraza-cuernavaca/">conoce nuestro espacio</a> y ven a pasarla bien con toda la familia.</p>
+        </div>
+      </div>
+      <figure class="img-side">
+        <img src="/images/pareja-brindando-cerveza.jpg" alt="Pareja disfrutando en la terraza pet friendly de Vecindario Beer Garden" loading="lazy" />
+      </figure>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6.5 5c0-1.47.955-3 2.5-3s2.5 1.53 2.5 3s-.955 3-2.5 3s-2.5-1.53-2.5-3M9 3.5c-.388 0-1 .485-1 1.5s.612 1.5 1 1.5s1-.485 1-1.5s-.612-1.5-1-1.5M2 10c0-1.47.955-3 2.5-3S7 8.53 7 10s-.955 3-2.5 3S2 11.47 2 10m2.5-1.5c-.388 0-1 .485-1 1.5s.612 1.5 1 1.5s1-.485 1-1.5s-.612-1.5-1-1.5M15 2c-1.545 0-2.5 1.53-2.5 3s.955 3 2.5 3s2.5-1.53 2.5-3s-.955-3-2.5-3m-1 3c0-1.015.612-1.5 1-1.5s1 .485 1 1.5s-.612 1.5-1 1.5s-1-.485-1-1.5m3 5c0-1.47.955-3 2.5-3S22 8.53 22 10s-.955 3-2.5 3s-2.5-1.53-2.5-3m2.5-1.5c-.388 0-1 .485-1 1.5s.612 1.5 1 1.5s1-.485 1-1.5s-.612-1.5-1-1.5M12 9c-1.412 0-2.3.655-2.937 1.479c-.303.392-.553.827-.776 1.225l-.1.18c-.191.343-.365.657-.561.95c-.185.277-.455.532-.818.826q-.147.12-.32.255c-.278.218-.59.463-.87.72C4.761 15.42 4 16.483 4 18.25C4 20.32 5.68 22 7.75 22c.944 0 1.779-.456 2.42-.807l.064-.035c.726-.396 1.242-.658 1.766-.658s1.04.262 1.766.658l.064.035c.641.35 1.476.807 2.42.807c2.07 0 3.75-1.68 3.75-3.75c0-1.767-.76-2.83-1.618-3.615a15 15 0 0 0-.87-.72q-.173-.135-.32-.255c-.363-.294-.633-.549-.818-.826a14 14 0 0 1-.56-.95l-.1-.18c-.224-.399-.474-.833-.777-1.225C14.301 9.655 13.412 9 12 9m-3.126 4.666c.232-.348.44-.722.629-1.062l.093-.168c.222-.398.425-.745.654-1.04c.426-.551.912-.896 1.75-.896s1.324.345 1.75.896c.229.295.431.642.654 1.04l.093.168c.19.34.397.714.629 1.062c.315.473.732.843 1.12 1.158q.206.167.394.314c.255.2.491.385.728.602c.643.59 1.132 1.277 1.132 2.51c0 1.24-1.01 2.25-2.25 2.25c-.524 0-1.04-.262-1.766-.658l-.064-.035C13.78 19.457 12.944 19 12 19s-1.779.456-2.42.807l-.064.035c-.726.396-1.242.658-1.766.658c-1.24 0-2.25-1.01-2.25-2.25c0-1.233.49-1.92 1.132-2.51c.237-.217.473-.402.728-.602q.188-.148.394-.314c.388-.315.805-.685 1.12-1.158" clip-rule="evenodd" /></svg>
+        <h3>Todos los tamaños</h3>
+        <p>Perros grandes y pequeños son bienvenidos. Sin restricciones de raza.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21c-5 0-9-4-9-9c0-3 1.5-5.5 4-7l1.5 2L10 5l2 2l2-2l1.5 2L17 5c2.5 1.5 4 4 4 7c0 5-4 9-9 9z" /><path d="M9 14c.5 1 1.5 2 3 2s2.5-1 3-2" /></svg>
+        <h3>Agua para tu mascota</h3>
+        <p>Si se te olvida traerla, le damos un recipiente con gusto.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" /></svg>
+        <h3>Terraza abierta</h3>
+        <p>Espacio al aire libre, relajado y sin pretensiones. <a href="/terraza-cuernavaca/" style="color:var(--vbg-verde);font-weight:600;">Conoce la terraza →</a></p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq-section"><div class="container-narrow">
+    <div class="section-head" style="text-align:center;"><SectionLabel text="Preguntas frecuentes" centered={true} /><h2 class="section-title">Sobre venir con tu mascota</h2></div>
+    <FAQ items={faqs} />
+  </div></section>
+
+  <!-- CTA -->
+  <section class="cta-final">
+    <h2>¿Venimos con tu perro?</h2>
+    <p>Miércoles a domingo en la Av. Teopanzolco, Cuernavaca. Terraza pet friendly y 10 cervezas en tap.</p>
+    <div class="btn-row">
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn-wa">Reservar con mi mascota</a>
+      <a href="/menu/" class="btn-primary">Ver el menú completo</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hub-hero { position: relative; color: #fff; min-height: 55vh; display: flex; align-items: center; overflow: hidden; background: var(--vbg-negro); padding: 90px 0 110px; }
+  .hub-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hub-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hub-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(95deg,rgba(20,18,16,.95) 0%,rgba(20,18,16,.75) 45%,rgba(20,18,16,.3) 100%),linear-gradient(to top,rgba(20,18,16,.9) 0%,transparent 60%); }
+  .hub-hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+  .hub-hero h1 { font-size: clamp(2rem,5vw,3.2rem); line-height: .95; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+  .accent { color: var(--vbg-verde-claro); }
+  .hub-sub { font-size: 1.05rem; color: #d8d2c2; margin-bottom: 1.6rem; max-width: 500px; }
+  .hero-badge-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: #c8c0b0; }
+  .hero-rating { display: inline-flex; align-items: center; gap: .5rem; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); padding: .4rem .8rem; border-radius: 2px; }
+  .hero-rating .stars { color: var(--vbg-ambar); letter-spacing: 1px; }
+  .hero-rating strong { color: #fff; font-weight: 600; }
+
+  /* SECCIONES */
+  section { padding: 4.5rem 0; }
+  .section-head { margin-bottom: 2rem; }
+  .prose { font-size: 1.02rem; color: var(--vbg-carbon); line-height: 1.8; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose strong { color: var(--vbg-verde); }
+  .prose a { color: var(--vbg-verde); font-weight: 600; }
+
+  .editorial { background: var(--vbg-blanco); }
+
+  /* SPLIT */
+  .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; align-items: center; }
+  .split .section-title { margin-bottom: 1.2rem; }
+  .img-side img { width: 100%; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); aspect-ratio: 4/3; object-fit: cover; }
+
+  /* CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem; }
+  .card { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.8rem 1.5rem; border-top: 3px solid var(--vbg-verde-claro); }
+  .card-icon { width: 40px; height: 40px; margin-bottom: 1rem; color: var(--vbg-verde); }
+  .card h3 { font-size: 1.15rem; color: var(--vbg-verde); margin-bottom: 0.6rem; }
+  .card p { font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; }
+
+  /* FAQ + CTA */
+  .faq-section { background: var(--vbg-blanco); }
+  .cta-final { background: var(--vbg-verde); color: #fff; text-align: center; padding: 4.5rem 1.5rem; }
+  .cta-final h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: .8rem; }
+  .cta-final p { color: #c8d8c0; margin-bottom: 2rem; }
+  .btn-row { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa svg { width: 18px; height: 18px; }
+
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 1.8rem; }
+    .split .img-side { order: 2; }
+  }
+</style>

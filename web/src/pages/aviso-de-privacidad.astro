@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout title="Aviso de Privacidad | Vecindario Beer Garden" description="Aviso de privacidad de Vecindario Beer Garden." headerVariant="solid">
+  <div class="legal-body">
+    <h1>Aviso de Privacidad</h1>
+    <p><strong>{site.nombre}</strong>, con domicilio en {site.direccion.completa}, es responsable del uso y protección de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p>
+    <h2>Datos que recabamos</h2>
+    <p>Recabamos datos de contacto (nombre, teléfono, email) cuando nos contacta por WhatsApp, email o formularios. No solicitamos datos financieros ni sensibles.</p>
+    <h2>Finalidad</h2>
+    <p>Utilizamos sus datos únicamente para responder sus consultas, reservaciones y envío de información sobre eventos. No compartimos ni vendemos sus datos a terceros.</p>
+    <h2>Derechos ARCO</h2>
+    <p>Puede ejercer sus derechos de acceso, rectificación, cancelación u oposición enviando un correo a {site.email}.</p>
+    <p style="margin-top:2rem;color:var(--vbg-gris-texto);font-size:.85rem;">Última actualización: {new Date().getFullYear()}</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-body { max-width: 760px; margin: 100px auto 3rem; padding: 0 1.5rem; }
+  h1 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 2rem; color: var(--vbg-verde); margin-bottom: 1.5rem; }
+  h2 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.2rem; color: var(--vbg-verde); margin: 1.5rem 0 .5rem; }
+  p { color: var(--vbg-carbon); line-height: 1.7; margin-bottom: .8rem; }
+</style>

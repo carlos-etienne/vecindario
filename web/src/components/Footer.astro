@@ -1,0 +1,125 @@
+---
+import site from '../data/site.json';
+
+const hoy = new Date().getDay();
+const diasMap = [6, 0, 1, 2, 3, 4, 5];
+---
+
+<footer class="site-footer">
+  <div class="footer-grid-cols">
+    <div class="footer-brand">
+      <img src="/assets/logo-transparente.svg" alt="Vecindario Beer Garden" />
+      <p>Restaurante bar con cerveza artesanal y la única cámara fría cervecera de Morelos.</p>
+      <div class="footer-social">
+        <a href={site.redes.instagram} aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zm0 10.16A4 4 0 1116 12a4 4 0 01-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+        </a>
+        <a href={site.redes.facebook} aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+        <a href={site.redes.google} aria-label="Google 4.9 estrellas">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.29v3.72h6.12c-.24 1.57-1.8 4.6-6.12 4.6-3.68 0-6.69-3.05-6.69-6.81s3.01-6.81 6.69-6.81c2.1 0 3.5.9 4.3 1.66l2.93-2.83C18.1 2.71 15.45 1.6 12.24 1.6 6.59 1.6 2 6.19 2 11.84s4.59 10.24 10.24 10.24c5.91 0 9.83-4.15 9.83-10 0-.67-.07-1.18-.16-1.69z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explora</h4>
+      <ul>
+        <li><a href="/menu/">Menú</a></li>
+        <li><a href="/cerveza-artesanal-cuernavaca/">Cervezas de barril</a></li>
+        <li><a href="/hamburguesas-cuernavaca/">Hamburguesas</a></li>
+        <li><a href="/pizzas-cuernavaca/">Pizzas</a></li>
+        <li><a href="/pet-friendly-cuernavaca/">Pet friendly</a></li>
+        <li><a href="/eventos/">Eventos</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horarios</h4>
+      <div class="footer-horarios">
+        {site.horarios.map((h) => (
+          <div class={`fh-row ${!h.abierto ? 'cerrado' : ''} ${diasMap[hoy] === site.horarios.indexOf(h) ? 'hoy' : ''}`}>
+            <span>{h.dia}</span>
+            <span>{h.abierto ? `${h.apertura}–${h.cierre}` : 'Cerrado'}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>{site.direccion.calle}</li>
+        <li>{site.direccion.zona}, {site.direccion.cp} {site.direccion.ciudad}</li>
+        <li><a href={`tel:${site.telefonoTel}`}>{site.telefono}</a></li>
+        <li><a href={`https://wa.me/${site.whatsapp}`}>WhatsApp →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {new Date().getFullYear()} {site.nombre}</span>
+    <span><a href="/aviso-de-privacidad/">Aviso de privacidad</a> · <a href="/terminos/">Términos</a></span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--vbg-negro);
+    padding: 3rem 0 1.5rem;
+  }
+  .footer-grid-cols {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .footer-brand img { height: 40px; margin-bottom: 1rem; }
+  .footer-brand p {
+    font-size: 0.84rem; line-height: 1.6; max-width: 280px;
+    color: #9a9183; margin-bottom: 1rem;
+  }
+  .footer-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--vbg-verde-claro);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li {
+    margin-bottom: 0.5rem; font-size: 0.88rem; color: #c8c0b0;
+  }
+  .footer-col a:hover { color: var(--vbg-ambar); }
+  .footer-horarios .fh-row {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; padding: 0.25rem 0; color: #c8c0b0;
+    border-bottom: 1px dotted rgba(255,255,255,0.08);
+  }
+  .footer-horarios .fh-row.cerrado { color: #6b6358; }
+  .footer-horarios .fh-row.hoy { color: var(--vbg-ambar); font-weight: 600; }
+  .footer-social { display: flex; gap: 0.7rem; }
+  .footer-social a {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: #c8c0b0; transition: all 0.2s;
+  }
+  .footer-social a:hover {
+    background: var(--vbg-ambar); color: #fff; border-color: var(--vbg-ambar);
+  }
+  .footer-social svg { width: 18px; height: 18px; }
+  .footer-bottom {
+    max-width: 1280px; margin: 2.5rem auto 0;
+    padding: 1.5rem 1.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between;
+    font-size: 0.76rem; color: #6b6358;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  @media (max-width: 900px) {
+    .footer-grid-cols { grid-template-columns: 1fr; }
+  }
+</style>

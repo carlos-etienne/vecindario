@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquitectura Web · Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<style>
+  :root {
+    --vbg-green-deep: #446a3b;
+    --vbg-green: #6da05d;
+    --primary: #1f2421;
+    --body: #2b302d;
+    --secondary: #5e6b5c;
+    --surface: #faf8f3;
+    --surface-2: #f0ede3;
+    --divider: #d8d3c4;
+    --have: #446a3b;
+    --need: #8a5a2b;
+    --warn: #b8860b;
+    --danger: #a0522d;
+    --slug-cuernavaca: #8a5a2b;
+    --slug-no-cuernavaca: #446a3b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Calibri, sans-serif;
+    color: var(--body);
+    background: #e8e6df;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .brand-bar {
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .brand-bar img.brand-logo { height: 32px; }
+  .brand-bar .brand-sep { width:1px;height:24px;background:rgba(255,255,255,0.3); }
+  .brand-bar .brand-doc { font-size:0.85rem; letter-spacing:0.05em; opacity:0.95; }
+
+  .page {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 3rem 4rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    border-top: 4px solid var(--vbg-green);
+  }
+  @media (max-width: 700px) {
+    .page { padding: 1.5rem; margin: 0; border-radius: 0; }
+    .brand-bar { padding: 0.6rem 1rem; }
+    .brand-bar img.brand-logo { height: 26px; }
+  }
+
+  .cover {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, var(--vbg-green-deep) 0%, #2c4a26 60%, #1f351c 100%);
+    color: #fff;
+    padding: 4rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "";
+    position: absolute; right: -60px; bottom: -60px;
+    width: 320px; height: 320px;
+    background: url("assets/icono.svg") no-repeat center/contain;
+    opacity: 0.06;
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+  .cover .cover-logo {
+    background: rgba(255,255,255,0.96);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .cover .cover-logo img { height: 48px; display: block; }
+  .cover .label {
+    color: var(--vbg-green);
+    letter-spacing: 0.3em; font-size: 0.75rem;
+    border-bottom: 2px solid var(--vbg-green);
+    display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-size: 2.8rem; font-weight: 800; line-height: 1.05;
+    margin: 0 0 1rem; letter-spacing: -0.02em;
+  }
+  .cover .subtitle { color: #c8d8c0; font-style: italic; font-size: 1.1rem; margin-bottom: 2rem; }
+  .cover .meta {
+    border-left: 3px solid var(--vbg-green);
+    padding-left: 1rem;
+    color: #c8d8c0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  h1.section {
+    font-size: 1.7rem; color: var(--vbg-green-deep);
+    border-bottom: 3px solid var(--vbg-green);
+    padding-bottom: 0.5rem; margin-top: 4rem;
+    letter-spacing: -0.01em;
+  }
+  h2 { font-size: 1.3rem; color: var(--primary); margin-top: 2.5rem; }
+  h3 { font-size: 1.05rem; color: var(--vbg-green-deep); margin-top: 1.5rem; }
+
+  p { margin: 0.6rem 0; }
+  strong { color: var(--primary); }
+  em { font-style: italic; }
+  ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+  li { margin: 0.3rem 0; }
+  a { color: var(--vbg-green-deep); text-decoration: underline; text-decoration-color: var(--vbg-green); text-underline-offset: 2px; }
+  code { background: var(--surface-2); padding: 0.1rem 0.3rem; border-radius: 2px; font-size: 0.9em; color: var(--vbg-green-deep); }
+
+  .card {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-green);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .card.warn { border-left-color: var(--warn); background: #fdf6e3; }
+  .card.danger { border-left-color: var(--danger); background: #fbeae5; }
+  .card-label {
+    font-size: 0.7rem; font-weight: 700;
+    color: var(--vbg-green-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border-top: 3px solid var(--vbg-green-deep);
+    border-bottom: 3px solid var(--vbg-green-deep);
+    font-size: 0.92rem;
+  }
+  table.data th {
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.7rem 0.7rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  table.data td {
+    padding: 0.6rem 0.7rem;
+    border-top: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  table.data tr:nth-child(even) td { background: var(--surface); }
+
+  /* Slug styles */
+  .slug {
+    display: inline-block;
+    background: var(--surface-2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 0.85em;
+    color: var(--primary);
+    border: 1px solid var(--divider);
+  }
+  .slug.with-cva { border-left: 3px solid var(--slug-cuernavaca); }
+  .slug.without-cva { border-left: 3px solid var(--slug-no-cuernavaca); }
+
+  /* Sitemap tree */
+  .sitemap {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-green);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .sitemap .pillar { color: var(--vbg-green-deep); font-weight: 700; }
+  .sitemap .hub { color: var(--need); font-weight: 600; }
+  .sitemap .functional { color: var(--secondary); }
+  .sitemap .new { background: #fff8e7; padding: 0 4px; border-radius: 2px; }
+
+  .page-card {
+    background: #fff;
+    border: 1px solid var(--divider);
+    border-left: 4px solid var(--vbg-green);
+    border-radius: 0 4px 4px 0;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .page-card .page-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .page-card .page-head h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary);
+  }
+  .page-card .page-head .url {
+    font-family: ui-monospace, monospace;
+    color: var(--vbg-green-deep);
+    font-size: 0.92rem;
+  }
+  .page-card .priority {
+    font-size: 0.7rem;
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    letter-spacing: 0.05em;
+  }
+  .page-card .priority.p1 { background: #446a3b; }
+  .page-card .priority.p2 { background: #d4a017; }
+  .page-card .priority.p3 { background: #5e6b5c; }
+  .page-card .priority.qr { background: #8a5a2b; }
+  .page-card .meta-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0.5rem 1rem;
+    margin: 0.8rem 0;
+    font-size: 0.92rem;
+  }
+  .page-card .meta-row .lbl {
+    color: var(--secondary);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 2px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--vbg-green);
+  }
+  .phase-card .phase-head {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+  .phase-card .phase-num {
+    background: var(--vbg-green-deep);
+    color: #fff;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .phase-card h3 { margin: 0; font-size: 1.1rem; }
+  .phase-card .pct {
+    font-size: 0.78rem;
+    background: var(--vbg-green);
+    color: #fff;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    margin-left: auto;
+  }
+
+  .closing {
+    border-top: 3px solid var(--vbg-green);
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    font-style: italic;
+    color: var(--secondary);
+    text-align: center;
+  }
+
+  .toc {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-green);
+    padding: 1rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+    margin: 1.5rem 0;
+  }
+  .toc ol { margin: 0.3rem 0; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .legend {
+    display: flex; gap: 1.2rem;
+    flex-wrap: wrap;
+    background: var(--surface);
+    padding: 0.7rem 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .legend span { display: flex; align-items: center; gap: 0.4rem; }
+
+  .check-list { list-style: none; padding-left: 0; }
+  .check-list li { padding-left: 1.6rem; position: relative; }
+  .check-list li::before {
+    content: "▸";
+    color: var(--vbg-green-deep);
+    position: absolute; left: 0.4rem;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <img src="assets/logo-color.svg" alt="Vecindario Beer Garden" class="brand-logo">
+  <div class="brand-sep"></div>
+  <div class="brand-doc">Arquitectura Web · Estructura del sitio</div>
+</div>
+
+<div class="cover">
+  <div class="cover-logo">
+    <img src="assets/logo-color.svg" alt="Vecindario Beer Garden">
+  </div>
+  <div class="label">A R Q U I T E C T U R A &nbsp; W E B</div>
+  <h1>Estructura completa del sitio</h1>
+  <div class="subtitle">Mapa, slugs, contenido por página, schema y plan de enriquecimiento de 1150 cervezas</div>
+  <div class="meta">
+    Decisiones basadas en el análisis SEO exhaustivo (documento hermano)<br>
+    Stack: Astro + Cloudflare Pages + D1 (free tier)<br>
+    Principio rector: mobile-first absoluto, el QR de las mesas es el caso de uso #1
+  </div>
+</div>
+
+<div class="page">
+
+<h2 style="border-bottom: 3px solid var(--vbg-green); padding-bottom: 0.5rem; font-size: 1.7rem; color: var(--vbg-green-deep);">Contenido</h2>
+<div class="toc">
+<ol>
+  <li><a href="#principios">Principios rectores y reglas de la arquitectura</a></li>
+  <li><a href="#sitemap">Mapa del sitio completo</a></li>
+  <li><a href="#slugs">Regla de slugs híbridos (con/sin "cuernavaca")</a></li>
+  <li><a href="#paginas">Detalle página por página</a></li>
+  <li><a href="#enriquecimiento">Plan de enriquecimiento de 1150 cervezas en 3 fases</a></li>
+  <li><a href="#schema">Schema markup por tipo de página</a></li>
+  <li><a href="#redirecciones">Mapa de redirecciones desde WP actual</a></li>
+  <li><a href="#tecnicas">Consideraciones técnicas</a></li>
+</ol>
+</div>
+
+<!-- ============ 1. PRINCIPIOS ============ -->
+<h1 class="section" id="principios">1 · Principios rectores</h1>
+
+<p>La arquitectura está diseñada con 5 prioridades en conflicto, ordenadas deliberadamente:</p>
+
+<ol>
+  <li><strong>Velocidad móvil absoluta</strong> — el caso de uso #1 es el cliente escaneando QR en las mesas con señal variable. <code>/menu/</code> debe cargar en &lt;1s en 4G promedio.</li>
+  <li><strong>SEO local agresivo pero honesto</strong> — slugs optimizados para "X cuernavaca" donde aplica, contenido que respeta la verdad operativa (no fingir "música en vivo siempre").</li>
+  <li><strong>Escaneabilidad por Google en cada nivel</strong> — schema markup completo, breadcrumbs, sitemap.xml, sin páginas huérfanas.</li>
+  <li><strong>Escalabilidad modular</strong> — el código organizado en <code>/modules</code> para que cuando clones el sistema a otro negocio, desactivar/activar módulos sea trivial.</li>
+  <li><strong>Preservación de URLs indexadas</strong> — las URLs que Google ya conoce (<code>/menu/</code>, <code>/eventos/[slug]/</code>) se mantienen idénticas.</li>
+</ol>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Tensión consciente</strong></div>
+  <p style="margin:0.3rem 0;">Las prioridades 1 y 2 a veces entran en conflicto: más contenido editorial para SEO = más peso de página = más lento. <strong>La regla de oro</strong>: el contenido editorial vive en los hubs SEO (<code>/hamburguesas-cuernavaca/</code>), pero <strong>/menu/ se queda ligero</strong> porque es el QR destination. Carga rápida &gt; riqueza editorial en /menu/.</p>
+</div>
+
+<!-- ============ 2. SITEMAP ============ -->
+<h1 class="section" id="sitemap">2 · Mapa del sitio completo</h1>
+
+<div class="legend">
+  <span><span class="slug pillar">■</span> Pillar (home)</span>
+  <span><span class="slug hub">■</span> Hub SEO comercial (con "cuernavaca")</span>
+  <span><span class="slug functional">■</span> Página funcional (sin "cuernavaca")</span>
+  <span><strong style="background:#fff8e7; padding:2px 6px;">NUEVO</strong> Página que no existe hoy</span>
+</div>
+
+<div class="sitemap">
+<span class="pillar">/                                    → Home (hero comida+cerveza, pillar SEO)</span>
+│
+├── <span class="functional">/menu/                               → QR DESTINATION (carga &lt;1s)</span>
+│   ├── <span class="hub">Sección cervezas de barril (10 taps)</span>
+│   ├── <span class="hub">Sección alimentos</span>
+│   ├── <span class="new">Sección cervezas lata/botella (1150 items, con filtros) [NUEVO]</span>
+│   └── <span class="hub">Sección otras bebidas (mezcal, pulque, café)</span>
+│
+├── <span class="functional">/menu/cervezas-de-barril/            → Hub cervezas de barril con datos ricos</span>
+├── <span class="new">/menu/cervezas-lata-botella/         → Catálogo 1150 cervezas con filtros [NUEVO]</span>
+├── <span class="functional">/menu/alimentos/                     → Sección alimentos (con subsecciones)</span>
+│   ├── <span class="functional">/menu/alimentos/hamburguesas/</span>
+│   ├── <span class="functional">/menu/alimentos/pizzas/</span>
+│   └── <span class="functional">/menu/alimentos/botanas/</span>
+│
+├── <span class="hub">/cerveza-artesanal-cuernavaca/      → HUB SEO (defender + crecer)</span>
+├── <span class="hub">/hamburguesas-cuernavaca/            → HUB SEO comida (prioridad 1)</span>
+├── <span class="hub">/pizzas-cuernavaca/                  → HUB SEO comida (prioridad 1)</span>
+├── <span class="hub">/pet-friendly-cuernavaca/            → HUB SEO diferenciador</span>
+├── <span class="hub">/terraza-cuernavaca/                 → HUB SEO diferenciador</span>
+│
+├── <span class="functional">/eventos/                            → Agenda real + archivo 20 eventos</span>
+│   └── <span class="functional">/eventos/[slug]/                     → Página evento individual (schema Event)</span>
+│
+├── <span class="new">/cata-cerveza/                       → Cata de cerveza (repositioning "wine tasting") [NUEVO]</span>
+├── <span class="hub">/musica-en-vivo-cuernavaca/         → Derivación de /eventos/ (NO hub comercial)</span>
+│
+├── <span class="functional">/contacto/                           → NAP + mapa + WhatsApp</span>
+├── <span class="functional">/galeria/                            → Galería de fotos (opcional Fase 2)</span>
+├── <span class="functional">/aviso-de-privacidad/                → Legal (migración)</span>
+└── <span class="functional">/terminos-y-condiciones/             → Legal (migración)</span>
+</div>
+
+<h3>Cantidad total de páginas</h3>
+<table class="data">
+  <thead><tr><th>Tipo</th><th class="num">Cantidad</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>Página estática única</td><td class="num">12</td><td>Home, menús, hubs, contacto, etc.</td></tr>
+    <tr><td>Páginas dinámicas (eventos)</td><td class="num">20 (inicial)</td><td>Una por evento, crece con el tiempo</td></tr>
+    <tr><td>Páginas de plato individual (Fase 3)</td><td class="num">~30-50</td><td>Cada plato significativo del menú</td></tr>
+    <tr><td>Páginas de cerveza lata/botella</td><td class="num">1150</td><td>Catálogo generado desde Loyverse (sin URL propia, viven en /menu/cervezas-lata-botella/ con anclas)</td></tr>
+    <tr><td><strong>Total indexable</strong></td><td class="num"><strong>~80 (inicial)</strong></td><td>Las 1150 cervezas son contenido dentro de una sola página, no 1150 URLs</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 3. SLUGS ============ -->
+<h1 class="section" id="slugs">3 · Regla de slugs híbridos</h1>
+
+<p><strong>Regla</strong>: los hubs SEO comerciales (donde la intención de búsqueda incluye implícitamente la ubicación) <strong>llevan "cuernavaca"</strong>. Las páginas funcionales (menú, contacto, eventos) no lo llevan porque "cuernavaca" va en el title/H1 y no se justifica una URL más larga.</p>
+
+<table class="data">
+  <thead><tr>
+    <th>Tipo</th><th>Regla</th><th>Ejemplo</th><th>Razón</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td>Hub SEO comercial</td>
+      <td><strong>CON "cuernavaca"</strong></td>
+      <td><span class="slug with-cuernavaca">/hamburguesas-cuernavaca/</span></td>
+      <td>La intención es "hamburguesas en cuernavaca" — el modificador geográfico va en la URL porque refuerza SEO local en mercado poco competido.</td>
+    </tr>
+    <tr>
+      <td>Página funcional</td>
+      <td>Sin "cuernavaca"</td>
+      <td><span class="slug without-cuernavaca">/menu/</span></td>
+      <td>El QR apunta aquí, URL limpia = mejor CTR en mesa. El "cuernavaca" va en title y H1.</td>
+    </tr>
+    <tr>
+      <td>Página de marca</td>
+      <td>Sin "cuernavaca"</td>
+      <td><span class="slug without-cuernavaca">/menu/cervezas-de-barril/</span></td>
+      <td>Es sobre TU cerveza, no sobre la ciudad. El lugar está implícito.</td>
+    </tr>
+    <tr>
+      <td>Home</td>
+      <td>Sin nada</td>
+      <td><span class="slug without-cuernavaca">/</span></td>
+      <td>Title y H1 dicen "Cuernavaca" explícitamente.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Listado completo de slugs con clasificación</h3>
+<table class="data">
+  <thead><tr><th>Slug</th><th>Tipo</th><th>Keyword objetivo principal</th></tr></thead>
+  <tbody>
+    <tr><td><span class="slug without-cuernavaca">/</span></td><td>Home</td><td>vecindario beer garden, beer garden cuernavaca, restaurante bar cuernavaca</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/menu/</span></td><td>Funcional (QR)</td><td>brand + long-tail de platos</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/menu/cervezas-de-barril/</span></td><td>Marca</td><td>cerveza artesanal de barril, cerveza de barril</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/menu/cervezas-lata-botella/</span></td><td>Funcional catálogo</td><td>compra cervezas artesanales cuernavaca</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/menu/alimentos/</span></td><td>Funcional</td><td>—</td></tr>
+    <tr><td><span class="slug with-cuernavaca">/cerveza-artesanal-cuernavaca/</span></td><td>Hub comercial</td><td>cerveza artesanal cuernavaca, cervezas artesanales cuernavaca</td></tr>
+    <tr><td><span class="slug with-cuernavaca">/hamburguesas-cuernavaca/</span></td><td>Hub comercial</td><td>hamburguesas gourmet cuernavaca, hamburguesas cuernavaca</td></tr>
+    <tr><td><span class="slug with-cuernavaca">/pizzas-cuernavaca/</span></td><td>Hub comercial</td><td>pizzas artesanales cuernavaca, pizza cuernavaca</td></tr>
+    <tr><td><span class="slug with-cuernavaca">/pet-friendly-cuernavaca/</span></td><td>Hub comercial</td><td>restaurante pet friendly cuernavaca, bar pet friendly cuernavaca</td></tr>
+    <tr><td><span class="slug with-cuernavaca">/terraza-cuernavaca/</span></td><td>Hub comercial</td><td>terraza cuernavaca, restaurante con terraza</td></tr>
+    <tr><td><span class="slug with-cuernavaca">/musica-en-vivo-cuernavaca/</span></td><td>Hub derivado</td><td>música en vivo cuernavaca (baja confianza — rederivado a /eventos/)</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/eventos/</span></td><td>Funcional</td><td>eventos cuernavaca, agenda cervecería</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/eventos/[slug]/</span></td><td>Funcional</td><td>cada evento con título específico (cata, jazz, salsa, etc.)</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/cata-cerveza/</span></td><td>Funcional</td><td>cata de cerveza, degustación cerveza cuernavaca (repositioning wine tasting)</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/contacto/</span></td><td>Funcional</td><td>contacto, ubicación, cómo llegar</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/aviso-de-privacidad/</span></td><td>Legal</td><td>—</td></tr>
+    <tr><td><span class="slug without-cuernavaca">/terminos-y-condiciones/</span></td><td>Legal</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 4. PÁGINAS ============ -->
+<h1 class="section" id="paginas">4 · Detalle página por página</h1>
+
+<!-- HOME -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Home</h3>
+    <code class="url">/</code>
+    <span class="priority p1">PRIORIDAD 1</span>
+  </div>
+  <p><strong>Primera impresión del sitio</strong>. Hero debe lograr que el visitante piense en 3 segundos: <em>"¡Se me hizo la boca agua! Aquí no solo se viene a tomar cerveza, la comida se ve increíble"</em> (brief). Cerveza + comida juntos en composición apetitosa — no solo cerveza, no solo comida.</p>
+
+  <div class="meta-row">
+    <div class="lbl">Hero</div>
+    <div>Video o imagen de <strong>pizza napolitana saliendo del horno + cerveza de barril</strong>, o <strong>hamburguesa gourmet en pan brioche + cerveza</strong>. Primer plano apetitoso e higiénico.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">H1</div>
+    <div>Cerveza artesanal y cocina gourmet en Cuernavaca <small>(keyword objetivo: "beer garden cuernavaca", "restaurante bar cuernavaca")</small></div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Secciones</div>
+    <div>
+      <ul>
+        <li>Hero (comida + cerveza) con CTA "Ver menú" + "Reservar por WhatsApp"</li>
+        <li>Pilares: cerveza artesanal / cocina gourmet / terraza pet-friendly</li>
+        <li>Preview de 4-6 cervezas en tap (dinámico, desde D1)</li>
+        <li>2-3 platos estrella con foto</li>
+        <li>Próximos eventos (3 más recientes)</li>
+        <li>Reseñas / testimonios</li>
+        <li>NAP + mapa + horarios</li>
+      </ul>
+    </div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div><code>BarOrPub</code> (sitio-wide) + <code>WebSite</code> + <code>SearchAction</code> (sitelinks search)</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Performance</div>
+    <div>LCP &lt; 1.5s. Hero optimizado (WebP/AVIF, lazy load de todo lo demás). Lighthouse 95+ performance.</div>
+  </div>
+</div>
+
+<!-- /menu/ -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Menú principal</h3>
+    <code class="url">/menu/</code>
+    <span class="priority qr">QR DESTINATION</span>
+  </div>
+  <p><strong>La página más vista del sitio</strong>. El QR en las mesas apunta aquí. Velocidad absoluta sobre riqueza — un cliente con señal mala en la mesa debe poder ver el menú en menos de 1 segundo.</p>
+
+  <div class="card warn" style="margin: 0.8rem 0;">
+    <div class="card-label" style="color: var(--warn);">⚠ Principio de oro</div>
+    <p style="margin:0.3rem 0;">/menu/ es para <strong>consultar rápido</strong>, no para SEO. El contenido editorial (historia de la cervecería, maridajes, fotos grandes) vive en los hubs. Aquí: dato, precio, disponible/no. Listo.</p>
+  </div>
+
+  <div class="meta-row">
+    <div class="lbl">Estructura</div>
+    <div>
+      <ol>
+        <li><strong>Cervezas de barril (10 taps)</strong> — sección superior, lo más cambiante. Datos: estilo, ABV, cervecería, precio por presentación (300ml / 420ml). Badge "disponible/agotada".</li>
+        <li><strong>Alimentos</strong> — sub-secciones: Hamburguesas / Pizzas / Botanas / Postres. Por plato: nombre, ingredientes, precio. Sin fotos por defecto (rendimiento), opcional al tap.</li>
+        <li><strong>Cervezas lata/botella (1150 items)</strong> — catálogo con filtros facetados + búsqueda. <strong>Sin imágenes por defecto</strong> para mantener la página liviana. Ver detalle en <code>/menu/cervezas-lata-botella/</code>.</li>
+        <li><strong>Otras bebidas</strong> — mezcal, pulque, café, destilados. Tabla compacta.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Navegación</div>
+    <div>Sticky tabs (Cervezas de barril | Alimentos | Lata/Botella | Otras) — el cliente en mesa salta directo a lo que quiere. Sin scroll infinito, sin animaciones.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div><code>Menu</code> con <code>hasMenuSection</code> por categoría y <code>MenuItem</code> por plato/cerveza. <strong>Mayor gap SEO actual</strong> — totalmente ausente hoy.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Performance</div>
+    <div>LCP &lt; 1s en 4G promedio. HTML estático pre-renderizado. Cero JS salvo filtros del catálogo (que cargan solo al interactuar).</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Edición admin</div>
+    <div>Cervezas de barril editables desde panel admin (drag-and-drop móvil, slots 1-10 fijos). Alimentos menos frecuentes. Lata/botella desde import CSV Loyverse.</div>
+  </div>
+</div>
+
+<!-- /menu/cervezas-de-barril/ -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Hub cervezas de barril</h3>
+    <code class="url">/menu/cervezas-de-barril/</code>
+    <span class="priority p1">PRIORIDAD 1</span>
+  </div>
+  <p>Versión SEO-rich del menú de taps. Contenido editorial + datos completos por cerveza. Objetivo: posicionar "cerveza artesanal de barril" (SD 7, vol 110) y capturar tráfico de beer garden + cerveza artesanal.</p>
+
+  <div class="meta-row">
+    <div class="lbl">H1</div>
+    <div>10 líneas de cerveza artesanal en Cuernavaca, en rotación constante</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Contenido</div>
+    <div>Introducción (cámara fría, certificación Cicerone/BJCP, rotación semanal) + 10 cervezas con datos completos (estilo, ABV, IBU, cervecería, origen, descripción 2-3 líneas, precio, maridaje sugerido).</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div><code>Menu</code> + <code>MenuItem</code> por cerveza con todos los campos. <code>BreadcrumbList</code>.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Diferencia con /menu/</div>
+    <div>/menu/ muestra lo mismo pero más rápido y menos texto. Aquí es la versión profunda, para SEO y para curiosos que quieren saber más.</div>
+  </div>
+</div>
+
+<!-- /menu/cervezas-lata-botella/ -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Catálogo lata/botella</h3>
+    <code class="url">/menu/cervezas-lata-botella/</code>
+    <span class="priority p1">NUEVO — PRIORIDAD 1</span>
+  </div>
+  <p><strong>El feature nuevo más relevante</strong>. Hoy es "próximamente" en WP porque era inviable. Ahora con import CSV de Loyverse (1150 cervezas) + filtros facetados es factible.</p>
+
+  <div class="meta-row">
+    <div class="lbl">Funcionalidad</div>
+    <div>
+      <strong>Filtros completos</strong>:
+      <ul>
+        <li><strong>Cervecería</strong> (ej: Insurgente, Vecindario, Agua Mala, Icono, etc.)</li>
+        <li><strong>País / región</strong> (México, Bélgica, Alemania, EUA, etc.)</li>
+        <li><strong>Estilo</strong> (IPA, Stout, Lager, Hefeweizen, Tripel, etc.)</li>
+        <li><strong>ABV</strong> (rango: &lt;5%, 5-7%, 7-9%, &gt;9%)</li>
+        <li><strong>Formato</strong> (lata 355ml, lata 473ml, botella 330ml, botella 750ml, etc.)</li>
+        <li><strong>Precio</strong> (rango deslizable)</li>
+        <li><strong>Disponibilidad</strong> (en inventario vs agotado)</li>
+      </ul>
+      + <strong>Búsqueda libre</strong> por texto (nombre o cervecería).
+    </div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">UX en móvil</div>
+    <div>Lista compacta (sin imágenes por defecto). Tap en cerveza → expande datos + foto si está disponible. Filtros en drawer lateral / bottom sheet.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Performance</div>
+    <div>1150 items es mucho para renderizar de golpe. Usar <strong>scroll virtualizado</strong> (solo renderiza los visibles + buffer). Filtros son read del JSON estático pre-generado, no consultas a BD.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Datos</div>
+    <div>Fuente: Loyverse CSV. <strong>El CSV solo trae nombre, categoría, precio, inventario</strong> — NO trae estilo/ABV/cervecería. Ver <a href="#enriquecimiento">plan de enriquecimiento en 3 fases</a> más abajo.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Sincronización</div>
+    <div>Import periódico (manual o programado) del CSV exportado de Loyverse. Cada import regenera el JSON estático del catálogo y redeploys el sitio. Para real-time, API de Loyverse (post-MVP).</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div><code>Menu</code> + <code>MenuItem</code> por cerveza. Aunque sean 1150, cada una con su propio schema en la página.</div>
+  </div>
+</div>
+
+<!-- HUBS SEO -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Hubs SEO comerciales</h3>
+    <code class="url">/hamburguesas-cuernavaca/, /pizzas-cuernavaca/, /pet-friendly-cuernavaca/, /terraza-cuernavaca/, /cerveza-artesanal-cuernavaca/</code>
+    <span class="priority p1">PRIORIDAD 1</span>
+  </div>
+  <p>Páginas comerciales con contenido editorial optimizado para keywords específicas de Cuernavaca. <strong>Ejemplo</strong>: <code>/hamburguesas-cuernavaca/</code></p>
+
+  <div class="meta-row">
+    <div class="lbl">H1</div>
+    <div>Hamburguesas gourmet en Cuernavaca, maridadas con cerveza artesanal</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Keyword objetivo</div>
+    <div>Principal: "hamburguesas gourmet cuernavaca" (vol 0 reportado pero SD 12, sin competencia). Secundarias: "hamburguesas cuernavaca" (vol 880, SD 25), "hamburguesas gourmet" (vol 1000, SD 19).</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Contenido</div>
+    <div>
+      ~600-800 palabras:
+      <ul>
+        <li>Introducción: por qué tus hamburguesas son "gourmet casual" (pan brioche, carne, ingredientes)</li>
+        <li>3-5 hamburguesas con foto, descripción y precio (con schema MenuItem)</li>
+        <li>Sección "maridaje con cerveza" (cross-link a /menu/cervezas-de-barril/)</li>
+        <li>CTA "Pruébala en el beer garden" + WhatsApp</li>
+        <li>FAQ (opcional Fase 2): vegetariana, sin gluten, etc.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div><code>MenuItem</code> por hamburguesa + <code>BreadcrumbList</code> (Home → Hamburguesas Cuernavaca).</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Variaciones</div>
+    <div>Misma estructura para pizzas, cerveza artesanal, pet friendly, terraza. Mismo template, contenido distinto.</div>
+  </div>
+</div>
+
+<!-- /eventos/ -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Eventos</h3>
+    <code class="url">/eventos/</code>
+    <span class="priority p2">PRIORIDAD 2 (post-MVP)</span>
+  </div>
+  <p>Calendario real + archivo de eventos pasados (20 migrables). <strong>Honesta</strong>: 1-2 eventos al mes (noche de salsa mensual, jazz/funk ocasional, DJ, aniversarios). No prometer "música en vivo siempre".</p>
+
+  <div class="meta-row">
+    <div class="lbl">Estructura</div>
+    <div>Próximos eventos (3-5) arriba con CTA reservar. Archivo abajo (lista paginada de eventos pasados, cada uno con su página individual).</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div><code>ItemList</code> en /eventos/. En cada evento individual: <code>Event</code> con startDate, endDate, location, offers, image, organizer.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Edición admin</div>
+    <div>Crear/editar eventos desde panel admin. Imagen destacada, fecha, descripción, marca destacado.</div>
+  </div>
+</div>
+
+<!-- /contacto/ -->
+<div class="page-card">
+  <div class="page-head">
+    <h3>Contacto</h3>
+    <code class="url">/contacto/</code>
+    <span class="priority p1">PRIORIDAD 1</span>
+  </div>
+  <p>Hoy es 404 — se pierde pillar page local. Implementar en MVP.</p>
+
+  <div class="meta-row">
+    <div class="lbl">Contenido</div>
+    <div>NAP completo (Av. Teopanzolco #665, Cuernavaca, Morelos / +52 777 497 2223), horarios actuales, mapa Google embebido, botón WhatsApp, botón Google Maps directions.</div>
+  </div>
+  <div class="meta-row">
+    <div class="lbl">Schema</div>
+    <div>Refuerzo de <code>BarOrPub</code> con geo coordinates, openingHours, hasMap.</div>
+  </div>
+</div>
+
+<!-- ============ 5. ENRIQUECIMIENTO ============ -->
+<h1 class="section" id="enriquecimiento">5 · Plan de enriquecimiento de 1150 cervezas</h1>
+
+<p><strong>El problema</strong>: el CSV de Loyverse tiene 1150 cervezas pero solo con <code>nombre, categoría (todas "Lata/Botella"), precio, inventario</code>. <strong>No tiene estilo, ABV, IBU, cervecería, país ni descripción</strong>. Para filtros completos necesitamos esos campos.</p>
+
+<p><strong>La solución</strong>: enriquecimiento progresivo en 3 fases. 80% automatizable, 20% requiere validación humana.</p>
+
+<div class="phase-card">
+  <div class="phase-head">
+    <span class="phase-num">1</span>
+    <h3>Extracción automática desde el nombre</h3>
+    <span class="pct">~50% de los datos</span>
+  </div>
+  <p>Los nombres de cerveza en Loyverse ya contienen información valiosa. Ejemplos reales de tu CSV:</p>
+  <ul>
+    <li><code>ABK Hefeweizen</code> → cervecería: ABK (Alemania), estilo: Hefeweizen</li>
+    <li><code>Agua Mala Astillero 355 ml</code> → cervecería: Agua Mala (México), formato: lata 355ml</li>
+    <li><code>A. Le Coq Imperial Extra Double Stout</code> → cervecería: A. Le Coq (Estonia), estilo: Imperial Stout</li>
+    <li><code>1906 Black Coupage</code> → cervecería: 1906 (España), estilo: a inferir (negra)</li>
+    <li><code>8 Bit Cyberfunk</code> → cervecería: 8 Bit (México), estilo: a inferir</li>
+  </ul>
+  <p><strong>Método</strong>: regex + diccionario de cervecerías conocidas (~200 cervecerías mexicanas + internacionales principales) + diccionario de estilos (IPA, Stout, Porter, Lager, Hefeweizen, Tripel, Dubbel, Gose, Saison, etc.). <strong>Estimación: extrae cervecería correctamente en ~70% de casos, estilo en ~40%.</strong></p>
+</div>
+
+<div class="phase-card">
+  <div class="phase-head">
+    <span class="phase-num">2</span>
+    <h3>Enriquecimiento con LLM + base de datos de cervezas</h3>
+    <span class="pct">~80% de los datos</span>
+  </div>
+  <p>Para lo que no se pudo extraer del nombre, usar LLM (Hermes mismo puede hacerlo) consultando bases de datos públicas:</p>
+  <ul>
+    <li><strong>Untappd API</strong> (pública, limitada gratuita, de pago para uso intensivo): búsqueda por nombre → estilo, ABV, IBU, cervecería, país, descripción, puntuación.</li>
+    <li><strong>OpenBeerDB</strong> (open source): base de datos gratuita con ~6000 cervezas.</li>
+    <li><strong>LLM con conocimiento cervecero</strong>: GPT/Claude/Hermes conocen la mayoría de cervezas comerciales ("1906 Black Coupage" → Stout 7.2% ABV). Útil para inferir ABV y estilo cuando no está en DB.</li>
+    <li><strong>Validación cruzada</strong>: si Untappd y LLM coinciden → alta confianza. Si difieren → flag para validación humana.</li>
+  </ul>
+  <p><strong>Output</strong>: cada cerveza enriquecida con estilo, ABV, IBU (cuando disponible), país, cervecería confirmada, descripción corta.</p>
+</div>
+
+<div class="phase-card">
+  <div class="phase-head">
+    <span class="phase-num">3</span>
+    <h3>Curaduría manual para destacadas</h3>
+    <span class="pct">~100% de las importantes</span>
+  </div>
+  <p>Las 50-100 cervezas más relevantes (las que rotan en tap, las de cervecerías aliadas como Insurgente, Vecindario, Icono) merecen descripciones a mano:</p>
+  <ul>
+    <li>Descripción de 2-3 líneas escrita en el tono de la marca (Cicerone/BJCP)</li>
+    <li>Maridaje sugerido (cross-link con el menú de alimentos)</li>
+    <li>Foto de la lata/botella (si está disponible)</li>
+    <li>Historia de la cervecería (1 párrafo) en cervecerías aliadas</li>
+  </ul>
+  <p>Esto es contenido editorial valioso, no relleno. <strong>Hermes puede ayudar a redactar borradores</strong> que tú o tu equipo certificado validan.</p>
+</div>
+
+<div class="card">
+  <div class="card-label">Estimación de esfuerzo</div>
+  <p style="margin:0.3rem 0;">Fase 1: <strong>1 día de desarrollo</strong> del script de extracción. Corre una vez y se actualiza con cada import de Loyverse.<br>
+  Fase 2: <strong>1-2 días de desarrollo</strong> + 1-2 días de corrida del LLM (1150 consultas a Untappd o batch a Claude API son ~$5-15).<br>
+  Fase 3: <strong>Manual continuo</strong>, 50-100 cervezas a ~5 min cada una = 4-8 horas distribuidas en el tiempo.</p>
+</div>
+
+<!-- ============ 6. SCHEMA ============ -->
+<h1 class="section" id="schema">6 · Schema markup por tipo de página</h1>
+
+<p>Schema markup es <strong>el gap técnico más grande hoy</strong> — el sitio actual solo tiene schema básico de Yoast (WebPage, Organization). Todo lo demás falta. Implementación priorizada:</p>
+
+<table class="data">
+  <thead><tr><th>Página</th><th>Schema</th><th>Campo crítico</th><th>Prioridad</th></tr></thead>
+  <tbody>
+    <tr><td>Todas (sitio-wide)</td><td><code>BarOrPub</code></td><td>name, address, geo, telephone, openingHours, priceRange, servesCuisine, hasMenu</td><td>P1 — MVP</td></tr>
+    <tr><td>Home</td><td>+ <code>WebSite</code> + <code>SearchAction</code></td><td>potentialAction → sitelinks search box</td><td>P1 — MVP</td></tr>
+    <tr><td>/menu/ y submenús</td><td><code>Menu</code> + <code>MenuItem</code></td><td>hasMenuSection, name, description, offers (price)</td><td>P1 — MVP</td></tr>
+    <tr><td>Cada plato</td><td><code>MenuItem</code></td><td>name, description, offers, suitableForDiet (vegetariano, etc.)</td><td>P1 — MVP</td></tr>
+    <tr><td>Hubs comerciales</td><td><code>MenuItem</code> + <code>BreadcrumbList</code></td><td>ItemList de platos + navegación</td><td>P1 — MVP</td></tr>
+    <tr><td>/eventos/</td><td><code>ItemList</code></td><td>lista de eventos</td><td>P2</td></tr>
+    <tr><td>/eventos/[slug]/</td><td><code>Event</code></td><td>startDate, endDate, eventStatus, location, offers, image, organizer</td><td>P2</td></tr>
+    <tr><td>Todas internas</td><td><code>BreadcrumbList</code></td><td>itemListElement con breadcrumbs</td><td>P1 — MVP</td></tr>
+    <tr><td>/contacto/</td><td>Refuerzo <code>BarOrPub</code></td><td>hasMap, geo coordinates精确os</td><td>P1 — MVP</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 7. REDIRECCIONES ============ -->
+<h1 class="section" id="redirecciones">7 · Mapa de redirecciones desde WP actual</h1>
+
+<p>Para no perder indexación acumulada, las URLs que Google ya conoce deben seguir funcionando. Si una URL cambia, redirección 301 a la nueva.</p>
+
+<table class="data">
+  <thead><tr><th>URL actual (WP)</th><th>Nueva URL (Astro)</th><th>Acción</th></tr></thead>
+  <tbody>
+    <tr><td><code>/</code></td><td><code>/</code></td><td>✓ Sin cambios</td></tr>
+    <tr><td><code>/menu/</code></td><td><code>/menu/</code></td><td>✓ Sin cambios (preserva QR en mesas)</td></tr>
+    <tr><td><code>/eventos/</code></td><td><code>/eventos/</code></td><td>✓ Sin cambios</td></tr>
+    <tr><td><code>/eventos/[20-slugs]/</code></td><td>Idénticos</td><td>✓ Sin cambios (cada uno preservado)</td></tr>
+    <tr><td><code>/aviso-de-privacidad/</code></td><td>Idéntico</td><td>✓ Sin cambios</td></tr>
+    <tr><td><code>/terminos-y-condiciones/</code></td><td>Idéntico</td><td>✓ Sin cambios</td></tr>
+    <tr><td><code>/blog/</code> (si existía)</td><td>—</td><td>⚠ 410 Gone (no migrar blog por ahora) o redirigir a home</td></tr>
+    <tr><td>Cualquier URL WP muerta</td><td>—</td><td>404 personalizado (con búsqueda y links a /menu/, /contacto/)</td></tr>
+    <tr><td><code>www.vecindariobeergarden.com/*</code></td><td>Redirect 301 a <code>vecindariobeergarden.com/*</code></td><td>Canonical sin www (ya en WP, preservar)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 8. TÉCNICAS ============ -->
+<h1 class="section" id="tecnicas">8 · Consideraciones técnicas</h1>
+
+<h3>Stack definitivo</h3>
+<table class="data">
+  <thead><tr><th>Capa</th><th>Tecnología</th><th>Razón</th></tr></thead>
+  <tbody>
+    <tr><td>Frontend (sitio público)</td><td>Astro 5 + TailwindCSS</td><td>HTML estático pre-renderizado, JS solo donde es esencial</td></tr>
+    <tr><td>Panel admin</td><td>Astro + React + SortableJS</td><td>Drag-and-drop que funciona en móvil</td></tr>
+    <tr><td>Base de datos</td><td>Cloudflare D1 (SQLite en edge)</td><td>Free tier, lecturas desde edge, sin servidor que mantener</td></tr>
+    <tr><td>Hosting</td><td>Cloudflare Pages</td><td>Free tier, ya tienes el dominio en Cloudflare, edge CDN</td></tr>
+    <tr><td>Imágenes</td><td>Cloudflare Images o R2</td><td>Transformación WebP/AVIF automática</td></tr>
+    <tr><td>Auth admin</td><td>Cookie JWT firmada</td><td>Múltiples usuarios con roles en roadmap</td></tr>
+    <tr><td>Dominio</td><td>vecindariobeergarden.com (sin www)</td><td>Canonical actual preservado</td></tr>
+    <tr><td>Email</td><td>MX Hostinger (INTACTOS)</td><td>NO tocar — preserva correos @vecindariobeergarden.com</td></tr>
+  </tbody>
+</table>
+
+<h3>Performance budgets por tipo de página</h3>
+<table class="data">
+  <thead><tr><th>Página</th><th>LCP objetivo</th><th>JS</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>/menu/ (QR)</td><td><strong>&lt; 1.0s</strong> en 4G</td><td>0 KB (solo CSS)</td><td>Mínimo viable. Filtros de lata/botella cargan al interactuar.</td></tr>
+    <tr><td>/ (home)</td><td>&lt; 1.5s</td><td>&lt; 30 KB</td><td>Hero optimizado, lazy load.</td></tr>
+    <tr><td>Hubs SEO</td><td>&lt; 1.5s</td><td>0 KB</td><td>Texto + fotos lazy load.</td></tr>
+    <tr><td>/menu/cervezas-lata-botella/</td><td>&lt; 2s</td><td>&lt; 80 KB</td><td>Scroll virtualizado, filtros client-side.</td></tr>
+    <tr><td>Panel admin</td><td>&lt; 2s</td><td>&lt; 200 KB</td><td>Toleramos más JS porque solo tú lo usas.</td></tr>
+  </tbody>
+</table>
+
+<h3>SEO local — alineación con Google Business Profile</h3>
+<ul>
+  <li>Datos NAP idénticos en sitio, GBP y redes (especialmente dirección y teléfono).</li>
+  <li>Subir fotos de comida a GBP — mejora CTR del panel lateral.</li>
+  <li>Posts de GBP sincronizados con eventos del sitio (manual o vía API en Fase 4).</li>
+  <li>Reseñas: integrar widget de reseñas de Google en home (Fase 2).</li>
+</ul>
+
+<h3>Accesibilidad AA (no negociable)</h3>
+<ul>
+  <li>Contraste WCAG AA en todos los textos.</li>
+  <li>Navegación por teclado completa (focus visible).</li>
+  <li>Alt descriptivo en TODAS las imágenes (hoy solo 33%, con typo "Vecondario").</li>
+  <li>Formularios con labels asociados.</li>
+  <li>Skip-to-content link al inicio.</li>
+</ul>
+
+<h3>i18n-ready (inglés en Fase 4)</h3>
+<p>El código se estructura con textos en archivos de traducción desde el inicio. URLs con prefijo de idioma en roadmap: <code>/en/menu/</code>, <code>/en/hamburguesas-cuernavaca/</code>, etc. Sitemap multilingual cuando se active.</p>
+
+<h3>Fases de implementación (recapitulación)</h3>
+<ol>
+  <li><strong>Fase 1 (MVP)</strong>: home, /menu/ completo con sus 4 secciones, /menu/cervezas-de-barril/, /menu/cervezas-lata-botella/ con filtros, /contacto/, hubs comerciales principales (5), legales. Panel admin editable. <strong>Aquí está el 80% del valor.</strong></li>
+  <li><strong>Fase 2</strong>: /eventos/ con agenda + archivo migrado + schema Event. /cata-cerveza/.</li>
+  <li><strong>Fase 3</strong>: hubs secundarios (si KWR muestra demanda), /galería/, integración con GBP, reseñas.</li>
+  <li><strong>Fase 4</strong>: dashboard operacional (barriles, calendarios, gastos), i18n inglés.</li>
+  <li><strong>Fase 5</strong>: Hermes (agente Telegram).</li>
+</ol>
+
+<!-- ============ 9. NAP CANÓNICO ============ -->
+<h1 class="section" id="nap">9 · NAP canónico riguroso (Name, Address, Phone)</h1>
+
+<p><strong>Local SEO 101</strong>: el NAP debe ser <strong>idéntico byte a byte</strong> en toda la web, schema, GBP y citations. Cualquier variación confunde a Google y rompe consistencia. Esta es la definición canónica para Vecindario:</p>
+
+<div class="card">
+  <div class="card-label">TELEFONO_VISIBLE — texto legible para usuarios</div>
+  <p style="margin:0.3rem 0; font-size:1.1rem;"><code>777 497 2223</code> &nbsp; <small>(formato MX lada 777 → 3-4-4)</small></p>
+  <p style="margin:0;"><small>Usar en TODO el texto visible: topbar, footer, contacto, hero. NUNCA "+52", "044", "045", ni diferentes agrupaciones.</small></p>
+</div>
+
+<div class="card">
+  <div class="card-label">TELEFONO_TEL — para href="tel:..." y schema</div>
+  <p style="margin:0.3rem 0; font-size:1.1rem;"><code>+527774972223</code></p>
+  <p style="margin:0;"><small>Formato E.164 internacional sin espacios. Único formato válido para <code>tel:</code> y para campo <code>telephone</code> en JSON-LD.</small></p>
+</div>
+
+<div class="card">
+  <div class="card-label">DIRECCION_VISIBLE — texto legible</div>
+  <p style="margin:0.3rem 0; font-size:1.1rem;"><code>Av. Teopanzolco 665, 62450 Cuernavaca, Morelos</code></p>
+  <p style="margin:0;"><small>"Av." siempre con punto. CP siempre 62450. "Cuernavaca, Morelos" con esa coma y orden.</small></p>
+</div>
+
+<div class="card">
+  <div class="card-label">DIRECCION_SCHEMA — para JSON-LD</div>
+  <p style="margin:0;"><code>streetAddress: "Avenida Teopanzolco 665"</code> · <code>postalCode: "62450"</code> · <code>addressLocality: "Cuernavaca"</code> · <code>addressRegion: "Morelos"</code> · <code>addressCountry: "MX"</code></p>
+</div>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Verificación post-implementación con grep</div>
+  <pre style="background:#fff;padding:0.6rem;border-radius:3px;font-size:0.85rem;margin:0.3rem 0;overflow-x:auto;">grep -roE "777[ -]?497[ -]?2223" *.html **/*.html</pre>
+  <p style="margin:0;"><small>Cero variantes. Lo mismo para dirección y nombre. NAP idéntico en GBP, citations y sitio.</small></p>
+</div>
+
+<!-- ============ 10. GBP STRATEGY ============ -->
+<h1 class="section" id="gbp">10 · Google Business Profile — strategy completo</h1>
+
+<p>GBP es <strong>el factor #1 de Local Pack ranking</strong>. Tu ficha ya existe y está sana. Esta sección define la integración con el nuevo sitio.</p>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-val">4.9★</div><div class="kpi-label">Rating actual</div></div>
+  <div class="kpi"><div class="kpi-val">241</div><div class="kpi-label">Reseñas</div></div>
+  <div class="kpi"><div class="kpi-val">Top</div><div class="kpi-label">Tier sector</div></div>
+</div>
+
+<table class="data">
+  <thead><tr><th>Campo</th><th>Valor</th><th>Uso</th></tr></thead>
+  <tbody>
+    <tr><td>GBP_URL</td><td><code>https://maps.google.com/?cid=4438131759649544388</code></td><td><code>sameAs</code> en Organization schema + botón "Ver ficha"</td></tr>
+    <tr><td>GBP_PLACE_ID</td><td>Extraer <code>ChIJ...</code> de la URL</td><td>Embed de Maps + write-review URL</td></tr>
+    <tr><td>GBP_RATING</td><td>4.9</td><td><code>aggregateRating.ratingValue</code> en schema</td></tr>
+    <tr><td>GBP_REVIEW_COUNT</td><td>241</td><td><code>aggregateRating.reviewCount</code> en schema</td></tr>
+    <tr><td>GBP_WRITE_REVIEW_URL</td><td><code>https://search.google.com/local/writereview?placeid=[PLACE_ID]</code></td><td>Botón "Déjanos tu reseña" en home, footer, contacto + QR físico en mesas</td></tr>
+  </tbody>
+</table>
+
+<h3>Elementos del sitio que dependen de GBP</h3>
+<ul>
+  <li><strong>Schema BarOrPub</strong> en todas las páginas: añadir <code>hasMap</code>, <code>identifier</code> (place_id), <code>aggregateRating</code> (4.9/241), array <code>review</code> con 4-6 reseñas destacadas transcritas manualmente.</li>
+  <li><strong>Embed de Maps en /contacto/</strong>: usar <code>place_id</code> (refuerza Local Pack más que coordenadas sueltas).</li>
+  <li><strong>Sección reseñas en home</strong>: 4-6 reseñas reales transcritas + schema <code>Review</code> individual. <strong>NO</strong> widget externo (JS pesa, rompe velocidad QR). Actualizar manualmente cada 3-6 meses.</li>
+  <li><strong>Botón "Déjanos tu reseña en Google"</strong> en home, footer, contacto. Plus QR físico imprimible para poner en mesas / cuenta / ticket.</li>
+  <li><strong>Sistema de captación de reseñas</strong>: email post-servicio (cuando exista email del dominio) + QR en mesa + botón web. Objetivo: 2-5 reseñas/mes constantes (no picos sospechosos).</li>
+  <li><strong>Respuesta a TODAS las reseñas</strong>: positivas 24-72h personalizadas, neutras 24h, negativas 12-24h (reconocer + mover offline).</li>
+</ul>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Auditoría de la ficha existente (post-MVP)</div>
+  <ul style="margin:0.3rem 0;">
+    <li>Categoría primaria: ¿"Bar", "Cervecería" o "Restaurante"? — definir específica.</li>
+    <li>Categorías secundarias (hasta 9): Bar · Cervecería · Restaurante · Beer garden · Pizzería · Hamburguesería.</li>
+    <li>NAP idéntico al sitio (verificar tras implementación).</li>
+    <li>Web apunta a <code>https://vecindariobeergarden.com</code> sin www.</li>
+    <li>Horario al día (ya validado: Mié-Vie 17-23:30, Sáb 15-23:30, Dom 15-22:00).</li>
+    <li>Descripción 750 chars con sector + Cuernavaca + Morelos + diferenciador.</li>
+    <li>Mínimo 10 fotos (exterior, interior, equipo, platos, cervezas).</li>
+    <li>Servicios listados con precios si aplican.</li>
+    <li>Q&A monitorizado + Google Posts cada 2 semanas.</li>
+    <li>Atributos: pet friendly ✓, terraza ✓, acepta tarjetas, acepta menores, etc.</li>
+  </ul>
+</div>
+
+<!-- ============ 11. CITATIONS MX ============ -->
+<h1 class="section" id="citations">11 · Citations locales — directorios MX</h1>
+
+<p>Citations (menciones del NAP en directorios externos) refuerzan <strong>prominencia</strong>, uno de los 3 factores de Local Pack. Calidad &gt; cantidad: 30 citations buenas baten a 200 malas. <strong>NAP idéntico al definido en sección 9.</strong></p>
+
+<h3>Prioridad 1 — Internacionales (siempre)</h3>
+<table class="data">
+  <thead><tr><th>#</th><th>Directorio</th><th>Estado</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Google Business Profile</td><td>✅ Activo (4.9★, 241 reseñas)</td><td>Optimizar según sección 10</td></tr>
+    <tr><td>2</td><td><strong>Apple Business Connect</strong></td><td>⚠️ Pendiente</td><td>Fundamental para Apple Maps/Siri. Si no está, Siri no te encuentra bien.</td></tr>
+    <tr><td>3</td><td><strong>Bing Places</strong></td><td>⚠️ Pendiente</td><td>Importante para ChatGPT Search y Bing.</td></tr>
+    <tr><td>4</td><td>Facebook Business Page</td><td>✅ Activo</td><td>Verificar NAP idéntico en "About"</td></tr>
+    <tr><td>5</td><td>Instagram Business</td><td>✅ Activo</td><td>NAP en bio debe coincidir</td></tr>
+    <tr><td>6</td><td>Foursquare</td><td>⚠️ Pendiente</td><td>Alimenta varios servicios de mapas</td></tr>
+    <tr><td>7</td><td>WhatsApp Business</td><td>✅ Activo</td><td>NAP en perfil business</td></tr>
+  </tbody>
+</table>
+
+<h3>Prioridad 2 — Sector restauración/cerveza</h3>
+<table class="data">
+  <thead><tr><th>#</th><th>Directorio</th><th>Estado</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>8</td><td><strong>TripAdvisor</strong></td><td>⚠️ Crear (decidido)</td><td>Sector restauración: importante. Reseñas duplicadas cuentan para SEO local.</td></tr>
+    <tr><td>9</td><td>Google Maps reviews</td><td>✅ vía GBP</td><td>—</td></tr>
+    <tr><td>10</td><td>TheFork / ElTenedor</td><td>Evaluar</td><td>Solo si quieres reservas online. Decidiste no por ahora → saltar.</td></tr>
+  </tbody>
+</table>
+
+<h3>Prioridad 2 — Locales México</h3>
+<table class="data">
+  <thead><tr><th>#</th><th>Directorio</th><th>URL</th></tr></thead>
+  <tbody>
+    <tr><td>11</td><td>Sección Amarilla</td><td>seccionamarilla.com</td></tr>
+    <tr><td>12</td><td>Guía MX</td><td>guiamexico.com</td></tr>
+    <tr><td>13</td><td>Canaco Puerto Morelos / CANIRIV</td><td>(cámara local, si eres registrado)</td></tr>
+  </tbody>
+</table>
+
+<h3>Prioridad 3 — Refuerzo geográfico local</h3>
+<ul>
+  <li>Cámara de Comercio de Cuernavaca / Morelos</li>
+  <li>Asociación de restauranteros de Cuernavaca (si existe)</li>
+  <li>Directorio oficial del municipio de Cuernavaca</li>
+  <li>Prensa local (artículo o ficha)</li>
+  <li>Patrocinios de eventos cerveceros locales (backlink)</li>
+</ul>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Verificación final NAP global</div>
+  <p style="margin:0.3rem 0;">Después de 10+ citations, buscar en Google:</p>
+  <ul style="margin:0.3rem 0;">
+    <li><code>"Vecindario Beer Garden" "Cuernavaca"</code></li>
+    <li><code>"777 497 2223"</code></li>
+    <li><code>"Av. Teopanzolco 665"</code></li>
+  </ul>
+  <p style="margin:0;">Revisar 3 primeras páginas. Cualquier ficha con datos diferentes → solicitar corrección al directorio.</p>
+</div>
+
+<!-- ============ 12. FAQ HIPERLOCAL ============ -->
+<h1 class="section" id="faq">12 · FAQ hiperlocal (12 preguntas reales con respuesta)</h1>
+
+<p><strong>FAQs que más te preguntan</strong>, organizadas por tipo. Cada una captura intención de búsqueda real, refuerza SEO local y responde objeciones de venta. Implementar con schema <code>FAQPage</code> en cada página donde aparezcan = elegibilidad para rich snippets.</p>
+
+<h3>Logísticas (lugar físico) — home y /contacto/</h3>
+<table class="data">
+  <thead><tr><th>Pregunta</th><th>Respuesta</th><th>Opportunity SEO</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>¿Hay estacionamiento?</td>
+      <td>No tenemos estacionamiento. Te puedes estacionar sobre la Av. Teopanzolco.</td>
+      <td>✅ Hitos locales reales (Av. Teopanzolco) = señal geográfica</td>
+    </tr>
+    <tr>
+      <td>¿Pueden entrar menores?</td>
+      <td>Sí, sin problema. No se les sirve alcohol.</td>
+      <td>Media — captura "restaurante familiar cuernavaca"</td>
+    </tr>
+    <tr>
+      <td><strong>¿Aceptan mascotas?</strong></td>
+      <td>Sí, mascotas bienvenidas.</td>
+      <td>✅✅ Crítica — captura <code>restaurante pet friendly cuernavaca</code> (390 vol/mes, SD 26)</td>
+    </tr>
+    <tr>
+      <td>¿Hace falta reservar?</td>
+      <td>No es obligatorio, pero sí preferible — sobre todo viernes, sábados y días de evento.</td>
+      <td>Media — captura "restaurante reservar cuernavaca"</td>
+    </tr>
+    <tr>
+      <td>¿Se puede fumar?</td>
+      <td>Sí, tenemos área para fumar en la entrada / garage.</td>
+      <td>Baja</td>
+    </tr>
+    <tr>
+      <td>¿Puedo llevar mi pastel de cumpleaños?</td>
+      <td>Sí, sin problema.</td>
+      <td>✅ Captura <code>lugar para cumpleaños cuernavaca</code> (vol 210, SD 30)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>De menú — /menu/ y hubs de comida</h3>
+<table class="data">
+  <thead><tr><th>Pregunta</th><th>Respuesta</th><th>Opportunity SEO</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>¿Tienen otra cosa aparte de cerveza?</td>
+      <td>Sí: mezcal, ron, whiskey, ginebra. Coctelería básica (mezcalitas, gin tonic de cítricos y frutos rojos, cubas). Bebidas sin alcohol: limonada, naranjada, rusa, refrescos, kombucha. <strong>Nota: ya no manejamos pulque</strong> (actualizar briefing).</td>
+      <td>Media</td>
+    </tr>
+    <tr>
+      <td><strong>¿Tienen cerveza "normal"?</strong></td>
+      <td>Sí: Corona, Victoria, Heineken, Bohemia.</td>
+      <td>✅ Importante — captura clientes que NO quieren artesanal</td>
+    </tr>
+    <tr>
+      <td>¿Tienen cerveza sin alcohol/gluten?</td>
+      <td>Sí: varias opciones de cerveza sin alcohol en lata/botella de diferentes estilos, nacionales e importadas. También un par de opciones sin gluten.</td>
+      <td>Bajo volumen, alta conversión + nicho premium</td>
+    </tr>
+    <tr>
+      <td>¿Tienen opciones vegetarianas/veganas?</td>
+      <td>Sí: ensaladas y la "Entrada Vecindario" que lleva hummus.</td>
+      <td>Media — nicho creciente</td>
+    </tr>
+    <tr>
+      <td>¿Se puede combinar la pizza?</td>
+      <td>No. Las pizzas son pequeñas, para 1-2 personas.</td>
+      <td>Long-tail específico</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>FAQs hiperlocales adicionales (sobre ubicación y zonas cercanas) — /contacto/</h3>
+<p>Estas NO están en tu lista original pero son oportunidad SEO real. Aumentan señal geográfica <strong>sin crear páginas de zona separadas</strong> (doorway pages — descartado):</p>
+<ul>
+  <li>¿Están cerca de la zona arqueológica de Teopanzolco? → <em>"Sí, sobre la avenida del mismo nombre"</em></li>
+  <li>¿Cómo llego desde Jiutepec? → <em>"10 min por la autopista del Sol"</em></li>
+  <li>¿Cuánto se tarda desde Tepoztlán? → <em>"25 min por la México-Cuernavaca"</em></li>
+  <li>¿Hay transporte público cerca? → <em>(mencionar ruta RTC / parada real)</em></li>
+  <li>¿A qué hora abren los miércoles? / ¿Están abiertos los domingos? → <em>horarios validados</em></li>
+</ul>
+
+<h3>Distribución por página</h3>
+<table class="data">
+  <thead><tr><th>Página</th><th>FAQs</th><th>Schema</th></tr></thead>
+  <tbody>
+    <tr><td><code>/</code> Home</td><td>6-8 principales (las logísticas + 2 de menú)</td><td><code>FAQPage</code></td></tr>
+    <tr><td><code>/contacto/</code></td><td>Logísticas + hiperlocales (estacionamiento, menores, mascotas, reservar, fumar, cómo llegar)</td><td><code>FAQPage</code></td></tr>
+    <tr><td><code>/pet-friendly-cuernavaca/</code></td><td>Mascotas específicas (perros grandes, terraza, etc.)</td><td><code>FAQPage</code></td></tr>
+    <tr><td><code>/menu/</code></td><td>Las 5 de menú</td><td><code>FAQPage</code></td></tr>
+    <tr><td>Cada hub de comida</td><td>2-3 específicas del plato</td><td><code>FAQPage</code></td></tr>
+  </tbody>
+</table>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Anti-canibalización FAQ</div>
+  <p style="margin:0;">NO duplicar las mismas FAQs en varias páginas. Variar formulación o usar FAQs distintas. Las FAQs de blog (Fase 13) deben ser INFORMACIONALES y distintas a las comerciales.</p>
+</div>
+
+<!-- ============ 13. BLOG ANTI-CANIBALIZACIÓN ============ -->
+<h1 class="section" id="blog">13 · Blog — anti-canibalización crítica</h1>
+
+<p><strong>Regla de oro</strong>: el blog INFORMA, no VENDE. Las páginas comerciales (home, hubs, /menu/) atacan keywords transaccionales. El blog DEBE atacar keywords informacionales distintas, sin repetir las comerciales.</p>
+
+<div class="card danger">
+  <div class="card-label" style="color: var(--danger);">❌ Prohibido</div>
+  <p style="margin:0;">Posts tipo "Hamburguesas en Cuernavaca" o "La mejor cerveza artesanal en Cuernavaca" — eso ya lo cubren las páginas hub. Crearlo en blog = canibalización.</p>
+</div>
+
+<h3>3 posts iniciales sugeridos (Fase 2)</h3>
+<table class="data">
+  <thead><tr><th>Tema</th><th>Tipo</th><th>Keyword objetivo</th></tr></thead>
+  <tbody>
+    <tr><td>IPA vs Lager: cuál elegir si empiezas en cerveza artesanal</td><td>Comparativa</td><td>cerveza IPA (vol 2,400), pale ale (vol 1,000)</td></tr>
+    <tr><td>Cómo se lee una carta de cervezas: ABV, IBU y estilo</td><td>Guía educativa</td><td>long-tail informacional — refuerza autoridad Cicerone/BJCP</td></tr>
+    <tr><td>Cómo maridar pizza con cerveza artesanal</td><td>Cómo/Tutorial</td><td>maridaje de cerveza (vol 40, SD 13), cerveza y pizza</td></tr>
+  </tbody>
+</table>
+
+<h3>Estructura de cada post</h3>
+<ul>
+  <li>~700-900 palabras, originales, específicos al sector cervecero mexicano</li>
+  <li>H1 único + intro gancho + 4-6 H2 + 1-2 imágenes</li>
+  <li>Schema <code>Article</code> + <code>BreadcrumbList</code></li>
+  <li>1-2 enlaces internos contextuales a páginas comerciales relevantes (anchor descriptivo)</li>
+  <li>CTA suave al final (NO agresivo): "¿Tienes dudas? Pregúntanos en el bar"</li>
+</ul>
+
+<h3>Ubicación y nav</h3>
+<ul>
+  <li><code>/blog/</code> hub con cards de los posts</li>
+  <li><code>/blog/[slug]/</code> cada post individual</li>
+  <li>"Blog" en nav principal + sección en footer</li>
+  <li>Sitemap: <code>/blog/</code> priority 0.7, posts priority 0.6</li>
+</ul>
+
+<!-- ============ 14. IMÁGENES Y ROBOTS ============ -->
+<h1 class="section" id="imagenes-robots">14 · Reglas técnicas de imágenes y robots.txt</h1>
+
+<h3>Imágenes — reglas estrictas (Cloudflare Pages)</h3>
+<ul>
+  <li><strong>ASCII only en nombres de archivo</strong>: cero tildes ni eñes. <code>tostadas-atun.webp</code> ✓ (sin tilde); <code>tostadas-atún.webp</code> ✗ (rompe en Cloudflare).</li>
+  <li><strong>Formatos</strong>: WebP quality 80-85 (hero/principales), 75-78 (thumbs). AVIF si Cloudflare Images.</li>
+  <li><strong>Dos versiones</strong> para grids: <code>[nombre].webp</code> (full ~1200-1600px) + <code>[nombre]-thumb.webp</code> (~400-600px). Usar <code>srcset</code> y <code>sizes</code>.</li>
+  <li><strong>Naming</strong>: <code>[seccion]-[descripcion-corta].webp</code>, minúsculas, guiones, máx 60 chars.</li>
+  <li><strong>Atributos de rendimiento</strong>: <code>loading="lazy"</code> + <code>decoding="async"</code> en todas (excepto hero/logo). <code>width</code> y <code>height</code> explícitos SIEMPRE (evita CLS).</li>
+  <li><strong>Hero especial</strong>: <code>&lt;link rel="preload" as="image" href="..." type="image/webp"&gt;</code> en head + <code>fetchpriority="high"</code> en el <code>&lt;img&gt;</code> + <strong>NO</strong> lazy load.</li>
+  <li><strong>Alt text</strong>: único, descriptivo, máx 125 chars, incluir "Cuernavaca" cuando tenga sentido contextual. NO empezar con "Imagen de...". Variar redacción.</li>
+  <li><strong>Limpiar EXIF</strong>: <code>exiftool -all= -overwrite_original -r ./assets/img/</code> (NO usar Pillow para WebP, corrompe).</li>
+</ul>
+
+<h3>robots.txt — crawlers de IA</h3>
+<p>Estrategia: bloquear crawlers que solo entrenan modelos IA (te roban contenido sin dar nada) pero <strong>NO</strong> bloquear los que traen tráfico (ChatGPT Search, Facebook previews).</p>
+<pre style="background:var(--surface);padding:0.8rem;border-radius:4px;font-size:0.85rem;overflow-x:auto;">User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# NO bloquear estos (traen tráfico):
+# GPTBot, ChatGPT-User (ChatGPT Search)
+# FacebookBot, meta-externalagent (Facebook previews, WhatsApp)
+# Googlebot, Bingbot, Applebot, DuckDuckBot
+
+User-agent: *
+Disallow:
+
+Sitemap: https://vecindariobeergarden.com/sitemap.xml</pre>
+
+<h3>Performance budgets por tipo de página</h3>
+<table class="data">
+  <thead><tr><th>Página</th><th>LCP objetivo</th><th>CSS inline+externo</th><th>Hero</th><th>Otras imágenes</th></tr></thead>
+  <tbody>
+    <tr><td>/menu/ (QR)</td><td><strong>&lt; 1.0s</strong> 4G</td><td>&lt; 30 KB</td><td>sin hero (lista directa)</td><td>sin imágenes por defecto</td></tr>
+    <tr><td>/ (home)</td><td>&lt; 1.5s</td><td>&lt; 50 KB</td><td>&lt; 200 KB</td><td>&lt; 100 KB c/u, lazy load</td></tr>
+    <tr><td>Hubs SEO</td><td>&lt; 1.5s</td><td>&lt; 50 KB</td><td>&lt; 200 KB</td><td>&lt; 100 KB c/u, lazy load</td></tr>
+    <tr><td>/menu/cervezas-lata-botella/</td><td>&lt; 2s</td><td>&lt; 80 KB</td><td>sin hero</td><td>sin imágenes por defecto (lista virtualizada)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 15. EMAIL ============ -->
+<h1 class="section" id="email">15 · Email del dominio</h1>
+
+<p>Hoy usas <code>vecindario665@gmail.com</code>. <strong>Recomendación fuerte: crear emails del dominio</strong>. Razones:</p>
+
+<ul>
+  <li><strong>SEO y confianza</strong>: Google usa email del dominio como señal de negocio legítimo. Gmail resta.</li>
+  <li><strong>Citations</strong>: directorios (Apple, Bing, TripAdvisor) piden email del dominio.</li>
+  <li><strong>Schema</strong>: <code>LocalBusiness.email</code> debe apuntar al dominio.</li>
+  <li><strong>Marca</strong>: prensa, organizadores de festivales cerveceros, cervecerías aliadas → email del dominio da confianza.</li>
+  <li><strong>Operaciones</strong>: para sistema de reseñas post-servicio (Fase 14.C del prompt) necesitas remitente del dominio. Hermes y dashboard requerirán emails funcionales.</li>
+</ul>
+
+<h3>Setup recomendado (2 opciones)</h3>
+<table class="data">
+  <thead><tr><th>Opción</th><th>MX</th><th>Envío</th><th>Costo</th><th>Complejidad</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>A. Hostinger Email (recomendada)</strong></td>
+      <td>Hostinger (actual)</td>
+      <td>Hostinger webmail/IMAP o Gmail (configurar "enviar como")</td>
+      <td>Incluido en tu hosting</td>
+      <td>Baja — sigues con lo que pagas</td>
+    </tr>
+    <tr>
+      <td>B. Cloudflare Email Routing + Resend</td>
+      <td>Migrar a Cloudflare</td>
+      <td>Resend (API)</td>
+      <td>Gratis (12k/mes)</td>
+      <td>Media — más técnico pero más escalable</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Emails a crear (sugerencia mínima)</h3>
+<ul>
+  <li><code>hola@vecindariobeergarden.com</code> — email principal visible en sitio (más amigable que <code>info@</code>)</li>
+  <li><code>reservaciones@vecindariobeergarden.com</code> — para eventos (puede redirigir al principal)</li>
+  <li><code>[tu-nombre]@vecindariobeergarden.com</code> — comunicaciones 1-a-1</li>
+  <li><code>[socio]@vecindariobeergarden.com</code> — tu socio</li>
+</ul>
+
+<p><strong>No crear más de los necesarios</strong>: cada email es un inbox que mantener.</p>
+
+<!-- ============ 16. RESUMEN ACTUALIZADO ============ -->
+<h1 class="section" id="resumen-actualizado">16 · Resumen de cambios vs versión anterior</h1>
+
+<table class="data">
+  <thead><tr><th>Aspecto</th><th>Antes</th><th>Ahora</th></tr></thead>
+  <tbody>
+    <tr><td>NAP</td><td>"Consistente" (genérico)</td><td>Canónico riguroso con formato MX exacto + grep de auditoría</td></tr>
+    <tr><td>GBP</td><td>"Integración" (vago)</td><td>Strategy completa: aggregateRating 4.9/241, write-review URL, botón, QR físico, transcripción reseñas, auditoría</td></tr>
+    <tr><td>Citations</td><td>No contemplado</td><td>Lista MX específica: Apple, Bing, TripAdvisor (crear), Sección Amarilla, Foursquare</td></tr>
+    <tr><td>FAQ</td><td>No contemplado</td><td>12 FAQs reales CON respuestas + distribución por página + schema FAQPage</td></tr>
+    <tr><td>Blog</td><td>Opcional</td><td>Obligatorio Fase 2, 3 posts con anti-canibalización estricta</td></tr>
+    <tr><td>Zonas satélite</td><td>(no contemplado)</td><td>NO como páginas (doorway pages). SÍ como contenido en FAQ hiperlocal</td></tr>
+    <tr><td>Imágenes</td><td>WebP/AVIF (vago)</td><td>Reglas estrictas: ASCII only, preload hero, width/height, exiftool, dos versiones</td></tr>
+    <tr><td>robots.txt</td><td>No especificado</td><td>Bloquear crawlers entrenamiento IA, permitir GPTBot/FacebookBot</td></tr>
+    <tr><td>Email</td><td>"Preservar Hostinger MX"</td><td>Recomendación: crear emails del dominio (Hostinger Email recomendado)</td></tr>
+    <tr><td>Briefing de marca</td><td>"Pulque entre las bebidas"</td><td>Actualizar: ya no manejan pulque (confirmado por Carlos)</td></tr>
+    <tr><td>Performance budgets</td><td>"&lt;1s en móvil"</td><td>Tabla específica por tipo de página con tamaños CSS/imagen</td></tr>
+  </tbody>
+</table>
+
+<h3>Pendientes de validación ✏️ (no bloquean design system)</h3>
+<ul>
+  <li>Decisión email final (Hostinger vs Cloudflare+Resend)</li>
+  <li>Confirmar <code>GBP_PLACE_ID</code> exacto (extraído de la URL de Maps)</li>
+  <li>Validar Categoría primaria GBP actual (¿"Bar", "Cervecería", "Restaurante"?)</li>
+  <li>Cuenta Instagram Business: verificar NAP en bio coincide</li>
+  <li>Facebook Business Page: verificar NAP en "About"</li>
+  <li>Actualizar briefing original: quitar pulque de bebidas</li>
+</ul>
+
+<div class="closing">
+  <p>Esta arquitectura + el análisis SEO son el insumo para el <strong>compact design system</strong> (paleta, tipografías, firma memorable) que viene después. Cuando critiques o ajustes algo, lo iteramos antes de pasar al diseño visual.</p>
+</div>
+
+</div>
+
+</body>
+</html>

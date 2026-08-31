@@ -1,0 +1,41 @@
+---
+interface Props {
+  text: string;
+  centered?: boolean;
+  color?: string;
+}
+const { text, centered = false, color } = Astro.props;
+---
+
+<div class={`section-label${centered ? ' centered' : ''}`} style={color ? `color:${color}` : ''}>
+  {text}
+</div>
+
+<style>
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--vbg-ambar);
+    margin-bottom: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-label::before {
+    content: "";
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+  }
+  .centered {
+    justify-content: center;
+  }
+  .centered::after {
+    content: "";
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+  }
+</style>

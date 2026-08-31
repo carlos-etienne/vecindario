@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TapWall from '../../components/TapWall.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import site from '../../data/site.json';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Menú Vecindario Beer Garden",
+  "hasMenuSection": [
+    { "@type": "MenuSection", "name": "Cervezas de barril" },
+    { "@type": "MenuSection", "name": "Alimentos" },
+    { "@type": "MenuSection", "name": "Cervezas lata y botella" },
+    { "@type": "MenuSection", "name": "Otras bebidas" }
+  ]
+};
+
+const platos = {
+  empezar: [
+    { nombre: "Tostadas de atún", desc: "Atún fresco, aguacate, chipotle, sésamo sobre tostada crujiente.", precio: 140, foto: "/images/tostadas-de-atun.jpg", tag: "pp" },
+    { nombre: "Papas Flanders", desc: "Papas gajo, queso fundido, tocino, jalapeño.", precio: 120, foto: "/images/papas-flanders.png" },
+    { nombre: "Entrada Vecindario", desc: "Hummus de la casa, pan pita, vegetales frescos.", precio: 110, tag: "veg" },
+    { nombre: "Tiras de pollo", desc: "Empanizadas, salsa buffalo o BBQ.", precio: 130 },
+  ],
+  hamburguesas: [
+    { nombre: "Hamburguesa Vecindario", desc: "Pan brioche, queso americano, tocino, pepinillos, salsa BBQ y cebolla caramelizada.", precio: 185, foto: "/images/hamburguesa-vecindario.jpg" },
+    { nombre: "Hamburguesa Teopanzolco", desc: "Pan brioche, chimichurri, mix de tres quesos y tocino.", precio: 195, foto: "/images/hamburguesa-teopanzolco.jpg" },
+    { nombre: "Hamburguesa Vegetariana", desc: "Falafel empanizado, lechuga, tomate, cebolla caramelizada, salsa BBQ, pepinillos y papas a la francesa. Queso americano o cheddar opcional.", precio: 170, tag: "veg" },
+    { nombre: "Torta de suadero confitado", desc: "Torta de la casa con suadero confitado." },
+    { nombre: "Sandwich de pulled pork", desc: "Cerdo desmenuzado, estilo pulled pork." },
+  ],
+  pizzas: [
+    { nombre: "Pizza Eureka", desc: "Salsa de tomate, mozzarella, albahaca fresca.", precio: 160, foto: "/images/pizza-eureka.jpg" },
+    { nombre: "Pizza Pera", desc: "Mozzarella, pera, queso gorgonzola, nuez, miel.", precio: 180 },
+    { nombre: "Pizza Pechuga Napolitana", desc: "Pechuga, mozzarella, tomate, orégano.", precio: 175, tag: "pp" },
+  ],
+  postres: [
+    { nombre: "Brownie", desc: "Chocolate, helado de vainilla.", precio: 90 },
+  ],
+};
+
+const lataSample = [
+  { nombre: "Tropical IPA", cerveceria: "Insurgente · Tijuana", formato: "Lata 473ml", estilo: "Hazy IPA", precio: 75, abv: "6.5%" },
+  { nombre: "Mantarraya", cerveceria: "Agua Mala · Ensenada", formato: "Lata 355ml", estilo: "Cream Ale", precio: 68, abv: "4.8%" },
+  { nombre: "Payne's Killer Ale", cerveceria: "Principal · CDMX", formato: "Botella 355ml", estilo: "Strong Ale", precio: 82, abv: "6.8%" },
+  { nombre: "Weihenstephaner Hefe", cerveceria: "Weihenstephan · Alemania", formato: "Botella 500ml", estilo: "Hefeweizen · Importada", precio: 115, abv: "5.4%" },
+  { nombre: "Saison de la Maison", cerveceria: "Cru Crú · Querétaro", formato: "Lata 473ml", estilo: "Saison", precio: 88, abv: "6.0%" },
+  { nombre: "Búho Common", cerveceria: "Búho · Oaxaca", formato: "Lata 355ml", estilo: "California Common", precio: 72, abv: "5.2%" },
+];
+
+---
+
+<BaseLayout
+  title="Menú · Vecindario Beer Garden"
+  description="Menú completo: 10 cervezas de barril en rotación, pizzas estilo napolitano, hamburguesas, entradas, cervezas de lata/botella y otras bebidas."
+  headerVariant="solid"
+  schema={schema}
+>
+  <div class="menu-topbar">
+    <div class="menu-topbar-inner">
+      <span class="open-now">● ABIERTO AHORA</span>
+      <div class="topbar-right">
+        <a href={`tel:${site.telefonoTel}`}>{site.telefono}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY NAV (anchors, no tabs que esconden contenido) -->
+  <nav class="menu-tabs">
+    <div class="menu-tabs-inner">
+      <a href="#taps" class="tab-btn active">Barril <span class="tab-count">10</span></a>
+      <a href="#alimentos" class="tab-btn">Alimentos</a>
+      <a href="#lata" class="tab-btn">Lata / Botella</a>
+      <a href="#otras" class="tab-btn">Otras bebidas</a>
+    </div>
+  </nav>
+
+  <div class="menu-body">
+
+    <!-- CERVEZAS DE BARRIL -->
+    <section id="taps" class="menu-section">
+      <div class="section-head">
+        <SectionLabel text="En rotación · actualizado hoy" />
+        <h1 class="menu-title">Cervezas de barril</h1>
+        <p class="menu-sub">Diez líneas con cervecerías mexicanas independientes. Lo que ves aquí es lo que hay ahora en la barra.</p>
+      </div>
+      <TapWall variant="full" />
+      <div class="qr-banner">¿No sabes qué pedir? Pregunta al personal — te recomienda según tu gusto. <strong>La carta de barril está en rotación constante.</strong></div>
+      <p class="section-more"><a href="/cerveza-artesanal-cuernavaca/">Más sobre nuestra cerveza artesanal →</a></p>
+    </section>
+
+    <!-- ALIMENTOS -->
+    <section id="alimentos" class="menu-section">
+      <div class="section-head">
+        <SectionLabel text="Cocina casual" />
+        <h2 class="menu-title">Alimentos</h2>
+        <p class="menu-sub">Pizzas estilo napolitano, hamburguesas y entradas para compartir.</p>
+      </div>
+
+      <div class="cat-head"><h3>Para empezar</h3><span class="cat-count">4 opciones</span></div>
+      {platos.empezar.map((p) => (
+        <div class="plato-row">
+          {p.foto ? (
+            <button class="plato-thumb" data-foto={p.foto} data-nombre={p.nombre} aria-label={`Ver foto de ${p.nombre}`}>
+              <img src={p.foto} alt={p.nombre} loading="lazy" />
+            </button>
+          ) : (
+            <div class="plato-thumb-static">
+              <img src="/assets/icono.svg" alt="" loading="lazy" />
+            </div>
+          )}
+          <div class="plato-info">
+            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
+            <div class="plato-desc">{p.desc}</div>
+          </div>
+          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
+        </div>
+      ))}
+
+      <div class="cat-head"><h3>Hamburguesas y sandwiches</h3><span class="cat-count">5 opciones · cocinado al momento</span></div>
+      {platos.hamburguesas.map((p) => (
+        <div class="plato-row">
+          {p.foto ? (
+            <button class="plato-thumb" data-foto={p.foto} data-nombre={p.nombre} aria-label={`Ver foto de ${p.nombre}`}>
+              <img src={p.foto} alt={p.nombre} loading="lazy" />
+            </button>
+          ) : (
+            <div class="plato-thumb-static">
+              <img src="/assets/icono.svg" alt="" loading="lazy" />
+            </div>
+          )}
+          <div class="plato-info">
+            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
+            <div class="plato-desc">{p.desc}</div>
+          </div>
+          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
+        </div>
+      ))}
+
+      <p class="section-more"><a href="/hamburguesas-cuernavaca/">Más sobre nuestras hamburguesas →</a></p>
+
+      <div class="cat-head"><h3>Pizzas estilo napolitano</h3><span class="cat-count">3 opciones · para compartir</span></div>
+      {platos.pizzas.map((p) => (
+        <div class="plato-row">
+          {p.foto ? (
+            <button class="plato-thumb" data-foto={p.foto} data-nombre={p.nombre} aria-label={`Ver foto de ${p.nombre}`}>
+              <img src={p.foto} alt={p.nombre} loading="lazy" />
+            </button>
+          ) : (
+            <div class="plato-thumb-static">
+              <img src="/assets/icono.svg" alt="" loading="lazy" />
+            </div>
+          )}
+          <div class="plato-info">
+            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
+            <div class="plato-desc">{p.desc}</div>
+          </div>
+          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
+        </div>
+      ))}
+
+      <p class="section-more"><a href="/pizzas-cuernavaca/">Más sobre nuestras pizzas →</a></p>
+
+      <div class="cat-head"><h3>Postres</h3></div>
+      {platos.postres.map((p) => (
+        <div class="plato-row">
+          {p.foto ? (
+            <button class="plato-thumb" data-foto={p.foto} data-nombre={p.nombre} aria-label={`Ver foto de ${p.nombre}`}>
+              <img src={p.foto} alt={p.nombre} loading="lazy" />
+            </button>
+          ) : (
+            <div class="plato-thumb-static">
+              <img src="/assets/icono.svg" alt="" loading="lazy" />
+            </div>
+          )}
+          <div class="plato-info">
+            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
+            <div class="plato-desc">{p.desc}</div>
+          </div>
+          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
+        </div>
+      ))}
+    </section>
+
+    <!-- LATA/BOTELLA -->
+    <section id="lata" class="menu-section">
+      <div class="section-head">
+        <SectionLabel text="Catálogo" />
+        <h2 class="menu-title">Cervezas lata / botella</h2>
+        <p class="menu-sub">Cervecerías nacionales e importadas. Esta es una muestra — tenemos muchas más en la cámara fría.</p>
+      </div>
+      <div class="lata-grid">
+        {lataSample.map((c) => (
+          <div class="lata-card">
+            <div class="lc-name">{c.nombre}</div>
+            <div class="lc-meta">{c.cerveceria.toUpperCase()} · {c.formato.toUpperCase()}</div>
+            <div class="lc-style">{c.estilo}</div>
+            <div class="lc-foot"><span class="lc-price">${c.precio}</span><span class="lc-abv">{c.abv} ABV</span></div>
+          </div>
+        ))}
+      </div>
+      <div class="qr-banner"><strong>¿No ves la cerveza que buscas en vitrina?</strong> Pregunta al personal — tenemos muchas más en la cámara fría que no caben en exhibición.</div>
+    </section>
+
+    <!-- OTRAS BEBIDAS -->
+    <section id="otras" class="menu-section">
+      <div class="section-head">
+        <SectionLabel text="Además de cerveza" />
+        <h2 class="menu-title">Otras bebidas</h2>
+      </div>
+
+      <div class="cat-head"><h3>Cervezas comerciales</h3></div>
+      <div class="otras-list">
+        <div class="otras-item"><span>Corona</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Victoria</span><span class="oi-price">$40</span></div>
+        <div class="otras-item"><span>Heineken</span><span class="oi-price">$50</span></div>
+        <div class="otras-item"><span>Bohemia</span><span class="oi-price">$45</span></div>
+      </div>
+
+      <div class="cat-head"><h3>Destilados y coctelería</h3></div>
+      <div class="otras-list">
+        <div class="otras-item"><span>Mezcal</span><span class="oi-price">desde $90</span></div>
+        <div class="otras-item"><span>Ron</span><span class="oi-price">desde $85</span></div>
+        <div class="otras-item"><span>Whiskey</span><span class="oi-price">desde $110</span></div>
+        <div class="otras-item"><span>Ginebra</span><span class="oi-price">desde $95</span></div>
+        <div class="otras-item"><span>Mezcalita</span><span class="oi-price">$120</span></div>
+        <div class="otras-item"><span>Gin tonic</span><span class="oi-price">$130</span></div>
+        <div class="otras-item"><span>Cuba</span><span class="oi-price">$110</span></div>
+      </div>
+
+      <div class="cat-head"><h3>Sin alcohol</h3></div>
+      <div class="otras-list">
+        <div class="otras-item"><span>Limonada / Naranjada</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Rusa</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Refresco</span><span class="oi-price">$35</span></div>
+        <div class="otras-item"><span>Kombucha</span><span class="oi-price">$55</span></div>
+        <div class="otras-item"><span>Cerveza sin alcohol</span><span class="oi-price">$70</span></div>
+        <div class="otras-item"><span>Café</span><span class="oi-price">$40</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" class="lightbox">
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="" />
+      <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">×</button>
+    </div>
+  </dialog>
+</BaseLayout>
+
+<style>
+  .menu-topbar { background: var(--vbg-negro); color: #9a9183; font-size: .78rem; padding: .4rem 0; position: relative; z-index: 101; margin-top: 60px; }
+  .menu-topbar-inner { max-width: 900px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; }
+  .open-now { color: var(--vbg-verde-claro); font-weight: 600; animation: pulse 2.5s infinite; }
+  .topbar-right a:hover { color: var(--vbg-ambar); }
+
+  /* Tabs → anchors */
+  .menu-tabs { background: var(--vbg-blanco); border-bottom: 1px solid var(--vbg-gris-linea); position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .menu-tabs-inner { max-width: 900px; margin: 0 auto; padding: 0 .5rem; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .menu-tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: .9rem 1rem; font-family: 'Poppins', sans-serif; font-size: .84rem; font-weight: 600; color: var(--vbg-gris-texto); white-space: nowrap; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; display: inline-flex; align-items: center; gap: .35rem; }
+  .tab-btn:active { color: var(--vbg-verde); }
+  .tab-btn.active { color: var(--vbg-verde); border-bottom-color: var(--vbg-ambar); }
+  .tab-count { font-family: 'JetBrains Mono', monospace; font-size: .64rem; background: var(--vbg-claro); color: var(--vbg-ambar); padding: .1rem .35rem; border-radius: 2px; font-weight: 500; }
+
+  .menu-body { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  .menu-section { scroll-margin-top: 60px; margin-bottom: 3rem; }
+  .section-head { margin-bottom: 1.5rem; }
+  .menu-title { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.5rem, 4vw, 2.1rem); color: var(--vbg-verde); line-height: 1; margin-bottom: .35rem; }
+  .menu-sub { color: var(--vbg-gris-texto); font-size: .88rem; }
+
+  .cat-head { display: flex; align-items: baseline; gap: .7rem; margin: 1.5rem 0 .4rem; padding-bottom: .4rem; border-bottom: 2px solid var(--vbg-verde-claro); }
+  .cat-head h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.2rem; color: var(--vbg-verde); }
+  .section-more { margin: 1rem 0 0; }
+  .section-more a { color: var(--vbg-verde); font-weight: 600; font-size: .88rem; }
+  .cat-count { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--vbg-gris-texto); }
+
+  .plato-row { display: grid; grid-template-columns: 56px 1fr auto; gap: .8rem; padding: .7rem 0; border-bottom: 1px dotted var(--vbg-gris-linea); align-items: center; }
+  .plato-thumb { width: 56px; height: 56px; border-radius: 4px; overflow: hidden; border: none; padding: 0; cursor: pointer; background: var(--vbg-claro-2); flex-shrink: 0; }
+  .plato-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .plato-thumb:hover img { transform: scale(1.1); }
+  .plato-thumb-static { width: 56px; height: 56px; border-radius: 4px; overflow: hidden; background: var(--vbg-claro-2); flex-shrink: 0; }
+  .plato-thumb-static img { width: 100%; height: 100%; object-fit: contain; padding: 10px; opacity: .5; }
+  .plato-info { min-width: 0; }
+  .plato-name { font-weight: 600; color: var(--vbg-carbon); font-size: .92rem; margin-bottom: .1rem; }
+  .plato-desc { font-size: .8rem; color: var(--vbg-gris-texto); line-height: 1.4; }
+  .plato-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: .98rem; white-space: nowrap; }
+  .plato-tag-veg { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .56rem; color: var(--vbg-verde-claro); border: 1px solid var(--vbg-verde-claro); padding: .05rem .3rem; border-radius: 2px; margin-left: .4rem; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
+
+  .lata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .7rem; }
+  .lata-card { background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: .8rem .9rem; }
+  .lc-name { font-weight: 600; font-size: .88rem; color: var(--vbg-carbon); margin-bottom: .15rem; }
+  .lc-meta { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--vbg-gris-texto); margin-bottom: .3rem; }
+  .lc-style { font-family: 'JetBrains Mono', monospace; font-size: .74rem; color: var(--vbg-verde); font-weight: 500; margin-bottom: .3rem; }
+  .lc-foot { display: flex; justify-content: space-between; margin-top: .2rem; }
+  .lc-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: .9rem; }
+  .lc-abv { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--vbg-gris-texto); }
+
+  .otras-list { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem 1.5rem; }
+  .otras-item { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--vbg-gris-linea); font-size: .86rem; }
+  .otras-item .oi-price { font-family: 'JetBrains Mono', monospace; color: var(--vbg-ambar); font-weight: 600; }
+
+  .qr-banner { background: var(--vbg-verde); color: #f3ebd9; padding: .9rem; margin-top: 1.2rem; border-radius: 4px; font-size: .82rem; text-align: center; }
+  .qr-banner strong { color: #fff; }
+
+  .lightbox { border: none; padding: 0; background: none; max-width: none; max-height: none; margin: auto; }
+  .lightbox::backdrop { background: rgba(0,0,0,.85); }
+  .lightbox-inner { position: relative; }
+  .lightbox-inner img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; display: block; }
+  .lightbox-close { position: absolute; top: .4rem; right: .7rem; background: rgba(20,18,16,.7); border: none; color: #fff; font-size: 2rem; cursor: pointer; line-height: 1; z-index: 2; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+
+  @media (max-width: 700px) {
+    .otras-list { grid-template-columns: 1fr; }
+    .plato-row { grid-template-columns: 48px 1fr auto; gap: .6rem; }
+    .plato-thumb, .plato-thumb-static { width: 48px; height: 48px; }
+    .plato-thumb-static img { padding: 8px; }
+    /* Tabs en grid 2x2 para móvil (nada cortado) */
+    .menu-tabs-inner { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+    .tab-btn { justify-content: center; border-bottom: 3px solid transparent; }
+    .tab-btn.active { border-bottom-color: var(--vbg-ambar); }
+  }
+</style>
+
+<script>
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.plato-thumb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lightboxImg.src = btn.dataset.foto;
+      lightboxImg.alt = btn.dataset.nombre;
+      lightbox.showModal();
+    });
+  });
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
+  document.getElementById('lightbox-close').addEventListener('click', () => lightbox.close());
+
+  // Resaltar tab activa según sección visible
+  const sections = document.querySelectorAll('.menu-section');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === `#${entry.target.id}`));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>

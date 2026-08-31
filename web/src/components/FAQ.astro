@@ -1,0 +1,58 @@
+---
+interface FaqItem {
+  q: string;
+  a: string;
+}
+interface Props {
+  items: FaqItem[];
+  centered?: boolean;
+}
+const { items, centered = false } = Astro.props;
+---
+
+<div class="faq-wrap">
+  {centered && (
+    <div class="faq-head">
+      <slot name="head" />
+    </div>
+  )}
+  <div class="faq-list">
+    {items.map((f, i) => (
+      <div class={`faq-item${i === 0 ? ' open' : ''}`}>
+        <h3 class="faq-q">{f.q}<span class="faq-toggle">+</span></h3>
+        <div class="faq-a" set:html={f.a} />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; margin-bottom: 0.6rem; overflow: hidden; }
+  .faq-q {
+    padding: 1.1rem 1.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.4;
+    color: var(--vbg-verde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    font-size: 0.96rem;
+  }
+  .faq-toggle { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--vbg-ambar); font-weight: 400; transition: transform 0.2s; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-a { padding: 0 1.4rem 1.2rem; font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; display: none; }
+  .faq-a :global(a) { color: var(--vbg-verde); font-weight: 600; }
+  .faq-item.open .faq-a { display: block; }
+</style>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+</script>

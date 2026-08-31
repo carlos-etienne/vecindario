@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis SEO · Vecindario Beer Garden</title>
+<link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+<style>
+  :root {
+    --vbg-green-deep: #446a3b;
+    --vbg-green: #6da05d;
+    --primary: #1f2421;
+    --body: #2b302d;
+    --secondary: #5e6b5c;
+    --surface: #faf8f3;
+    --surface-2: #f0ede3;
+    --divider: #d8d3c4;
+    --have: #446a3b;
+    --need: #8a5a2b;
+    --warn: #b8860b;
+    --danger: #a0522d;
+    --pos-up: #446a3b;
+    --pos-down: #a0522d;
+    --pos-flat: #5e6b5c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Calibri, sans-serif;
+    color: var(--body);
+    background: #e8e6df;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .brand-bar {
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .brand-bar img.brand-logo { height: 32px; }
+  .brand-bar .brand-sep { width:1px;height:24px;background:rgba(255,255,255,0.3); }
+  .brand-bar .brand-doc { font-size:0.85rem; letter-spacing:0.05em; opacity:0.95; }
+
+  .page {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 3rem 4rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    border-top: 4px solid var(--vbg-green);
+  }
+  @media (max-width: 700px) {
+    .page { padding: 1.5rem; margin: 0; border-radius: 0; }
+    .brand-bar { padding: 0.6rem 1rem; }
+    .brand-bar img.brand-logo { height: 26px; }
+  }
+
+  .cover {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, var(--vbg-green-deep) 0%, #2c4a26 60%, #1f351c 100%);
+    color: #fff;
+    padding: 4rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "";
+    position: absolute; right: -60px; bottom: -60px;
+    width: 320px; height: 320px;
+    background: url("assets/icono.svg") no-repeat center/contain;
+    opacity: 0.06;
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+  .cover .cover-logo {
+    background: rgba(255,255,255,0.96);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .cover .cover-logo img { height: 48px; display: block; }
+  .cover .label {
+    color: var(--vbg-green);
+    letter-spacing: 0.3em; font-size: 0.75rem;
+    border-bottom: 2px solid var(--vbg-green);
+    display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-size: 2.8rem; font-weight: 800; line-height: 1.05;
+    margin: 0 0 1rem; letter-spacing: -0.02em;
+  }
+  .cover .subtitle { color: #c8d8c0; font-style: italic; font-size: 1.1rem; margin-bottom: 2rem; }
+  .cover .meta {
+    border-left: 3px solid var(--vbg-green);
+    padding-left: 1rem;
+    color: #c8d8c0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  h1.section {
+    font-size: 1.7rem; color: var(--vbg-green-deep);
+    border-bottom: 3px solid var(--vbg-green);
+    padding-bottom: 0.5rem; margin-top: 4rem;
+    letter-spacing: -0.01em;
+  }
+  h2 { font-size: 1.3rem; color: var(--primary); margin-top: 2.5rem; }
+  h3 { font-size: 1.05rem; color: var(--vbg-green-deep); margin-top: 1.5rem; }
+
+  p { margin: 0.6rem 0; }
+  strong { color: var(--primary); }
+  em { font-style: italic; }
+  ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+  li { margin: 0.3rem 0; }
+  a { color: var(--vbg-green-deep); text-decoration: underline; text-decoration-color: var(--vbg-green); text-underline-offset: 2px; }
+
+  code { background: var(--surface-2); padding: 0.1rem 0.3rem; border-radius: 2px; font-size: 0.9em; color: var(--vbg-green-deep); }
+
+  .card {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-green);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .card.warn { border-left-color: var(--warn); background: #fdf6e3; }
+  .card.danger { border-left-color: var(--danger); background: #fbeae5; }
+  .card-label {
+    font-size: 0.7rem; font-weight: 700;
+    color: var(--vbg-green-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border-top: 3px solid var(--vbg-green-deep);
+    border-bottom: 3px solid var(--vbg-green-deep);
+    font-size: 0.92rem;
+  }
+  table.data th {
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.7rem 0.6rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  table.data td {
+    padding: 0.5rem 0.6rem;
+    border-top: 1px solid var(--divider);
+    vertical-align: middle;
+  }
+  table.data tr:nth-child(even) td { background: var(--surface); }
+  table.data td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 0.88rem; }
+  table.data td.kw { font-weight: 600; color: var(--vbg-green-deep); }
+  table.data tr:hover td { background: #fff8e7; }
+
+  .pos-up { color: var(--pos-up); font-weight: 600; }
+  .pos-down { color: var(--pos-down); font-weight: 600; }
+  .pos-flat { color: var(--pos-flat); }
+  .pos-na { color: #aaa; font-size: 0.85em; }
+
+  .conf-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .conf-alta { background: #446a3b; }
+  .conf-media { background: #d4a017; }
+  .conf-media-baja { background: #d2691e; }
+  .conf-baja { background: #a0522d; }
+
+  .opp-badge {
+    display: inline-block;
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.1rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .opp-badge.high { background: #446a3b; }
+  .opp-badge.med { background: #d4a017; }
+  .opp-badge.low { background: #8a5a2b; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .kpi {
+    background: var(--surface);
+    border-top: 3px solid var(--vbg-green);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0 0 4px 4px;
+  }
+  .kpi .kpi-val {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--vbg-green-deep);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi .kpi-label {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .cluster-card {
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--vbg-green);
+  }
+  .cluster-card .ch {
+    display: flex; align-items: baseline; gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+  }
+  .cluster-card .ch h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .cluster-card .ch .meta-chip {
+    font-size: 0.72rem;
+    background: var(--vbg-green-deep);
+    color: #fff;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    letter-spacing: 0.05em;
+  }
+  .cluster-card.strategy {
+    background: #fff;
+    border: 1px solid var(--divider);
+    border-left: 4px solid var(--vbg-green);
+  }
+  .cluster-card.strategy h4 {
+    margin: 0.8rem 0 0.3rem 0;
+    font-size: 0.95rem;
+    color: var(--vbg-green-deep);
+  }
+
+  .closing {
+    border-top: 3px solid var(--vbg-green);
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    font-style: italic;
+    color: var(--secondary);
+    text-align: center;
+  }
+  .toc {
+    background: var(--surface);
+    border-left: 4px solid var(--vbg-green);
+    padding: 1rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+    margin: 1.5rem 0;
+  }
+  .toc ol { margin: 0.3rem 0; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .legend {
+    display: flex; gap: 1.2rem;
+    flex-wrap: wrap;
+    background: var(--surface);
+    padding: 0.7rem 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .legend span { display: flex; align-items: center; gap: 0.4rem; }
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <img src="assets/logo-color.svg" alt="Vecindario Beer Garden" class="brand-logo">
+  <div class="brand-sep"></div>
+  <div class="brand-doc">Análisis SEO · Estrategia de keywords</div>
+</div>
+
+<div class="cover">
+  <div class="cover-logo">
+    <img src="assets/logo-color.svg" alt="Vecindario Beer Garden">
+  </div>
+  <div class="label">A N Á L I S I S &nbsp; S E O</div>
+  <h1>Estrategia de palabras clave</h1>
+  <div class="subtitle">Cuernavaca, Morelos · Datos cruzados de Ubersuggest + Search Console</div>
+  <div class="meta">
+    Fuentes: Ubersuggest (111 kw) + Search Console 16 meses (840 consultas) + Search Console 28 días (150 consultas)<br>
+    Fecha del análisis: agosto 2026<br>
+    Objetivo: identificar oportunidades reales de posicionamiento para beer garden + cerveza artesanal + comida en Cuernavaca
+  </div>
+</div>
+
+<div class="page">
+
+<h2 style="border-bottom: 3px solid var(--vbg-green); padding-bottom: 0.5rem; font-size: 1.7rem; color: var(--vbg-green-deep);">Contenido</h2>
+<div class="toc">
+<ol>
+  <li><a href="#resumen">Resumen ejecutivo (KPIs y matriz comparativa 16m vs 28d)</a></li>
+  <li><a href="#metodologia">Advertencias metodológicas — cómo leer estos datos sin engañarte</a></li>
+  <li><a href="#clusters">Análisis por cluster de intención de búsqueda</a></li>
+  <li><a href="#top">Top 12 oportunidades priorizadas</a></li>
+  <li><a href="#casos">Casos especiales que requieren investigación</a></li>
+  <li><a href="#descartes">Descartes explícitos</a></li>
+  <li><a href="#recomendaciones">Recomendaciones técnicas (schema, tracking, contenido)</a></li>
+</ol>
+</div>
+
+<!-- ============ 1. RESUMEN ============ -->
+<h1 class="section" id="resumen">1 · Resumen ejecutivo</h1>
+
+<p>Antes de leer detalles, los números fríos. Estos son los datos reales de los últimos 28 días comparados con el histórico de 16 meses:</p>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-val">923</div>
+    <div class="kpi-label">Keywords únicas</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">820</div>
+    <div class="kpi-label">Impresiones 28d</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">17</div>
+    <div class="kpi-label">Clics 28d</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">2.1%</div>
+    <div class="kpi-label">CTR global 28d</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">12</div>
+    <div class="kpi-label">Keywords con clics 28d</div>
+  </div>
+</div>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Contraste clave</div>
+  <p style="margin:0.3rem 0;">En 16 meses tuviste <strong>222 clics en 10,262 impresiones</strong> (CTR 2.2%). En los últimos 28 días: <strong>17 clics en 820 impresiones</strong> (CTR 2.1%). El tráfico se mantiene estable, pero <strong>la mayoría de las impresiones son de tus keywords de marca y de ruido</strong> (cerveza genérica, "wine tasting near me", búsquedas erráticas). Hay poca diversidad real de keywords con clics.</p>
+</div>
+
+<h3>Lectura principal</h3>
+<p>Tu SEO actual descansa en <strong>3 pilares</strong>:</p>
+<ol>
+  <li><strong>Marca propia</strong> — "vecindario beer garden" + variantes. Dominio absoluto (#1-2). No requiere trabajo, requiere no perderlo.</li>
+  <li><strong>Beer garden como concepto</strong> — "beer garden cuernavaca" #1.2, "beer garden" genérico subiendo de #9.8 a #4.8 en 28d. Posición dominante enCuernavaca.</li>
+  <li><strong>Cerveza artesanal Cuernavaca</strong> — #5→#2.9 en 28d. Mejora genuina.</li>
+</ol>
+<p><strong>La oportunidad está en transformar esos 3 pilares en 6-8</strong>: sumar comida, terraza, pet friendly, eventos, cerveza por estilo. Eso es lo que mueve la aguja del tráfico.</p>
+
+<!-- ============ 2. METODOLOGÍA ============ -->
+<h1 class="section" id="metodologia">2 · Advertencias metodológicas</h1>
+
+<div class="card warn">
+  <div class="card-label" style="color: var(--warn);">⚠ Antes de leer cualquier posición, entiende esto</div>
+  <p>Google Search Console reporta <strong>la posición promedio</strong> ponderada por impresiones durante el periodo seleccionado. NO es la posición real que ves buscando manualmente. Tres trampas frecuentes:</p>
+</div>
+
+<h3>Trampa 1 · Promedios engañosos con pocas impresiones</h3>
+<p>Si tuviste 2 impresiones en #3 y 34 impresiones en #15, el promedio sale ~9, pero unas pocas impresiones sueltas en posiciones altas arrastran el promedio. <strong>Caso real: "música en vivo cuernavaca"</strong> reportaba posición promedio 4.28 en 16 meses (36 impresiones, 0 clics). En los últimos 28 días: <strong>no aparece</strong>. Tu observación de "busco manualmente y no lo veo" era 100% correcta.</p>
+
+<h3>Trampa 2 · Búsqueda manual personalizada</h3>
+<p>Cuando TÚ buscas manualmente en Google, los resultados están personalizados según tu historial, ubicación exacta, dispositivo, y sitios que visitas. Si visitas otros bares de Cuernavaca, Google te muestra esos primero. <strong>Tu búsqueda manual no es representativa de lo que ve un cliente potencial anónimo</strong>. Search Console reporta ese usuario anónimo, que es el que importa.</p>
+
+<h3>Trampa 3 · Agregación temporal (16 meses)</h3>
+<p>Los datos iniciales cubren 16 meses (abril 2025 – agosto 2026). En 16 meses Google cambió su algoritmo varias veces; posiciones antiguas pueden no reflejar la realidad actual. <strong>La práctica correcta</strong>: mirar últimos 28 días para realidad presente, 16 meses para detectar tendencias de fondo.</p>
+
+<h3>¿Cómo validar posiciones reales entonces?</h3>
+<ul>
+  <li><strong>Incógnito + VPN a Cuernavaca</strong>: menos personalizado pero no 100% limpio.</li>
+  <li><strong>Herramienta de tracking no-personalizada</strong>: Ahrefs, Semrush, Ubersuggest tracking (de pago) o RankTracker gratis. Configurada a México / Cuernavaca.</li>
+  <li><strong>Buscar a las 6am sin sesión iniciada</strong>: truco sucio pero reduce personalización.</li>
+</ul>
+<p><strong>En este análisis</strong>, cada keyword relevante lleva un indicador de <strong>confianza</strong> (alta/media/baja) calculado según consistencia entre posición, impresiones y clics. Posiciones con baja confianza están marcadas — no tomarlas como certeza.</p>
+
+<div class="legend">
+  <span><span class="conf-dot conf-alta"></span> Confianza alta: datos recientes con clics</span>
+  <span><span class="conf-dot conf-media"></span> Media: datos recientes sin clics</span>
+  <span><span class="conf-dot conf-media-baja"></span> Media-baja: posición top sin clics (sospechoso)</span>
+  <span><span class="conf-dot conf-baja"></span> Baja: solo histórico o muy pocas impresiones</span>
+</div>
+
+<!-- ============ 3. CLUSTERS ============ -->
+<h1 class="section" id="clusters">3 · Análisis por cluster de intención</h1>
+
+<p>Cada cluster agrupa keywords por intención de búsqueda del usuario. Para cada uno: qué keywords incluye, qué posición tienes, y la estrategia recomendada.</p>
+
+<!-- CLUSTER: Brand & Beer Garden core -->
+<div class="cluster-card">
+  <div class="ch">
+    <h3>🟢 Brand & Beer Garden core</h3>
+    <span class="meta-chip">DEFENDER</span>
+    <span class="meta-chip" style="background: var(--have);">Confianza alta</span>
+  </div>
+  <p><strong>Lo que defiendes hoy</strong>. Tu marca y el concepto "beer garden" en Cuernavaca son tu fortaleza. Ya estás en top 1-3 con confianza alta en las principales. El trabajo aquí no es escalar, es <strong>no perder</strong>.</p>
+
+  <table class="data">
+    <thead><tr>
+      <th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+      <th class="num">Pos 16m</th><th class="num">Pos 28d</th><th class="num">Clics 28d</th><th>Confianza</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="kw">vecindario beer garden</td><td class="num">—</td><td class="num">—</td><td class="num">#1.4</td><td class="num pos-flat">#1.6</td><td class="num">12</td><td><span class="conf-dot conf-alta"></span> alta</td></tr>
+      <tr><td class="kw">vecindario beer garden cuernavaca</td><td class="num">—</td><td class="num">—</td><td class="num">#1.2</td><td class="num pos-flat">#1.0</td><td class="num">2</td><td><span class="conf-dot conf-alta"></span> alta</td></tr>
+      <tr><td class="kw">beer garden cuernavaca</td><td class="num">—</td><td class="num">12</td><td class="num">#1.3</td><td class="num pos-flat">#1.2</td><td class="num">0</td><td><span class="conf-dot conf-media-baja"></span> media-baja</td></tr>
+      <tr><td class="kw">beer garden</td><td class="num">5,400</td><td class="num">22</td><td class="num">#9.8</td><td class="num pos-up">#4.8 ↑</td><td class="num">1</td><td><span class="conf-dot conf-alta"></span> alta</td></tr>
+      <tr><td class="kw">cerveceria vecindario</td><td class="num">—</td><td class="num">—</td><td class="num">#9.9</td><td class="num pos-up">#2.0 ↑</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card strategy">
+    <h4>Estrategia</h4>
+    <ul>
+      <li><strong>No perder</strong>: mantener títulos y meta descriptions actuales (funcionan), no rediseñar URLs (/menu/, /eventos/).</li>
+      <li><strong>Optimizar CTR</strong> en <code>beer garden cuernavaca</code>: estás #1.2 pero con 0 clics en 28d. Revisar snippet — el title/meta description puede no estar motivando el clic. Posible causa: compites contra Google Business Profile y la gente clickea el panel lateral en vez del resultado orgánico.</li>
+      <li><strong>Aprovechar subida de "beer garden" genérico</strong> (#9.8 → #4.8): reforzar contenido en home con H1 explícito sobre beer garden.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CLUSTER: Cerveza artesanal -->
+<div class="cluster-card">
+  <div class="ch">
+    <h3>🍺 Cerveza artesanal</h3>
+    <span class="meta-chip">DEFENDER + CRECER</span>
+    <span class="meta-chip" style="background: var(--have);">Confianza alta/media</span>
+  </div>
+  <p>Tu segundo pilar. Mejora genuina en 28 días (#5→#2.9 en <code>cerveza artesanal cuernavaca</code>). La competencia (El Internacional) tiene más antigüedad pero tú estás subiendo.</p>
+
+  <table class="data">
+    <thead><tr>
+      <th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+      <th class="num">Pos 16m</th><th class="num">Pos 28d</th><th class="num">Clics 28d</th><th>Confianza</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="kw">cerveza artesanal</td><td class="num">18,100</td><td class="num">33</td><td class="num">#2.5</td><td class="num pos-up">#1.6 ↑</td><td class="num">0</td><td><span class="conf-dot conf-media"></span> media</td></tr>
+      <tr><td class="kw">cerveza artesanal cuernavaca</td><td class="num">50</td><td class="num">29</td><td class="num">#5.0</td><td class="num pos-up">#2.9 ↑</td><td class="num">1</td><td><span class="conf-dot conf-alta"></span> alta</td></tr>
+      <tr><td class="kw">cervezas artesanales</td><td class="num">18,100</td><td class="num">30</td><td class="num">#3.0</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja</td></tr>
+      <tr><td class="kw">cerveza artesanal de barril</td><td class="num">110</td><td class="num">7</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity sin atacar</td></tr>
+      <tr><td class="kw">bar de cerveza artesanal</td><td class="num">170</td><td class="num">29</td><td class="num">#9.0</td><td class="num pos-up">#6.0 ↑</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja</td></tr>
+      <tr><td class="kw">cervecería artesanal cerca de mí</td><td class="num">—</td><td class="num">—</td><td class="num">#1.3</td><td class="num pos-flat">#1.3</td><td class="num">0</td><td><span class="conf-dot conf-media"></span> media</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card strategy">
+    <h4>Estrategia</h4>
+    <ul>
+      <li><strong>Hub SEO</strong>: crear <code>/cerveza-artesanal-cuernavaca/</code> con contenido editorial sobre tu curaduría (10 líneas en rotación, cámaras frías, certificación Cicerone/BJCP). Esto captura "cerveza artesanal cuernavaca" con un contenido que ningún competidor tiene.</li>
+      <li><strong>Cervezas de barril</strong>: <code>cerveza artesanal de barril</code> tiene SD 7 (muy baja dificultad) y nadie lo ataca. Página dedicada <code>/menu/cervezas-de-barril/</code> con datos ricos (estilo, ABV, IBU, cervecería) captura esta long-tail.</li>
+      <li><strong>Estilos como long-tail de autoridad</strong>: stout (#6), porter (#6), pale ale (sin tracking pero SD 11) — crear contenido educativo que te posicione como referencia cervecera. No necesita vender, solo demostrar expertise.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CLUSTER: Comida Cuernavaca -->
+<div class="cluster-card">
+  <div class="ch">
+    <h3>🍔 Comida Cuernavaca</h3>
+    <span class="meta-chip">CRECER — PRIORIDAD 1</span>
+    <span class="meta-chip" style="background: var(--warn);">Confianza media (necesita validación)</span>
+  </div>
+  <p><strong>El growth opportunity más grande del proyecto</strong>. Tu objetivo declarado es posicionarte como restaurante-bar, no solo bar de cervezas. Los datos confirman demanda latente: hay impresiones en "pizza", "pizza artesanal", "pizzas cuernavaca" aunque Google todavía no te considera un sitio de comida.</p>
+
+  <table class="data">
+    <thead><tr>
+      <th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+      <th class="num">Pos 16m</th><th class="num">Pos 28d</th><th class="num">Clics 28d</th><th>Confianza</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="kw">pizza</td><td class="num">673,000</td><td class="num">61</td><td class="num">#13.4</td><td class="num pos-up">#3.0 ↑</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja (1 imp)</td></tr>
+      <tr><td class="kw">pizza artesanal</td><td class="num">—</td><td class="num">—</td><td class="num">#3.0</td><td class="num pos-down">#10.0 ↓</td><td class="num">0</td><td><span class="conf-dot conf-media"></span> media</td></tr>
+      <tr><td class="kw">pizza cuernavaca</td><td class="num">320</td><td class="num">20</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">pizzas artesanales</td><td class="num">1,600</td><td class="num">25</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">pizzas artesanales cuernavaca</td><td class="num">—</td><td class="num">12</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity sin competencia</td></tr>
+      <tr><td class="kw">hamburguesas</td><td class="num">301,000</td><td class="num">21</td><td class="num">#1.0</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja (1 imp histórico)</td></tr>
+      <tr><td class="kw">hamburguesas gourmet</td><td class="num">1,000</td><td class="num">19</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">hamburguesas cuernavaca</td><td class="num">880</td><td class="num">25</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">hamburguesas gourmet cuernavaca</td><td class="num">—</td><td class="num">12</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> sin competencia</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card strategy">
+    <h4>Estrategia</h4>
+    <ul>
+      <li><strong>Hubs SEO prioritarios</strong>: <code>/pizzas-cuernavaca/</code> y <code>/hamburguesas-cuernavaca/</code>. Volumen alto, dificultad media-baja, sin competencia local fuerte en long-tail.</li>
+      <li><strong>Optimizar el "por qué gourmet"</strong>: tu cocina no es comida rápida, es "gourmet casual". Reforzar contenido con fotos profesionales de pizza napolitana saliendo del horno, hamburguesa en pan brioche — exactamente como describiste en el brief.</li>
+      <li><strong>Hero del sitio</strong>: la primera impresión debe ser comida apetitosa + cerveza (no solo cerveza). Esto refuerza el repositioning de "bar de cervezas" a "restaurante-bar con cerveza artesanal".</li>
+      <li><strong>Schema MenuItem</strong> en cada plato — totalmente ausente hoy, abre elegibilidad para rich snippets en Google.</li>
+    </ul>
+  </div>
+
+  <div class="card warn">
+    <div class="card-label" style="color: var(--warn);">⚠ Sobre "pizza" #3 en 28d</div>
+    <p style="margin:0.3rem 0;">Subiste a #3 en "pizza" en 28 días, pero es con solo 2 impresiones. <strong>Probablemente un sesgo</strong>: pocas impresiones, una afortunada en posición alta arrastra el promedio. No asumir que ya posicionas en pizza — validar creando contenido y viendo si suben impresiones reales.</p>
+  </div>
+</div>
+
+<!-- CLUSTER: Restaurante/bar con modificadores -->
+<div class="cluster-card">
+  <div class="ch">
+    <h3>🌿 Restaurante/bar con modificadores (pet friendly, terraza, grupos)</h3>
+    <span class="meta-chip">DIFERENCIADORES</span>
+    <span class="meta-chip" style="background: var(--warn);">Confianza media</span>
+  </div>
+  <p>Tus diferenciadores físicos reales (pet friendly, terraza, capacidad 60 personas). Hay demanda real en Cuernavaca y la competencia es baja o inexistente.</p>
+
+  <table class="data">
+    <thead><tr>
+      <th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+      <th class="num">Pos 16m</th><th class="num">Pos 28d</th><th class="num">Clics 28d</th><th>Confianza</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="kw">restaurante pet friendly cuernavaca</td><td class="num">390</td><td class="num">26</td><td class="num">#39.4</td><td class="num pos-down">#57.0 ↓</td><td class="num">0</td><td><span class="conf-dot conf-media"></span> media</td></tr>
+      <tr><td class="kw">restaurante con terraza</td><td class="num">2,900</td><td class="num">16</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">terraza</td><td class="num">110,000</td><td class="num">31</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> genérico</td></tr>
+      <tr><td class="kw">terraza cuernavaca</td><td class="num">170</td><td class="num">20</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">restaurante para parejas</td><td class="num">210</td><td class="num">20</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">restaurante para grupos</td><td class="num">10</td><td class="num">20</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">lugar para cumpleaños</td><td class="num">210</td><td class="num">30</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card strategy">
+    <h4>Estrategia</h4>
+    <ul>
+      <li><strong>Hub pet friendly prioritario</strong>: <code>/pet-friendly-cuernavaca/</code>. Tu cliente profile "Familias Jóvenes y Pet Lovers" (del brief) encaja perfecto. Estás en #57 pero el hub bien hecho puede saltarte a top 10 rápido.</li>
+      <li><strong>Hub terraza</strong>: <code>/terraza-cuernavaca/</code>. Tu terraza real + clima Cuernavaca ("eterna primavera") es marketing natural.</li>
+      <li><strong>Contenido secundario</strong>: páginas o secciones para "para parejas", "para grupos", "cumpleaños" — no necesitan hubs propios, pero mencionarlos en home y en eventos con schema apropiado ayuda.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CLUSTER: Estilos cerveza -->
+<div class="cluster-card">
+  <div class="ch">
+    <h3>📚 Estilos de cerveza (long-tail autoridad)</h3>
+    <span class="meta-chip">AUTORIDAD</span>
+  </div>
+  <p>Keywords por estilo de cerveza. SD bajos (11-12) → alcanzables. No buscan vender directamente, buscan establecer autoridad cervecera (que refuerza tu marca).</p>
+
+  <table class="data">
+    <thead><tr>
+      <th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+      <th class="num">Pos 16m</th><th class="num">Pos 28d</th><th class="num">Confianza</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="kw">stout</td><td class="num">1,900</td><td class="num">11</td><td class="num">—</td><td class="num pos-na">—</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">porter</td><td class="num">14,800</td><td class="num">36</td><td class="num">#6.2</td><td class="num pos-flat">#6.0</td><td><span class="conf-dot conf-media"></span> media</td></tr>
+      <tr><td class="kw">pale ale</td><td class="num">1,000</td><td class="num">11</td><td class="num">—</td><td class="num pos-na">—</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">cerveza IPA</td><td class="num">2,400</td><td class="num">48</td><td class="num">—</td><td class="num pos-na">—</td><td><span class="conf-dot conf-baja"></span> competido</td></tr>
+      <tr><td class="kw">lager artesanal</td><td class="num">10</td><td class="num">18</td><td class="num">—</td><td class="num pos-na">—</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card strategy">
+    <h4>Estrategia</h4>
+    <ul>
+      <li><strong>Contenido editorial por estilo</strong>: cada cerveza de barril en tu menú puede tener micro-página o sección con explicación del estilo. "¿Qué es una stout?" →captura "stout" SD 11.</li>
+      <li><strong>No prioridad 1</strong>: son_keyword de fondo, no urgentes. Van con el menú de cervezas bien hecho.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CLUSTER: Eventos/noches temáticas -->
+<div class="cluster-card">
+  <div class="ch">
+    <h3>🎵 Eventos / noches temáticas</h3>
+    <span class="meta-chip">AGENDA HONESTA</span>
+    <span class="meta-chip" style="background: var(--danger);">Confianza baja — histórico engañoso</span>
+  </div>
+
+  <table class="data">
+    <thead><tr>
+      <th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+      <th class="num">Pos 16m</th><th class="num">Pos 28d</th><th class="num">Clics 16m</th><th>Confianza</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="kw">música en vivo</td><td class="num">6,600</td><td class="num">15</td><td class="num">#5.0</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja — no aparece en 28d</td></tr>
+      <tr><td class="kw">música en vivo cuernavaca</td><td class="num">—</td><td class="num">4</td><td class="num">#4.3</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> baja — histórico engañoso</td></tr>
+      <tr><td class="kw">cata de cerveza</td><td class="num">170</td><td class="num">14</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+      <tr><td class="kw">eventos cuernavaca</td><td class="num">260</td><td class="num">17</td><td class="num">—</td><td class="num pos-na">—</td><td class="num">0</td><td><span class="conf-dot conf-baja"></span> opportunity</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card danger">
+    <div class="card-label" style="color: var(--danger);">⚠ Sobre música en vivo</div>
+    <p style="margin:0.3rem 0;">Tu observación era correcta: <strong>"música en vivo cuernavaca" no aparece en los últimos 28 días</strong>. La posición #4.3 del histórico de 16 meses era una tendencia vieja, probablemente de cuando algún evento puntual te dio visibilidad. <strong>No eres un bar con música en vivo siempre</strong> — hacer un hub "ven por música en vivo siempre" sería deshonesto y atraería decepciones.</p>
+  </div>
+
+  <div class="card strategy">
+    <h4>Estrategia</h4>
+    <ul>
+      <li><strong>Página de eventos honesta</strong>: <code>/eventos/</code> con calendario real (1-2 noches al mes: salsa mensual, jazz/funk ocasional, DJ, aniversarios). Cada evento pasado y futuro con schema <code>Event</code> — indexable.</li>
+      <li><strong>NO crear hub comercial</strong> de "música en vivo siempre". <code>/musica-en-vivo-cuernavaca/</code> solo como página derivada del archivo de eventos, si se justifica.</li>
+      <li><strong>Catas como contenido evergreen</strong>: <code>/cata-cerveza/</code> o <code>/blog/cata-de-cerveza/</code> captura "cata de cerveza" SD 14 y repositioning del ruido de "wine tasting near me".</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 4. TOP OPORTUNIDADES ============ -->
+<h1 class="section" id="top">4 · Top 12 oportunidades priorizadas</h1>
+
+<p>Ranking final considerando: volumen real × dificultad SEO × tu alineación operativa × posición actual × confianza. <strong>No es solo "más volumen = mejor"</strong> — una keyword con 50 búsquedas/mes y SD 7 puede ser más valiosa que una con 50,000 y SD 60 si la primera convierte y la segunda no.</p>
+
+<table class="data">
+  <thead><tr>
+    <th>#</th><th>Keyword</th><th class="num">Vol.</th><th class="num">SD</th>
+    <th class="num">Pos 28d</th><th>Conf.</th>
+    <th>Acción / Página recomendada</th>
+    <th>Opp.</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="kw">cerveza artesanal</td><td class="num">18,100</td><td class="num">33</td><td class="num pos-up">#1.6 ↑</td><td><span class="conf-dot conf-media"></span></td><td>Defender + crear <code>/cerveza-artesanal-cuernavaca/</code></td><td><span class="opp-badge high">75</span></td></tr>
+    <tr><td>2</td><td class="kw">pizza</td><td class="num">673,000</td><td class="num">61</td><td class="num pos-up">#3.0 ↑</td><td><span class="conf-dot conf-baja"></span></td><td>Hub <code>/pizzas-cuernavaca/</code> + fotos pizza napolitana</td><td><span class="opp-badge high">70</span></td></tr>
+    <tr><td>3</td><td class="kw">beer garden cuernavaca</td><td class="num">—</td><td class="num">12</td><td class="num">#1.2</td><td><span class="conf-dot conf-media-baja"></span></td><td>Defender + optimizar CTR (0 clics siendo #1)</td><td><span class="opp-badge high">68</span></td></tr>
+    <tr><td>4</td><td class="kw">cerveza de barril</td><td class="num">6,600</td><td class="num">21</td><td class="num pos-down">#8.0 ↓</td><td><span class="conf-dot conf-baja"></span></td><td>Recuperar con <code>/menu/cervezas-de-barril/</code></td><td><span class="opp-badge high">68</span></td></tr>
+    <tr><td>5</td><td class="kw">tap room</td><td class="num">1,900</td><td class="num">37</td><td class="num pos-up">#1.0 ↑</td><td><span class="conf-dot conf-baja"></span></td><td>Ya en #1 — defender, posicionar como tap room oficial</td><td><span class="opp-badge high">67</span></td></tr>
+    <tr><td>6</td><td class="kw">bar cuernavaca</td><td class="num">2,400</td><td class="num">21</td><td class="num pos-up">#8.7 ↑</td><td><span class="conf-dot conf-media"></span></td><td>Refuerzo home con H1 explícito</td><td><span class="opp-badge high">65</span></td></tr>
+    <tr><td>7</td><td class="kw">restaurante bar</td><td class="num">12,100</td><td class="num">21</td><td class="num pos-up">#6.0 ↑</td><td><span class="conf-dot conf-baja"></span></td><td>Repositioning como restaurante-bar (no solo bar)</td><td><span class="opp-badge high">65</span></td></tr>
+    <tr><td>8</td><td class="kw">beer garden</td><td class="num">5,400</td><td class="num">22</td><td class="num pos-up">#4.8 ↑</td><td><span class="conf-dot conf-alta"></span></td><td>Refuerzo home — subiendo orgánicamente</td><td><span class="opp-badge high">63</span></td></tr>
+    <tr><td>9</td><td class="kw">porter / stout</td><td class="num">14,800 / 1,900</td><td class="num">36 / 11</td><td class="num">#6.0 / —</td><td><span class="conf-dot conf-media"></span></td><td>Contenido educativo por estilo en menú de barril</td><td><span class="opp-badge high">62</span></td></tr>
+    <tr><td>10</td><td class="kw">restaurante pet friendly cuernavaca</td><td class="num">390</td><td class="num">26</td><td class="num pos-down">#57.0 ↓</td><td><span class="conf-dot conf-media"></span></td><td>Hub <code>/pet-friendly-cuernavaca/</code> — saltar a top 10</td><td><span class="opp-badge high">61</span></td></tr>
+    <tr><td>11</td><td class="kw">hamburguesas gourmet / cuernavaca</td><td class="num">1,000 / 880</td><td class="num">19 / 25</td><td class="num pos-na">—</td><td><span class="conf-dot conf-baja"></span></td><td>Hub <code>/hamburguesas-cuernavaca/</code></td><td><span class="opp-badge med">55</span></td></tr>
+    <tr><td>12</td><td class="kw">terraza cuernavaca</td><td class="num">170</td><td class="num">20</td><td class="num pos-na">—</td><td><span class="conf-dot conf-baja"></span></td><td>Hub <code>/terraza-cuernavaca/</code></td><td><span class="opp-badge med">52</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 5. CASOS ESPECIALES ============ -->
+<h1 class="section" id="casos">5 · Casos especiales que requieren investigación</h1>
+
+<h3>Caso 1 · <code>beer garden cuernavaca</code> #1 con 0 clics</h3>
+<p>Estás en posición #1.2 en 28 días pero recibiste 0 clics en 28 impresiones. Es anómalo — un resultado #1 suele tener CTR 25-30%. Posibles causas:</p>
+<ul>
+  <li><strong>Google Business Profile te canibaliza</strong>: cuando alguien busca "beer garden cuernavaca", Google muestra el panel lateral de GBP con tu info (dirección, horario, fotos). La gente ve eso y no necesita clickear el resultado orgánico. <em>Esto es normal en SEO local</em> — el "clic" ocurre en Maps/GBP, no en tu web.</li>
+  <li><strong>El snippet no motiva clic</strong>: tu título/meta description puede ser informativo pero no atractivo. Revisar.</li>
+  <li><strong>Son búsquedas de fans ya conocidos</strong>: ya saben tu URL y van directo. El 0 clics en orgánico no significa 0 visitas.</li>
+</ul>
+<p><strong>Acción</strong>: revisar en Search Console el CTR de esta keyword mes a mes. Si siempre es ~0% pero tu tráfico brand es alto, es el caso 1 (GBP canibaliza, normal). Si era bueno y bajó, revisar snippet.</p>
+
+<h3>Caso 2 · <code>wine tasting near me</code> — ruido consistente</h3>
+<p>441 impresiones en 16 meses (0 clics), 31 impresiones en 28 días (0 clics), posición 4.1 estable. Google te muestra a gente que busca cata de <strong>vino</strong>, no cerveza. Obviamente no convierte porque no haces eso.</p>
+<p><strong>Pero hay señal de demanda</strong>: la gente SÍ busca "experiencias de degustación/cata" en Cuernavaca. Tu repositioning natural: <code>/cata-cerveza/</code> con tus catas reales (tienes eventos pasados de "Cata gratuita con Cervecería Ícono", "Experiencia Belga", "Cata de chocolate y cerveza"). Esas páginas con schema <code>Event</code> pueden capturar la intención de "wine tasting" redirigida a "cata de cerveza".</p>
+
+<h3>Caso 3 · <code>musica en vivo cuernavaca</code> histórico engañoso</h3>
+<p>Ya cubierto. La posición #4.3 de 16 meses <strong>no existe hoy</strong>. Probablemente fue una visibilidad temporal por algún evento índice alto. Tu observación de "busco y no lo veo" era correcta. <strong>No crear contenido falso de "música en vivo siempre"</strong>.</p>
+
+<h3>Caso 4 · <code>restaurantes pet friendly cuernavaca</code> cayendo</h3>
+<p>Caíste de #39 a #57 en 28 días. Es opportunity pero requires trabajo activo. La competencia en Cuernavaca para "pet friendly" es débil (no hay dominio claro). Un hub bien hecho con contenido real (fotos de perros en terraza, política pet friendly explícita, schema) puede saltar a top 20 rápido, top 10 con un poco de link building interno.</p>
+
+<h3>Caso 5 · Subidas sospechosas en 28 días</h3>
+<p>Varias keywords genéricas subieron mucho en 28d: <code>bar</code> #10→#3.8, <code>restaurante bar</code> #12.7→#6, <code>bar cuernavaca</code> #15→#8.7. <strong>Pero todas tienen pocas impresiones (3-76)</strong>, lo que hace los promedios volátiles. No celebrar todavía — podrían ser varianza o un algoritmo de Google probándote arriba. Confirmar en próximos 28 días.</p>
+
+<!-- ============ 6. DESCARTES ============ -->
+<h1 class="section" id="descartes">6 · Descartes explícitos</h1>
+
+<div class="card danger">
+  <div class="card-label" style="color: var(--danger);">Keywords con volumen pero que NO debes atacar</div>
+</div>
+
+<table class="data">
+  <thead><tr>
+    <th>Keyword</th><th class="num">Vol.</th><th>Razón de descarte</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="kw">alitas</td><td class="num">110,000</td><td>No las manejas. Atraer gente que no puedes servir = mala experiencia.</td></tr>
+    <tr><td class="kw">boneless</td><td class="num">246,000</td><td>Igual. Volumen altísimo pero fuera de menú.</td></tr>
+    <tr><td class="kw">alitas cuernavaca</td><td class="num">390</td><td>Igual, no las sirves.</td></tr>
+    <tr><td class="kw">wine tasting near me</td><td class="num">—</td><td>Ruido: te buscan por cata de vino. No posicionicionar activamente, pero sí aprovechar la intención con "cata de cerveza".</td></tr>
+    <tr><td class="kw">hamburguesería</td><td class="num">301,000</td><td>SD 62 — demasiado competido para tu posición. Sí atacar "hamburguesas gourmet cuernavaca" (SD 12).</td></tr>
+    <tr><td class="kw">pizza (genérico sin "cuernavaca")</td><td class="num">673,000</td><td>SD 61 y太多 competencia global. Sí atacar "pizza cuernavaca" (SD 20) y "pizzas artesanales cuernavaca" (SD 12).</td></tr>
+    <tr><td class="kw">papas a la francesa</td><td class="num">33,100</td><td>Guarnición, no plato principal. No justifica hub propio.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 7. RECOMENDACIONES ============ -->
+<h1 class="section" id="recomendaciones">7 · Recomendaciones técnicas</h1>
+
+<h3>Schema markup por tipo de página</h3>
+<table class="data">
+  <thead><tr><th>Página</th><th>Schema</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>Todas (sitio-wide)</td><td><code>BarOrPub</code> o <code>Restaurant</code></td><td>Datos NAP (nombre, dirección, teléfono), horarios, priceRange, servesCuisine, hasMenu</td></tr>
+    <tr><td>Home</td><td>+ <code>WebSite</code> + <code>SearchAction</code></td><td>Para sitelinks search box</td></tr>
+    <tr><td>/menu/ y subsecciones</td><td><code>Menu</code> + <code>MenuItem</code> por plato/cerveza</td><td>TOTALMENTE AUSENTE HOY — mayor gap técnico</td></tr>
+    <tr><td>Hubs SEO (hamburguesa, pizza, etc.)</td><td><code>MenuItem</code> + <code>BreadcrumbList</code></td><td>Cada plato indexable</td></tr>
+    <tr><td>/eventos/ y cada evento</td><td><code>Event</code></td><td>startDate, endDate, location, offers, image</td></tr>
+    <tr><td>Todas las internas</td><td><code>BreadcrumbList</code></td><td>Navegación clara para Google</td></tr>
+  </tbody>
+</table>
+
+<h3>Tracking no-personalizado a configurar</h3>
+<p>Para validar posiciones reales (no las personalizadas de búsqueda manual):</p>
+<ul>
+  <li><strong>Opción gratuita</strong>: <code>RankTracker</code> (SEO Power Suite) configurado a México / Cuernavaca.</li>
+  <li><strong>Opción gratuita limitada</strong>: Ubersuggest te permite 3 tracking gratis.</li>
+  <li><strong>Opción de pago</strong>: Ahrefs (~$99/mes) o Semrush (~$120/mes) — excesivo para tu volumen, pero si vas en serio con SEO vale la pena.</li>
+  <li><strong>Mínimo viable</strong>: Search Console con filtro de últimos 28 días + comparativa mensual.</li>
+</ul>
+
+<h3>Contenido editorial necesario (por prioridad)</h3>
+<ol>
+  <li><strong>Menú con datos ricos</strong>: cada cerveza de barril con estilo, ABV, IBU, cervecería, descripción corta. Cada plato con nombre, ingredientes principales, precio. <strong>Esto es schema + contenido indexable al mismo tiempo.</strong></li>
+  <li><strong>Páginas de hub</strong> (~500-800 palabras cada una): pizza cuernavaca, hamburguesas cuernavaca, cerveza artesanal cuernavaca, pet friendly cuernavaca, terraza cuernavaca. Contenido original, no relleno.</li>
+  <li><strong>Blog/eventos</strong>: archivo de 20 eventos pasados migrados, cada uno con su propia página y schema Event. Cata de cerveza como contenido evergreen.</li>
+  <li><strong>Fotos optimizadas</strong>: alt descriptivos (hoy 33% de cobertura, con typo "Vecondario"), WebP/AVIF, tamaño razonable.</li>
+</ol>
+
+<h3>Link building interno</h3>
+<ul>
+  <li>Desde home, enlazar a TODOS los hubs principales (5-6 enlaces internos claros).</li>
+  <li>Desde <code>/menu/</code>, enlazar a cada hub de comida correspondiente ("explora nuestras hamburguesas gourmet" → <code>/hamburguesas-cuernavaca/</code>).</li>
+  <li>Desde cada plato individual, enlazar de vuelta al hub de categoría.</li>
+  <li>Desde eventos, enlazar a "próximas catas" o "música en vivo del mes".</li>
+</ul>
+
+<h3>Optimización de CTR (snippets)</h3>
+<p>Tu posición promedio es decente pero el CTR es bajo (2.1%). Esto significa que <strong>la gente te ve en resultados pero no clickea</strong>. Mejoras de bajo esfuerzo y alto impacto:</p>
+<ul>
+  <li>Reescribir titles y meta descriptions de las páginas principales con intención clara.</li>
+  <li>Activar <strong>breadcrumb en SERP</strong> (vía schema BreadcrumbList + estructura visual).</li>
+  <li>Activar <strong>sitelinks search box</strong> (schema WebSite + SearchAction) — solo para brand.</li>
+  <li>Subir fotos de comida a Google Business Profile (mejora panel lateral).</li>
+</ul>
+
+<div class="closing">
+  <p>Este análisis es el insumo para la <strong>arquitectura web</strong> (documento hermano) y para el compact design system que viene después. Cuando lo critiques o ajustes, lo iteramos.</p>
+</div>
+
+</div>
+
+</body>
+</html>

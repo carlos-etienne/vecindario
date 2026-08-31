@@ -1,0 +1,180 @@
+---
+interface Props {
+  variant?: 'transparent' | 'solid';
+}
+const { variant = 'transparent' } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Inicio' },
+  { href: '/menu/', label: 'Menú' },
+  { href: '/eventos/', label: 'Eventos' },
+  { href: '/contacto/', label: 'Contacto' },
+];
+---
+
+<header class={`site-header ${variant === 'transparent' ? 'is-transparent' : 'is-solid'}`} id="siteHeader">
+  <div class="header-inner">
+    <a href="/"><img src="/assets/logo-transparente.svg" alt="Vecindario Beer Garden" class="site-logo" /></a>
+    <nav class="nav-main">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <a href="/menu/" class="header-cta">
+      Ver menú
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navMobile">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a href="/menu/" class="nav-mobile-cta">Ver menú</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.is-transparent { background: transparent; }
+  .site-header.is-solid {
+    background: rgba(20,18,16,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .site-header.is-transparent.scrolled {
+    background: rgba(20,18,16,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .site-logo { height: 42px; }
+  .nav-main { display: flex; gap: 1.8rem; align-items: center; }
+  .nav-main a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    position: relative;
+    padding: 0.3rem 0;
+  }
+  .nav-main a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 2px;
+    background: var(--vbg-verde-claro);
+    transition: width 0.25s ease;
+  }
+  .nav-main a:hover::after { width: 100%; }
+  .header-cta {
+    background: var(--vbg-verde-claro);
+    color: #fff;
+    padding: 0.6rem 1.3rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background 0.2s;
+  }
+  .header-cta:hover { background: #578a4a; }
+  .header-cta svg { width: 14px; height: 14px; }
+
+  /* Hamburguesa */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 102;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Menú móvil */
+  .nav-mobile {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(20,18,16,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.5rem 1.5rem 1.5rem;
+    flex-direction: column;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    color: #d9d2c2;
+    padding: 0.85rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-mobile a:hover { color: #fff; }
+  .nav-mobile-cta {
+    background: var(--vbg-verde-claro);
+    color: #fff !important;
+    text-align: center;
+    border-radius: 2px;
+    border: none !important;
+    margin-top: 0.8rem;
+    font-weight: 600;
+  }
+  .nav-mobile-cta:hover { background: #578a4a; }
+
+  @media (max-width: 900px) {
+    .nav-main, .header-cta { display: none; }
+    .nav-toggle { display: flex; }
+  }
+</style>
+
+<script>
+  // Header sólido al scroll (solo variante transparente)
+  const header = document.getElementById('siteHeader');
+  if (header && header.classList.contains('is-transparent')) {
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 400);
+    });
+  }
+  // Menú móvil
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+  if (toggle && mobile) {
+    toggle.addEventListener('click', () => {
+      const open = mobile.classList.toggle('open');
+      toggle.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    mobile.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobile.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

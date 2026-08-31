@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import FAQ from '../components/FAQ.astro';
+import site from '../data/site.json';
+
+const burgers = [
+  { nombre: 'Hamburguesa Vecindario', desc: 'Pan brioche, queso americano, tocino, pepinillos, salsa BBQ y cebolla caramelizada.', precio: 185, foto: '/images/hamburguesa-vecindario.jpg', tag: 'La de la casa' },
+  { nombre: 'Hamburguesa Teopanzolco', desc: 'Pan brioche, chimichurri, mix de tres quesos y tocino.', precio: 195, foto: '/images/hamburguesa-teopanzolco.jpg', tag: 'La de tres quesos' },
+  { nombre: 'Hamburguesa Vegetariana', desc: 'Falafel empanizado, lechuga, tomate, cebolla caramelizada, salsa BBQ, pepinillos y papas a la francesa. Queso americano o cheddar opcional.', precio: 170, tag: 'Vegetariana', tagVeg: true },
+];
+
+const menuSchema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Hamburguesas · Vecindario Beer Garden",
+  "hasMenuSection": {
+    "@type": "MenuSection",
+    "name": "Hamburguesas",
+    "hasMenuItem": burgers.map((b) => ({
+      "@type": "MenuItem",
+      "name": b.nombre,
+      "description": b.desc,
+      offers: { "@type": "Offer", "price": b.precio, "priceCurrency": "MXN" }
+    }))
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Tienen hamburguesa vegetariana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La Hamburguesa Vegetariana lleva falafel empanizado, lechuga, tomate, cebolla caramelizada, salsa BBQ, pepinillos y papas a la francesa. El queso americano o cheddar es opcional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo pedir sin algún ingrediente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claro. Pídelo al personal o mándanos un mensaje por WhatsApp antes de venir. Cocinamos al momento, así que adaptar es fácil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Con qué acompañan las hamburguesas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cada hamburguesa viene acompañada de papas a la francesa. Si quieres más, las Papas Flanders (con queso fundido, tocino y jalapeño) son para compartir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Con qué cerveza maridan las hamburguesas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Todo depende de tu orden: las cervezas ligeras y refrescantes cortan bien la grasa del tocino, y las de más cuerpo acompañan el queso. Como la carta de barril rota constantemente, pregúntale al personal qué hay en tap: te recomienda la indicada para tu hamburguesa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tienen hamburguesas especiales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De vez en cuando sacamos hamburguesas especiales por tiempo limitado. Pregúntale al personal qué hay en la cocina o síguenos en Instagram para enterarte."
+      }
+    }
+  ]
+};
+
+const faqs = [
+  { q: '¿Tienen hamburguesa vegetariana?', a: 'Sí. La Hamburguesa Vegetariana lleva falafel empanizado, lechuga, tomate, cebolla caramelizada, salsa BBQ, pepinillos y papas a la francesa. El queso americano o cheddar es opcional.' },
+  { q: '¿Puedo pedir sin algún ingrediente?', a: 'Claro. Pídelo al personal o mándanos un mensaje por WhatsApp antes de venir. Cocinamos al momento, así que adaptar es fácil.' },
+  { q: '¿Con qué acompañan las hamburguesas?', a: 'Cada hamburguesa viene acompañada de papas a la francesa. Si quieres más, las Papas Flanders (con queso fundido, tocino y jalapeño) son para compartir.' },
+  { q: '¿Con qué cerveza maridan las hamburguesas?', a: 'Todo depende de tu orden: las cervezas ligeras y refrescantes cortan bien la grasa del tocino, y las de más cuerpo acompañan el queso. Como la carta de barril rota constantemente, pregúntale al personal qué hay en tap: te recomienda la indicada para tu hamburguesa. <a href="/cerveza-artesanal-cuernavaca/">Conoce nuestra cerveza artesanal →</a>' },
+  { q: '¿Tienen hamburguesas especiales?', a: 'De vez en cuando sacamos hamburguesas especiales por tiempo limitado. Pregúntale al personal qué hay en la cocina o síguenos en Instagram para enterarte.' },
+];
+---
+
+<BaseLayout
+  title="Hamburguesas en Cuernavaca | Vecindario Beer Garden"
+  description="Hamburguesas en Cuernavaca con pan brioche, cocinadas al momento y pensadas para maridar con cerveza artesanal de barril. Vecindario Beer Garden, Av. Teopanzolco."
+  headerVariant="transparent"
+  schema={[menuSchema, faqSchema]}
+>
+  <!-- HERO -->
+  <section class="hub-hero">
+    <div class="hub-hero-bg"><img src="/images/hamburguesa-teopanzolco.jpg" alt="Hamburguesa en Vecindario Beer Garden, Cuernavaca" /></div>
+    <div class="hub-hero-inner">
+      <div>
+        <SectionLabel text="Cocina · Cuernavaca, Morelos" />
+        <h1>Hamburguesas<br>en <span class="accent">Cuernavaca</span></h1>
+        <p class="hub-sub">Pan brioche, hamburguesas cocinadas al momento y cerveza artesanal de barril en rotación constante.</p>
+        <div class="hero-badge-row">
+          <span class="hero-rating"><span class="stars">★★★★★</span><strong>{site.rating}</strong><span>· {site.reseñas} reseñas en Google</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAS HAMBURGUESAS -->
+  <section class="burgers-section"><div class="container">
+    <div class="section-head"><SectionLabel text="Nuestras recetas" /><h2 class="section-title">Tres hamburguesas de la casa</h2></div>
+    <div class="cards-grid">
+      {burgers.map((b) => (
+        <article class="burger-card">
+          {b.foto ? (
+            <div class="burger-img"><img src={b.foto} alt={b.nombre} loading="lazy" /></div>
+          ) : (
+            <div class="burger-img placeholder"><img src="/assets/icono.svg" alt="" loading="lazy" /></div>
+          )}
+          <div class="burger-body">
+            <div class="burger-tag">{b.tag}{b.tagVeg && <span class="tag-veg">veg</span>}</div>
+            <h3>{b.nombre}</h3>
+            <p>{b.desc}</p>
+            <div class="burger-foot"><span class="burger-price">${b.precio}</span></div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="ver-menu"><a href="/menu/" style="color:var(--vbg-verde);font-weight:600;">Ver el menú completo →</a></p>
+  </div></section>
+
+  <!-- EDITORIAL -->
+  <section class="editorial"><div class="container">
+    <div class="split">
+      <div>
+        <SectionLabel text="Por qué nuestras hamburguesas" />
+        <h2 class="section-title">Hechas para acompañar cerveza</h2>
+        <div class="prose">
+          <p>Una hamburguesa en un beer garden no es comida de relleno: <strong>es la mitad del maridaje</strong>. Por eso cada receta está pensada para dialogar con la cerveza de barril que tienes en la mano.</p>
+          <p>Y como <a href="/cerveza-artesanal-cuernavaca/">la carta de barril rota constantemente</a>, el maridaje es siempre una conversación: pregúntale al personal qué recomienda para tu hamburguesa.</p>
+        </div>
+      </div>
+      <figure class="img-side">
+        <img src="/images/hamburguesa-vecindario.jpg" alt="Hamburguesa de la casa en Vecindario Beer Garden, Cuernavaca" loading="lazy" />
+      </figure>
+    </div>
+    <div class="cards-grid mini">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c0-3 3.5-5 8-5s8 2 8 5H4zM4 10h16c0 4-3 7-8 7s-8-3-8-7zM4 13h16" /></svg>
+        <h3>Pan brioche</h3>
+        <p><strong>Hecho con mantequilla</strong>, tostado justo antes de armar. Aguanta el jugo sin desarmarse.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>
+        <h3>Al momento</h3>
+        <p>Cada hamburguesa se cocina <strong>cuando la pides</strong> y llega recién hecha a la mesa.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5c4.97 0 9 2.69 9 6c0 1.68-1.04 3.2-2.71 4.29c1.07-.87 1.71-1.97 1.71-3.16C20 9.29 16.42 7 12 7v3L8 6l4-4zm0 14c-4.97 0-9-2.69-9-6c0-1.68 1.04-3.2 2.71-4.29C4.64 9.58 4 10.68 4 11.88C4 14.71 7.58 17 12 17v3l4-4l-4 4z" /></svg>
+        <h3>Pensadas para maridar</h3>
+        <p>Pide la que se te antoje: <strong>el personal te recomienda</strong> la cerveza que va bien con tu orden.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="faq-section"><div class="container-narrow">
+    <div class="section-head" style="text-align:center;"><SectionLabel text="Preguntas frecuentes" centered={true} /><h2 class="section-title">Sobre nuestras hamburguesas</h2></div>
+    <FAQ items={faqs} />
+  </div></section>
+
+  <!-- CTA -->
+  <section class="cta-final">
+    <h2>¿Hamburguesa hoy?</h2>
+    <p>Miércoles a domingo en la Av. Teopanzolco, Cuernavaca. Terraza pet friendly y 10 cervezas en tap.</p>
+    <div class="btn-row">
+      <a href={`https://wa.me/${site.whatsapp}`} class="btn-wa">Reservar por WhatsApp</a>
+      <a href="/menu/" class="btn-primary">Ver el menú completo</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .hub-hero { position: relative; color: #fff; min-height: 55vh; display: flex; align-items: center; overflow: hidden; background: var(--vbg-negro); padding: 90px 0 110px; }
+  .hub-hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hub-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hub-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(95deg,rgba(20,18,16,.95) 0%,rgba(20,18,16,.75) 45%,rgba(20,18,16,.3) 100%),linear-gradient(to top,rgba(20,18,16,.9) 0%,transparent 60%); }
+  .hub-hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+  .hub-hero h1 { font-size: clamp(2rem,5vw,3.4rem); line-height: .95; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+  .accent { color: var(--vbg-verde-claro); }
+  .hub-sub { font-size: 1.05rem; color: #d8d2c2; margin-bottom: 1.6rem; max-width: 480px; }
+  .hero-badge-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: #c8c0b0; }
+  .hero-rating { display: inline-flex; align-items: center; gap: .5rem; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); padding: .4rem .8rem; border-radius: 2px; }
+  .hero-rating .stars { color: var(--vbg-ambar); letter-spacing: 1px; }
+  .hero-rating strong { color: #fff; font-weight: 600; }
+
+  /* SECCIONES */
+  section { padding: 4.5rem 0; }
+  .section-head { margin-bottom: 2rem; }
+  .prose { font-size: 1.02rem; color: var(--vbg-carbon); line-height: 1.8; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose strong { color: var(--vbg-verde); }
+  .prose a { color: var(--vbg-verde); font-weight: 600; }
+
+  /* SPLIT */
+  .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; align-items: center; }
+  .split .section-title { margin-bottom: 1.2rem; }
+  .img-side img { width: 100%; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); aspect-ratio: 4/3; object-fit: cover; }
+
+  /* CARDS HAMBURGUESAS */
+  .burgers-section { background: var(--vbg-claro-2); }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .burger-card { background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; overflow: hidden; transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; }
+  .burger-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,.1); }
+  .burger-img { aspect-ratio: 4/3; overflow: hidden; background: var(--vbg-claro); }
+  .burger-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .burger-img.placeholder img { object-fit: contain; padding: 3rem; opacity: .4; }
+  .burger-card:hover .burger-img img { transform: scale(1.05); }
+  .burger-body { padding: 1.2rem 1.3rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+  .burger-tag { font-family: 'JetBrains Mono', monospace; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--vbg-ambar); margin-bottom: .4rem; }
+  .tag-veg { color: var(--vbg-verde-claro); border: 1px solid var(--vbg-verde-claro); padding: .05rem .3rem; border-radius: 2px; margin-left: .5rem; }
+  .burger-body h3 { font-size: 1.3rem; color: var(--vbg-verde); margin-bottom: .5rem; }
+  .burger-body p { font-size: .88rem; color: var(--vbg-gris-texto); line-height: 1.55; margin-bottom: .9rem; flex: 1; }
+  .burger-foot { border-top: 1px dashed var(--vbg-gris-linea); padding-top: .8rem; }
+  .burger-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: 1.1rem; }
+  .ver-menu { margin-top: 2.5rem; text-align: center; }
+
+  /* EDITORIAL + MINI CARDS */
+  .editorial { background: var(--vbg-blanco); }
+  .cards-grid.mini { margin-top: 3rem; gap: 1.2rem; }
+  .card { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.8rem 1.5rem; border-top: 3px solid var(--vbg-verde-claro); }
+  .card-icon { width: 40px; height: 40px; margin-bottom: 1rem; color: var(--vbg-verde); }
+  .card h3 { font-size: 1.15rem; color: var(--vbg-verde); margin-bottom: 0.6rem; }
+  .card p { font-size: 0.9rem; color: var(--vbg-gris-texto); line-height: 1.6; }
+  .card strong { color: var(--vbg-verde); }
+
+  /* FAQ + CTA */
+  .faq-section { background: var(--vbg-blanco); }
+  .cta-final { background: var(--vbg-verde); color: #fff; text-align: center; padding: 4.5rem 1.5rem; }
+  .cta-final h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: .8rem; }
+  .cta-final p { color: #c8d8c0; margin-bottom: 2rem; }
+  .btn-row { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-wa svg { width: 18px; height: 18px; }
+
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 1.8rem; }
+    .split .img-side { order: 2; }
+  }
+</style>
