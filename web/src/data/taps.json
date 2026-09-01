@@ -33,18 +33,18 @@
   },
   {
     "num": 3,
-    "nombre": "Agua Mala Mantarraya",
-    "estilo": "Cream Ale",
-    "color": "#f0c419",
-    "cerveceria": "Agua Mala",
-    "origen": "Ensenada, BC",
-    "abv": "4.8%",
-    "ibu": "22",
-    "precioCh": 90,
-    "precioG": 105,
+    "nombre": "Madueño",
+    "estilo": "Double NEIPA",
+    "color": "#f0dd5a",
+    "cerveceria": "Madueño",
+    "origen": "Tijuana, B.C.",
+    "abv": "8.2%",
+    "ibu": "",
+    "precioCh": 170,
+    "precioG": 215,
     "badges": [],
     "disponible": true,
-    "descripcion": "Suave y ligera con un toque cremoso. Perfecta para el calor y para acompañar botanas."
+    "descripcion": "Cuerpo cremoso, perfil ultra turbio y una explosión masiva de cítricos y fruta tropical. Destaca por su textura sedosa en boca que equilibra un amargor suave y oculta a la perfección sus 8.2% de potencia. Puro jugo fresco para disfrutar lentamente."
   },
   {
     "num": 4,
