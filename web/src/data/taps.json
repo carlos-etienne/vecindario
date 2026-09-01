@@ -18,18 +18,18 @@
   },
   {
     "num": 2,
-    "nombre": "Insurgente La Lupulosa",
-    "estilo": "American IPA",
-    "color": "#e8a317",
-    "cerveceria": "Insurgente",
-    "origen": "Tijuana, BC",
-    "abv": "6.5%",
-    "ibu": "65",
+    "nombre": "La Leona",
+    "estilo": "West Coast IPA",
+    "color": "#d9951e",
+    "cerveceria": "Ícono",
+    "origen": "Mexicali, B.C.",
+    "abv": "6.2%",
+    "ibu": "",
     "precioCh": 95,
-    "precioG": 110,
+    "precioG": 115,
     "badges": [],
     "disponible": true,
-    "descripcion": "Amarga con sabores cítricos y a pino. El estilo favorito de los amantes del lúpulo."
+    "descripcion": "West Coast IPA que destaca por su color dorado profundo y espuma blanca persistente. En aroma, ofrece notas tropicales y cítricas gracias a la combinación de lúpulos Azacca, Simcoe, Mosaic y Citra. En boca, presenta un amargor equilibrado con sabores que recuerdan a toronja y un toque resinoso, culminando en un final seco y refrescante. Esta cerveza fue galardonada como ganadora nacional en la categoría American Style IPA en los World Beer Awards 2021."
   },
   {
     "num": 3,
