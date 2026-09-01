@@ -23,7 +23,7 @@ Array de 10 objetos, uno por tap. Campos:
 | `cerveceria` | string | ej. "Insurgente" |
 | `origen` | string | ciudad/país |
 | `abv` | string | ej. "6.5%" |
-| `ibu` | string o número | amargor |
+| `ibu` | string o número | opcional — `""` si no se tiene; no esperarlo de Carlos |
 | `precioCh` | número | pesos MXN cerveza chica (sin $) |
 | `precioG` | número | pesos MXN cerveza grande (sin $) |
 | `badges` | array | ej. ["Nueva", "Local"] — vacío si ninguno |
@@ -36,9 +36,9 @@ Array de 10 objetos, uno por tap. Campos:
 3. `abv` como string con "%".
 4. JSON válido (json parse).
 5. `cd web && npm run build` pasa sin errores.
-6. Si no hay datos de un campo (ej. IBU desconocido), preguntar antes de inventar.
+6. IBU: no esperarlo de Carlos — omitir (dejar `""`) salvo que él lo proporcione o que el agente tenga el dato confirmado de fuente oficial al investigar una cerveza nueva. Para CUALQUIER otro campo sin datos, preguntar antes de inventar.
 
-**Nunca inventar:** precios, grados de alcohol, cerveceras, estilos. Si Carlos no los da, preguntar en el chat.
+**Nunca inventar:** precios, grados de alcohol, cerveceras, estilos ni IBU. Si Carlos no da precios/grados/cerveceras/estilos, preguntar en el chat (el IBU se omite, ver punto 6).
 
 ## Otros datos
 
