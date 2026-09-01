@@ -123,8 +123,8 @@ const { variant = 'compact' } = Astro.props;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: background 0.15s;
   }
-  .tap-c:nth-child(2n) { border-right: none; }
-  .tap-c:nth-last-child(-n+2) { border-bottom: none; }
+  .tap-c:nth-child(n+6) { border-right: none; }
+  .tap-c:nth-child(5), .tap-c:nth-child(10) { border-bottom: none; }
   .tap-c:hover { background: rgba(196,114,30,0.06); }
   .tap-c.agotada { opacity: 0.4; }
   .tap-c-numwrap { display: flex; flex-direction: row; align-items: center; gap: 0.3rem; }
@@ -179,8 +179,10 @@ const { variant = 'compact' } = Astro.props;
     border-bottom: 1px solid rgba(255,255,255,0.06);
     transition: background 0.15s;
   }
-  .tap-row-full:nth-child(2n) { border-right: none; }
-  .tap-row-full:nth-last-child(-n+2) { border-bottom: none; }
+  /* el grid llena por columnas (1-5 izq, 6-10 der): sin borde derecho solo en la última columna,
+     sin borde inferior solo en el fondo de cada columna */
+  .tap-row-full:nth-child(n+6) { border-right: none; }
+  .tap-row-full:nth-child(5), .tap-row-full:nth-child(10) { border-bottom: none; }
   .tap-row-full:hover { background: rgba(196,114,30,0.05); }
   .tap-row-full.agotada { opacity: 0.45; }
   .tap-num-wrap { display: flex; flex-direction: row; align-items: center; gap: 0.35rem; padding-top: 0.15rem; }
@@ -254,7 +256,8 @@ const { variant = 'compact' } = Astro.props;
       grid-template-columns: 1fr;
       grid-auto-flow: row;
     }
-    .tap-row-full { border-right: none !important; }
+    .tap-row-full { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .tap-row-full:last-child { border-bottom: none; }
     /* Home: carrusel horizontal con snap — obvio que se desliza */
     .tap-grid-compact {
       display: flex;
