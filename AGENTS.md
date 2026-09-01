@@ -40,6 +40,33 @@ Array de 10 objetos, uno por tap. Campos:
 
 **Nunca inventar:** precios, grados de alcohol, cerveceras, estilos. Si Carlos no los da, preguntar en el chat.
 
+## Repertorio de cervezas (`web/src/data/cervezas-repertorio.json`)
+
+Biblioteca con la ficha completa de TODAS las cervezas conectadas alguna vez (mismo schema que taps.json, sin `num` ni `disponible`).
+
+1. **Siempre antes de editar**: `git pull origin main` en el repo (hay otros escritores además de ti).
+2. **Al desconectar una cerveza**: guardar su ficha en el repertorio (si no está) antes de sacarla de taps.json.
+3. **Al reconectar una recurrente**: copiar su ficha del repertorio a taps.json con el `num` que le asigne Carlos — no pedir datos de nuevo.
+4. **Cerveza nueva con datos incompletos**: buscarlos en la web (Untappd, sitio de la cervecera, Google) y proponerle a Carlos la ficha completa + una `descripcion` de 1-2 frases educativas al estilo del sitio. **Esperar su confirmación antes de publicar.**
+5. **Color del vaso**: si la cerveza está en el repertorio, conservar su color guardado. Si es nueva, asignarlo de este mapa por estilo e incluirlo en la propuesta:
+
+| Estilo (contiene) | Color |
+|---|---|
+| Kölsch, Pilsner, Lager, Helles | #f2d94f |
+| Hefeweizen, Wheat | #f0e6c0 |
+| Saison | #f0e3a6 |
+| IPA (West Coast, American) | #d9951e |
+| NEIPA, Hazy, Milkshake | #f0c95a |
+| DIPA, Triple IPA | #e0a234 |
+| Belgian, Tripel, Golden | #edc65b |
+| Rye, Red, Amber, APA | #c0561f |
+| Dunkel, Vienna, Märzen, Bock, Doppelbock | #8a4d1e |
+| Porter | #452916 |
+| Stout, Barrel Aged | #2e1b10 |
+| Fruit, Sour, otra frutal | preguntar a Carlos |
+
+Si el estilo no encaja en el mapa, o la etiqueta de la cerveza tiene un color icónico obvio, proponerle 2 opciones a Carlos.
+
 ## Otros datos
 
 - `web/src/data/site.json` — NAP, horarios, teléfono, redes. Cualquier cambio aquí = PR.
