@@ -12,7 +12,7 @@ const { variant = 'compact' } = Astro.props;
   <div class="tapwall-card">
     <div class="tapwall-bar">
       <span class="tw-live">CERVEZA DE BARRIL · EN ROTACIÓN</span>
-      <span class="tw-updated">Actualizado hoy · 10 líneas</span>
+      <span class="tw-updated">10 líneas</span>
     </div>
     <div class="tap-grid-compact">
       {taps.map((tap) => (
@@ -60,7 +60,7 @@ const { variant = 'compact' } = Astro.props;
   <div class="tapwall">
     <div class="tapwall-bar">
       <span class="tw-live">10 LÍNEAS EN SERVICIO</span>
-      <span class="tw-updated">Última actualización: hoy 16:42</span>
+      <span class="tw-updated">CH = chico · G = grande</span>
     </div>
     <div class="tapwall-grid">
       {taps.map((tap) => (
@@ -69,27 +69,28 @@ const { variant = 'compact' } = Astro.props;
             <span class="tap-num-full">#{String(tap.num).padStart(2, '0')}</span>
             <BeerGlass color={tap.color} size={32} />
           </div>
-          <div class="tap-info-full">
-            <div class="tap-name-full">
-              {tap.nombre}
-              {tap.badges.map((b) => (
-                <span class={`tap-badge-full ${b.toLowerCase()}`}>{b}</span>
-              ))}
+          <div class="tap-main-full">
+            <div class="tap-topline">
+              <span class="tap-name-full">
+                {tap.nombre}
+                {tap.badges.map((b) => (
+                  <span class={`tap-badge-full ${b.toLowerCase()}`}>{b}</span>
+                ))}
+              </span>
+              <span class="tap-prices-full">
+                {tap.disponible ? (
+                  <>
+                    <span class="tap-price-line">${tap.precioCh}<small>CH</small></span>
+                    <span class="tap-price-line">${tap.precioG}<small>G</small></span>
+                  </>
+                ) : (
+                  <span class="tap-price-line agotada-txt">Agotada</span>
+                )}
+              </span>
             </div>
             <div class="tap-style-full">{tap.estilo}</div>
+            <div class="tap-meta-full">{tap.cerveceria} · {tap.origen} · {tap.abv} ABV{tap.ibu ? ` · ${tap.ibu} IBU` : ''}</div>
             {tap.descripcion && <div class="tap-desc-full">{tap.descripcion}</div>}
-            <div class="tap-brewery-full">{tap.cerveceria} · {tap.origen}</div>
-            <div class="tap-abv-full">{tap.abv} ABV{tap.ibu ? ` · ${tap.ibu} IBU` : ''}</div>
-          </div>
-          <div class="tap-prices-full">
-            {tap.disponible ? (
-              <>
-                <span class="tap-price-line">${tap.precioCh}<small>CH</small></span>
-                <span class="tap-price-line">${tap.precioG}<small>G</small></span>
-              </>
-            ) : (
-              <span class="tap-price-line" style="color:#9a9183;">—</span>
-            )}
           </div>
         </div>
       ))}
@@ -171,8 +172,8 @@ const { variant = 'compact' } = Astro.props;
   }
   .tap-row-full {
     display: grid;
-    grid-template-columns: 88px 1fr auto;
-    gap: 0.8rem; align-items: center;
+    grid-template-columns: 88px 1fr;
+    gap: 0.8rem; align-items: start;
     padding: 0.9rem 1rem;
     border-right: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -182,30 +183,31 @@ const { variant = 'compact' } = Astro.props;
   .tap-row-full:nth-last-child(-n+2) { border-bottom: none; }
   .tap-row-full:hover { background: rgba(196,114,30,0.05); }
   .tap-row-full.agotada { opacity: 0.45; }
-  .tap-num-wrap { display: flex; flex-direction: row; align-items: center; gap: 0.35rem; }
+  .tap-num-wrap { display: flex; flex-direction: row; align-items: center; gap: 0.35rem; padding-top: 0.15rem; }
   .tap-num-full {
     font-family: 'Anton', sans-serif; font-size: 1.8rem;
     color: var(--vbg-ambar); line-height: 0.85; letter-spacing: -0.03em;
   }
-  .tap-info-full .tap-name-full {
+  .tap-topline {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.2rem;
+  }
+  .tap-name-full {
     font-weight: 600; color: #f3ebd9; font-size: 1rem;
-    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.2rem;
+    display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
   }
-  .tap-info-full .tap-style-full {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.86rem;
-    color: var(--vbg-verde-claro); font-weight: 500; margin-bottom: 0.2rem;
+  .tap-style-full {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+    color: var(--vbg-verde-claro); font-weight: 500; margin-bottom: 0.15rem;
   }
-  .tap-desc-full {
-    font-size: 0.78rem; color: #c8c0b0; line-height: 1.4; margin-bottom: 0.3rem;
-    font-style: italic;
-  }
-  .tap-info-full .tap-brewery-full {
+  .tap-meta-full {
     font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
     color: #9a9183; text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
   }
-  .tap-info-full .tap-abv-full {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.76rem;
-    color: #a8a294; margin-top: 0.15rem;
+  .tap-desc-full {
+    font-size: 0.78rem; color: #c8c0b0; line-height: 1.45;
+    font-style: italic;
   }
   .tap-badge-full {
     display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
@@ -216,15 +218,16 @@ const { variant = 'compact' } = Astro.props;
   .tap-badge-full.new { color: #fff; border-color: var(--vbg-ambar); background: var(--vbg-ambar); }
   .tap-badge-full.agotada { color: #9a9183; border-color: #9a9183; }
   .tap-prices-full {
-    display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem;
-    font-family: 'JetBrains Mono', monospace;
+    display: flex; align-items: baseline; gap: 0.6rem;
+    font-family: 'JetBrains Mono', monospace; white-space: nowrap; margin-left: auto;
   }
   .tap-price-line {
-    color: var(--vbg-verde-claro); font-weight: 600; font-size: 0.93rem; white-space: nowrap;
+    color: var(--vbg-verde-claro); font-weight: 600; font-size: 0.93rem;
   }
   .tap-price-line small {
     color: #9a9183; font-weight: 400; font-size: 0.64rem; margin-left: 0.3rem; text-transform: uppercase;
   }
+  .tap-price-line.agotada-txt { color: #9a9183; font-size: 0.8rem; }
 
   /* Slider nav (solo móvil) */
   .tap-slider-nav { display: none; }
@@ -310,27 +313,20 @@ const { variant = 'compact' } = Astro.props;
     .tapwall-bar { padding: 0.6rem 0.8rem; }
     .tapwall-bar .tw-updated { display: none; }
 
-    /* Full (menú): columna única — número arriba, info debajo */
+    /* Full (menú): mismo layout compacto — num izquierda, contenido derecha */
     .tap-row-full {
-      grid-template-columns: 1fr;
-      gap: 0.4rem;
+      grid-template-columns: 64px 1fr;
+      gap: 0.6rem;
       padding: 0.8rem;
       align-items: start;
     }
-    .tap-num-wrap { align-items: center; }
-    .tap-num-full { font-size: 1.5rem; }
-    .tap-info-full .tap-name-full { font-size: 0.95rem; }
-    .tap-info-full .tap-style-full { font-size: 0.78rem; }
+    .tap-num-full { font-size: 1.2rem; }
+    .tap-name-full { font-size: 0.95rem; }
+    .tap-style-full { font-size: 0.74rem; }
+    .tap-meta-full { font-size: 0.62rem; }
     .tap-desc-full { font-size: 0.74rem; }
-    .tap-info-full .tap-brewery-full { font-size: 0.62rem; }
-    .tap-info-full .tap-abv-full { font-size: 0.68rem; }
-    .tap-prices-full {
-      flex-direction: row;
-      gap: 0.8rem;
-      align-items: baseline;
-      margin-top: 0.2rem;
-    }
-    .tap-price-line { font-size: 0.9rem; }
+    .tap-price-line { font-size: 0.88rem; }
+    .tap-topline { gap: 0.5rem; }
 
     /* Compact (home): mantener 2 columnas internas pero ajustado */
     .tap-c {
