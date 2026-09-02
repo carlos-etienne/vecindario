@@ -80,7 +80,7 @@ const extras = [
 
 <BaseLayout
   title="Eventos en Cuernavaca | Vecindario Beer Garden"
-  description="Festejos de 2° aniversario de Vecindario Beer Garden: música en vivo, cerveza conmemorativa Italian Pilsner y burgers especiales. Sábados 5 y 12 de septiembre, Cuernavaca."
+  description="Agenda de eventos en Vecindario Beer Garden, Cuernavaca: música en vivo, catas de cerveza y noches especiales. Próximos: festejos de 2° aniversario, sábados 5 y 12 de septiembre."
   headerVariant="transparent"
   schema={schema}
 >
@@ -89,11 +89,12 @@ const extras = [
     <div class="container">
       <SectionLabel text="Agenda" />
       <h1>Eventos en Cuernavaca</h1>
-      <p class="page-sub">Cumplimos dos años y lo celebramos a lo grande: dos sábados de música en vivo, cerveza conmemorativa y sorpresas. Reserva tu mesa — el cupo va a estar limitado.</p>
+      <p class="page-sub">La agenda de Vecindario: música en vivo, catas de cerveza y noches especiales. Reserva por WhatsApp — los eventos tienen cupo limitado.</p>
     </div>
   </section>
 
   <section><div class="container">
+    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">2° Aniversario: dos sábados de festejo</h2></div>
     <div class="eventos-grid">
       {eventos.map((e) => (
         <article class="evento-card">
@@ -127,7 +128,7 @@ const extras = [
 </BaseLayout>
 
 <style>
-  .page-head { background: var(--vbg-negro); padding: 2rem 0 3rem; }
+  .page-head { background: var(--vbg-negro); padding: 7rem 0 3.5rem; }
   .page-head h1 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.8rem, 4vw, 2.6rem); color: #f3ebd9; margin-bottom: .5rem; }
   .page-sub { color: #c8c0b0; max-width: 560px; }
   section { padding: 2.5rem 0 4.5rem; }

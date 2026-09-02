@@ -11,7 +11,6 @@ const schema = {
   "hasMenuSection": [
     { "@type": "MenuSection", "name": "Cervezas de barril" },
     { "@type": "MenuSection", "name": "Alimentos" },
-    { "@type": "MenuSection", "name": "Cervezas lata y botella" },
     { "@type": "MenuSection", "name": "Otras bebidas" }
   ]
 };
@@ -40,20 +39,11 @@ const platos = {
   ],
 };
 
-const lataSample = [
-  { nombre: "Tropical IPA", cerveceria: "Insurgente · Tijuana", formato: "Lata 473ml", estilo: "Hazy IPA", precio: 75, abv: "6.5%" },
-  { nombre: "Mantarraya", cerveceria: "Agua Mala · Ensenada", formato: "Lata 355ml", estilo: "Cream Ale", precio: 68, abv: "4.8%" },
-  { nombre: "Payne's Killer Ale", cerveceria: "Principal · CDMX", formato: "Botella 355ml", estilo: "Strong Ale", precio: 82, abv: "6.8%" },
-  { nombre: "Weihenstephaner Hefe", cerveceria: "Weihenstephan · Alemania", formato: "Botella 500ml", estilo: "Hefeweizen · Importada", precio: 115, abv: "5.4%" },
-  { nombre: "Saison de la Maison", cerveceria: "Cru Crú · Querétaro", formato: "Lata 473ml", estilo: "Saison", precio: 88, abv: "6.0%" },
-  { nombre: "Búho Common", cerveceria: "Búho · Oaxaca", formato: "Lata 355ml", estilo: "California Common", precio: 72, abv: "5.2%" },
-];
-
 ---
 
 <BaseLayout
   title="Menú · Vecindario Beer Garden"
-  description="Menú completo: 10 cervezas de barril en rotación, pizzas estilo napolitano, hamburguesas, entradas, cervezas de lata/botella y otras bebidas."
+  description="Menú completo: 10 cervezas de barril en rotación, pizzas estilo napolitano, hamburguesas, entradas y otras bebidas."
   headerVariant="solid"
   schema={schema}
 >
@@ -71,7 +61,6 @@ const lataSample = [
     <div class="menu-tabs-inner">
       <a href="#taps" class="tab-btn active">Barril <span class="tab-count">10</span></a>
       <a href="#alimentos" class="tab-btn">Alimentos</a>
-      <a href="#lata" class="tab-btn">Lata / Botella</a>
       <a href="#otras" class="tab-btn">Otras bebidas</a>
     </div>
   </nav>
@@ -183,26 +172,6 @@ const lataSample = [
       ))}
     </section>
 
-    <!-- LATA/BOTELLA -->
-    <section id="lata" class="menu-section">
-      <div class="section-head">
-        <SectionLabel text="Catálogo" />
-        <h2 class="menu-title">Cervezas lata / botella</h2>
-        <p class="menu-sub">Cervecerías nacionales e importadas. Esta es una muestra — tenemos muchas más en la cámara fría.</p>
-      </div>
-      <div class="lata-grid">
-        {lataSample.map((c) => (
-          <div class="lata-card">
-            <div class="lc-name">{c.nombre}</div>
-            <div class="lc-meta">{c.cerveceria.toUpperCase()} · {c.formato.toUpperCase()}</div>
-            <div class="lc-style">{c.estilo}</div>
-            <div class="lc-foot"><span class="lc-price">${c.precio}</span><span class="lc-abv">{c.abv} ABV</span></div>
-          </div>
-        ))}
-      </div>
-      <div class="qr-banner"><strong>¿No ves la cerveza que buscas en vitrina?</strong> Pregunta al personal — tenemos muchas más en la cámara fría que no caben en exhibición.</div>
-    </section>
-
     <!-- OTRAS BEBIDAS -->
     <section id="otras" class="menu-section">
       <div class="section-head">
@@ -290,14 +259,6 @@ const lataSample = [
   .plato-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: .98rem; white-space: nowrap; }
   .plato-tag-veg { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .56rem; color: var(--vbg-verde-claro); border: 1px solid var(--vbg-verde-claro); padding: .05rem .3rem; border-radius: 2px; margin-left: .4rem; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
 
-  .lata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .7rem; }
-  .lata-card { background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: .8rem .9rem; }
-  .lc-name { font-weight: 600; font-size: .88rem; color: var(--vbg-carbon); margin-bottom: .15rem; }
-  .lc-meta { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--vbg-gris-texto); margin-bottom: .3rem; }
-  .lc-style { font-family: 'JetBrains Mono', monospace; font-size: .74rem; color: var(--vbg-verde); font-weight: 500; margin-bottom: .3rem; }
-  .lc-foot { display: flex; justify-content: space-between; margin-top: .2rem; }
-  .lc-price { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vbg-ambar); font-size: .9rem; }
-  .lc-abv { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--vbg-gris-texto); }
 
   .otras-list { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem 1.5rem; }
   .otras-item { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--vbg-gris-linea); font-size: .86rem; }

@@ -215,10 +215,16 @@ const faqSchema = {
 
   <!-- EVENTOS -->
   <section class="eventos"><div class="container">
-    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">Próximos eventos en Cuernavaca</h2><p class="section-sub">Catas de cerveza, música en vivo y noches especiales. <a href="/eventos/" style="color:var(--vbg-verde);font-weight:600;">Ver todos los eventos →</a></p></div>
+    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">Próximos eventos en Cuernavaca</h2><p class="section-sub">2° Aniversario: dos sábados de música en vivo, cerveza conmemorativa y burgers especiales. <a href="/eventos/" style="color:var(--vbg-verde);font-weight:600;">Ver todos los eventos →</a></p></div>
     <div class="eventos-grid">
-      <article class="evento-card"><div class="evento-date"><div class="day">22</div><div class="month">AGO</div></div><div><div class="evento-tag">Cata de cerveza</div><h3 class="evento-name">Cata: estilos belgas</h3><p class="evento-meta">Viernes 22 de agosto · 19:00 · $350</p></div></article>
-      <article class="evento-card"><div class="evento-date"><div class="day">06</div><div class="month">SEP</div></div><div><div class="evento-tag">Música en vivo</div><h3 class="evento-name">Sesión acústica</h3><p class="evento-meta">Sábado 6 de septiembre · 20:00 · Entrada libre</p></div></article>
+      <article class="evento-card">
+        <div class="evento-img"><img src="/images/aniversario-5sep.jpg" alt="Cartel del primer sábado de aniversario: Brooknotes Band" loading="lazy" /></div>
+        <div><div class="evento-tag">2° Aniversario</div><h3 class="evento-name">Brooknotes Band + DJ Andriu</h3><p class="evento-meta">Sábado 5 de septiembre · Desde las 6:00 PM</p></div>
+      </article>
+      <article class="evento-card">
+        <div class="evento-img"><img src="/images/aniversario-12sep.jpg" alt="Cartel del segundo sábado de aniversario: Som•bit" loading="lazy" /></div>
+        <div><div class="evento-tag">2° Aniversario</div><h3 class="evento-name">Som•bit + DJ Obrero del Pixel</h3><p class="evento-meta">Sábado 12 de septiembre · Desde las 6:00 PM</p></div>
+      </article>
     </div>
   </div></section>
 
@@ -308,8 +314,10 @@ const faqSchema = {
 
   .eventos { background:var(--vbg-claro-2); }
   .eventos-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem; }
-  .evento-card { display:grid;grid-template-columns:80px 1fr;gap:1.2rem;background:#fff;border:1px solid var(--vbg-gris-linea);border-radius:4px;padding:1.3rem;align-items:center;transition:border-color .2s,transform .2s; }
+  .evento-card { display:grid;grid-template-columns:96px 1fr;gap:1.2rem;background:#fff;border:1px solid var(--vbg-gris-linea);border-radius:4px;padding:1.1rem;align-items:center;transition:border-color .2s,transform .2s; }
   .evento-card:hover { border-color:var(--vbg-ambar);transform:translateY(-2px); }
+  .evento-img { border-radius:3px; overflow:hidden; aspect-ratio:1; }
+  .evento-img img { width:100%; height:100%; object-fit:cover; display:block; }
   .evento-date { background:var(--vbg-verde);border-radius:3px;padding:.7rem .5rem;text-align:center;height:80px;display:flex;flex-direction:column;justify-content:center; }
   .evento-date .day { font-family:'Anton',sans-serif;font-size:1.8rem;color:#fff;line-height:1; }
   .evento-date .month { font-family:'JetBrains Mono',monospace;font-size:.66rem;text-transform:uppercase;color:var(--vbg-verde-claro); }
