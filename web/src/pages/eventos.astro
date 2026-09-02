@@ -2,42 +2,127 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import site from '../data/site.json';
+
+const eventos = [
+  {
+    fecha: 'SÁB 5 SEP',
+    img: '/images/aniversario-5sep.jpg',
+    alt: 'Cartel del primer sábado de aniversario de Vecindario Beer Garden con Brooknotes Band',
+    tag: '2° Aniversario',
+    titulo: 'Brooknotes Band + DJ Andriu',
+    meta: 'Sábado 5 de septiembre · Desde las 6:00 PM',
+    descripcion: 'Arrancamos los festejos con la Brooknotes Band en vivo y los sets de DJ Andriu para cerrar la noche.',
+    startDate: '2026-09-05T18:00:00-06:00',
+    endDate: '2026-09-05T23:30:00-06:00',
+    banda: 'Brooknotes Band',
+    dj: 'DJ Andriu',
+  },
+  {
+    fecha: 'SÁB 12 SEP',
+    img: '/images/aniversario-12sep.jpg',
+    alt: 'Cartel del segundo sábado de aniversario de Vecindario Beer Garden con Som•bit',
+    tag: '2° Aniversario',
+    titulo: 'Som•bit + DJ Obrero del Pixel',
+    meta: 'Sábado 12 de septiembre · Desde las 6:00 PM',
+    descripcion: 'Segunda fecha de aniversario: Som•bit en vivo y los sets de DJ Obrero del Pixel.',
+    startDate: '2026-09-12T18:00:00-06:00',
+    endDate: '2026-09-12T23:30:00-06:00',
+    banda: 'Som•bit',
+    dj: 'DJ Obrero del Pixel',
+  },
+];
+
+const schema = eventos.map((e) => ({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: `2° Aniversario Vecindario Beer Garden: ${e.banda} + ${e.dj}`,
+  startDate: e.startDate,
+  endDate: e.endDate,
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  image: [`https://vecindariobeergarden.com${e.img}`],
+  description: e.descripcion + ' Cerveza conmemorativa de aniversario, burgers especiales y música en vivo en Cuernavaca.',
+  location: {
+    "@type": "Place",
+    name: "Vecindario Beer Garden",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Av. Teopanzolco 665, Zona 1, Reforma",
+      addressLocality: "Cuernavaca",
+      addressRegion: "Morelos",
+      postalCode: "62260",
+      addressCountry: "MX"
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 18.9456493, longitude: -99.2251458 }
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Vecindario Beer Garden",
+    url: "https://vecindariobeergarden.com"
+  }
+}));
+
+const extras = [
+  {
+    titulo: 'Cerveza conmemorativa',
+    texto: 'Presentamos nuestra cerveza de aniversario: una <strong>Italian Pilsner</strong> de edición limitada, con vaso de edición especial.',
+  },
+  {
+    titulo: 'Vuelven las burgers especiales',
+    texto: 'Regresan dos best sellers: <strong>Lady Blue</strong> (mix de quesos, queso azul, cebolla con tocino caramelizado y aros de cebolla) y <strong>Salsa de Pimienta</strong> (res en brioche, cheddar y cebolla caramelizada sobre gravy de pimienta, con zanahorias baby a la mantequilla).',
+  },
+  {
+    titulo: 'Juegos y premios',
+    texto: '<strong>Dinámicas y premios</strong> toda la tarde para brindar por la comunidad que le da vida a Vecindario.',
+  },
+];
 ---
 
 <BaseLayout
   title="Eventos en Cuernavaca | Vecindario Beer Garden"
-  description="Eventos en Cuernavaca: catas de cerveza, música en vivo y noches especiales en Vecindario Beer Garden. Consulta nuestra agenda."
+  description="Festejos de 2° aniversario de Vecindario Beer Garden: música en vivo, cerveza conmemorativa Italian Pilsner y burgers especiales. Sábados 5 y 12 de septiembre, Cuernavaca."
   headerVariant="transparent"
+  schema={schema}
 >
 
   <section class="page-head">
     <div class="container">
       <SectionLabel text="Agenda" />
       <h1>Eventos en Cuernavaca</h1>
-      <p class="page-sub">Catas de cerveza, música en vivo y noches especiales. Reserva por WhatsApp — los eventos tienen cupo limitado.</p>
+      <p class="page-sub">Cumplimos dos años y lo celebramos a lo grande: dos sábados de música en vivo, cerveza conmemorativa y sorpresas. Reserva tu mesa — el cupo va a estar limitado.</p>
     </div>
   </section>
 
   <section><div class="container">
     <div class="eventos-grid">
-      <article class="evento-card">
-        <div class="evento-date"><div class="day">22</div><div class="month">AGO</div></div>
-        <div>
-          <div class="evento-tag">Cata de cerveza</div>
-          <h2 class="evento-name">Cata: estilos belgas</h2>
-          <p class="evento-meta">Viernes 22 de agosto · 19:00 · $350 · Cupo limitado</p>
-        </div>
-      </article>
-      <article class="evento-card">
-        <div class="evento-date"><div class="day">06</div><div class="month">SEP</div></div>
-        <div>
-          <div class="evento-tag">Música en vivo</div>
-          <h2 class="evento-name">Sesión acústica</h2>
-          <p class="evento-meta">Sábado 6 de septiembre · 20:00 · Entrada libre · Consumación mínima</p>
-        </div>
-      </article>
+      {eventos.map((e) => (
+        <article class="evento-card">
+          <div class="evento-img"><img src={e.img} alt={e.alt} loading="lazy" /></div>
+          <div class="evento-body">
+            <div class="evento-top">
+              <div class="evento-date"><span class="dow">SÁB</span><span class="day">{e.fecha.split(' ')[1]}</span><span class="month">SEP</span></div>
+              <span class="evento-tag">{e.tag}</span>
+            </div>
+            <h2 class="evento-name">{e.titulo}</h2>
+            <p class="evento-meta">{e.meta}</p>
+            <p class="evento-desc">{e.descripcion}</p>
+            <a href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, quiero reservar para el aniversario del sábado ${e.fecha.split(' ')[1]} de septiembre`)}`} class="btn-primary evento-cta">Reservar mesa</a>
+          </div>
+        </article>
+      ))}
     </div>
-    <p style="margin-top:2rem;"><a href={`https://wa.me/${site.whatsapp}`} class="btn-primary">Reservar por WhatsApp</a></p>
+
+    <div class="section-head" style="margin-top:3.5rem;"><SectionLabel text="En ambos sábados" /><h2 class="section-title">Lo que va a haber</h2></div>
+    <div class="cards-grid">
+      {extras.map((x) => (
+        <div class="card">
+          <h3>{x.titulo}</h3>
+          <p set:html={x.texto} />
+        </div>
+      ))}
+    </div>
+
+    <p class="evento-cta-final">¿Viene tu grupo grande o quieres asegurar mesa? <a href={`https://wa.me/${site.whatsapp}`}>Escríbenos por WhatsApp</a> — miércoles a domingo desde las 5:00 PM, Av. Teopanzolco 665.</p>
   </div></section>
 </BaseLayout>
 
@@ -45,14 +130,33 @@ import site from '../data/site.json';
   .page-head { background: var(--vbg-negro); padding: 2rem 0 3rem; }
   .page-head h1 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(1.8rem, 4vw, 2.6rem); color: #f3ebd9; margin-bottom: .5rem; }
   .page-sub { color: #c8c0b0; max-width: 560px; }
-  section { padding: 2rem 0 4rem; }
+  section { padding: 2.5rem 0 4.5rem; }
   .eventos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .evento-card { display: grid; grid-template-columns: 80px 1fr; gap: 1.2rem; background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.3rem; align-items: center; }
-  .evento-date { background: var(--vbg-verde); border-radius: 3px; padding: .7rem .5rem; text-align: center; height: 80px; display: flex; flex-direction: column; justify-content: center; }
-  .evento-date .day { font-family: 'Anton', sans-serif; font-size: 1.8rem; color: #fff; line-height: 1; }
-  .evento-date .month { font-family: 'JetBrains Mono', monospace; font-size: .66rem; text-transform: uppercase; color: var(--vbg-verde-claro); }
-  .evento-tag { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--vbg-ambar); text-transform: uppercase; margin-bottom: .3rem; }
-  .evento-name { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.1rem; color: var(--vbg-verde); margin-bottom: .3rem; }
-  .evento-meta { font-size: .82rem; color: var(--vbg-gris-texto); }
-  @media (max-width: 700px) { .eventos-grid { grid-template-columns: 1fr; } }
+  .evento-card { display: grid; grid-template-columns: 220px 1fr; background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; overflow: hidden; }
+  .evento-img { position: relative; }
+  .evento-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .evento-body { padding: 1.3rem 1.4rem; display: flex; flex-direction: column; align-items: flex-start; }
+  .evento-top { display: flex; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+  .evento-date { background: var(--vbg-verde); border-radius: 3px; padding: .5rem .7rem; text-align: center; display: flex; flex-direction: column; line-height: 1.05; }
+  .evento-date .dow { font-family: 'JetBrains Mono', monospace; font-size: .56rem; color: var(--vbg-verde-claro); letter-spacing: .1em; }
+  .evento-date .day { font-family: 'Anton', sans-serif; font-size: 1.7rem; color: #fff; }
+  .evento-date .month { font-family: 'JetBrains Mono', monospace; font-size: .56rem; color: var(--vbg-verde-claro); letter-spacing: .1em; }
+  .evento-tag { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--vbg-ambar); border: 1px solid var(--vbg-ambar); padding: .2rem .5rem; border-radius: 2px; text-transform: uppercase; }
+  .evento-name { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.25rem; color: var(--vbg-verde); margin-bottom: .3rem; }
+  .evento-meta { font-family: 'JetBrains Mono', monospace; font-size: .74rem; color: var(--vbg-gris-texto); margin-bottom: .7rem; }
+  .evento-desc { font-size: .9rem; color: var(--vbg-gris-texto); line-height: 1.6; margin-bottom: 1.1rem; }
+  .evento-cta { margin-top: auto; }
+  .section-title { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.6rem; color: var(--vbg-verde); }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .card { background: var(--vbg-claro); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.6rem 1.4rem; border-top: 3px solid var(--vbg-verde-claro); }
+  .card h3 { font-size: 1.1rem; color: var(--vbg-verde); margin-bottom: 0.6rem; }
+  .card p { font-size: 0.88rem; color: var(--vbg-gris-texto); line-height: 1.6; }
+  .card strong { color: var(--vbg-verde); }
+  .evento-cta-final { margin-top: 2.5rem; text-align: center; color: var(--vbg-gris-texto); }
+  .evento-cta-final a { color: var(--vbg-verde); font-weight: 600; }
+  @media (max-width: 900px) {
+    .eventos-grid, .cards-grid { grid-template-columns: 1fr; }
+    .evento-card { grid-template-columns: 1fr; }
+    .evento-img { aspect-ratio: 16/10; }
+  }
 </style>
