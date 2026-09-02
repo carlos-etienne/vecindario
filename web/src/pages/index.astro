@@ -197,7 +197,7 @@ const faqSchema = {
 
   <!-- RESEÑAS -->
   <section class="reviews"><div class="container">
-    <div class="section-head"><SectionLabel text="4.9 en Google" /><h2 class="section-title">Lo que dicen nuestros clientes</h2></div>
+    <div class="section-head"><SectionLabel text={`${site.rating} en Google`} /><h2 class="section-title">Lo que dicen nuestros clientes</h2></div>
     <div class="reviews-summary"><div class="reviews-score">{site.rating}<small>/5</small></div><div class="reviews-meta"><div class="stars">★★★★★</div><div class="count">{site.reseñas} reseñas verificadas</div></div><div class="reviews-source">Google Business Profile</div></div>
     <div class="reviews-slider" id="reviewsSlider">
       <div class="review-card"><div class="review-stars">★★★★★</div><p>"La mejor cerveza artesanal de Cuernavaca. Y la pizza es una sorpresa enorme."</p><div class="review-author">Mariana G.</div></div>
