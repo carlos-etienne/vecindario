@@ -58,7 +58,7 @@ const schema = {
         <p class="evento-meta">{e.meta} · Cupo limitado</p>
         <p class="evento-desc">{e.descripcionLarga}</p>
         <div class="cta-row">
-          <a href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, quiero reservar para el aniversario del sábado ${e.dia} de septiembre`)}`} class="btn-primary">Reservar mesa por WhatsApp</a>
+          <a href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, quiero reservar para el aniversario del sábado ${e.dia} de septiembre`)}`} class="btn-primary" target="_blank" rel="noopener noreferrer">Reservar mesa por WhatsApp</a>
         </div>
       </div>
       <figure class="hero-img"><img src={e.img} alt={e.alt} /></figure>
@@ -113,6 +113,7 @@ const schema = {
   .cta-row { margin-bottom: 1rem; }
   .hero-img img { width: 300px; max-width: 100%; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,.5); display: block; }
   section:not(.evento-hero) { padding: 3.5rem 0 4.5rem; background: var(--vbg-claro-2); }
+  .section-head { margin-bottom: 2.5rem; }
   .section-title { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: 1.6rem; color: var(--vbg-verde); }
   .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
   .card { background: var(--vbg-blanco); border: 1px solid var(--vbg-gris-linea); border-radius: 4px; padding: 1.5rem 1.4rem; border-top: 3px solid var(--vbg-verde-claro); }

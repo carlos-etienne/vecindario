@@ -12,7 +12,7 @@ Reglas aprendidas del feedback de Carlos. Aplican a TODAS las páginas del sitio
 - `section { padding: 4.5rem 0 }` — generoso, nada pegado
 - Después de un hero oscuro, la primera sección clara lleva `padding-top: 4.5rem` mínimo
 - Antes de un CTA final oscuro, respetar el padding de la sección anterior (nunca pegados)
-- `.section-head { margin-bottom: 2rem }` con `SectionLabel` + `h2.section-title` + `.section-sub` opcional
+- `.section-head { margin-bottom: 2rem }` con `SectionLabel` + `h2.section-title` + `.section-sub` opcional — EN TODAS las páginas nuevas: si la página define su propio CSS y no hereda .section-head, declarar `margin-bottom: 2.5rem` explícito. ESTO SE HA OLVIDADO VARIAS VECES — verificar siempre que ningún título quede pegado al contenido
 - **Entre bloques DENTRO de una misma sección** (split → cards → outro): mínimo `margin-top: 2.5-3rem` en cada bloque siguiente. ESTO SE HA OLVIDADO VARIAS VECES — verificar siempre que ningún bloque quede pegado al anterior
 - Título dentro de un split: `margin-bottom: 1.2rem` antes del texto
 - Cards con icono arriba (40px, verde `--vbg-verde`), título h3 y texto — patrón diferenciadores de la home
@@ -36,6 +36,10 @@ Reglas aprendidas del feedback de Carlos. Aplican a TODAS las páginas del sitio
 - `.btn-primary` — fondo verde claro, hover #578a4a (global.css)
 - `.btn-wa` — contorno translúcido sobre fondos oscuros
 - Gap entre botones en fila: 1.2rem mínimo
+
+## Enlaces externos
+
+- TODO enlace a otro sitio (WhatsApp, redes, Google Maps, teléfonos externos) lleva `target="_blank" rel="noopener noreferrer"` — sin excepción. Los internos (`/...`) nunca llevan target
 
 ## Honestidad del copy (decisiones cerradas de Carlos — NO inventar)
 

@@ -37,7 +37,7 @@ const faqs = [
   { q: '¿Tienen estacionamiento?', a: 'No tenemos estacionamiento propio. Te puedes estacionar sobre la Av. Teopanzolco.' },
   { q: '¿Cómo llego a Vecindario Beer Garden?', a: 'Estamos sobre la <strong>Av. Teopanzolco 665</strong>, en la colonia Reforma de Cuernavaca, cerca de la zona arqueológica de Teopanzolco. Desde Jiutepec son 10 minutos por la autopista del Sol. <a href="' + googleMaps + '">Abrir en Google Maps →</a>' },
   { q: '¿Puedo ir con niños o con mi perro?', a: 'Sí a ambos: somos un restaurante-bar familiar y la <a href="/pet-friendly-cuernavaca/">terraza es pet friendly</a>, sin restricciones de tamaño ni raza.' },
-  { q: '¿Necesito reservar?', a: 'No es obligatorio, pero los fines de semana y eventos se llena. <a href="https://wa.me/' + site.whatsapp + '">Reserva por WhatsApp</a> para asegurar tu mesa.' },
+  { q: '¿Necesito reservar?', a: 'No es obligatorio, pero los fines de semana y eventos se llena. <a href="https://wa.me/' + site.whatsapp + '" target="_blank" rel="noopener noreferrer">Reserva por WhatsApp</a> para asegurar tu mesa.' },
 ];
 ---
 
@@ -58,7 +58,7 @@ const faqs = [
         <h2>{site.direccion.calle}</h2>
         <p class="addr">{site.direccion.zona}, {site.direccion.cp} {site.direccion.ciudad}, {site.direccion.estado}</p>
         <div class="cta-row">
-          <a href={`https://wa.me/${site.whatsapp}`} class="btn-primary">Reservar por WhatsApp</a>
+          <a href={`https://wa.me/${site.whatsapp}`} class="btn-primary" target="_blank" rel="noopener noreferrer">Reservar por WhatsApp</a>
           <a href={googleMaps} class="btn-secondary">Cómo llegar →</a>
         </div>
         <a class="rating-pill" href={googleMaps}>
@@ -78,7 +78,7 @@ const faqs = [
         <div>
           <h3>Contacto directo</h3>
           <p><a href={`tel:${site.telefonoTel}`}>{site.telefono}</a></p>
-          <p><a href={`https://wa.me/${site.whatsapp}`}>WhatsApp →</a></p>
+          <p><a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp →</a></p>
           <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
         </div>
       </div>
