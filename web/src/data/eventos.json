@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "2o-aniversario-brooknotes",
+    "fecha": "SÁB 5 SEP",
+    "dia": 5,
+    "img": "/images/aniversario-5sep.jpg",
+    "alt": "Cartel del primer sábado de aniversario de Vecindario Beer Garden con Brooknotes Band",
+    "tag": "2° Aniversario",
+    "titulo": "Brooknotes Band + DJ Andriu",
+    "meta": "Sábado 5 de septiembre · Desde las 6:00 PM",
+    "descripcion": "Arrancamos los festejos con la Brooknotes Band en vivo y los sets de DJ Andriu para cerrar la noche.",
+    "descripcionLarga": "Cumplimos dos años y tiramos la casa por la ventana. Este gran festejo no cabe en un solo día, así que armamos una celebración doble para brindar por la comunidad que le da vida a Vecindario. Primer sábado: Brooknotes Band en vivo y los sets de DJ Andriu para cerrar la noche.",
+    "banda": "Brooknotes Band",
+    "dj": "DJ Andriu",
+    "startDate": "2026-09-05T18:00:00-06:00",
+    "endDate": "2026-09-05T23:30:00-06:00"
+  },
+  {
+    "slug": "2o-aniversario-sombrit",
+    "fecha": "SÁB 12 SEP",
+    "dia": 12,
+    "img": "/images/aniversario-12sep.jpg",
+    "alt": "Cartel del segundo sábado de aniversario de Vecindario Beer Garden con Som•bit",
+    "tag": "2° Aniversario",
+    "titulo": "Som•bit + DJ Obrero del Pixel",
+    "meta": "Sábado 12 de septiembre · Desde las 6:00 PM",
+    "descripcion": "Segunda fecha de aniversario: Som•bit en vivo y los sets de DJ Obrero del Pixel.",
+    "descripcionLarga": "La segunda fecha de nuestro 2° aniversario: Som•bit en vivo y los sets de DJ Obrero del Pixel. Misma fiesta, otra noche: música, cerveza conmemorativa, burgers especiales y sorpresas para brindar por dos años de buena chela y momentos compartidos.",
+    "banda": "Som•bit",
+    "dj": "DJ Obrero del Pixel",
+    "startDate": "2026-09-12T18:00:00-06:00",
+    "endDate": "2026-09-12T23:30:00-06:00"
+  }
+]
