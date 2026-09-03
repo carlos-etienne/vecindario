@@ -5,9 +5,11 @@ import FAQ from '../components/FAQ.astro';
 import site from '../data/site.json';
 
 const pizzas = [
-  { nombre: 'Pizza Eureka', desc: 'Salsa de tomate, mozzarella y albahaca fresca.', precio: 160, foto: '/images/pizza-eureka.jpg', tag: 'La clásica' },
-  { nombre: 'Pizza Pera', desc: 'Mozzarella, pera, queso gorgonzola, nuez y miel.', precio: 180, tag: 'Dulce-salada', tagVeg: true },
-  { nombre: 'Pizza Pechuga Napolitana', desc: 'Pechuga, mozzarella, tomate y orégano.', precio: 175, tag: 'Con pollo' },
+  { nombre: 'Margarita', desc: 'Salsa de tomate, mozzarella, albahaca y parmesano.', precio: 180, tag: 'La clásica', tagVeg: true },
+  { nombre: 'Eureka', desc: 'Pesto, mix de quesos, mozzarella fresco, calabaza laminada, queso de cabra, poros crispy, sal ahumada y ralladura de limón eureka.', precio: 235, foto: '/images/pizza-eureka.jpg', tag: 'La de la casa', tagVeg: true },
+  { nombre: 'Pizza Pera', desc: 'Queso mozzarella, pera laminada, queso provolone, queso azul, miel, tomillo y parmesano.', precio: 230, tag: 'Dulce-salada', tagVeg: true },
+  { nombre: 'Pepperonata', desc: 'Salsa de pimientos, mozzarella, quesos, pepperoni y parmesano.', precio: 210, tag: 'Con pepperoni' },
+  { nombre: 'Prosciutto y arúgula', desc: 'Margarita + prosciutto y arúgula.', precio: 235, tag: 'Con prosciutto' },
 ];
 
 const faqSchema = {
@@ -35,7 +37,7 @@ const faqSchema = {
       "name": "¿Tienen pizza vegetariana?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. La Pizza Pera (mozzarella, pera, queso gorgonzola, nuez y miel) y la Pizza Eureka son vegetarianas."
+        "text": "Sí. La Margarita, la Pizza Pera y la Eureka no llevan carne."
       }
     },
     {
@@ -68,7 +70,7 @@ const menuSchema = {
 const faqs = [
   { q: '¿Para cuántas personas es una pizza?', a: 'Están pensadas para compartir, idealmente entre dos personas. Si vienen en grupo, mejor pidan varias variedades distintas.' },
   { q: '¿Puedo combinar sabores en una sola pizza?', a: 'No hacemos mitades combinadas: el tamaño de nuestras pizzas no lo permite. Para probar más de un sabor, la mejor forma es pedir variedades distintas y compartirlas.' },
-  { q: '¿Tienen pizza vegetariana?', a: 'Sí. La Pizza Pera (mozzarella, pera, queso gorgonzola, nuez y miel) y la Pizza Eureka son vegetarianas.' },
+  { q: '¿Tienen pizza vegetariana?', a: 'Sí. La Margarita, la Pizza Pera y la Eureka no llevan carne.' },
   { q: '¿Con qué cerveza maridan las pizzas?', a: 'Depende de la pizza: las cervezas ligeras y refrescantes van bien con la Eureka, mientras que las de sabor más intenso como la Pera piden cervezas con más cuerpo. Pregúntale al personal qué hay en tap: te recomienda el maridaje. <a href="/cerveza-artesanal-cuernavaca/">Conoce nuestra cerveza artesanal →</a>' },
 ];
 ---
@@ -123,7 +125,7 @@ const faqs = [
       <div class="card">
         <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>
         <h3>Opción vegetariana</h3>
-        <p>La Pera y la Eureka <strong>no llevan carne</strong>: pide cualquiera de las dos si la estás evitando.</p>
+        <p>La Margarita, la Pera y la Eureka <strong>no llevan carne</strong>: pide cualquiera de ellas si la estás evitando.</p>
       </div>
     </div>
   </div></section>

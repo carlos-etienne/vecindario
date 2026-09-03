@@ -17,27 +17,60 @@ const schema = {
 
 const platos = {
   empezar: [
-    { nombre: "Tostadas de atún", desc: "Atún fresco, aguacate, chipotle, sésamo sobre tostada crujiente.", precio: 140, foto: "/images/tostadas-de-atun.jpg", tag: "pp" },
-    { nombre: "Papas Flanders", desc: "Papas gajo, queso fundido, tocino, jalapeño.", precio: 120, foto: "/images/papas-flanders.png" },
-    { nombre: "Entrada Vecindario", desc: "Hummus de la casa, pan pita, vegetales frescos.", precio: 110, tag: "veg" },
-    { nombre: "Tiras de pollo", desc: "Empanizadas, salsa buffalo o BBQ.", precio: 130 },
-  ],
-  hamburguesas: [
-    { nombre: "Hamburguesa Vecindario", desc: "Pan brioche, queso americano, tocino, pepinillos, salsa BBQ y cebolla caramelizada.", precio: 185, foto: "/images/hamburguesa-vecindario.jpg" },
-    { nombre: "Hamburguesa Teopanzolco", desc: "Pan brioche, chimichurri, mix de tres quesos y tocino.", precio: 195, foto: "/images/hamburguesa-teopanzolco.jpg" },
-    { nombre: "Hamburguesa Vegetariana", desc: "Falafel empanizado, lechuga, tomate, cebolla caramelizada, salsa BBQ, pepinillos y papas a la francesa. Queso americano o cheddar opcional.", precio: 170, tag: "veg" },
-    { nombre: "Torta de suadero confitado", desc: "Torta de la casa con suadero confitado." },
-    { nombre: "Sandwich de pulled pork", desc: "Cerdo desmenuzado, estilo pulled pork." },
+    { nombre: "Tostada de Atún Fresco", desc: "Cubos de atún marinados en ponzu de la casa, sobre cama de aguacate, chile serrano y poro crispy.", precio: 185, foto: "/images/tostadas-de-atun.jpg" },
+    { nombre: "Ensalada Royal", desc: "Mezcla de lechugas, fresas, arándanos, zarzamoras, nuez caramelizada y queso gorgonzola, con reducción de vinagre balsámico.", precio: 185 },
+    { nombre: "Ensalada primavera", desc: "Mix de lechugas, arúgula, cherries, brotes de betabel y chícharo, poro crujiente, nueces y parmesano. Proteína extra: pollo a la plancha o atún marinado en ponzu +$30.", precio: 165 },
+    { nombre: "Nachos con Cecina", desc: "Cecina de Yecapixtla, frijoles negros, queso manchego, queso mozzarella, guacamole y crema.", precio: 195 },
+    { nombre: "Calamares Empanizados", desc: "Con parmesano, acompañados de aderezo tártara.", precio: 170 },
+    { nombre: "Arancinis", desc: "Bolas de risotto empanizadas rellenas de queso manchego (3 piezas de 70 g).", precio: 140 },
+    { nombre: "Dedos de queso", desc: "Queso manchego empanizado, acompañado con aderezo de la casa (6 piezas).", precio: 110 },
+    { nombre: "Guacamole", desc: "Versión clásica con cebolla, jitomate, cilantro y chile serrano.", precio: 115 },
+    { nombre: "Guacamole con tocino crujiente", desc: "El guacamole de la casa coronado con tocino crujiente.", precio: 145 },
+    { nombre: "Papas Flanders", desc: "Las originales papas fritas típicas del norte de Bélgica, servidas con catsup de curry, mayonesa y cebolla finamente picada.", precio: 95, foto: "/images/papas-flanders.png" },
+    { nombre: "Papas Gajo", desc: "Acompañadas con aderezo y paprika.", precio: 110 },
+    { nombre: "Papas a la Francesa", desc: "Acompañadas con aderezo especial de la casa y parmesano.", precio: 110 },
+    { nombre: "Tiras de Pollo", desc: "Empanizadas, acompañadas de papas a la francesa, con salsa BBQ o Búfalo y aderezo Ranch de la casa.", precio: 165 },
+    { nombre: "Entrada Vecindario", desc: "Hummus con pan pita, acompañado de costillas de elote amarillo con aderezo tártara y parmesano.", precio: 165 },
   ],
   pizzas: [
-    { nombre: "Pizza Eureka", desc: "Salsa de tomate, mozzarella, albahaca fresca.", precio: 160, foto: "/images/pizza-eureka.jpg" },
-    { nombre: "Pizza Pera", desc: "Mozzarella, pera, queso gorgonzola, nuez, miel.", precio: 180 },
-    { nombre: "Pizza Pechuga Napolitana", desc: "Pechuga, mozzarella, tomate, orégano.", precio: 175, tag: "pp" },
+    { nombre: "Margarita", desc: "Salsa de tomate, mozzarella, albahaca y parmesano.", precio: 180 },
+    { nombre: "Eureka", desc: "Pesto, mix de quesos, mozzarella fresco, calabaza laminada, queso de cabra, poros crispy, sal ahumada y ralladura de limón eureka.", precio: 235, foto: "/images/pizza-eureka.jpg" },
+    { nombre: "Pizza Pera", desc: "Queso mozzarella, pera laminada, queso provolone, queso azul, miel, tomillo y parmesano.", precio: 230 },
+    { nombre: "Pepperonata", desc: "Salsa de pimientos, mozzarella, quesos, pepperoni y parmesano.", precio: 210 },
+    { nombre: "Prosciutto y arúgula", desc: "Margarita + prosciutto y arúgula.", precio: 235 },
+  ],
+  fuertes: [
+    { nombre: "Pechuga Napolitana", desc: "Pechuga de pollo empanizada, salsa pomodoro, gratinada con queso mozzarella; incluye papas y ensalada de la casa.", precio: 235 },
+    { nombre: "Queso Fundido", desc: "Con tortillas de harina, salsa de tomate asado y guacamole. De chorizo o champiñones (o arrachera premium +$40).", precio: 160 },
+    { nombre: "Rib Eye (400 g)", desc: "Con chimichurri de la casa, ensalada de lechugas con parmesano y papas a la francesa.", precio: 455 },
+    { nombre: "Burrito Estilo Norteño", desc: "Relleno de queso gouda, pimientos, cebolla morada, lechuga y aderezo de la casa, con salsa de tomate asado y guacamole. De pollo o champiñones (o arrachera premium +$40).", precio: 170 },
+  ],
+  hamburguesas: [
+    { nombre: "Hamburguesa Vecindario", desc: "Pan brioche, queso americano, tocino, pepinillos, salsa BBQ, cebolla caramelizada.", precio: 195, foto: "/images/hamburguesa-vecindario.jpg" },
+    { nombre: "Hamburguesa Teopanzolco", desc: "Pan brioche, chimichurri, mix de tres quesos y tocino.", precio: 185, foto: "/images/hamburguesa-teopanzolco.jpg" },
+    { nombre: "Hamburguesa Vegetariana", desc: "Hecha con falafel empanizado, lechuga, tomate, cebolla caramelizada, salsa BBQ, pepinillos y papas a la francesa. Queso americano o cheddar opcional.", precio: 185, tag: "veg" },
+    { nombre: "Torta de Suadero Confitado", desc: "Bolillo artesanal con queso gouda, acompañada de chips de camote y encurtidos de la casa.", precio: 185 },
+    { nombre: "Sandwich de pulled pork", desc: "Pan brioche, carne de cerdo ahumada por 10 horas con madera de nogal, bañada en salsa BBQ de la casa, acompañada de queso americano, pepinillos y papas a la francesa.", precio: 180 },
   ],
   postres: [
-    { nombre: "Brownie", desc: "Chocolate, helado de vainilla.", precio: 90 },
+    { nombre: "Brownie clásico", desc: "Acompañado con helado artesanal de vainilla con cardamomo.", precio: 140 },
+    { nombre: "Nutizza", desc: "Pan de masa de pizza relleno de crema de avellanas con nueces tostadas, acompañado de duraznos en almíbar y ralladura de limón eureka.", precio: 140 },
+    { nombre: "Crumble de manzana", desc: "Manzanas caramelizadas con mantequilla, azúcar morena, canela y especias, cubiertas por una crujiente galleta tipo crumble.", precio: 95 },
   ],
 };
+
+const bebidas = [
+  { nombre: "Limonada, Mandarinada o Toronjada", precio: 75 },
+  { nombre: "Rusa", precio: 60 },
+  { nombre: "Kombucha embotellada", precio: 95 },
+  { nombre: "Café americano", precio: 60 },
+  { nombre: "Sanpellegrino", precio: 85 },
+  { nombre: "Topo Chico 600 ml", precio: 65 },
+  { nombre: "Coca Cola", precio: 58 },
+  { nombre: "Coca Cola Zero", precio: 58 },
+  { nombre: "Yoli", precio: 50 },
+  { nombre: "Boing de Mango 354 ml", precio: 65 },
+];
 
 ---
 
@@ -87,7 +120,7 @@ const platos = {
         <p class="menu-sub">Pizzas estilo napolitano, hamburguesas y entradas para compartir.</p>
       </div>
 
-      <div class="cat-head"><h3>Para empezar</h3><span class="cat-count">4 opciones</span></div>
+      <div class="cat-head"><h3>Para empezar</h3><span class="cat-count">14 opciones</span></div>
       {platos.empezar.map((p) => (
         <div class="plato-row">
           {p.foto ? (
@@ -107,29 +140,7 @@ const platos = {
         </div>
       ))}
 
-      <div class="cat-head"><h3>Hamburguesas y sandwiches</h3><span class="cat-count">5 opciones · cocinado al momento</span></div>
-      {platos.hamburguesas.map((p) => (
-        <div class="plato-row">
-          {p.foto ? (
-            <button class="plato-thumb" data-foto={p.foto} data-nombre={p.nombre} aria-label={`Ver foto de ${p.nombre}`}>
-              <img src={p.foto} alt={p.nombre} loading="lazy" />
-            </button>
-          ) : (
-            <div class="plato-thumb-static">
-              <img src="/assets/icono.svg" alt="" loading="lazy" />
-            </div>
-          )}
-          <div class="plato-info">
-            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
-            <div class="plato-desc">{p.desc}</div>
-          </div>
-          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
-        </div>
-      ))}
-
-      <p class="section-more"><a href="/hamburguesas-cuernavaca/">Más sobre nuestras hamburguesas →</a></p>
-
-      <div class="cat-head"><h3>Pizzas estilo napolitano</h3><span class="cat-count">3 opciones · para compartir</span></div>
+      <div class="cat-head"><h3>Pizzas estilo napolitano</h3><span class="cat-count">5 opciones · para compartir</span></div>
       {platos.pizzas.map((p) => (
         <div class="plato-row">
           {p.foto ? (
@@ -151,7 +162,43 @@ const platos = {
 
       <p class="section-more"><a href="/pizzas-cuernavaca/">Más sobre nuestras pizzas →</a></p>
 
-      <div class="cat-head"><h3>Postres</h3></div>
+      <div class="cat-head"><h3>Platos fuertes</h3><span class="cat-count">4 opciones</span></div>
+      {platos.fuertes.map((p) => (
+        <div class="plato-row">
+          <div class="plato-thumb-static">
+            <img src="/assets/icono.svg" alt="" loading="lazy" />
+          </div>
+          <div class="plato-info">
+            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
+            <div class="plato-desc">{p.desc}</div>
+          </div>
+          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
+        </div>
+      ))}
+
+      <div class="cat-head"><h3>Tortas y hamburguesas</h3><span class="cat-count">5 opciones · al momento</span></div>
+      {platos.hamburguesas.map((p) => (
+        <div class="plato-row">
+          {p.foto ? (
+            <button class="plato-thumb" data-foto={p.foto} data-nombre={p.nombre} aria-label={`Ver foto de ${p.nombre}`}>
+              <img src={p.foto} alt={p.nombre} loading="lazy" />
+            </button>
+          ) : (
+            <div class="plato-thumb-static">
+              <img src="/assets/icono.svg" alt="" loading="lazy" />
+            </div>
+          )}
+          <div class="plato-info">
+            <div class="plato-name">{p.nombre}{p.tag && <span class="plato-tag-veg">{p.tag}</span>}</div>
+            <div class="plato-desc">{p.desc}</div>
+          </div>
+          <div class="plato-price">{p.precio ? `$${p.precio}` : ''}</div>
+        </div>
+      ))}
+
+      <p class="section-more"><a href="/hamburguesas-cuernavaca/">Más sobre nuestras hamburguesas →</a></p>
+
+      <div class="cat-head"><h3>Postres</h3><span class="cat-count">3 opciones</span></div>
       {platos.postres.map((p) => (
         <div class="plato-row">
           {p.foto ? (
@@ -179,33 +226,22 @@ const platos = {
         <h2 class="menu-title">Otras bebidas</h2>
       </div>
 
-      <div class="cat-head"><h3>Cervezas comerciales</h3></div>
+      <div class="cat-head"><h3>Aguas y café</h3></div>
       <div class="otras-list">
-        <div class="otras-item"><span>Corona</span><span class="oi-price">$45</span></div>
-        <div class="otras-item"><span>Victoria</span><span class="oi-price">$40</span></div>
-        <div class="otras-item"><span>Heineken</span><span class="oi-price">$50</span></div>
-        <div class="otras-item"><span>Bohemia</span><span class="oi-price">$45</span></div>
+        <div class="otras-item"><span>Limonada, Mandarinada o Toronjada</span><span class="oi-price">$75</span></div>
+        <div class="otras-item"><span>Rusa</span><span class="oi-price">$60</span></div>
+        <div class="otras-item"><span>Kombucha embotellada</span><span class="oi-price">$95</span></div>
+        <div class="otras-item"><span>Café americano</span><span class="oi-price">$60</span></div>
       </div>
 
-      <div class="cat-head"><h3>Destilados y coctelería</h3></div>
+      <div class="cat-head"><h3>Refrescos y embotellados</h3></div>
       <div class="otras-list">
-        <div class="otras-item"><span>Mezcal</span><span class="oi-price">desde $90</span></div>
-        <div class="otras-item"><span>Ron</span><span class="oi-price">desde $85</span></div>
-        <div class="otras-item"><span>Whiskey</span><span class="oi-price">desde $110</span></div>
-        <div class="otras-item"><span>Ginebra</span><span class="oi-price">desde $95</span></div>
-        <div class="otras-item"><span>Mezcalita</span><span class="oi-price">$120</span></div>
-        <div class="otras-item"><span>Gin tonic</span><span class="oi-price">$130</span></div>
-        <div class="otras-item"><span>Cuba</span><span class="oi-price">$110</span></div>
-      </div>
-
-      <div class="cat-head"><h3>Sin alcohol</h3></div>
-      <div class="otras-list">
-        <div class="otras-item"><span>Limonada / Naranjada</span><span class="oi-price">$45</span></div>
-        <div class="otras-item"><span>Rusa</span><span class="oi-price">$45</span></div>
-        <div class="otras-item"><span>Refresco</span><span class="oi-price">$35</span></div>
-        <div class="otras-item"><span>Kombucha</span><span class="oi-price">$55</span></div>
-        <div class="otras-item"><span>Cerveza sin alcohol</span><span class="oi-price">$70</span></div>
-        <div class="otras-item"><span>Café</span><span class="oi-price">$40</span></div>
+        <div class="otras-item"><span>Sanpellegrino</span><span class="oi-price">$85</span></div>
+        <div class="otras-item"><span>Topo Chico 600 ml</span><span class="oi-price">$65</span></div>
+        <div class="otras-item"><span>Coca Cola</span><span class="oi-price">$58</span></div>
+        <div class="otras-item"><span>Coca Cola Zero</span><span class="oi-price">$58</span></div>
+        <div class="otras-item"><span>Yoli</span><span class="oi-price">$50</span></div>
+        <div class="otras-item"><span>Boing de Mango 354 ml</span><span class="oi-price">$65</span></div>
       </div>
     </section>
 
