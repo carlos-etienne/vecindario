@@ -80,6 +80,7 @@ Si el estilo no encaja en el mapa, o la etiqueta de la cerveza tiene un color ic
 - Hamburguesas: sin "proveedor local"/"premium"/"molida del día"; papas a la francesa.
 - Sin cerveza asignada por platillo; sin "marinan" (es "maridan").
 - FAQ visible y faqSchema deben llevar el MISMO texto.
+- Todo enlace externo (WhatsApp, redes, Google Maps) lleva `target="_blank" rel="noopener noreferrer"`; los internos (`/...`) nunca llevan target.
 
 ## Comandos
 
