@@ -1,5 +1,7 @@
 # Migración WordPress → Astro (3 sep 2026)
 # Rutas que cambian; el resto (/, /menu/, /aviso-de-privacidad/) sirve directo
+# Canonical: dominio raíz; www redirige al apex
+https://www.vecindariobeergarden.com/* https://vecindariobeergarden.com/:splat 301
 /terminos-y-condiciones/ /terminos/ 301
 
 # Eventos pasados del WP → agenda actual
