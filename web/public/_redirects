@@ -1,0 +1,25 @@
+# Migración WordPress → Astro (3 sep 2026)
+# Rutas que cambian; el resto (/, /menu/, /aviso-de-privacidad/) sirve directo
+/terminos-y-condiciones/ /terminos/ 301
+
+# Eventos pasados del WP → agenda actual
+/eventos/concierto-de-funk-con-los-piters/ /eventos/ 301
+/eventos/cata-gratuita-con-cerveceria-icono/ /eventos/ 301
+/eventos/noche-de-jazz-con-salvaje-trio/ /eventos/ 301
+/eventos/compartiendo-el-chorizo-choripanes-chela-y-musica/ /eventos/ 301
+/eventos/experiencia-belga-cata-de-cervezas-en-cuernavaca/ /eventos/ 301
+/eventos/funky-terricola-en-vivo-noche-de-funk-en-vecindario-beer-garden/ /eventos/ 301
+/eventos/hablemos-de-ligeras-amargas-y-oscuras-cata-y-charla-con-cerveceria-icono/ /eventos/ 301
+/eventos/concierto-con-causa-alejandra-moreno-en-vecindario/ /eventos/ 301
+/eventos/cata-de-cerveza-con-causa-por-el-dia-mundial-del-perro/ /eventos/ 301
+/eventos/noche-de-salsa-con-la-clave-divina-clase-y-concierto-en-vivo/ /eventos/ 301
+/eventos/world-music-en-vivo-con-gongoli-bembe-trio/ /eventos/ 301
+/eventos/noche-de-salsa-con-la-clave-divina/ /eventos/ 301
+/eventos/international-stout-day-en-vecindario-una-noche-para-los-amantes-de-la-oscuridad-cervecera/ /eventos/ 301
+/eventos/noche-de-jazz-con-salvaje-quartet/ /eventos/ 301
+/eventos/cata-de-chocolate-y-cerveza-artesanal/ /eventos/ 301
+/eventos/noche-de-rumba-en-vecindario/ /eventos/ 301
+/eventos/noche-jazz-fusion-gallo-lobo-cuernavaca/ /eventos/ 301
+/eventos/afrofunk-ritmo-groove-y-cerveza/ /eventos/ 301
+/eventos/noche-de-salsa-y-sabor-con-de-la-rumba/ /eventos/ 301
+/eventos/presentacion-de-menu-con-la-chef-ney-santiago/ /eventos/ 301
