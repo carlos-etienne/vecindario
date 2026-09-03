@@ -1,18 +1,18 @@
 [
   {
-    "num": 1,
-    "nombre": "El Chicali",
-    "estilo": "Kölsch",
+    "nombre": "Ícono Light",
+    "estilo": "Light Lager",
     "color": "#f2d94f",
     "cerveceria": "Ícono",
     "origen": "Mexicali, B.C.",
-    "abv": "4.8%",
+    "abv": "3.5%",
     "ibu": "",
+    "descripcion": "Esta lager ligera es perfecta para quienes buscan una opción refrescante y baja en alcohol, con notas sutiles de malta y un final suave y limpio.",
+    "num": 1,
     "precioCh": 80,
     "precioG": 90,
     "badges": [],
-    "disponible": true,
-    "descripcion": "Con 4.8% ABV, esta Kölsch de apariencia dorada pálida presenta aromas delicados y frescos de lúpulos nobles alemanes. Su sabor ligero, limpio y refrescante hace de esta cerveza una excelente opción para iniciar una degustación, ideal para quienes buscan algo suave pero lleno de carácter."
+    "disponible": true
   },
   {
     "num": 2,
