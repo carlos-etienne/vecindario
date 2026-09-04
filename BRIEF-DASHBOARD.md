@@ -36,6 +36,50 @@ Platicado con Carlos (afinar alcance en la primera sesión del proyecto):
 - **Estado de la barra** — las 10 taps y su rotación (fuente: taps.json / el bot).
 - Posiblemente: métricas SEO (ya hay keyword research en `- ARCHIVOS -/KWR/`).
 
+## Módulo de barriles conectado a Loyverse (PRIORIDAD de Carlos)
+
+Platicado con el socio y explorado con ChatGPT (sep 2026). Es lo primero a implementar;
+más adelante algo similar para cocina. Lo esencial:
+
+**Dato estructural clave del POS**: en Loyverse las cervezas de barril se venden como
+producto genérico a $0 (ej. "Ayinger") + **modificadores** con precio
+("Celebrator chico $75", "Celebrator grande $110", "Brauweisse chica"...).
+El API de receipts devuelve los `line_modifiers` con `modifier_option_id` y precio,
+filtrable por rango de fechas. También hay webhooks (`receipts.update`,
+`inventory_levels.update`) para recibir ventas en tiempo real. Conviene construir un
+catálogo propio cerveza↔modifier_id↔tamaño↔volumen (chico ~355 ml, grande ~500 ml —
+verificar vasos reales).
+
+**El flujo deseado (por Telegram con Hermes)**:
+- "Conectamos un barril de Celebrator de 30 L, costó $2,450" → registra barril
+  (cerveza, capacidad, fecha, costo).
+- El sistema acumula litros vendidos = Σ(cantidad × volumen del vaso) desde receipts.
+- Consultas: "¿cuánto queda del Celebrator?" → % consumido, restante estimado,
+  ingreso generado, costo proporcional, margen bruto.
+- "Ya se acabó el barril" → cierra y compara teórico vs real.
+- Reportes automáticos (ej. lunes: ventas, top cervezas/platillos, recomendación de compra).
+
+**Merma es un concepto central del diseño**: teórico (ventas) vs esperado
+(~8% por espuma, purga, líneas, derrames) vs real al cerrar barril. Merma alta por
+cerveza = alerta de servicio/calibración/líneas.
+
+**Principios acordados en esa plática** (vale la pena respetar):
+- Loyverse = fuente de ventas; NO base histórica. Telegram = interfaz; NO base de datos.
+- Los cálculos (litros, márgenes, merma) van en **código determinístico**; la IA solo
+  interpreta la pregunta y llama funciones (ej. `get_top_beers()`), nunca hace las
+  matemáticas críticas.
+- Empezar SOLO-LECTURA hacia Loyverse; que Hermes escriba en Loyverse (precios, items)
+  queda para mucho después y con confirmación explícita.
+- Fases: (1) Loyverse→BD en solo lectura, (2) consultas por Telegram,
+  (3) reportes automáticos, (4) módulo de barriles, (5) dashboard visual AL FINAL —
+  cuando semanas de uso real digan qué mostrar.
+- Desarrollo en el desktop con ZCode; Hermes queda como operación en el VPS.
+- BD propuesta en esa plática: PostgreSQL en el VPS (evaluar en el proyecto si arrancar
+  con algo más ligero tipo SQLite y migrar después).
+
+**Primer objetivo concreto propuesto**: poder preguntarle a Hermes por Telegram
+"¿cuánto vendimos ayer?" y que la respuesta salga de datos reales de Loyverse.
+
 ## Dudas de negocio abiertas (decisiones de Carlos)
 
 - Cervezas de lata/botella: hay **cámara fría** (exhibición) + **bodega** (stock al tiempo).
