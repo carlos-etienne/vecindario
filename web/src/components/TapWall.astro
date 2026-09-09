@@ -28,11 +28,15 @@ const { variant = 'compact' } = Astro.props;
           </div>
           <div class="tap-c-prices">
             {tap.disponible ? (
-              <>
-                <span class="p-ch">${tap.precioCh}<small>CH</small></span>
-                <span class="p-sep">·</span>
+              tap.precioCh != null ? (
+                <>
+                  <span class="p-ch">${tap.precioCh}<small>CH</small></span>
+                  <span class="p-sep">·</span>
+                  <span class="p-g">${tap.precioG}<small>G</small></span>
+                </>
+              ) : (
                 <span class="p-g">${tap.precioG}<small>G</small></span>
-              </>
+              )
             ) : (
               <span style="color:#9a9183;">Agotada</span>
             )}
@@ -80,7 +84,9 @@ const { variant = 'compact' } = Astro.props;
               <span class="tap-prices-full">
                 {tap.disponible ? (
                   <>
-                    <span class="tap-price-line">${tap.precioCh}<small>CH</small></span>
+                    {tap.precioCh != null && (
+                      <span class="tap-price-line">${tap.precioCh}<small>CH</small></span>
+                    )}
                     <span class="tap-price-line">${tap.precioG}<small>G</small></span>
                   </>
                 ) : (
