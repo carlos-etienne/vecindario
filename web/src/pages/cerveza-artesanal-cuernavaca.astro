@@ -23,7 +23,7 @@ const menuSchema = {
       ...(tap.disponible && {
         offers: {
           "@type": "Offer",
-          "price": tap.precioCh,
+          "price": tap.precioCh ?? tap.precioG,
           "priceCurrency": "MXN"
         }
       })

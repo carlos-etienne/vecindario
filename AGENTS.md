@@ -24,7 +24,7 @@ Array de 10 objetos, uno por tap. Campos:
 | `origen` | string | ciudad/país |
 | `abv` | string | ej. "6.5%" |
 | `ibu` | string o número | opcional — `""` si no se tiene; no esperarlo de Carlos |
-| `precioCh` | número | pesos MXN cerveza chica (sin $) |
+| `precioCh` | número o `null` | pesos MXN cerveza chica (sin $). `null` = solo se sirve tamaño grande |
 | `precioG` | número | pesos MXN cerveza grande (sin $) |
 | `badges` | array | ej. ["Nueva", "Local"] — vacío si ninguno |
 | `disponible` | booleano | false = agotada (se muestra tachada) |
@@ -32,7 +32,7 @@ Array de 10 objetos, uno por tap. Campos:
 
 **Validaciones antes de commit (obligatorias):**
 1. Exactamente 10 objetos, `num` correlativo 1-10.
-2. `precioCh`/`precioG` numéricos (nunca strings con "$").
+2. `precioCh`/`precioG` numéricos (nunca strings con "$"); `precioCh` puede ser `null` si la cerveza solo se sirve en tamaño grande (la web oculta la CH automáticamente).
 3. `abv` como string con "%".
 4. JSON válido (json parse).
 5. `cd web && npm run build` pasa sin errores.

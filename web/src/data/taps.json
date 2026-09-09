@@ -61,18 +61,18 @@
   },
   {
     "num": 5,
-    "nombre": "Pils",
-    "estilo": "German Pilsner",
-    "color": "#f1d44b",
-    "cerveceria": "ABK",
-    "origen": "Alemania",
-    "abv": "5%",
+    "nombre": "La Italian Pilsner",
+    "estilo": "Italian Pilsner",
+    "color": "#f2d94f",
+    "cerveceria": "Vecindario/Tebana",
+    "origen": "Cuernavaca, Morelos",
+    "abv": "5.5%",
     "ibu": "",
-    "precioCh": 90,
-    "precioG": 110,
-    "badges": [],
+    "precioCh": null,
+    "precioG": 95,
+    "badges": ["Nueva"],
     "disponible": true,
-    "descripcion": "Cerveza de estilo pilsner bávara, clara y dorada, con burbujas finas y una espuma blanca persistente. Su aroma es delicado, con notas herbales, florales y un toque cítrico gracias al lúpulo noble. En boca es seca, fresca y con un amargor elegante que la hace muy bebible. El balance entre la malta ligera y el perfil lupulado le otorgan una personalidad limpia y tradicional."
+    "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
   },
   {
     "num": 6,
