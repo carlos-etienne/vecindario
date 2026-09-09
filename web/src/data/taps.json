@@ -16,18 +16,18 @@
   },
   {
     "num": 2,
-    "nombre": "La Leona",
-    "estilo": "West Coast IPA",
+    "nombre": "Hitchhiker",
+    "estilo": "American IPA",
     "color": "#d9951e",
-    "cerveceria": "Ícono",
-    "origen": "Mexicali, B.C.",
+    "cerveceria": "Wendlandt/Transpeninsular",
+    "origen": "Ensenada, B.C.",
     "abv": "6.2%",
     "ibu": "",
-    "precioCh": 95,
-    "precioG": 115,
+    "precioCh": 135,
+    "precioG": 165,
     "badges": [],
     "disponible": true,
-    "descripcion": "West Coast IPA que destaca por su color dorado profundo y espuma blanca persistente. En aroma, ofrece notas tropicales y cítricas gracias a la combinación de lúpulos Azacca, Simcoe, Mosaic y Citra. En boca, presenta un amargor equilibrado con sabores que recuerdan a toronja y un toque resinoso, culminando en un final seco y refrescante. Esta cerveza fue galardonada como ganadora nacional en la categoría American Style IPA en los World Beer Awards 2021."
+    "descripcion": "American IPA nacida de la colaboración entre Wendlandt y Transpeninsular, dos de las cervecerías más queridas de Ensenada. De color dorado y cuerpo medio, muestra un carácter lupulado con amargor firme y notas cítricas y resinosas, con un final seco que invita al siguiente trago."
   },
   {
     "num": 3,
