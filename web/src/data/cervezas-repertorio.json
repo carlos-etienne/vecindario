@@ -1374,5 +1374,18 @@
     "precioG": 85,
     "badges": [],
     "descripcion": "Una Kölsch clara y refrescante con un toque floral y un final seco que la convierte en una opción perfecta para el clima cálido de Cuernavaca."
+  },
+  {
+    "nombre": "La Italian Pilsner",
+    "estilo": "Italian Pilsner",
+    "color": "#f2d94f",
+    "cerveceria": "Vecindario/Tebana",
+    "origen": "Cuernavaca, Morelos",
+    "abv": "5.5%",
+    "ibu": "",
+    "precioCh": null,
+    "precioG": 95,
+    "badges": [],
+    "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
   }
 ]

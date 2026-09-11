@@ -40,7 +40,9 @@
     "ibu": "",
     "precioCh": 135,
     "precioG": 165,
-    "badges": ["Nueva"],
+    "badges": [
+      "Nueva"
+    ],
     "disponible": true,
     "descripcion": "Hazy IPA turbia y jugosa que pone al lúpulo Citra al frente: notas cítricas y tropicales, cuerpo sedoso y final suave. Fácil de tomar a pesar de su 7% de alcohol."
   },
@@ -60,19 +62,19 @@
     "descripcion": "Fusión norteña de color rojizo con un carácter lupulado y especiado. Destaca por sus aromas resinosos y cítricos, equilibrados con notas de frutos secos provenientes de la malta tostada. El centeno aporta un cuerpo sedoso en boca y un final seco, ligeramente picante y sumamente refrescante para disfrutar en el jardín."
   },
   {
-    "num": 5,
-    "nombre": "La Italian Pilsner",
-    "estilo": "Italian Pilsner",
-    "color": "#f2d94f",
-    "cerveceria": "Vecindario/Tebana",
-    "origen": "Cuernavaca, Morelos",
-    "abv": "5.5%",
+    "nombre": "Pils",
+    "estilo": "German Pilsner",
+    "color": "#f1d44b",
+    "cerveceria": "ABK",
+    "origen": "Alemania",
+    "abv": "5%",
     "ibu": "",
-    "precioCh": null,
-    "precioG": 95,
-    "badges": ["Nueva"],
-    "disponible": true,
-    "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
+    "precioCh": 90,
+    "precioG": 110,
+    "badges": [],
+    "descripcion": "Cerveza de estilo pilsner bávara, clara y dorada, con burbujas finas y una espuma blanca persistente. Su aroma es delicado, con notas herbales, florales y un toque cítrico gracias al lúpulo noble. En boca es seca, fresca y con un amargor elegante que la hace muy bebible. El balance entre la malta ligera y el perfil lupulado le otorgan una personalidad limpia y tradicional.",
+    "num": 5,
+    "disponible": true
   },
   {
     "num": 6,
@@ -115,7 +117,9 @@
     "ibu": "",
     "precioCh": 160,
     "precioG": 195,
-    "badges": ["Nueva"],
+    "badges": [
+      "Nueva"
+    ],
     "disponible": true,
     "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
   },
@@ -145,7 +149,9 @@
     "ibu": "",
     "precioCh": 185,
     "precioG": 230,
-    "badges": ["Nueva"],
+    "badges": [
+      "Nueva"
+    ],
     "disponible": true,
     "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
   }
