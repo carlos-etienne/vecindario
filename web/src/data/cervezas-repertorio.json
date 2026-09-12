@@ -1387,5 +1387,18 @@
     "precioG": 95,
     "badges": [],
     "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
+  },
+  {
+    "nombre": "Hitchhiker",
+    "estilo": "American IPA",
+    "color": "#d9951e",
+    "cerveceria": "Wendlandt/Transpeninsular",
+    "origen": "Ensenada, B.C.",
+    "abv": "6.2%",
+    "ibu": "",
+    "precioCh": 135,
+    "precioG": 165,
+    "badges": [],
+    "descripcion": "American IPA nacida de la colaboración entre Wendlandt y Transpeninsular, dos de las cervecerías más queridas de Ensenada. De color dorado y cuerpo medio, muestra un carácter lupulado con amargor firme y notas cítricas y resinosas, con un final seco que invita al siguiente trago."
   }
 ]
