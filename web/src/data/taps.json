@@ -48,18 +48,18 @@
   },
   {
     "num": 4,
-    "nombre": "Plebipa",
-    "estilo": "Red Rye IPA",
-    "color": "#c0561f",
-    "cerveceria": "Buqui Bichi/Bichola",
-    "origen": "Hermosillo/Mazatlán",
-    "abv": "6.3%",
+    "nombre": "La Leona",
+    "estilo": "West Coast IPA",
+    "color": "#d9951e",
+    "cerveceria": "Ícono",
+    "origen": "Mexicali, B.C.",
+    "abv": "6.2%",
     "ibu": "",
-    "precioCh": 135,
-    "precioG": 165,
+    "precioCh": 95,
+    "precioG": 115,
     "badges": [],
     "disponible": true,
-    "descripcion": "Fusión norteña de color rojizo con un carácter lupulado y especiado. Destaca por sus aromas resinosos y cítricos, equilibrados con notas de frutos secos provenientes de la malta tostada. El centeno aporta un cuerpo sedoso en boca y un final seco, ligeramente picante y sumamente refrescante para disfrutar en el jardín."
+    "descripcion": "West Coast IPA que destaca por su color dorado profundo y espuma blanca persistente. En aroma, ofrece notas tropicales y cítricas gracias a la combinación de lúpulos Azacca, Simcoe, Mosaic y Citra. En boca, presenta un amargor equilibrado con sabores que recuerdan a toronja y un toque resinoso, culminando en un final seco y refrescante. Esta cerveza fue galardonada como ganadora nacional en la categoría American Style IPA en los World Beer Awards 2021."
   },
   {
     "nombre": "Pils",
