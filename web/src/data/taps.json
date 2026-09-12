@@ -95,18 +95,20 @@
   },
   {
     "num": 7,
-    "nombre": "Jakport",
-    "estilo": "Bourbon Barrel Aged Porter",
-    "color": "#3a2413",
-    "cerveceria": "Cardera",
-    "origen": "Ensenada, B.C.",
-    "abv": "6%",
+    "nombre": "Buena Noche",
+    "estilo": "Oatmeal Stout",
+    "color": "#2e1b10",
+    "cerveceria": "Hércules",
+    "origen": "Querétaro",
+    "abv": "4.9%",
     "ibu": "",
-    "precioCh": 140,
-    "precioG": 165,
-    "badges": [],
+    "precioCh": 110,
+    "precioG": 140,
+    "badges": [
+      "Nueva"
+    ],
     "disponible": true,
-    "descripcion": "Una Porter robusta y elegante, madurada con paciencia en barricas de bourbon. De color negro profundo, en nariz y boca despliega notas a chocolate amargo y café tostado, entrelazadas con la calidez de la vainilla y el roble aportados por la madera. Es sedosa, con un carácter licoroso sutil y un final largo y reconfortante."
+    "descripcion": "Oatmeal stout oscura y sedosa: la avena redondea el cuerpo y aparecen notas de café, chocolate y pan tostado, con un final suave."
   },
   {
     "num": 8,

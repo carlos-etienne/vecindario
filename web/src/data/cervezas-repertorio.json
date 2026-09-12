@@ -1413,5 +1413,18 @@
     "precioG": 160,
     "badges": [],
     "descripcion": "Pilsner de la costa oeste: dorada y cristalina, con lúpulo cítrico y resinoso al frente, amargor firme y final seco y refrescante."
+  },
+  {
+    "nombre": "Buena Noche",
+    "estilo": "Oatmeal Stout",
+    "color": "#2e1b10",
+    "cerveceria": "Hércules",
+    "origen": "Querétaro",
+    "abv": "4.9%",
+    "ibu": "",
+    "precioCh": 110,
+    "precioG": 140,
+    "badges": [],
+    "descripcion": "Oatmeal stout oscura y sedosa: la avena redondea el cuerpo y aparecen notas de café, chocolate y pan tostado, con un final suave."
   }
 ]
