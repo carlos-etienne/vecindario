@@ -1400,5 +1400,18 @@
     "precioG": 165,
     "badges": [],
     "descripcion": "American IPA nacida de la colaboración entre Wendlandt y Transpeninsular, dos de las cervecerías más queridas de Ensenada. De color dorado y cuerpo medio, muestra un carácter lupulado con amargor firme y notas cítricas y resinosas, con un final seco que invita al siguiente trago."
+  },
+  {
+    "nombre": "Pacificus",
+    "estilo": "West Coast Pilsner",
+    "color": "#f2d94f",
+    "cerveceria": "Wendlandt/Hércules",
+    "origen": "Ensenada, B.C./Querétaro",
+    "abv": "5.1%",
+    "ibu": "",
+    "precioCh": 130,
+    "precioG": 160,
+    "badges": [],
+    "descripcion": "Pilsner de la costa oeste: dorada y cristalina, con lúpulo cítrico y resinoso al frente, amargor firme y final seco y refrescante."
   }
 ]

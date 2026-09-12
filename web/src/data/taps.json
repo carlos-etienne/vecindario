@@ -16,18 +16,20 @@
   },
   {
     "num": 2,
-    "nombre": "Hitchhiker",
-    "estilo": "American IPA",
-    "color": "#d9951e",
-    "cerveceria": "Wendlandt/Transpeninsular",
-    "origen": "Ensenada, B.C.",
-    "abv": "6.2%",
+    "nombre": "Pacificus",
+    "estilo": "West Coast Pilsner",
+    "color": "#f2d94f",
+    "cerveceria": "Wendlandt/Hércules",
+    "origen": "Ensenada, B.C./Querétaro",
+    "abv": "5.1%",
     "ibu": "",
-    "precioCh": 135,
-    "precioG": 165,
-    "badges": [],
-    "disponible": false,
-    "descripcion": "American IPA nacida de la colaboración entre Wendlandt y Transpeninsular, dos de las cervecerías más queridas de Ensenada. De color dorado y cuerpo medio, muestra un carácter lupulado con amargor firme y notas cítricas y resinosas, con un final seco que invita al siguiente trago."
+    "precioCh": 130,
+    "precioG": 160,
+    "badges": [
+      "Nueva"
+    ],
+    "disponible": true,
+    "descripcion": "Pilsner de la costa oeste: dorada y cristalina, con lúpulo cítrico y resinoso al frente, amargor firme y final seco y refrescante."
   },
   {
     "num": 3,
