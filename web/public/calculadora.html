@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#446a3b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Precios VBG">
+<title>Calculadora de Precios — Vecindario Beer Garden</title>
+<!-- Iconos de app: archivos reales servidos por Cloudflare Pages -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20192%20192%22%3E%3Crect%20width%3D%22192%22%20height%3D%22192%22%20rx%3D%2242%22%20fill%3D%22%23ffffff%22%2F%3E%3Cg%20transform%3D%22translate(38.788%2C31.284000000000006)%20scale(0.8)%22%3E%3Cg%20id%3D%22layer-MC0%22%20transform%3D%22translate(-178.48334%2C-326.89865)%22%3E%20%3Cpath%20id%3D%22path16%22%20d%3D%22M%200%2C0%2041.768%2C-24.115%2083.536%2C0%20V%2048.229%20L%2041.768%2C72.343%200%2C48.229%20Z%20m%2041.768%2C-36.557%20c%20-1.431%2C0%20-2.842%2C0.379%20-4.081%2C1.094%20L%20-7.787%2C-9.209%20c%20-2.518%2C1.454%20-4.081%2C4.163%20-4.081%2C7.069%20v%2052.508%20c%200%2C2.907%201.564%2C5.616%204.081%2C7.07%20l%2045.473%2C26.253%20c%201.238%2C0.715%202.65%2C1.094%204.082%2C1.094%201.431%2C0%202.843%2C-0.378%204.082%2C-1.095%20L%2091.322%2C57.438%20c%202.517%2C-1.453%204.082%2C-4.162%204.082%2C-7.07%20V%20-2.14%20c%200%2C-2.907%20-1.565%2C-5.616%20-4.083%2C-7.07%20L%2045.849%2C-35.463%20c%20-1.24%2C-0.715%20-2.65%2C-1.094%20-4.081%2C-1.094%22%20style%3D%22fill%3A%23446a3b%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone%22%20transform%3D%22matrix(1.3333333%2C0%2C0%2C-1.3333333%2C194.30733%2C439.94533)%22%20%2F%3E%20%3Cpath%20id%3D%22path18%22%20d%3D%22m%200%2C0%2027.264%2C15.741%20c%200.648%2C0.374%201.446%2C0.374%202.094%2C0%20L%2056.622%2C0%20c%200.648%2C-0.374%201.047%2C-1.065%201.047%2C-1.813%20v%20-31.482%20c%200%2C-0.748%20-0.399%2C-1.44%20-1.047%2C-1.814%20l%20-27.264%2C-15.74%20c%20-0.648%2C-0.374%20-1.446%2C-0.374%20-2.094%2C0%20L%200%2C-35.109%20c%20-0.648%2C0.374%20-1.047%2C1.066%20-1.047%2C1.814%20v%2031.482%20c%200%2C0.748%200.399%2C1.439%201.047%2C1.813%22%20style%3D%22fill%3A%236da05d%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone%22%20transform%3D%22matrix(1.3333333%2C0%2C0%2C-1.3333333%2C212.24933%2C384.38733)%22%20%2F%3E%20%3Cpath%20id%3D%22path40%22%20d%3D%22m%200%2C0%20c%20-4.346%2C0.054%20-8.304%2C1.278%20-11.957%2C3.896%202.441%2C2.779%204.092%2C5.885%204.997%2C9.393%20C%20-2.313%2C10.396%200.222%2C4.324%200%2C0%20m%20-6.234%2C-12.485%20c%20-4.135%2C1.331%20-10.466%2C7.394%20-11.872%2C11.35%201.045%2C0.705%202.095%2C1.413%203.028%2C2.042%201.788%2C-0.987%203.468%2C-2.066%205.272%2C-2.867%201.777%2C-0.788%203.68%2C-1.295%205.624%2C-1.958%20-0.11%2C-2.959%20-0.697%2C-5.853%20-2.052%2C-8.567%20m%20-8.796%2C-6.501%20c%20-1.378%2C1.642%20-2.611%2C3.112%20-3.867%2C4.61%201.299%2C0.985%202.48%2C1.881%203.681%2C2.791%201.271%2C-0.957%202.542%2C-1.913%203.938%2C-2.965%20-1.221%2C-1.443%20-2.42%2C-2.861%20-3.752%2C-4.436%20m%20-9.025%2C6.288%20c%20-1.426%2C2.867%20-2.108%2C5.703%20-2.233%2C8.684%201.488%2C0.392%202.92%2C0.77%204.277%2C1.127%201.274%2C-1.921%202.538%2C-3.827%203.926%2C-5.92%20-1.941%2C-1.265%20-3.918%2C-2.553%20-5.97%2C-3.891%20m%20-6.096%2C12.382%20c%200.167%2C4.38%201.48%2C8.008%204.176%2C11.065%203.908%2C4.431%208.806%2C5.876%2014.547%2C4.622%200.595%2C-0.13%200.752%2C-0.339%200.57%2C-0.959%20-2.116%2C-7.205%20-6.844%2C-11.783%20-14.009%2C-13.833%20-1.651%2C-0.473%20-3.404%2C-0.587%20-5.284%2C-0.895%20M%201.753%2C9.593%20c%20-3.097%2C5.927%20-8.407%2C9.598%20-14.638%2C10.245%20v%202.101%20c%200%2C1.031%20-0.836%2C1.867%20-1.866%2C1.867%20-1.032%2C0%20-1.868%2C-0.836%20-1.868%2C-1.867%20v%20-2.082%20c%20-0.178%2C-0.015%20-0.354%2C-0.02%20-0.534%2C-0.04%20-5.862%2C-0.656%20-10.383%2C-3.602%20-13.566%2C-8.539%20-2.858%2C-4.433%20-4.088%2C-9.273%20-3.343%2C-14.555%200.081%2C-0.568%200.296%2C-0.827%200.884%2C-0.847%200.907%2C-0.031%201.812%2C-0.127%202.762%2C-0.199%200.028%2C-0.161%200.053%2C-0.241%200.055%2C-0.322%200.133%2C-4.527%201.692%2C-8.587%204.032%2C-12.4%200.303%2C-0.494%200.594%2C-0.629%201.136%2C-0.391%200.908%2C0.399%201.843%2C0.736%202.796%2C1.11%200.077%2C-0.104%200.167%2C-0.208%200.238%2C-0.322%201.663%2C-2.665%203.869%2C-4.822%206.267%2C-6.816%200.663%2C-0.552%201.088%2C-0.538%201.747%2C0.008%202.467%2C2.041%204.706%2C4.278%206.397%2C7.025%200.863%2C-0.339%201.692%2C-0.643%202.502%2C-0.992%200.513%2C-0.222%200.827%2C-0.162%201.149%2C0.357%201.919%2C3.092%203.295%2C6.384%203.787%2C10.01%200.133%2C0.974%200.193%2C1.957%200.283%2C2.902%201.133%2C0.062%202.209%2C0.13%203.285%2C0.177%200.517%2C0.024%200.688%2C0.289%200.751%2C0.785%20C%204.587%2C1.307%203.856%2C5.572%201.753%2C9.593%22%20style%3D%22fill%3A%23446a3b%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone%22%20transform%3D%22matrix(1.3333333%2C0%2C0%2C-1.3333333%2C270.04747%2C407.17453)%22%20%2F%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="/calculadora-icon-192.png">
+<link rel="manifest" href="/calculadora-manifest.webmanifest">
+<style>
+  :root {
+    --verde-osc: #446a3b;
+    --verde: #6da05d;
+    --verde-claro: #8fbd80;
+    --negro: #1c2b18;
+    --crema: #f7f9f4;
+    --crema-2: #eef3e8;
+    --gris: #5a6b54;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--crema);
+    color: var(--negro);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 40px;
+    /* Padding superior seguro para notch en celulares */
+    padding-top: env(safe-area-inset-top);
+  }
+  /* Header de marca — fondo claro, logo a todo color */
+  .header-marca {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    padding: 22px 24px 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(28, 43, 24, 0.10);
+    margin-bottom: 24px;
+    border-bottom: 4px solid var(--verde-osc);
+  }
+  .header-marca .logo {
+    height: 44px;
+    width: auto;
+    margin-bottom: 8px;
+  }
+  .header-marca .sub {
+    font-size: 12px;
+    color: var(--gris);
+    letter-spacing: 0.5px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(28, 43, 24, 0.10);
+    padding: 26px 26px 22px;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid var(--crema-2);
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .input-wrap {
+    position: relative;
+  }
+  .input-wrap::before {
+    content: "$";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--verde);
+  }
+  input[type="number"] {
+    width: 100%;
+    font-size: 26px;
+    font-weight: 700;
+    padding: 16px 16px 16px 38px;
+    border: 2px solid var(--crema-2);
+    border-radius: 12px;
+    text-align: center;
+    color: var(--negro);
+    background: var(--crema);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    -moz-appearance: textfield;
+    /* fontSize 16px en iOS para evitar zoom al enfocar */
+    -webkit-text-size-adjust: 100%;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(109, 160, 93, 0.2);
+  }
+  .resultado {
+    margin-top: 22px;
+    padding: 22px 20px;
+    background: var(--verde-osc);
+    border-radius: 14px;
+    text-align: center;
+    color: #fff;
+  }
+  .resultado .etiqueta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--verde-claro);
+    font-weight: 700;
+  }
+  .resultado .precio {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-top: 6px;
+  }
+  .resultado .detalle {
+    font-size: 13px;
+    color: #c8dcc0;
+    margin-top: 8px;
+  }
+  .regla {
+    display: none; /* Oculto por decisión del usuario; no eliminar */
+    margin-top: 18px;
+    padding: 12px 14px;
+    background: var(--crema);
+    border-left: 4px solid var(--verde);
+    border-radius: 0 8px 8px 0;
+    font-size: 12.5px;
+    color: var(--gris);
+    line-height: 1.45;
+  }
+  .regla strong { color: var(--verde-osc); }
+  .tabla {
+    margin-top: 20px;
+    border-top: 1px solid var(--crema-2);
+    padding-top: 14px;
+  }
+  .tabla h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gris);
+    margin-bottom: 8px;
+  }
+  .tabla table {
+    width: 100%;
+    font-size: 12px;
+    border-collapse: collapse;
+  }
+  .tabla td {
+    padding: 4px 6px;
+    border-bottom: 1px solid var(--crema-2);
+    color: var(--gris);
+  }
+  .tabla td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  footer {
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--gris);
+    text-align: center;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <div class="header-marca">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 393.84 91.18" role="img" aria-label="Vecindario Beer Garden"><g transform="translate(-320.59 -1121.62)"><g transform="translate(-54.93 192.94)"><path d="M0,0 -4.981,30.903 H5.223 l2.563,-18.668 2.515,18.668 h9.817 L15.04,0 Z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,484.33,995.66)"/><path d="M0,0 V30.903 H17.023 V23.165 H10.06 v-3.869 h6.867 V11.559 H10.06 v-3.87 h7.012 V0 Z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,513.15,995.66)"/><path d="m0,0 c-3.337,0-5.029,1.257-5.029,3.82 v23.165 c0,2.613 1.692,3.918 5.029,3.918 h12.526 c3.337,0 5.03-1.305 5.03-3.918 V17.846 H7.496 v5.222 c0,0.048-0.048,0.097-0.097,0.097 H5.127 C5.078,23.165 5.03,23.116 5.03,23.068 V7.786 c0-0.049 0.048-0.097 0.097-0.097 h2.272 c0.049,0 0.097,0.048 0.097,0.097 v7.206 h10.06 V3.82 C17.556,1.257 15.863,0 12.526,0 Z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,545.72,995.66)"/><path d="m429.264,76.161 h10.06 V45.258 h-10.06 z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,0,1056)"/><path d="m0,0 c0,0.048-0.048,0.097-0.097,0.097 h-2.369 v-15.476 h2.369 c0.049,0 0.097,0.048 0.097,0.097 z M-12.525,-23.068 V7.835 H5.03 c3.337,0 5.03-1.306 5.03-3.918 v-23.165 c0-2.564-1.693-3.82-5.03-3.82 z m-7.449-9.624 c-3.384,0-5.078,1.256-5.078,3.82 V0 c0,0.048-0.048,0.097-0.096,0.097 h-2.273 C-27.47,0.097-27.518,0.048-27.518,0 V-23.068 H-37.577 V7.835 h10.059 V5.852 c1.693,1.305 4.207,1.983 7.497,1.983 3.336,0 5.029-1.306 5.029-3.918 v-28.823 c0-0.049 0.049-0.097 0.096-0.097 H10.06 v-7.689 z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,639.22,964.90)"/><path d="m0,0 c0,0.048-0.049,0.097-0.097,0.097 h-2.37 v-4.643 h2.37 c0.048,0 0.097,0.048 0.097,0.097 z m0-23.068 v12.283 c0,0.049-0.049,0.097-0.097,0.097 h-2.37 v-12.38 H-12.526 V7.835 H5.029 c3.337,0 4.982-1.306 4.982-3.918 v-8.995 c0-1.499-0.823-2.321-2.467-2.515 1.692-0.242 2.515-1.064 2.515-2.563 V-23.068 Z M-25.052,0 c0,0.048-0.049,0.097-0.096,0.097 h-2.274 c-0.048,0-0.097-0.049-0.097-0.097 v-3.772 h2.467 z m0-23.068 v11.558 h-2.467 V-23.068 H-37.577 V3.917 c0,2.612 1.692,3.918 5.029,3.918 h12.526 c3.336,0 5.03-1.306 5.03-3.918 v-26.986 z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,705.90,964.90)"/><path d="m541.954,76.161 h10.06 V45.258 h-10.06 z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,0,1056)"/><path d="M0,0 C0,0.048-0.048,0.097-0.097,0.097 H-2.369 C-2.418,0.097-2.466,0.048-2.466,0 v-15.282 c0-0.049 0.048-0.097 0.097-0.097 h2.272 c0.049,0 0.097,0.048 0.097,0.097 z m-7.496-23.068 c-3.337,0-5.029,1.256-5.029,3.82 V3.917 c0,2.612 1.692,3.918 5.029,3.918 H5.03 c3.337,0 5.03-1.306 5.03-3.918 v-23.165 c0-2.564-1.693-3.82-5.03-3.82 z" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,755.94,964.90)"/><path d="M0,0 23.539,-13.59 47.077,0 V27.18 L23.539,40.77 0,27.18 Z m23.539-20.601 c-0.807,0-1.602,0.213-2.3,0.617 L-4.388,-5.189 c-1.419,0.819-2.3,2.345-2.3,3.984 v29.59 c0,1.638 0.881,3.165 2.3,3.984 l25.626,14.795 c0.698,0.403 1.494,0.617 2.301,0.617 0.806,0 1.601-0.214 2.3-0.617 L51.464,32.369 c1.419-0.818 2.301-2.345 2.301-3.984 v-29.59 c0-1.639-0.882-3.165-2.301-3.984 L25.838,-19.984 c-0.698-0.404-1.494-0.617-2.299-0.617" style="fill:#446a3b" transform="matrix(1.3333,0,0,-1.3333,384.44,992.39)"/><path d="m0,0 15.364,8.871 c0.365,0.211 0.816,0.211 1.181,0 L31.909,0 c0.365-0.211 0.59-0.601 0.59-1.021 v-17.743 c0-0.421-0.225-0.81-0.59-1.021 l-15.364-8.871 c-0.365-0.211-0.816-0.211-1.181,0 L0-19.785 c-0.365,0.211-0.59,0.6-0.59,1.021 v17.743 c0,0.42 0.225,0.81 0.59,1.021" style="fill:#6da05d" transform="matrix(1.3333,0,0,-1.3333,394.55,961.08)"/><path d="m0,0 c-2.449,0.03-4.681,0.721-6.739,2.195 1.376,1.567 2.306,3.317 2.816,5.293 C-1.304,5.858 0.125,2.437 0,0 m-3.514-7.036 c-2.33,0.75-5.898,4.167-6.69,6.396 0.589,0.398 1.181,0.796 1.707,1.151 1.007-0.556 1.954-1.164 2.971-1.615 1.001-0.445 2.073-0.73 3.169-1.104-0.062-1.668-0.393-3.299-1.157-4.828 M-8.471-10.7 c-0.776,0.926-1.47,1.754-2.179,2.598 0.732,0.555 1.398,1.06 2.074,1.573 0.717-0.539 1.432-1.078 2.22-1.67-0.689-0.815-1.364-1.614-2.115-2.501 m-5.086,3.544 c-0.803,1.615-1.188,3.214-1.258,4.893 0.838,0.222 1.646,0.435 2.41,0.636 0.718-1.083 1.43-2.157 2.213-3.336-1.094-0.713-2.208-1.439-3.365-2.193 m-3.435,6.977 c0.094,2.469 0.834,4.514 2.353,6.237 2.202,2.497 4.962,3.311 8.199,2.604 0.335-0.073 0.423-0.191 0.321-0.541-1.193-4.06-3.858-6.64-7.895-7.795-0.931-0.266-1.919-0.331-2.978-0.505 M0.987,5.406 c-1.745,3.34-4.737,5.409-8.249,5.774 v1.183 c0,0.581-0.47,1.053-1.051,1.053-0.582,0-1.053-0.472-1.053-1.053 V11.19 c-0.101-0.008-0.199-0.011-0.301-0.022-3.304-0.37-5.852-2.03-7.645-4.813-1.611-2.498-2.304-5.225-1.884-8.203 0.045-0.319 0.167-0.465 0.498-0.476 0.511-0.018 1.021-0.072 1.556-0.113 0.017-0.09 0.03-0.135 0.032-0.181 0.075-2.551 0.953-4.839 2.272-6.987 0.171-0.279 0.334-0.355 0.64-0.221 0.511,0.224 1.039,0.415 1.576,0.625 0.043-0.059 0.094-0.116 0.134-0.182 0.937-1.501 2.18-2.717 3.532-3.841 0.373-0.31 0.612-0.302 0.984,0.005 1.39,1.151 2.652,2.411 3.605,3.959 0.486-0.191 0.954-0.362 1.41-0.559 0.289-0.124 0.466-0.091 0.647,0.201 1.081,1.743 1.858,3.598 2.135,5.641 0.074,0.549 0.109,1.104 0.159,1.635 0.639,0.035 1.245,0.073 1.851,0.101 0.292,0.012 0.388,0.162 0.424,0.441 0.325,2.536-0.086,4.94-1.272,7.206" style="fill:#446a3b" transform="matrix(1.3333,0,0,-1.3333,427.12,973.92)"/></g></g></svg>
+    <div class="sub">Calculadora de precio al público</div>
+  </div>
+
+  <div class="card">
+    <label for="costo">Costo unitario de la cerveza</label>
+    <div class="input-wrap">
+      <input type="number" id="costo" placeholder="0" min="0" step="0.01" autofocus inputmode="decimal">
+    </div>
+
+    <div class="resultado" id="resultado">
+      <div class="etiqueta">Precio sugerido</div>
+      <div class="precio" id="precio">—</div>
+      <div class="detalle" id="detalle">Escribe el costo para calcular</div>
+    </div>
+
+    <div class="regla">
+      <strong>Regla del negocio:</strong> el precio nunca baja. Si la cerveza
+      ya existía y su precio actual es mayor al sugerido, <strong>se mantiene
+      el precio actual</strong>. Solo se sube cuando el costo sube.
+    </div>
+
+    <div class="tabla">
+      <h3>Puntos de la curva</h3>
+      <table>
+        <tbody id="tabla-puntos"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    Fórmula: interpolación lineal entre puntos de frontera.<br>
+    Una cerveza más cara nunca sale más barata que una de menor costo.
+  </footer>
+
+<script>
+  // ---------------------------------------------------------------
+  // Puntos de ancla de la curva de interpolación (Opción B)
+  // Derivados de la tabla de multiplicadores actual de Vecindario.
+  // ---------------------------------------------------------------
+  const PUNTOS = [
+    [45, 85.50],
+    [70, 133.00],
+    [110, 198.00],
+    [140, 238.00],
+    [199, 328.35],
+    [300, 480.00],
+    [500, 750.00],
+  ];
+  const COSTO_MIN = 45;
+  const PENDIENTE_FINAL = 1.50; // pendiente para costos > $500
+  const SUMA_FIJA_BAJO_45 = 54; // para costos < $45: precio = costo + 54
+
+  // Poblar la tabla de referencia
+  (function poblarTabla() {
+    const tbody = document.getElementById("tabla-puntos");
+    PUNTOS.forEach(([c, p]) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td>Costo $' + c + '</td>' +
+        '<td class="num">→ Precio $' + p.toFixed(2) + '</td>';
+      tbody.appendChild(tr);
+    });
+  })();
+
+  /**
+   * Calcula el precio (sin redondear).
+   * - Costos < $45: suma fija (costo + 54).
+   * - Costos ≥ $45: interpolación lineal entre los puntos de ancla.
+   */
+  function precioBruto(costo) {
+    if (costo < COSTO_MIN) return costo + SUMA_FIJA_BAJO_45;
+    if (costo >= PUNTOS[PUNTOS.length - 1][0]) {
+      const [cUlt, pUlt] = PUNTOS[PUNTOS.length - 1];
+      return pUlt + (costo - cUlt) * PENDIENTE_FINAL;
+    }
+    for (let i = 0; i < PUNTOS.length - 1; i++) {
+      const [c0, p0] = PUNTOS[i];
+      const [c1, p1] = PUNTOS[i + 1];
+      if (costo >= c0 && costo <= c1) {
+        const pendiente = (p1 - p0) / (c1 - c0);
+        return p0 + (costo - c0) * pendiente;
+      }
+    }
+    return NaN;
+  }
+
+  /** Redondeo al entero más cercano (0.5 → arriba). */
+  function redondear(x) {
+    return Math.floor(x + 0.5);
+  }
+
+  const input = document.getElementById("costo");
+  const precioEl = document.getElementById("precio");
+  const detalleEl = document.getElementById("detalle");
+
+  function calcular() {
+    const valor = input.value.trim();
+
+    if (valor === "") {
+      precioEl.textContent = "—";
+      detalleEl.textContent = "Escribe el costo para calcular";
+      return;
+    }
+
+    const costo = parseFloat(valor);
+    if (isNaN(costo) || costo <= 0) {
+      precioEl.textContent = "—";
+      detalleEl.textContent = "Costo inválido";
+      return;
+    }
+
+    const precio = redondear(precioBruto(costo));
+    precioEl.textContent = "$" + precio;
+
+    // Calcular margen para mostrar
+    const margenPct = ((precio - costo) / precio * 100).toFixed(0);
+    const mult = (precio / costo).toFixed(2);
+    detalleEl.textContent =
+      "Margen " + margenPct + "%  ·  equivale a ×" + mult;
+  }
+
+  input.addEventListener("input", calcular);
+  input.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") input.select();
+  });
+
+
+</script>
+</body>
+</html>
