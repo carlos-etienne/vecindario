@@ -1,0 +1,15 @@
+{
+  "name": "Calculadora de Precios — Vecindario Beer Garden",
+  "short_name": "Precios VBG",
+  "description": "Calcula el precio al público de una cerveza a partir de su costo unitario.",
+  "start_url": "/calculadora.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f9f4",
+  "theme_color": "#446a3b",
+  "icons": [
+    { "src": "/calculadora-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/calculadora-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/calculadora-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
