@@ -1,162 +1,162 @@
 [
-  {
-    "nombre": "Ícono Light",
-    "estilo": "Light Lager",
-    "color": "#f2d94f",
-    "cerveceria": "Ícono",
-    "origen": "Mexicali, B.C.",
-    "abv": "3.5%",
-    "ibu": "",
-    "descripcion": "Esta lager ligera es perfecta para quienes buscan una opción refrescante y baja en alcohol, con notas sutiles de malta y un final suave y limpio.",
-    "num": 1,
-    "precioCh": 80,
-    "precioG": 90,
-    "badges": [],
-    "disponible": true
-  },
-  {
-    "num": 2,
-    "nombre": "Pacificus",
-    "estilo": "West Coast Pilsner",
-    "color": "#f2d94f",
-    "cerveceria": "Wendlandt/Hércules",
-    "origen": "Ensenada, B.C./Querétaro",
-    "abv": "5.1%",
-    "ibu": "",
-    "precioCh": 130,
-    "precioG": 160,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "Pilsner de la costa oeste: dorada y cristalina, con lúpulo cítrico y resinoso al frente, amargor firme y final seco y refrescante."
-  },
-  {
-    "num": 3,
-    "nombre": "Citra Voyager",
-    "estilo": "Hazy IPA",
-    "color": "#f0c95a",
-    "cerveceria": "Insurgente",
-    "origen": "Tijuana, B.C.",
-    "abv": "7%",
-    "ibu": "",
-    "precioCh": 135,
-    "precioG": 165,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "Hazy IPA turbia y jugosa que pone al lúpulo Citra al frente: notas cítricas y tropicales, cuerpo sedoso y final suave. Fácil de tomar a pesar de su 7% de alcohol."
-  },
-  {
-    "num": 4,
-    "nombre": "La Leona",
-    "estilo": "West Coast IPA",
-    "color": "#d9951e",
-    "cerveceria": "Ícono",
-    "origen": "Mexicali, B.C.",
-    "abv": "6.2%",
-    "ibu": "",
-    "precioCh": 95,
-    "precioG": 115,
-    "badges": [],
-    "disponible": true,
-    "descripcion": "West Coast IPA que destaca por su color dorado profundo y espuma blanca persistente. En aroma, ofrece notas tropicales y cítricas gracias a la combinación de lúpulos Azacca, Simcoe, Mosaic y Citra. En boca, presenta un amargor equilibrado con sabores que recuerdan a toronja y un toque resinoso, culminando en un final seco y refrescante. Esta cerveza fue galardonada como ganadora nacional en la categoría American Style IPA en los World Beer Awards 2021."
-  },
-  {
-    "num": 5,
-    "nombre": "Italian Pilsner",
-    "estilo": "Italian Pilsner",
-    "color": "#f2d94f",
-    "cerveceria": "Vecindario/Tebana",
-    "origen": "Cuernavaca, Morelos",
-    "abv": "5.5%",
-    "ibu": "",
-    "precioCh": null,
-    "precioG": 95,
-    "badges": [],
-    "disponible": true,
-    "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
-  },
-  {
-    "num": 6,
-    "nombre": "Cuervayork",
-    "estilo": "Robust Porter",
-    "color": "#452916",
-    "cerveceria": "Ícono",
-    "origen": "Mexicali, B.C.",
-    "abv": "7%",
-    "ibu": "",
-    "precioCh": 85,
-    "precioG": 95,
-    "badges": [],
-    "disponible": true,
-    "descripcion": "Esta robusta porter de 7% destaca por su cuerpo medio-alto y una compleja combinación de sabores tostados que evocan chocolate amargo y café. Su final suave y ligeramente dulce equilibra las notas intensas, ofreciendo una experiencia redonda y reconfortante. Galardonada con medalla de oro en la categoría Robust Porter en la Copa Cervecera del Pacífico 2025, Cuervayork es un tributo al carácter fuerte de Mexicali."
-  },
-  {
-    "num": 7,
-    "nombre": "Buena Noche",
-    "estilo": "Oatmeal Stout",
-    "color": "#2e1b10",
-    "cerveceria": "Hércules",
-    "origen": "Querétaro",
-    "abv": "4.9%",
-    "ibu": "",
-    "precioCh": 110,
-    "precioG": 140,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "Oatmeal stout oscura y sedosa: la avena redondea el cuerpo y aparecen notas de café, chocolate y pan tostado, con un final suave."
-  },
-  {
-    "num": 8,
-    "nombre": "Kriek",
-    "estilo": "Fruit Lambic",
-    "color": "#b91c1c",
-    "cerveceria": "Lindemans",
-    "origen": "Vlezenbeek, Bélgica",
-    "abv": "3.5%",
-    "ibu": "",
-    "precioCh": 160,
-    "precioG": 195,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
-  },
-  {
-    "num": 9,
-    "nombre": "Celebrator",
-    "estilo": "Doppelbock",
-    "color": "#9c551c",
-    "cerveceria": "Ayinger",
-    "origen": "Alemania",
-    "abv": "6.7%",
-    "ibu": "",
-    "precioCh": 100,
-    "precioG": 120,
-    "badges": [],
-    "disponible": true,
-    "descripcion": "Ayinger Celebrator es una de las doppelbock más icónicas del mundo. De profundo color caoba con destellos rubí, ofrece un cuerpo robusto y sedoso. En nariz y boca despliega notas intensas a malta tostada, caramelo oscuro, pasas y un toque de chocolate, con un final elegante y persistente. Una cerveza compleja y refinada, que combina fuerza y suavidad en perfecto equilibrio."
-  },
-  {
-    "num": 10,
-    "nombre": "Jarnit Family Beer",
-    "estilo": "Imperial Stout",
-    "color": "#2e1b10",
-    "cerveceria": "Evil Twin",
-    "origen": "Nueva York, EUA",
-    "abv": "12%",
-    "ibu": "",
-    "precioCh": 185,
-    "precioG": 230,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
-  }
+ {
+  "nombre": "Ícono Light",
+  "estilo": "Light Lager",
+  "color": "#f2d94f",
+  "cerveceria": "Ícono",
+  "origen": "Mexicali, B.C.",
+  "abv": "3.5%",
+  "ibu": "",
+  "descripcion": "Esta lager ligera es perfecta para quienes buscan una opción refrescante y baja en alcohol, con notas sutiles de malta y un final suave y limpio.",
+  "num": 1,
+  "precioCh": 80,
+  "precioG": 90,
+  "badges": [],
+  "disponible": true
+ },
+ {
+  "num": 2,
+  "nombre": "Pacificus",
+  "estilo": "West Coast Pilsner",
+  "color": "#f2d94f",
+  "cerveceria": "Wendlandt/Hércules",
+  "origen": "Ensenada, B.C./Querétaro",
+  "abv": "5.1%",
+  "ibu": "",
+  "precioCh": 130,
+  "precioG": 160,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "Pilsner de la costa oeste: dorada y cristalina, con lúpulo cítrico y resinoso al frente, amargor firme y final seco y refrescante."
+ },
+ {
+  "num": 3,
+  "nombre": "Los Lupularios",
+  "estilo": "DDH West Coast IPA",
+  "color": "#d9951e",
+  "cerveceria": "Rey Árbol",
+  "origen": "Zapopan, Jalisco",
+  "abv": "6%",
+  "ibu": "",
+  "precioCh": 130,
+  "precioG": 160,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "DDH West Coast IPA de Rey Árbol en colaboración con BeerMex, Yakima Chief Hops y Xakúa. Cítrica, resinosa y frutal, de cuerpo medio-ligero y final limpio, con un amargor firme que duele bonito."
+ },
+ {
+  "num": 4,
+  "nombre": "La Leona",
+  "estilo": "West Coast IPA",
+  "color": "#d9951e",
+  "cerveceria": "Ícono",
+  "origen": "Mexicali, B.C.",
+  "abv": "6.2%",
+  "ibu": "",
+  "precioCh": 95,
+  "precioG": 115,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "West Coast IPA que destaca por su color dorado profundo y espuma blanca persistente. En aroma, ofrece notas tropicales y cítricas gracias a la combinación de lúpulos Azacca, Simcoe, Mosaic y Citra. En boca, presenta un amargor equilibrado con sabores que recuerdan a toronja y un toque resinoso, culminando en un final seco y refrescante. Esta cerveza fue galardonada como ganadora nacional en la categoría American Style IPA en los World Beer Awards 2021."
+ },
+ {
+  "num": 5,
+  "nombre": "Italian Pilsner",
+  "estilo": "Italian Pilsner",
+  "color": "#f2d94f",
+  "cerveceria": "Vecindario/Tebana",
+  "origen": "Cuernavaca, Morelos",
+  "abv": "5.5%",
+  "ibu": "",
+  "precioCh": null,
+  "precioG": 95,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
+ },
+ {
+  "num": 6,
+  "nombre": "Cuervayork",
+  "estilo": "Robust Porter",
+  "color": "#452916",
+  "cerveceria": "Ícono",
+  "origen": "Mexicali, B.C.",
+  "abv": "7%",
+  "ibu": "",
+  "precioCh": 85,
+  "precioG": 95,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Esta robusta porter de 7% destaca por su cuerpo medio-alto y una compleja combinación de sabores tostados que evocan chocolate amargo y café. Su final suave y ligeramente dulce equilibra las notas intensas, ofreciendo una experiencia redonda y reconfortante. Galardonada con medalla de oro en la categoría Robust Porter en la Copa Cervecera del Pacífico 2025, Cuervayork es un tributo al carácter fuerte de Mexicali."
+ },
+ {
+  "num": 7,
+  "nombre": "Buena Noche",
+  "estilo": "Oatmeal Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "4.9%",
+  "ibu": "",
+  "precioCh": 110,
+  "precioG": 140,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "Oatmeal stout oscura y sedosa: la avena redondea el cuerpo y aparecen notas de café, chocolate y pan tostado, con un final suave."
+ },
+ {
+  "num": 8,
+  "nombre": "Kriek",
+  "estilo": "Fruit Lambic",
+  "color": "#b91c1c",
+  "cerveceria": "Lindemans",
+  "origen": "Vlezenbeek, Bélgica",
+  "abv": "3.5%",
+  "ibu": "",
+  "precioCh": 160,
+  "precioG": 195,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
+ },
+ {
+  "num": 9,
+  "nombre": "Celebrator",
+  "estilo": "Doppelbock",
+  "color": "#9c551c",
+  "cerveceria": "Ayinger",
+  "origen": "Alemania",
+  "abv": "6.7%",
+  "ibu": "",
+  "precioCh": 100,
+  "precioG": 120,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Ayinger Celebrator es una de las doppelbock más icónicas del mundo. De profundo color caoba con destellos rubí, ofrece un cuerpo robusto y sedoso. En nariz y boca despliega notas intensas a malta tostada, caramelo oscuro, pasas y un toque de chocolate, con un final elegante y persistente. Una cerveza compleja y refinada, que combina fuerza y suavidad en perfecto equilibrio."
+ },
+ {
+  "num": 10,
+  "nombre": "Jarnit Family Beer",
+  "estilo": "Imperial Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Evil Twin",
+  "origen": "Nueva York, EUA",
+  "abv": "12%",
+  "ibu": "",
+  "precioCh": 185,
+  "precioG": 230,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
+ }
 ]
