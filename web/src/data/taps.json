@@ -16,20 +16,20 @@
  },
  {
   "num": 2,
-  "nombre": "Pacificus",
-  "estilo": "West Coast Pilsner",
-  "color": "#f2d94f",
-  "cerveceria": "Wendlandt/Hércules",
-  "origen": "Ensenada, B.C./Querétaro",
-  "abv": "5.1%",
+  "nombre": "SMASH",
+  "estilo": "SMASH Pale Ale",
+  "color": "#f0c95a",
+  "cerveceria": "Aquelarre",
+  "origen": "Cuernavaca, Morelos",
+  "abv": "4.0%",
   "ibu": "",
-  "precioCh": 130,
-  "precioG": 160,
+  "precioCh": 85,
+  "precioG": 95,
   "badges": [
    "Nueva"
   ],
   "disponible": true,
-  "descripcion": "Pilsner de la costa oeste: dorada y cristalina, con lúpulo cítrico y resinoso al frente, amargor firme y final seco y refrescante."
+  "descripcion": "SMASH de una sola malta base y un solo lúpulo, el HBC 630. Amargor medio, con aroma y sabor a mango verde y toques cítricos, y un final seco y refrescante: ligera y muy fácil de tomar."
  },
  {
   "num": 3,
