@@ -65,18 +65,20 @@
  },
  {
   "num": 5,
-  "nombre": "Italian Pilsner",
-  "estilo": "Italian Pilsner",
-  "color": "#f2d94f",
-  "cerveceria": "Vecindario/Tebana",
-  "origen": "Cuernavaca, Morelos",
-  "abv": "5.5%",
+  "nombre": "Hooligan",
+  "estilo": "Ordinary Bitter",
+  "color": "#c0561f",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "3.7%",
   "ibu": "",
-  "precioCh": null,
-  "precioG": 95,
-  "badges": [],
+  "precioCh": 115,
+  "precioG": 145,
+  "badges": [
+   "Nueva"
+  ],
   "disponible": true,
-  "descripcion": "Nuestra cerveza de segundo aniversario, hecha junto a Tebana Laboratorio Cervecero. Una Italian Pilsner fresca y ligera, muy fácil de tomar, con el rico y sutil aroma que le aporta el dry hopping."
+  "descripcion": "Bitter de sesión al estilo inglés: cobriza y ligera, con el tostado de la malta bien equilibrado, amargor de sesión y final seco. Bajo alcohol, muy fácil de tomar y con carácter."
  },
  {
   "num": 6,
