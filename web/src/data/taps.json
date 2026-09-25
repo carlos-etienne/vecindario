@@ -50,18 +50,18 @@
  },
  {
   "num": 4,
-  "nombre": "Hardy",
-  "estilo": "Double IPA",
-  "color": "#e0a234",
+  "nombre": "La Leona",
+  "estilo": "West Coast IPA",
+  "color": "#d9951e",
   "cerveceria": "Ícono",
   "origen": "Mexicali, B.C.",
-  "abv": "8%",
+  "abv": "6.2%",
   "ibu": "",
   "precioCh": 95,
   "precioG": 115,
   "badges": [],
   "disponible": true,
-  "descripcion": "Cerveza robusta y cargada de lúpulo, con sabores resinosos y cítricos provenientes de los lúpulos Mosaic y Simcoe. Su final seco permite que el lúpulo sea el protagonista, perfecta para quienes buscan una IPA intensa y bien definida."
+  "descripcion": "West Coast IPA que destaca por su color dorado profundo y espuma blanca persistente. En aroma, ofrece notas tropicales y cítricas gracias a la combinación de lúpulos Azacca, Simcoe, Mosaic y Citra. En boca, presenta un amargor equilibrado con sabores que recuerdan a toronja y un toque resinoso, culminando en un final seco y refrescante. Esta cerveza fue galardonada como ganadora nacional en la categoría American Style IPA en los World Beer Awards 2021."
  },
  {
   "num": 5,
