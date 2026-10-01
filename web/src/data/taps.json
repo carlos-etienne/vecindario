@@ -1,162 +1,162 @@
 [
-  {
-    "nombre": "Ícono Light",
-    "estilo": "Light Lager",
-    "color": "#f2d94f",
-    "cerveceria": "Ícono",
-    "origen": "Mexicali, B.C.",
-    "abv": "3.5%",
-    "ibu": "",
-    "descripcion": "Esta lager ligera es perfecta para quienes buscan una opción refrescante y baja en alcohol, con notas sutiles de malta y un final suave y limpio.",
-    "num": 1,
-    "precioCh": 80,
-    "precioG": 90,
-    "badges": [],
-    "disponible": true
-  },
-  {
-    "num": 2,
-    "nombre": "SMASH",
-    "estilo": "SMASH Pale Ale",
-    "color": "#f0c95a",
-    "cerveceria": "Aquelarre",
-    "origen": "Cuernavaca, Morelos",
-    "abv": "4.0%",
-    "ibu": "",
-    "precioCh": 85,
-    "precioG": 95,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "SMASH de una sola malta base y un solo lúpulo, el HBC 630. Amargor medio, con aroma y sabor a mango verde y toques cítricos, y un final seco y refrescante: ligera y muy fácil de tomar."
-  },
-  {
-    "num": 3,
-    "nombre": "Los Lupularios",
-    "estilo": "DDH West Coast IPA",
-    "color": "#d9951e",
-    "cerveceria": "Rey Árbol",
-    "origen": "Zapopan, Jalisco",
-    "abv": "6%",
-    "ibu": "",
-    "precioCh": 130,
-    "precioG": 160,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": false,
-    "descripcion": "DDH West Coast IPA de Rey Árbol en colaboración con BeerMex, Yakima Chief Hops y Xakúa. Cítrica, resinosa y frutal, de cuerpo medio-ligero y final limpio, con un amargor firme que duele bonito."
-  },
-  {
-    "num": 4,
-    "nombre": "Hardy",
-    "estilo": "Double IPA",
-    "color": "#e0a234",
-    "cerveceria": "Ícono",
-    "origen": "Mexicali, B.C.",
-    "abv": "8%",
-    "ibu": "",
-    "precioCh": 95,
-    "precioG": 115,
-    "badges": [],
-    "disponible": true,
-    "descripcion": "Cerveza robusta y cargada de lúpulo, con sabores resinosos y cítricos provenientes de los lúpulos Mosaic y Simcoe. Su final seco permite que el lúpulo sea el protagonista, perfecta para quienes buscan una IPA intensa y bien definida."
-  },
-  {
-    "num": 5,
-    "nombre": "Hooligan",
-    "estilo": "Ordinary Bitter",
-    "color": "#c0561f",
-    "cerveceria": "Hércules",
-    "origen": "Querétaro",
-    "abv": "3.7%",
-    "ibu": "",
-    "precioCh": 115,
-    "precioG": 145,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "Bitter de sesión al estilo inglés: cobriza y ligera, con el tostado de la malta bien equilibrado, amargor de sesión y final seco. Bajo alcohol, muy fácil de tomar y con carácter."
-  },
-  {
-    "num": 6,
-    "nombre": "Pils",
-    "estilo": "German Pilsner",
-    "color": "#f1d44b",
-    "cerveceria": "ABK",
-    "origen": "Alemania",
-    "abv": "5%",
-    "ibu": "",
-    "precioCh": 90,
-    "precioG": 110,
-    "badges": [],
-    "disponible": true,
-    "descripcion": "Cerveza de estilo pilsner bávara, clara y dorada, con burbujas finas y una espuma blanca persistente. Su aroma es delicado, con notas herbales, florales y un toque cítrico gracias al lúpulo noble. En boca es seca, fresca y con un amargor elegante que la hace muy bebible. El balance entre la malta ligera y el perfil lupulado le otorgan una personalidad limpia y tradicional."
-  },
-  {
-    "num": 7,
-    "nombre": "Chocolate Stout",
-    "estilo": "Chocolate Stout",
-    "color": "#2e1b10",
-    "cerveceria": "Chaneque",
-    "origen": "CDMX",
-    "abv": "7.5%",
-    "ibu": "",
-    "precioCh": 100,
-    "precioG": 110,
-    "badges": [],
-    "descripcion": "Una experiencia indulgente y profundamente oscura. Esta Stout ofrece notas intensas a chocolate amargo, café tostado y un sutil toque de vainilla. Su cuerpo es denso y cremoso, con un dulzor equilibrado que recuerda a un postre artesanal, pero con el carácter firme de una cerveza de especialidad.",
-    "disponible": true
-  },
-  {
-    "num": 8,
-    "nombre": "Kriek",
-    "estilo": "Fruit Lambic",
-    "color": "#b91c1c",
-    "cerveceria": "Lindemans",
-    "origen": "Vlezenbeek, Bélgica",
-    "abv": "3.5%",
-    "ibu": "",
-    "precioCh": 160,
-    "precioG": 195,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
-  },
-  {
-    "num": 9,
-    "nombre": "Dunkel",
-    "estilo": "Munich Dunkel",
-    "color": "#7c4a1e",
-    "cerveceria": "ABK",
-    "origen": "Alemania",
-    "abv": "5%",
-    "ibu": "",
-    "precioCh": 90,
-    "precioG": 110,
-    "badges": [],
-    "disponible": false,
-    "descripcion": "Lager oscura alemana elegante y tradicional, con un perfil dominado por maltas tostadas suaves. Presenta aromas a pan recién horneado, caramelo ligero y un toque de cacao. En boca es sedosa, con notas a pan dulce, nuez, caramelo tostado y un final limpio, ligeramente seco, típico de las lagers bávaras. Equilibrada, profunda y muy bebible: una Dunkel hecha al estilo clásico de Múnich."
-  },
-  {
-    "num": 10,
-    "nombre": "Jarnit Family Beer",
-    "estilo": "Imperial Stout",
-    "color": "#2e1b10",
-    "cerveceria": "Evil Twin",
-    "origen": "Nueva York, EUA",
-    "abv": "12%",
-    "ibu": "",
-    "precioCh": 185,
-    "precioG": 230,
-    "badges": [
-      "Nueva"
-    ],
-    "disponible": true,
-    "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
-  }
+ {
+  "nombre": "Ícono Light",
+  "estilo": "Light Lager",
+  "color": "#f2d94f",
+  "cerveceria": "Ícono",
+  "origen": "Mexicali, B.C.",
+  "abv": "3.5%",
+  "ibu": "",
+  "descripcion": "Esta lager ligera es perfecta para quienes buscan una opción refrescante y baja en alcohol, con notas sutiles de malta y un final suave y limpio.",
+  "num": 1,
+  "precioCh": 80,
+  "precioG": 90,
+  "badges": [],
+  "disponible": true
+ },
+ {
+  "num": 2,
+  "nombre": "SMASH",
+  "estilo": "SMASH Pale Ale",
+  "color": "#f0c95a",
+  "cerveceria": "Aquelarre",
+  "origen": "Cuernavaca, Morelos",
+  "abv": "4.0%",
+  "ibu": "",
+  "precioCh": 85,
+  "precioG": 95,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "SMASH de una sola malta base y un solo lúpulo, el HBC 630. Amargor medio, con aroma y sabor a mango verde y toques cítricos, y un final seco y refrescante: ligera y muy fácil de tomar."
+ },
+ {
+  "num": 3,
+  "nombre": "Los Lupularios",
+  "estilo": "DDH West Coast IPA",
+  "color": "#d9951e",
+  "cerveceria": "Rey Árbol",
+  "origen": "Zapopan, Jalisco",
+  "abv": "6%",
+  "ibu": "",
+  "precioCh": 130,
+  "precioG": 160,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": false,
+  "descripcion": "DDH West Coast IPA de Rey Árbol en colaboración con BeerMex, Yakima Chief Hops y Xakúa. Cítrica, resinosa y frutal, de cuerpo medio-ligero y final limpio, con un amargor firme que duele bonito."
+ },
+ {
+  "num": 4,
+  "nombre": "Hardy",
+  "estilo": "Double IPA",
+  "color": "#e0a234",
+  "cerveceria": "Ícono",
+  "origen": "Mexicali, B.C.",
+  "abv": "8%",
+  "ibu": "",
+  "precioCh": 95,
+  "precioG": 115,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Cerveza robusta y cargada de lúpulo, con sabores resinosos y cítricos provenientes de los lúpulos Mosaic y Simcoe. Su final seco permite que el lúpulo sea el protagonista, perfecta para quienes buscan una IPA intensa y bien definida."
+ },
+ {
+  "num": 5,
+  "nombre": "Hooligan",
+  "estilo": "Ordinary Bitter",
+  "color": "#c0561f",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "3.7%",
+  "ibu": "",
+  "precioCh": 115,
+  "precioG": 145,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "Bitter de sesión al estilo inglés: cobriza y ligera, con el tostado de la malta bien equilibrado, amargor de sesión y final seco. Bajo alcohol, muy fácil de tomar y con carácter."
+ },
+ {
+  "num": 6,
+  "nombre": "Pils",
+  "estilo": "German Pilsner",
+  "color": "#f1d44b",
+  "cerveceria": "ABK",
+  "origen": "Alemania",
+  "abv": "5%",
+  "ibu": "",
+  "precioCh": 90,
+  "precioG": 110,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Cerveza de estilo pilsner bávara, clara y dorada, con burbujas finas y una espuma blanca persistente. Su aroma es delicado, con notas herbales, florales y un toque cítrico gracias al lúpulo noble. En boca es seca, fresca y con un amargor elegante que la hace muy bebible. El balance entre la malta ligera y el perfil lupulado le otorgan una personalidad limpia y tradicional."
+ },
+ {
+  "num": 7,
+  "nombre": "Chocolate Stout",
+  "estilo": "Chocolate Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Chaneque",
+  "origen": "CDMX",
+  "abv": "7.5%",
+  "ibu": "",
+  "precioCh": 100,
+  "precioG": 110,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Una experiencia indulgente y profundamente oscura. Esta Stout ofrece notas intensas a chocolate amargo, café tostado y un sutil toque de vainilla. Su cuerpo es denso y cremoso, con un dulzor equilibrado que recuerda a un postre artesanal, pero con el carácter firme de una cerveza de especialidad."
+ },
+ {
+  "num": 8,
+  "nombre": "Kriek",
+  "estilo": "Fruit Lambic",
+  "color": "#b91c1c",
+  "cerveceria": "Lindemans",
+  "origen": "Vlezenbeek, Bélgica",
+  "abv": "3.5%",
+  "ibu": "",
+  "precioCh": 160,
+  "precioG": 195,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
+ },
+ {
+  "num": 9,
+  "nombre": "Dunkel",
+  "estilo": "Munich Dunkel",
+  "color": "#7c4a1e",
+  "cerveceria": "ABK",
+  "origen": "Alemania",
+  "abv": "5%",
+  "ibu": "",
+  "precioCh": 90,
+  "precioG": 110,
+  "badges": [],
+  "disponible": false,
+  "descripcion": "Lager oscura alemana elegante y tradicional, con un perfil dominado por maltas tostadas suaves. Presenta aromas a pan recién horneado, caramelo ligero y un toque de cacao. En boca es sedosa, con notas a pan dulce, nuez, caramelo tostado y un final limpio, ligeramente seco, típico de las lagers bávaras. Equilibrada, profunda y muy bebible: una Dunkel hecha al estilo clásico de Múnich."
+ },
+ {
+  "num": 10,
+  "nombre": "Jarnit Family Beer",
+  "estilo": "Imperial Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Evil Twin",
+  "origen": "Nueva York, EUA",
+  "abv": "12%",
+  "ibu": "",
+  "precioCh": 185,
+  "precioG": 230,
+  "badges": [
+   "Nueva"
+  ],
+  "disponible": true,
+  "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
+ }
 ]
