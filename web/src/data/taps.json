@@ -33,20 +33,18 @@
  },
  {
   "num": 3,
-  "nombre": "Los Lupularios",
-  "estilo": "DDH West Coast IPA",
-  "color": "#d9951e",
-  "cerveceria": "Rey Árbol",
-  "origen": "Zapopan, Jalisco",
+  "nombre": "Yellow Snow",
+  "estilo": "Cold IPA",
+  "color": "#f2d94f",
+  "cerveceria": "OBNI",
+  "origen": "CDMX",
   "abv": "6%",
   "ibu": "",
-  "precioCh": 130,
-  "precioG": 160,
-  "badges": [
-   "Nueva"
-  ],
-  "disponible": false,
-  "descripcion": "DDH West Coast IPA de Rey Árbol en colaboración con BeerMex, Yakima Chief Hops y Xakúa. Cítrica, resinosa y frutal, de cuerpo medio-ligero y final limpio, con un amargor firme que duele bonito."
+  "precioCh": 95,
+  "precioG": 115,
+  "badges": [],
+  "disponible": true,
+  "descripcion": "Cold IPA de fermentación lager con adjunto de arroz: color paja, cuerpo ligero y final seco. Los lúpulos Citra y Zappa le dan un perfil frutal, con notas tropicales y cítricas que la vuelven muy refrescante y fácil de tomar."
  },
  {
   "num": 4,

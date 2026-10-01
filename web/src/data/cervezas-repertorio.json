@@ -1441,5 +1441,18 @@
    "Nueva"
   ],
   "descripcion": "Hazy IPA turbia y jugosa que pone al lúpulo Citra al frente: notas cítricas y tropicales, cuerpo sedoso y final suave. Fácil de tomar a pesar de su 7% de alcohol."
+ },
+ {
+  "nombre": "Los Lupularios",
+  "estilo": "DDH West Coast IPA",
+  "color": "#d9951e",
+  "cerveceria": "Rey Árbol",
+  "origen": "Zapopan, Jalisco",
+  "abv": "6%",
+  "ibu": "",
+  "precioCh": 130,
+  "precioG": 160,
+  "badges": [],
+  "descripcion": "DDH West Coast IPA de Rey Árbol en colaboración con BeerMex, Yakima Chief Hops y Xakúa. Cítrica, resinosa y frutal, de cuerpo medio-ligero y final limpio, con un amargor firme que duele bonito."
  }
 ]
