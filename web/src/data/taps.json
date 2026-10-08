@@ -16,20 +16,18 @@
  },
  {
   "num": 2,
-  "nombre": "SMASH",
-  "estilo": "SMASH Pale Ale",
-  "color": "#f0c95a",
-  "cerveceria": "Aquelarre",
-  "origen": "Cuernavaca, Morelos",
-  "abv": "4.0%",
+  "nombre": "Macanuda",
+  "estilo": "English Brown Ale",
+  "color": "#8a4d1e",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "5.3%",
   "ibu": "",
-  "precioCh": 85,
-  "precioG": 95,
-  "badges": [
-   "Nueva"
-  ],
+  "precioCh": 88,
+  "precioG": 110,
+  "badges": [],
   "disponible": true,
-  "descripcion": "SMASH de una sola malta base y un solo lúpulo, el HBC 630. Amargor medio, con aroma y sabor a mango verde y toques cítricos, y un final seco y refrescante: ligera y muy fácil de tomar."
+  "descripcion": "Corta la tarde con un clásico reconfortante de Querétaro. Destaca por sus notas limpias a avellana tostada, corteza de pan horneado y un sutil destello de caramelo oscuro. De cuerpo ligero, amargor bajo y un final seco que limpia el paladar en cada trago. Ideal para arrancar la sesión en el jardín."
  },
  {
   "num": 3,

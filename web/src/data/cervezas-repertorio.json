@@ -1454,5 +1454,18 @@
   "precioG": 160,
   "badges": [],
   "descripcion": "DDH West Coast IPA de Rey Árbol en colaboración con BeerMex, Yakima Chief Hops y Xakúa. Cítrica, resinosa y frutal, de cuerpo medio-ligero y final limpio, con un amargor firme que duele bonito."
+ },
+ {
+  "nombre": "SMASH",
+  "estilo": "SMASH Pale Ale",
+  "color": "#f0c95a",
+  "cerveceria": "Aquelarre",
+  "origen": "Cuernavaca, Morelos",
+  "abv": "4.0%",
+  "ibu": "",
+  "precioCh": 85,
+  "precioG": 95,
+  "badges": [],
+  "descripcion": "SMASH de una sola malta base y un solo lúpulo, el HBC 630. Amargor medio, con aroma y sabor a mango verde y toques cítricos, y un final seco y refrescante: ligera y muy fácil de tomar."
  }
 ]
