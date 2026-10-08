@@ -93,18 +93,20 @@
  },
  {
   "num": 7,
-  "nombre": "Chocolate Stout",
-  "estilo": "Chocolate Stout",
+  "nombre": "Pueblito",
+  "estilo": "Irish Export Stout",
   "color": "#2e1b10",
-  "cerveceria": "Chaneque",
-  "origen": "CDMX",
-  "abv": "6.8%",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "6.5%",
   "ibu": "",
-  "precioCh": 100,
-  "precioG": 110,
-  "badges": [],
+  "precioCh": 110,
+  "precioG": 140,
+  "badges": [
+   "Nueva"
+  ],
   "disponible": true,
-  "descripcion": "Stout de chocolate amargo y café tostado, con un sutil toque de vainilla y un final seco. Sabores tostados y bien definidos, sin excesos de dulzor."
+  "descripcion": "Oro en la World Beer Cup 2024. Export stout irlandesa de cuerpo robusto y textura aterciopelada, con café, cacao y malta tostada, y un final seco y elegante."
  },
  {
   "num": 8,
