@@ -1467,5 +1467,18 @@
   "precioG": 95,
   "badges": [],
   "descripcion": "SMASH de una sola malta base y un solo lúpulo, el HBC 630. Amargor medio, con aroma y sabor a mango verde y toques cítricos, y un final seco y refrescante: ligera y muy fácil de tomar."
+ },
+ {
+  "nombre": "Kriek",
+  "estilo": "Fruit Lambic",
+  "color": "#b91c1c",
+  "cerveceria": "Lindemans",
+  "origen": "Vlezenbeek, Bélgica",
+  "abv": "3.5%",
+  "ibu": "",
+  "precioCh": 160,
+  "precioG": 195,
+  "badges": [],
+  "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
  }
 ]

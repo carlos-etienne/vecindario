@@ -108,20 +108,18 @@
  },
  {
   "num": 8,
-  "nombre": "Kriek",
-  "estilo": "Fruit Lambic",
-  "color": "#b91c1c",
-  "cerveceria": "Lindemans",
-  "origen": "Vlezenbeek, Bélgica",
-  "abv": "3.5%",
+  "nombre": "Pilsner Urquell",
+  "estilo": "Czech Pilsner",
+  "color": "#f2d94f",
+  "cerveceria": "Plzeňský Prazdroj",
+  "origen": "República Checa",
+  "abv": "4.4%",
   "ibu": "",
-  "precioCh": 160,
-  "precioG": 195,
-  "badges": [
-   "Nueva"
-  ],
+  "precioCh": 95,
+  "precioG": 110,
+  "badges": [],
   "disponible": true,
-  "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
+  "descripcion": "La primera pilsner del mundo, de color dorado brillante, con una espuma cremosa y persistente. Su equilibrio perfecto entre el suave dulzor de la malta y el amargor característico del lúpulo Saaz la convierte en una cerveza refrescante, con un ligero toque a hierbas y un final limpio y crujiente. Un clásico atemporal que sigue siendo la referencia en el estilo pilsner."
  },
  {
   "num": 9,
