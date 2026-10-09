@@ -1480,5 +1480,18 @@
   "precioG": 195,
   "badges": [],
   "descripcion": "La kriek de lambic con cerezas que en 1979 revolucionó Lindemans: rojo brillante, espuma rosada y un equilibrio perfecto entre dulce y ácido. Refrescante, ligera y llena de fruta."
+ },
+ {
+  "nombre": "Yellow Snow",
+  "estilo": "Cold IPA",
+  "color": "#f2d94f",
+  "cerveceria": "OBNI",
+  "origen": "CDMX",
+  "abv": "6%",
+  "ibu": "",
+  "precioCh": 95,
+  "precioG": 115,
+  "badges": [],
+  "descripcion": "Cold IPA de fermentación lager con adjunto de arroz: color paja, cuerpo ligero y final seco. Los lúpulos Citra y Zappa le dan un perfil frutal, con notas tropicales y cítricas que la vuelven muy refrescante y fácil de tomar."
  }
 ]
