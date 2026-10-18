@@ -1493,5 +1493,63 @@
   "precioG": 115,
   "badges": [],
   "descripcion": "Cold IPA de fermentación lager con adjunto de arroz: color paja, cuerpo ligero y final seco. Los lúpulos Citra y Zappa le dan un perfil frutal, con notas tropicales y cítricas que la vuelven muy refrescante y fácil de tomar."
+ },
+ {
+  "nombre": "Hooligan",
+  "estilo": "Ordinary Bitter",
+  "color": "#c0561f",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "3.7%",
+  "ibu": "",
+  "precioCh": 115,
+  "precioG": 145,
+  "badges": [
+   "Nueva"
+  ],
+  "descripcion": "Bitter de sesión al estilo inglés: cobriza y ligera, con el tostado de la malta bien equilibrado, amargor de sesión y final seco. Bajo alcohol, muy fácil de tomar y con carácter."
+ },
+ {
+  "nombre": "Jarnit Family Beer",
+  "estilo": "Imperial Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Evil Twin",
+  "origen": "Nueva York, EUA",
+  "abv": "12%",
+  "ibu": "",
+  "precioCh": 185,
+  "precioG": 230,
+  "badges": [
+   "Nueva"
+  ],
+  "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
+ },
+ {
+  "nombre": "Hombre Pájaro",
+  "estilo": "Rye Lager",
+  "color": "#c0561f",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "4.5%",
+  "ibu": "",
+  "precioCh": 90,
+  "precioG": 105,
+  "badges": [
+   "Nueva"
+  ],
+  "descripcion": "Lager de centeno sin filtrar: rubia clara con aroma a centeno especiado y matices herbales, cuerpo ligero y final seco. Fácil de tomar, con un punto más de carácter que una lager común."
+ },
+ {
+  "nombre": "Schofferhofer Weizen",
+  "estilo": "Hefeweizen",
+  "color": "#f0e6c0",
+  "cerveceria": "Schöfferhofer",
+  "origen": "Fráncfort, Alemania",
+  "abv": "5.0%",
+  "ibu": "",
+  "precioCh": 120,
+  "precioG": 150,
+  "badges": [],
+  "descripcion": "Hefeweizen alemana naturtrüb, sin filtrar y con levadura: turbia, con aroma a plátano y clavo y un toque ligeramente amargo por el lúpulo. Refrescante y de burbuja viva; la primera cerveza de trigo elaborada fuera de Baviera."
  }
 ]

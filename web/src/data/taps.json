@@ -63,20 +63,20 @@
  },
  {
   "num": 5,
-  "nombre": "Hooligan",
-  "estilo": "Ordinary Bitter",
+  "nombre": "Hombre Pájaro",
+  "estilo": "Rye Lager",
   "color": "#c0561f",
   "cerveceria": "Hércules",
   "origen": "Querétaro",
-  "abv": "3.7%",
+  "abv": "4.5%",
   "ibu": "",
-  "precioCh": 115,
-  "precioG": 145,
+  "precioCh": 90,
+  "precioG": 105,
   "badges": [
    "Nueva"
   ],
   "disponible": true,
-  "descripcion": "Bitter de sesión al estilo inglés: cobriza y ligera, con el tostado de la malta bien equilibrado, amargor de sesión y final seco. Bajo alcohol, muy fácil de tomar y con carácter."
+  "descripcion": "Lager de centeno sin filtrar: rubia clara con aroma a centeno especiado y matices herbales, cuerpo ligero y final seco. Fácil de tomar, con un punto más de carácter que una lager común."
  },
  {
   "num": 6,
@@ -142,19 +142,17 @@
  },
  {
   "num": 10,
-  "nombre": "Jarnit Family Beer",
-  "estilo": "Imperial Stout",
-  "color": "#2e1b10",
-  "cerveceria": "Evil Twin",
-  "origen": "Nueva York, EUA",
-  "abv": "12%",
+  "nombre": "Schofferhofer Weizen",
+  "estilo": "Hefeweizen",
+  "color": "#f0e6c0",
+  "cerveceria": "Schöfferhofer",
+  "origen": "Fráncfort, Alemania",
+  "abv": "5.0%",
   "ibu": "",
-  "precioCh": 185,
-  "precioG": 230,
-  "badges": [
-   "Nueva"
-  ],
+  "precioCh": 120,
+  "precioG": 150,
+  "badges": [],
   "disponible": true,
-  "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
+  "descripcion": "Hefeweizen alemana naturtrüb, sin filtrar y con levadura: turbia, con aroma a plátano y clavo y un toque ligeramente amargo por el lúpulo. Refrescante y de burbuja viva; la primera cerveza de trigo elaborada fuera de Baviera."
  }
 ]
