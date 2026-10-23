@@ -1566,5 +1566,59 @@
    "Nueva"
   ],
   "descripcion": "IPA turbia y jugosa, con notas de fruta tropical y cítricos, cuerpo suave y amargor bajo. De la casa cervecera de la Roma Norte, en la Ciudad de México."
+ },
+ {
+  "nombre": "Pueblito",
+  "estilo": "Irish Export Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Hércules",
+  "origen": "Querétaro",
+  "abv": "6.5%",
+  "ibu": "",
+  "precioCh": 110,
+  "precioG": 140,
+  "badges": [
+   "Nueva"
+  ],
+  "descripcion": "Oro en la World Beer Cup 2024. Export stout irlandesa de cuerpo robusto y textura aterciopelada, con café, cacao y malta tostada, y un final seco y elegante."
+ },
+ {
+  "nombre": "Coahuila 99",
+  "estilo": "American Red Ale",
+  "color": "#c0561f",
+  "cerveceria": "Falling Piano",
+  "origen": "Ciudad de México",
+  "abv": "5.5%",
+  "ibu": "",
+  "precioCh": 90,
+  "precioG": 110,
+  "badges": [],
+  "descripcion": "Red Ale cobriza inspirada en las rutas del norte: aroma a malta de caramelo y pan tostado con lúpulos Fuggle que evocan pino y cítricos. Dulzor inicial cortado por un amargor firme, con final limpio y seco, fácil de tomar."
+ },
+ {
+  "nombre": "Talega",
+  "estilo": "Coffee Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Buqui Bichi",
+  "origen": "Hermosillo, Son.",
+  "abv": "6%",
+  "ibu": "",
+  "precioCh": 110,
+  "precioG": 130,
+  "badges": [],
+  "descripcion": "Coffee Stout de Buqui Bichi: malta oscura con café recién hecho, chocolate negro y granos tostados. Tostada y amarga, de final seco, pensada para postres, platillos dulces y quesos."
+ },
+ {
+  "nombre": "Silly Scotch",
+  "estilo": "Scotch Ale",
+  "color": "#8a4d1e",
+  "cerveceria": "Brasserie de Silly",
+  "origen": "Bélgica",
+  "abv": "8%",
+  "ibu": "",
+  "precioCh": 160,
+  "precioG": 185,
+  "badges": [],
+  "descripcion": "Scotch ale belga de 8%: ámbar oscuro con notas de malta caramelizada, miel y ciruela, cuerpo generoso y final tostado con un punto licoroso. Receta de 1918, elaborada con lúpulo inglés Kent Golding."
  }
 ]

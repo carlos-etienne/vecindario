@@ -15,19 +15,19 @@
   "disponible": true
  },
  {
-  "num": 2,
-  "nombre": "Macanuda",
-  "estilo": "English Brown Ale",
-  "color": "#8a4d1e",
-  "cerveceria": "Hércules",
-  "origen": "Querétaro",
-  "abv": "5.3%",
+  "nombre": "Coahuila 99",
+  "estilo": "American Red Ale",
+  "color": "#c0561f",
+  "cerveceria": "Falling Piano",
+  "origen": "Ciudad de México",
+  "abv": "5.5%",
   "ibu": "",
-  "precioCh": 88,
+  "precioCh": 90,
   "precioG": 110,
   "badges": [],
-  "disponible": true,
-  "descripcion": "Corta la tarde con un clásico reconfortante de Querétaro. Destaca por sus notas limpias a avellana tostada, corteza de pan horneado y un sutil destello de caramelo oscuro. De cuerpo ligero, amargor bajo y un final seco que limpia el paladar en cada trago. Ideal para arrancar la sesión en el jardín."
+  "descripcion": "Red Ale cobriza inspirada en las rutas del norte: aroma a malta de caramelo y pan tostado con lúpulos Fuggle que evocan pino y cítricos. Dulzor inicial cortado por un amargor firme, con final limpio y seco, fácil de tomar.",
+  "num": 2,
+  "disponible": true
  },
  {
   "nombre": "Paseo en Baika",
@@ -92,36 +92,34 @@
   "descripcion": "Cerveza de estilo pilsner bávara, clara y dorada, con burbujas finas y una espuma blanca persistente. Su aroma es delicado, con notas herbales, florales y un toque cítrico gracias al lúpulo noble. En boca es seca, fresca y con un amargor elegante que la hace muy bebible. El balance entre la malta ligera y el perfil lupulado le otorgan una personalidad limpia y tradicional."
  },
  {
-  "num": 7,
-  "nombre": "Pueblito",
-  "estilo": "Irish Export Stout",
+  "nombre": "Talega",
+  "estilo": "Coffee Stout",
   "color": "#2e1b10",
-  "cerveceria": "Hércules",
-  "origen": "Querétaro",
-  "abv": "6.5%",
+  "cerveceria": "Buqui Bichi",
+  "origen": "Hermosillo, Son.",
+  "abv": "6%",
   "ibu": "",
   "precioCh": 110,
-  "precioG": 140,
-  "badges": [
-   "Nueva"
-  ],
-  "disponible": true,
-  "descripcion": "Oro en la World Beer Cup 2024. Export stout irlandesa de cuerpo robusto y textura aterciopelada, con café, cacao y malta tostada, y un final seco y elegante."
+  "precioG": 130,
+  "badges": [],
+  "descripcion": "Coffee Stout de Buqui Bichi: malta oscura con café recién hecho, chocolate negro y granos tostados. Tostada y amarga, de final seco, pensada para postres, platillos dulces y quesos.",
+  "num": 7,
+  "disponible": true
  },
  {
-  "num": 8,
-  "nombre": "Pilsner Urquell",
-  "estilo": "Czech Pilsner",
-  "color": "#f2d94f",
-  "cerveceria": "Plzeňský Prazdroj",
-  "origen": "República Checa",
-  "abv": "4.4%",
+  "nombre": "Silly Scotch",
+  "estilo": "Scotch Ale",
+  "color": "#8a4d1e",
+  "cerveceria": "Brasserie de Silly",
+  "origen": "Bélgica",
+  "abv": "8%",
   "ibu": "",
-  "precioCh": 95,
-  "precioG": 110,
+  "precioCh": 160,
+  "precioG": 185,
   "badges": [],
-  "disponible": true,
-  "descripcion": "La primera pilsner del mundo, de color dorado brillante, con una espuma cremosa y persistente. Su equilibrio perfecto entre el suave dulzor de la malta y el amargor característico del lúpulo Saaz la convierte en una cerveza refrescante, con un ligero toque a hierbas y un final limpio y crujiente. Un clásico atemporal que sigue siendo la referencia en el estilo pilsner."
+  "descripcion": "Scotch ale belga de 8%: ámbar oscuro con notas de malta caramelizada, miel y ciruela, cuerpo generoso y final tostado con un punto licoroso. Receta de 1918, elaborada con lúpulo inglés Kent Golding.",
+  "num": 8,
+  "disponible": true
  },
  {
   "num": 9,
