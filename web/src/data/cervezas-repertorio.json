@@ -1551,5 +1551,20 @@
   "precioG": 150,
   "badges": [],
   "descripcion": "Hefeweizen alemana naturtrüb, sin filtrar y con levadura: turbia, con aroma a plátano y clavo y un toque ligeramente amargo por el lúpulo. Refrescante y de burbuja viva; la primera cerveza de trigo elaborada fuera de Baviera."
+ },
+ {
+  "nombre": "Salón Cerveza",
+  "estilo": "Hazy IPA",
+  "color": "#f0c95a",
+  "cerveceria": "Falling Piano",
+  "origen": "CDMX",
+  "abv": "6.2%",
+  "ibu": "",
+  "precioCh": 115,
+  "precioG": 140,
+  "badges": [
+   "Nueva"
+  ],
+  "descripcion": "IPA turbia y jugosa, con notas de fruta tropical y cítricos, cuerpo suave y amargor bajo. De la casa cervecera de la Roma Norte, en la Ciudad de México."
  }
 ]

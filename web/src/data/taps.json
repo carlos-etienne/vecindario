@@ -30,21 +30,19 @@
   "descripcion": "Corta la tarde con un clásico reconfortante de Querétaro. Destaca por sus notas limpias a avellana tostada, corteza de pan horneado y un sutil destello de caramelo oscuro. De cuerpo ligero, amargor bajo y un final seco que limpia el paladar en cada trago. Ideal para arrancar la sesión en el jardín."
  },
  {
-  "num": 3,
-  "nombre": "Salón Cerveza",
-  "estilo": "Hazy IPA",
-  "color": "#f0c95a",
-  "cerveceria": "Falling Piano",
-  "origen": "CDMX",
-  "abv": "6.2%",
+  "nombre": "Paseo en Baika",
+  "estilo": "West Coast IPA",
+  "color": "#d9951e",
+  "cerveceria": "BuquiBichi/Insurgente",
+  "origen": "Hermosillo/Tijuana",
+  "abv": "6.6%",
   "ibu": "",
-  "precioCh": 115,
-  "precioG": 140,
-  "badges": [
-   "Nueva"
-  ],
+  "precioCh": 135,
+  "precioG": 165,
+  "badges": [],
+  "descripcion": "Puro carácter del norte. Amargor resinoso y firme con un perfil vibrante a pino y cítricos. De cuerpo dorado, seca en boca y con esa frescura limpia que pide el calor para disfrutarla en la tarde.",
   "disponible": true,
-  "descripcion": "IPA turbia y jugosa, con notas de fruta tropical y cítricos, cuerpo suave y amargor bajo. De la casa cervecera de la Roma Norte, en la Ciudad de México."
+  "num": 3
  },
  {
   "nombre": "Hardy",
