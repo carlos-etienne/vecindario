@@ -123,18 +123,18 @@
  },
  {
   "num": 9,
-  "nombre": "Dunkel",
-  "estilo": "Munich Dunkel",
-  "color": "#7c4a1e",
-  "cerveceria": "ABK",
-  "origen": "Alemania",
-  "abv": "5%",
+  "nombre": "Märzen",
+  "estilo": "Märzen",
+  "color": "#8a4d1e",
+  "cerveceria": "Vecindario (colab. Tebana)",
+  "origen": "Morelos",
+  "abv": "6%",
   "ibu": "",
-  "precioCh": 90,
-  "precioG": 110,
+  "precioCh": null,
+  "precioG": 95,
   "badges": [],
-  "disponible": false,
-  "descripcion": "Lager oscura alemana elegante y tradicional, con un perfil dominado por maltas tostadas suaves. Presenta aromas a pan recién horneado, caramelo ligero y un toque de cacao. En boca es sedosa, con notas a pan dulce, nuez, caramelo tostado y un final limpio, ligeramente seco, típico de las lagers bávaras. Equilibrada, profunda y muy bebible: una Dunkel hecha al estilo clásico de Múnich."
+  "disponible": true,
+  "descripcion": "Märzen de la casa hecha con Tebana: lager de color cobre, aroma a malta tostada y caramelo, cuerpo medio y final limpio y seco. La clásica lager de malta, lista para el otoño."
  },
  {
   "num": 10,
