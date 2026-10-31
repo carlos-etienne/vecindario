@@ -12,9 +12,9 @@ const { e } = Astro.props;
 const schema = {
   "@context": "https://schema.org",
   "@type": "Event",
-  name: `2° Aniversario Vecindario Beer Garden: ${e.banda} + ${e.dj}`,
+  name: e.schemaName || `${e.titulo} en Vecindario Beer Garden`,
   startDate: e.startDate,
-  endDate: e.endDate,
+  ...(e.endDate ? { endDate: e.endDate } : {}),
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   image: [`https://vecindariobeergarden.com${e.img}`],
@@ -42,7 +42,7 @@ const schema = {
 
 <BaseLayout
   title={`${e.titulo} | Eventos en Cuernavaca`}
-  description={`${e.descripcion} Sábado ${e.dia} de septiembre desde las 6:00 PM en Vecindario Beer Garden, Cuernavaca.`}
+  description={`${e.descripcion} ${e.meta.replace(" · ", " — ")} en Vecindario Beer Garden, Cuernavaca.`}
   headerVariant="transparent"
   schema={schema}
 >
@@ -51,41 +51,32 @@ const schema = {
       <div class="hero-info">
         <SectionLabel text="Evento · Cuernavaca" />
         <div class="evento-top">
-          <div class="evento-date"><span class="dow">SÁB</span><span class="day">{e.dia}</span><span class="month">SEP</span></div>
+          <div class="evento-date"><span class="dow">{e.dow}</span><span class="day">{e.dia}</span><span class="month">{e.mes}</span></div>
           <span class="evento-tag">{e.tag}</span>
         </div>
         <h1>{e.titulo}</h1>
-        <p class="evento-meta">{e.meta} · Cupo limitado</p>
+        <p class="evento-meta">{e.meta}{e.cupoLimitado ? " · Cupo limitado" : ""}</p>
         <p class="evento-desc">{e.descripcionLarga}</p>
-        <div class="cta-row">
-          <a href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, quiero reservar para el aniversario del sábado ${e.dia} de septiembre`)}`} class="btn-primary" target="_blank" rel="noopener noreferrer">Reservar mesa por WhatsApp</a>
-        </div>
+        {e.ctaLabel && (
+          <div class="cta-row">
+            <a href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(e.ctaTexto)}`} class="btn-primary" target="_blank" rel="noopener noreferrer">{e.ctaLabel}</a>
+          </div>
+        )}
       </div>
       <figure class="hero-img"><img src={e.img} alt={e.alt} /></figure>
     </div>
   </section>
 
   <section><div class="container">
-    <div class="section-head"><SectionLabel text="En este evento" /><h2 class="section-title">Qué va a haber</h2></div>
+    <div class="section-head"><SectionLabel text="En este evento" /><h2 class="section-title">{e.resumenTitulo}</h2></div>
     <div class="cards-grid">
-      <div class="card">
-        <h3>Música en vivo</h3>
-        <p><strong>{e.banda}</strong> en vivo y sets a cargo de <strong>{e.dj}</strong>, desde las 6:00 PM y hasta el cierre.</p>
-      </div>
-      <div class="card">
-        <h3>Cerveza conmemorativa</h3>
-        <p>Presentamos nuestra cerveza de aniversario: una <strong>Italian Pilsner</strong> de edición limitada, con vaso de edición especial.</p>
-      </div>
-      <div class="card">
-        <h3>Burgers especiales</h3>
-        <p>Regresan dos best sellers: <strong>Lady Blue</strong> (mix de quesos, queso azul, cebolla con tocino caramelizado y aros de cebolla) y <strong>Salsa de Pimienta</strong> (res en brioche, cheddar y cebolla caramelizada sobre gravy de pimienta, con zanahorias baby a la mantequilla).</p>
-      </div>
-      <div class="card">
-        <h3>Juegos y premios</h3>
-        <p><strong>Dinámicas y premios</strong> toda la tarde para brindar por la comunidad que le da vida a Vecindario.</p>
-      </div>
+      {e.resumen.map((r) => (
+        <div class="card">
+          <h3>{r.t}</h3>
+          <p>{r.d}</p>
+        </div>
+      ))}
     </div>
-
     <div class="evento-lugar">
       <div>
         <h3>Vecindario Beer Garden</h3>
