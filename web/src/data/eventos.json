@@ -116,5 +116,41 @@
         "d": "Entrada al Oktoberfest Show desde las 2:30 PM del sábado 10 de octubre."
       }
     ]
+  },
+  {
+    "slug": "noche-de-salsa-2026",
+    "fecha": "JUE 29 OCT",
+    "dia": 29,
+    "dow": "JUE",
+    "mes": "OCT",
+    "img": "/images/noche-de-salsa-29oct.jpg",
+    "alt": "Cartel de la Noche de Salsa de Vecindario Beer Garden, jueves 29 de octubre: clase de salsa con Santiago Esquivel, música en vivo con De La Rumba y cover gratis con disfraz",
+    "tag": "Halloween",
+    "titulo": "Noche de Salsa",
+    "meta": "Jueves 29 de octubre · Desde las 7:00 PM",
+    "descripcion": "Clase de salsa con Santiago Esquivel, música en vivo con De La Rumba y cover gratis si venías disfrazado.",
+    "descripcionLarga": "La Noche de Salsa más espeluznante del año: el espíritu de la salsa y el sabor se apoderaron del jardín para celebrar la temporada de Halloween y Día de Muertos. Clase de salsa a las 7:00 PM con Santiago Esquivel para calentar motores y música en vivo con De La Rumba a las 7:30 PM. Cover general $150 que incluía 1 cerveza; gratis si venías disfrazado.",
+    "startDate": "2026-10-29T19:00:00-06:00",
+    "schemaName": "Noche de Salsa · Vecindario Beer Garden",
+    "cupoLimitado": false,
+    "resumenTitulo": "Qué hubo esa noche",
+    "resumen": [
+      {
+        "t": "Clase de salsa",
+        "d": "7:00 PM con Santiago Esquivel (@santypad8) para calentar motores, sin importar si eres experto o vas con tus primeros pasos."
+      },
+      {
+        "t": "Música en vivo",
+        "d": "7:30 PM: salsa con De La Rumba (@de_larumba) hasta cerrar la noche."
+      },
+      {
+        "t": "Cover $150",
+        "d": "Cover general que incluía 1 cerveza; gratis total si venías disfrazado."
+      },
+      {
+        "t": "Temporada de Halloween",
+        "d": "Noche con temática de Halloween y Día de Muertos en el jardín."
+      }
+    ]
   }
 ]
