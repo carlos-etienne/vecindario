@@ -3,11 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import site from '../data/site.json';
 import eventos from '../data/eventos.json';
+
+const ahora = Date.now();
+const futuros = eventos.filter((e) => Date.parse(e.startDate) > ahora);
+const pasados = eventos.filter((e) => Date.parse(e.startDate) <= ahora).slice().reverse();
 ---
 
 <BaseLayout
   title="Eventos en Cuernavaca | Vecindario Beer Garden"
-  description="Agenda de eventos en Vecindario Beer Garden, Cuernavaca: música en vivo, catas de cerveza y noches especiales. Próximos: festejos de 2° aniversario, sábados 5 y 12 de septiembre."
+  description="Agenda de eventos en Vecindario Beer Garden, Cuernavaca: música en vivo, catas de cerveza y noches especiales. Revisa el Oktoberfest 2026 y el archivo de nuestras noches."
   headerVariant="transparent"
 >
 
@@ -19,15 +23,16 @@ import eventos from '../data/eventos.json';
     </div>
   </section>
 
+  {futuros.length > 0 && (
   <section><div class="container">
-    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">2° Aniversario: dos sábados de festejo</h2></div>
+    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">La agenda de Vecindario</h2></div>
     <div class="eventos-grid">
-      {eventos.map((e) => (
+      {futuros.map((e) => (
         <a class="evento-card" href={`/eventos/${e.slug}/`}>
           <div class="evento-img"><img src={e.img} alt={e.alt} loading="lazy" /></div>
           <div class="evento-body">
             <div class="evento-top">
-              <div class="evento-date"><span class="dow">SÁB</span><span class="day">{e.dia}</span><span class="month">SEP</span></div>
+              <div class="evento-date"><span class="dow">{e.dow}</span><span class="day">{e.dia}</span><span class="month">{e.mes}</span></div>
               <span class="evento-tag">{e.tag}</span>
             </div>
             <h2 class="evento-name">{e.titulo}</h2>
@@ -39,6 +44,37 @@ import eventos from '../data/eventos.json';
       ))}
     </div>
   </div></section>
+  )}
+
+  {futuros.length === 0 && (
+  <section><div class="container">
+    <div class="section-head"><SectionLabel text="Agenda" /><h2 class="section-title">Próximamente nuevas noches</h2></div>
+    <p style="color: var(--vbg-gris-texto); max-width: 560px;">No hay eventos programados ahorita. Anunciamos las próximas fechas en nuestras redes — síguenos para enterarte primero.</p>
+  </div></section>
+  )}
+
+  {pasados.length > 0 && (
+  <section><div class="container">
+    <div class="section-head"><SectionLabel text="Archivo" /><h2 class="section-title">Eventos pasados</h2></div>
+    <div class="eventos-grid">
+      {pasados.map((e) => (
+        <a class="evento-card" href={`/eventos/${e.slug}/`}>
+          <div class="evento-img"><img src={e.img} alt={e.alt} loading="lazy" /></div>
+          <div class="evento-body">
+            <div class="evento-top">
+              <div class="evento-date"><span class="dow">{e.dow}</span><span class="day">{e.dia}</span><span class="month">{e.mes}</span></div>
+              <span class="evento-tag">{e.tag}</span>
+            </div>
+            <h2 class="evento-name">{e.titulo}</h2>
+            <p class="evento-meta">{e.meta}</p>
+            <p class="evento-desc">{e.descripcion}</p>
+            <span class="evento-ver">Ver detalles →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div></section>
+  )}
 </BaseLayout>
 
 <style>

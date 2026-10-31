@@ -13,7 +13,32 @@
     "banda": "Brooknotes Band",
     "dj": "DJ Andriu",
     "startDate": "2026-09-05T18:00:00-06:00",
-    "endDate": "2026-09-05T23:30:00-06:00"
+    "endDate": "2026-09-05T23:30:00-06:00",
+    "dow": "SÁB",
+    "mes": "SEP",
+    "cupoLimitado": true,
+    "schemaName": "2° Aniversario Vecindario Beer Garden: Brooknotes Band + DJ Andriu",
+    "ctaLabel": "Reservar mesa por WhatsApp",
+    "ctaTexto": "Hola, quiero reservar para el aniversario del sábado 5 de septiembre",
+    "resumenTitulo": "Qué va a haber",
+    "resumen": [
+      {
+        "t": "Música en vivo",
+        "d": "Brooknotes Band en vivo y sets a cargo de DJ Andriu, desde las 6:00 PM y hasta el cierre."
+      },
+      {
+        "t": "Cerveza conmemorativa",
+        "d": "Presentamos nuestra cerveza de aniversario: una Italian Pilsner de edición limitada, con vaso de edición especial."
+      },
+      {
+        "t": "Burgers especiales",
+        "d": "Regresan dos best sellers: Lady Blue (mix de quesos, queso azul, cebolla con tocino caramelizado y aros de cebolla) y Salsa de Pimienta (res en brioche, cheddar y cebolla caramelizada sobre gravy de pimienta, con zanahorias baby a la mantequilla)."
+      },
+      {
+        "t": "Juegos y premios",
+        "d": "Dinámicas y premios toda la tarde para brindar por la comunidad que le da vida a Vecindario."
+      }
+    ]
   },
   {
     "slug": "2o-aniversario-sombrit",
@@ -29,6 +54,67 @@
     "banda": "Som•bit",
     "dj": "DJ Obrero del Pixel",
     "startDate": "2026-09-12T18:00:00-06:00",
-    "endDate": "2026-09-12T23:30:00-06:00"
+    "endDate": "2026-09-12T23:30:00-06:00",
+    "dow": "SÁB",
+    "mes": "SEP",
+    "cupoLimitado": true,
+    "schemaName": "2° Aniversario Vecindario Beer Garden: Som•bit + DJ Obrero del Pixel",
+    "ctaLabel": "Reservar mesa por WhatsApp",
+    "ctaTexto": "Hola, quiero reservar para el aniversario del sábado 12 de septiembre",
+    "resumenTitulo": "Qué va a haber",
+    "resumen": [
+      {
+        "t": "Música en vivo",
+        "d": "Som•bit en vivo y sets a cargo de DJ Obrero del Pixel, desde las 6:00 PM y hasta el cierre."
+      },
+      {
+        "t": "Cerveza conmemorativa",
+        "d": "Presentamos nuestra cerveza de aniversario: una Italian Pilsner de edición limitada, con vaso de edición especial."
+      },
+      {
+        "t": "Burgers especiales",
+        "d": "Regresan dos best sellers: Lady Blue (mix de quesos, queso azul, cebolla con tocino caramelizado y aros de cebolla) y Salsa de Pimienta (res en brioche, cheddar y cebolla caramelizada sobre gravy de pimienta, con zanahorias baby a la mantequilla)."
+      },
+      {
+        "t": "Juegos y premios",
+        "d": "Dinámicas y premios toda la tarde para brindar por la comunidad que le da vida a Vecindario."
+      }
+    ]
+  },
+  {
+    "slug": "oktoberfest-2026",
+    "fecha": "SÁB 10 OCT",
+    "dia": 10,
+    "dow": "SÁB",
+    "mes": "OCT",
+    "img": "/images/oktoberfest-2026.jpg",
+    "alt": "Cartel del Oktoberfest 2026 de Vecindario Beer Garden: sábado 10 de octubre, Oktoberfest Show, menú especial y lanzamiento de la Märzen con Tebana",
+    "tag": "Oktoberfest",
+    "titulo": "Oktoberfest 2026",
+    "meta": "Sábado 10 de octubre · Desde las 2:30 PM",
+    "descripcion": "Oktoberfest Show en vivo con concursos y juegos, menú especial de Oktoberfest y lanzamiento oficial de nuestra cerveza Märzen, colaboración con Tebana.",
+    "descripcionLarga": "El festival cervecero más importante del mundo se vive en Vecindario con gran comida, buena música y mucha chela de especialidad: Oktoberfest Show en vivo con concursos y juegos, menú especial y el lanzamiento oficial de nuestra cerveza estilo Märzen, colaboración especial con Tebana Laboratorio Cervecero. Cover $120, desde las 2:30 PM del sábado 10 de octubre.",
+    "startDate": "2026-10-10T14:30:00-06:00",
+    "schemaName": "Oktoberfest 2026 Vecindario Beer Garden",
+    "cupoLimitado": false,
+    "resumenTitulo": "Qué hubo esa noche",
+    "resumen": [
+      {
+        "t": "Oktoberfest Show en vivo",
+        "d": "Concursos, juegos y dinámicas con toda la temática de la fiesta de la cerveza."
+      },
+      {
+        "t": "Menú especial de Oktoberfest",
+        "d": "Cocina con temática de Oktoberfest para acompañar la cerveza."
+      },
+      {
+        "t": "Lanzamiento de la Märzen",
+        "d": "Estreno oficial de nuestra cerveza estilo Märzen, colaboración especial con Tebana Laboratorio Cervecero."
+      },
+      {
+        "t": "Cover $120",
+        "d": "Entrada al Oktoberfest Show desde las 2:30 PM del sábado 10 de octubre."
+      }
+    ]
   }
 ]
