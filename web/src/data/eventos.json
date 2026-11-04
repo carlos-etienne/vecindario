@@ -153,5 +153,44 @@
         "d": "Noche con temática de Halloween y Día de Muertos en el jardín."
       }
     ]
+  },
+  {
+    "slug": "international-stout-day-2026",
+    "fecha": "JUE 5 NOV",
+    "dia": 5,
+    "dow": "JUE",
+    "mes": "NOV",
+    "img": "/images/stout-day-2026.png",
+    "alt": "Cartel del International Stout Day en Vecindario Beer Garden: jueves 5 de noviembre, selección especial de Stouts de barril y soufflé de chocolate con piezas limitadas",
+    "tag": "Stout Day",
+    "titulo": "International Stout Day 2026",
+    "h1": "International Stout Day 2026",
+    "meta": "Jueves 5 de noviembre · Desde las 5:00 PM",
+    "descripcion": "Celebramos las Stouts con una selección especial de cervezas de barril y soufflé de chocolate recién horneado. Piezas limitadas.",
+    "descripcionLarga": "Este jueves 5 de noviembre, desde las 5:00 PM, nos vestimos de negro para celebrar el International Stout Day en Vecindario. Las Stouts son las protagonistas: disfruta una selección especial de barril y nuestro especial del día, un soufflé de chocolate recién horneado. Sus notas tostadas y cremosas encuentran un gran compañero en el chocolate. Llega temprano o reserva tu mesa por WhatsApp: los soufflés son de piezas limitadas.",
+    "startDate": "2026-11-05T17:00:00-06:00",
+    "schemaName": "International Stout Day 2026 · Vecindario Beer Garden",
+    "cupoLimitado": false,
+    "ctaLabel": "Reservar mesa por WhatsApp",
+    "ctaTexto": "Hola, quiero reservar una mesa para el International Stout Day del jueves 5 de noviembre.",
+    "resumenTitulo": "Stouts y chocolate en Vecindario",
+    "resumen": [
+      {
+        "t": "Selección especial de Stouts",
+        "d": "Una selección de Stouts de barril para brindar por uno de nuestros estilos favoritos y explorar sus notas tostadas y su textura cremosa."
+      },
+      {
+        "t": "Soufflé de chocolate",
+        "d": "Nuestro especial del día: soufflé de chocolate recién horneado para acompañar tu cerveza. Las piezas son limitadas; llega temprano."
+      },
+      {
+        "t": "Un maridaje para disfrutar",
+        "d": "El chocolate y las notas tostadas de las Stouts se complementan. Disfruta la combinación y pregunta al personal por la selección de barril."
+      },
+      {
+        "t": "Reserva tu mesa",
+        "d": "Te esperamos el jueves 5 de noviembre desde las 5:00 PM en Av. Teopanzolco 665, Col. Reforma, Cuernavaca. Escríbenos por WhatsApp para reservar."
+      }
+    ]
   }
 ]
