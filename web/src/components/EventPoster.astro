@@ -17,14 +17,14 @@ const [fullAvif, fullWebp] = await Promise.all([
     <EventImage src={src} alt={alt} variant="poster" />
   </a>
   <dialog aria-label="Cartel del evento ampliado">
-    <div class="lightbox-toolbar">
+    <div class="lightbox-image">
       <button type="button" aria-label="Cerrar cartel" autofocus><span aria-hidden="true">×</span></button>
+      <p class="lightbox-status" role="status"></p>
+      <picture>
+        <source type="image/avif" data-full-srcset={fullAvif.src} />
+        <img data-full-src={fullWebp.src} alt={alt} width={image.width} height={image.height} decoding="async" />
+      </picture>
     </div>
-    <p class="lightbox-status" role="status"></p>
-    <picture>
-      <source type="image/avif" data-full-srcset={fullAvif.src} />
-      <img data-full-src={fullWebp.src} alt={alt} width={image.width} height={image.height} decoding="async" />
-    </picture>
   </dialog>
 </event-poster>
 
@@ -85,14 +85,14 @@ const [fullAvif, fullWebp] = await Promise.all([
   .poster-trigger :global(picture) { display: block; }
   .poster-trigger :global(img) { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 20px 50px rgb(0 0 0 / .5); }
   .poster-trigger:focus-visible, button:focus-visible { outline: 3px solid var(--vbg-verde-claro); outline-offset: 5px; }
-  dialog { margin: auto; padding: 1rem; border: 1px solid #6b6358; border-radius: 6px; background: var(--vbg-negro); color: #f3ebd9; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); }
+  dialog { margin: auto; padding: 0; border: 0; border-radius: 6px; background: var(--vbg-negro); color: #f3ebd9; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); }
   dialog::backdrop { background: rgb(0 0 0 / .85); }
-  .lightbox-toolbar { display: flex; justify-content: flex-end; margin-bottom: .75rem; }
-  button { width: 44px; height: 44px; padding: 0; border: 1px solid var(--vbg-verde-claro); border-radius: 3px; color: #fff; background: var(--vbg-verde); font: inherit; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+  .lightbox-image { position: relative; }
+  button { position: absolute; top: .5rem; right: .5rem; z-index: 1; width: 44px; height: 44px; padding: 0; border: 1px solid var(--vbg-verde-claro); border-radius: 3px; color: #fff; background: var(--vbg-verde); font: inherit; font-size: 1.5rem; line-height: 1; cursor: pointer; }
   button:hover { background: #3c704c; }
   dialog picture { display: block; }
-  dialog img { display: block; max-width: 100%; max-height: calc(100dvh - 9rem); width: auto; height: auto; margin: auto; object-fit: contain; }
+  dialog img { display: block; max-width: 100%; max-height: calc(100dvh - 2rem); width: auto; height: auto; margin: auto; object-fit: contain; }
   .lightbox-status:empty { display: none; }
-  .lightbox-status { margin-bottom: .75rem; }
+  .lightbox-status { position: absolute; bottom: 0; left: 0; right: 0; padding: .75rem; background: rgb(0 0 0 / .8); }
   @media (max-width: 900px) { event-poster { width: 260px; margin-inline: auto; } }
 </style>
