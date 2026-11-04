@@ -1,0 +1,43 @@
+---
+import { Picture } from 'astro:assets';
+import { getEventImage } from '../lib/event-images';
+
+interface Props {
+  src: string;
+  alt: string;
+  variant: 'thumbnail' | 'card' | 'poster';
+}
+
+const { src, alt, variant } = Astro.props;
+const image = getEventImage(src);
+const presets = {
+  thumbnail: { width: 96, widths: [96, 192, 288], sizes: '96px' },
+  card: {
+    width: 220,
+    widths: [220, 320, 440, 640, 864],
+    sizes: '(max-width: 900px) calc(100vw - 48px), 220px',
+  },
+  poster: {
+    width: 300,
+    widths: [260, 300, 520, 600],
+    sizes: '(max-width: 307px) calc(100vw - 48px), (max-width: 900px) 260px, 300px',
+  },
+};
+const preset = presets[variant];
+const widths = [...new Set(preset.widths.map((width) => Math.min(width, image.width)))];
+---
+
+<Picture
+  src={image}
+  alt={alt}
+  formats={['avif']}
+  fallbackFormat="webp"
+  quality={75}
+  width={Math.min(preset.width, image.width)}
+  widths={widths}
+  sizes={preset.sizes}
+  loading={variant === 'poster' ? 'eager' : 'lazy'}
+  fetchpriority={variant === 'poster' ? 'high' : 'auto'}
+  decoding="async"
+  data-event-image={variant}
+/>
