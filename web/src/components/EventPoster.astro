@@ -15,12 +15,10 @@ const [fullAvif, fullWebp] = await Promise.all([
 <event-poster>
   <a class="poster-trigger" href={fullWebp.src} aria-haspopup="dialog" aria-label="Ampliar cartel del evento">
     <EventImage src={src} alt={alt} variant="poster" />
-    <span class="poster-hint">Ampliar cartel ↗</span>
   </a>
   <dialog aria-label="Cartel del evento ampliado">
     <div class="lightbox-toolbar">
-      <span>Cartel del evento</span>
-      <button type="button" autofocus>Cerrar ×</button>
+      <button type="button" aria-label="Cerrar cartel" autofocus><span aria-hidden="true">×</span></button>
     </div>
     <p class="lightbox-status" role="status"></p>
     <picture>
@@ -86,12 +84,11 @@ const [fullAvif, fullWebp] = await Promise.all([
   .poster-trigger { display: block; border-radius: 4px; cursor: zoom-in; }
   .poster-trigger :global(picture) { display: block; }
   .poster-trigger :global(img) { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 20px 50px rgb(0 0 0 / .5); }
-  .poster-hint { display: block; margin-top: .75rem; text-align: center; color: #f3ebd9; font-size: .85rem; }
   .poster-trigger:focus-visible, button:focus-visible { outline: 3px solid var(--vbg-verde-claro); outline-offset: 5px; }
   dialog { margin: auto; padding: 1rem; border: 1px solid #6b6358; border-radius: 6px; background: var(--vbg-negro); color: #f3ebd9; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); }
   dialog::backdrop { background: rgb(0 0 0 / .85); }
-  .lightbox-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
-  button { min-width: 100px; min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--vbg-verde-claro); border-radius: 3px; color: #fff; background: var(--vbg-verde); font: inherit; cursor: pointer; }
+  .lightbox-toolbar { display: flex; justify-content: flex-end; margin-bottom: .75rem; }
+  button { width: 44px; height: 44px; padding: 0; border: 1px solid var(--vbg-verde-claro); border-radius: 3px; color: #fff; background: var(--vbg-verde); font: inherit; font-size: 1.5rem; line-height: 1; cursor: pointer; }
   button:hover { background: #3c704c; }
   dialog picture { display: block; }
   dialog img { display: block; max-width: 100%; max-height: calc(100dvh - 9rem); width: auto; height: auto; margin: auto; object-fit: contain; }
