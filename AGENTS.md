@@ -10,6 +10,17 @@ El dueño (Carlos) gestiona el sitio por **Telegram** a través de este agente.
 - **Cualquier OTRO archivo** (textos, diseño, páginas, precios de comida en el menú) → crear rama + Pull Request y mandarle a Carlos el link de vista previa. **Nunca hacer push directo a `main` con estos cambios.**
 - Ante duda de si un cambio es "de cervezas" o no → tratándolo como PR.
 
+Carlos autoriza publicar los cambios solicitados sin pedir una confirmación adicional, salvo que indique lo contrario. Mantener el flujo de rama + PR para archivos distintos de `taps.json`: validar, abrir PR, comprobar su preview y fusionarlo para publicar.
+
+## Imágenes de eventos (obligatorio)
+
+- Guardar el cartel fuente en `web/src/assets/eventos/`. En `eventos.json`, `img` es solo su nombre de archivo, por ejemplo `stout-day-2026.png`; `alt` describe el cartel.
+- Usar siempre `EventImage.astro`: variante `thumbnail` en inicio (96 px), `card` en agenda (220 px en escritorio, adaptable en móvil). Genera AVIF con respaldo WebP y `srcset`/`sizes` automáticamente durante el build.
+- En la página del evento usar `EventPoster.astro`: cartel de 260/300 px con variantes para pantallas de mayor densidad. La imagen completa optimizada solo se carga al hacer clic para abrir el lightbox.
+- Nunca servir el original como miniatura o imagen de portada. No generar derivados a mano ni volver a usar `<img src={e.img}>`. Los componentes generan los tamaños desde el archivo fuente; si falta, el build falla.
+- Validar tamaños reales, formatos, selección adaptable y que abrir/cerrar el lightbox funcione con ratón, teclado y Escape. Mantener dimensiones explícitas, texto alternativo y foco visible.
+- Después de `npm run build`, ejecutar desde `web/` `node --test scripts/event-images.test.mjs` (Node 24): comprueba dimensiones físicas, formatos, carga diferida del cartel completo y los manejadores de apertura/cierre. La revisión en navegador sigue siendo necesaria para comprobar el aspecto y el comportamiento nativo del diálogo.
+
 ## Editar las cervezas de barril (`web/src/data/taps.json`)
 
 Array de 10 objetos, uno por tap. Campos:

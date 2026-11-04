@@ -1,0 +1,101 @@
+---
+import { getImage } from 'astro:assets';
+import EventImage from './EventImage.astro';
+import { getEventImage } from '../lib/event-images';
+
+interface Props { src: string; alt: string; }
+const { src, alt } = Astro.props;
+const image = getEventImage(src);
+const [fullAvif, fullWebp] = await Promise.all([
+  getImage({ src: image, format: 'avif', quality: 65 }),
+  getImage({ src: image, format: 'webp', quality: 85 }),
+]);
+---
+
+<event-poster>
+  <a class="poster-trigger" href={fullWebp.src} aria-haspopup="dialog" aria-label="Ampliar cartel del evento">
+    <EventImage src={src} alt={alt} variant="poster" />
+    <span class="poster-hint">Ampliar cartel ↗</span>
+  </a>
+  <dialog aria-label="Cartel del evento ampliado">
+    <div class="lightbox-toolbar">
+      <span>Cartel del evento</span>
+      <button type="button" autofocus>Cerrar ×</button>
+    </div>
+    <p class="lightbox-status" role="status"></p>
+    <picture>
+      <source type="image/avif" data-full-srcset={fullAvif.src} />
+      <img data-full-src={fullWebp.src} alt={alt} width={image.width} height={image.height} decoding="async" />
+    </picture>
+  </dialog>
+</event-poster>
+
+<script>
+  class EventPoster extends HTMLElement {
+    connectedCallback() {
+      // Prevent duplicate listeners if an element is reconnected.
+      if (this.dataset.ready) return;
+      this.dataset.ready = 'true';
+      const trigger = this.querySelector<HTMLAnchorElement>('.poster-trigger')!;
+      const dialog = this.querySelector('dialog')!;
+      const image = dialog.querySelector('img')!;
+      const source = dialog.querySelector('source')!;
+      const status = dialog.querySelector<HTMLElement>('[role="status"]')!;
+      let previousOverflow = '';
+
+      trigger.addEventListener('click', (event) => {
+        // Preserve normal link behavior for modified clicks and without dialog support.
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || !dialog.showModal) return;
+        event.preventDefault();
+        previousOverflow = document.documentElement.style.overflow;
+        dialog.showModal();
+        document.documentElement.style.overflow = 'hidden';
+        // data-* URLs do not cause requests. Set real sources only on user interaction.
+        if (!image.hasAttribute('src')) {
+          status.textContent = 'Cargando cartel…';
+          image.addEventListener('load', () => { status.textContent = ''; }, { once: true });
+          image.addEventListener('error', () => {
+            status.textContent = 'No se pudo cargar el cartel. Cierra esta ventana e intenta de nuevo.';
+            image.removeAttribute('src');
+            source.removeAttribute('srcset');
+          }, { once: true });
+          source.srcset = source.dataset.fullSrcset!;
+          image.src = image.dataset.fullSrc!;
+        }
+      });
+      dialog.querySelector('button')!.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => {
+        const bounds = dialog.getBoundingClientRect();
+        if (event.target === dialog && (
+          event.clientX < bounds.left || event.clientX > bounds.right ||
+          event.clientY < bounds.top || event.clientY > bounds.bottom
+        )) dialog.close();
+      });
+      // Native dialog handles Escape and traps keyboard focus.
+      dialog.addEventListener('close', () => {
+        document.documentElement.style.overflow = previousOverflow;
+        trigger.focus();
+      });
+    }
+  }
+  if (!customElements.get('event-poster')) customElements.define('event-poster', EventPoster);
+</script>
+
+<style>
+  event-poster { display: block; width: 300px; max-width: 100%; }
+  .poster-trigger { display: block; border-radius: 4px; cursor: zoom-in; }
+  .poster-trigger :global(picture) { display: block; }
+  .poster-trigger :global(img) { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 20px 50px rgb(0 0 0 / .5); }
+  .poster-hint { display: block; margin-top: .75rem; text-align: center; color: #f3ebd9; font-size: .85rem; }
+  .poster-trigger:focus-visible, button:focus-visible { outline: 3px solid var(--vbg-verde-claro); outline-offset: 5px; }
+  dialog { margin: auto; padding: 1rem; border: 1px solid #6b6358; border-radius: 6px; background: var(--vbg-negro); color: #f3ebd9; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); }
+  dialog::backdrop { background: rgb(0 0 0 / .85); }
+  .lightbox-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+  button { min-width: 100px; min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--vbg-verde-claro); border-radius: 3px; color: #fff; background: var(--vbg-verde); font: inherit; cursor: pointer; }
+  button:hover { background: #3c704c; }
+  dialog picture { display: block; }
+  dialog img { display: block; max-width: 100%; max-height: calc(100dvh - 9rem); width: auto; height: auto; margin: auto; object-fit: contain; }
+  .lightbox-status:empty { display: none; }
+  .lightbox-status { margin-bottom: .75rem; }
+  @media (max-width: 900px) { event-poster { width: 260px; margin-inline: auto; } }
+</style>
