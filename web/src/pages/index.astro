@@ -6,6 +6,8 @@ import FAQ from '../components/FAQ.astro';
 import site from '../data/site.json';
 import eventos from '../data/eventos.json';
 
+const proximosEventos = eventos.filter((e) => Date.parse(e.startDate) > Date.now());
+
 const faqs = [
   { q: '¿Son pet friendly?', a: 'Sí. Somos un restaurante y bar pet friendly con terraza abierta donde puedes venir con tu perro, grande o pequeño. Trae agua para tu mascota si gustas; si se te olvida, con gusto le damos un recipiente. <a href="/pet-friendly-cuernavaca/">Conoce nuestro espacio pet friendly →</a>' },
   { q: '¿Tienen terraza?', a: 'Sí. Nuestra terraza es uno de los espacios principales de Vecindario y es además el área ideal para venir con mascotas. Es un ambiente relajado, sin pretensiones, perfecto para disfrutar de una cerveza y algo de comer al aire libre.' },
@@ -216,9 +218,9 @@ const faqSchema = {
 
   <!-- EVENTOS -->
   <section class="eventos"><div class="container">
-    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">Próximos eventos en Cuernavaca</h2><p class="section-sub">2° Aniversario: dos sábados de música en vivo, cerveza conmemorativa y burgers especiales. <a href="/eventos/" style="color:var(--vbg-verde);font-weight:600;">Ver todos los eventos →</a></p></div>
+    <div class="section-head"><SectionLabel text="Próximos eventos" /><h2 class="section-title">Próximos eventos en Cuernavaca</h2><p class="section-sub">Cerveza artesanal, maridajes y noches especiales en el jardín. <a href="/eventos/" style="color:var(--vbg-verde);font-weight:600;">Ver todos los eventos →</a></p></div>
     <div class="eventos-grid">
-      {eventos.map((e) => (
+      {proximosEventos.map((e) => (
         <a class="evento-card" href={`/eventos/${e.slug}/`}>
           <div class="evento-img"><img src={e.img} alt={e.alt} loading="lazy" /></div>
           <div><div class="evento-tag">{e.tag}</div><h3 class="evento-name">{e.titulo}</h3><p class="evento-meta">{e.meta}</p></div>
