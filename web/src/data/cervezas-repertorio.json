@@ -1642,5 +1642,18 @@
   "precioG": 165,
   "badges": [],
   "descripcion": "West Coast IPA de colaboración entre Insurgente, Wendlandt y Fauna. Una interpretación conjunta del estilo de la costa oeste, con 5.7% de alcohol."
+ },
+ {
+  "nombre": "Dragula",
+  "estilo": "Oatmeal Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Insurgente",
+  "origen": "Tijuana, B.C.",
+  "abv": "6.5%",
+  "ibu": "",
+  "precioCh": 115,
+  "precioG": 145,
+  "badges": [],
+  "descripcion": "Stout de avena con notas de café, chocolate y cacao. De cuerpo sedoso y espuma cremosa, combina el carácter tostado con un dulzor suave. Contiene lactosa."
  }
 ]
