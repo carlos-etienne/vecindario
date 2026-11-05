@@ -1185,8 +1185,8 @@
   "estilo": "American Stout",
   "color": "#2e1b10",
   "cerveceria": "Chicatana",
-  "origen": "Ocotepec, Morelos",
-  "abv": "7.2%",
+  "origen": "Cuernavaca, Morelos",
+  "abv": "5.7%",
   "ibu": "",
   "precioCh": 75,
   "precioG": 90,
@@ -1519,9 +1519,7 @@
   "ibu": "",
   "precioCh": 185,
   "precioG": 230,
-  "badges": [
-   "Nueva"
-  ],
+  "badges": [],
   "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada."
  },
  {
@@ -1533,10 +1531,8 @@
   "abv": "4.5%",
   "ibu": "",
   "precioCh": 90,
-  "precioG": 105,
-  "badges": [
-   "Nueva"
-  ],
+  "precioG": 110,
+  "badges": [],
   "descripcion": "Lager de centeno sin filtrar: rubia clara con aroma a centeno especiado y matices herbales, cuerpo ligero y final seco. Fácil de tomar, con un punto más de carácter que una lager común."
  },
  {

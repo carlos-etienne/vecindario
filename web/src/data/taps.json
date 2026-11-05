@@ -62,21 +62,19 @@
   "num": 4
  },
  {
-  "num": 5,
-  "nombre": "Hombre Pájaro",
-  "estilo": "Rye Lager",
-  "color": "#c0561f",
-  "cerveceria": "Hércules",
-  "origen": "Querétaro",
-  "abv": "4.5%",
+  "nombre": "Jarnit Family Beer",
+  "estilo": "Imperial Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Evil Twin",
+  "origen": "Nueva York, EUA",
+  "abv": "12%",
   "ibu": "",
-  "precioCh": 90,
-  "precioG": 110,
-  "badges": [
-   "Nueva"
-  ],
-  "disponible": true,
-  "descripcion": "Lager de centeno sin filtrar: rubia clara con aroma a centeno especiado y matices herbales, cuerpo ligero y final seco. Fácil de tomar, con un punto más de carácter que una lager común."
+  "precioCh": 185,
+  "precioG": 230,
+  "badges": [],
+  "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada.",
+  "num": 5,
+  "disponible": true
  },
  {
   "num": 6,
@@ -139,18 +137,18 @@
   "descripcion": "Märzen de la casa hecha con Tebana: lager de color cobre, aroma a malta tostada y caramelo, cuerpo medio y final limpio y seco. La clásica lager de malta, lista para el otoño."
  },
  {
-  "num": 10,
-  "nombre": "Schofferhofer Weizen",
-  "estilo": "Hefeweizen",
-  "color": "#f0e6c0",
-  "cerveceria": "Schöfferhofer",
-  "origen": "Fráncfort, Alemania",
-  "abv": "5.0%",
+  "nombre": "American Stout",
+  "estilo": "American Stout",
+  "color": "#2e1b10",
+  "cerveceria": "Chicatana",
+  "origen": "Cuernavaca, Morelos",
+  "abv": "5.7%",
   "ibu": "",
-  "precioCh": 120,
-  "precioG": 150,
+  "precioCh": 75,
+  "precioG": 90,
   "badges": [],
-  "disponible": false,
-  "descripcion": "Hefeweizen alemana naturtrüb, sin filtrar y con levadura: turbia, con aroma a plátano y clavo y un toque ligeramente amargo por el lúpulo. Refrescante y de burbuja viva; la primera cerveza de trigo elaborada fuera de Baviera."
+  "descripcion": "Stout intensa pero balanceada, con notas marcadas a café tostado, cacao y un amargor firme que limpia el paladar. De cuerpo medio y final seco, esta cerveza resalta los sabores torrefactos sin ser abrumadora. Ideal para quienes buscan una stout con carácter pero fácil de beber.",
+  "num": 10,
+  "disponible": true
  }
 ]
