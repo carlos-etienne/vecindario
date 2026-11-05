@@ -1633,5 +1633,18 @@
   "precioG": 95,
   "badges": [],
   "descripcion": "Märzen de la casa hecha con Tebana: lager de color cobre, aroma a malta tostada y caramelo, cuerpo medio y final limpio y seco. La clásica lager de malta, lista para el otoño."
+ },
+ {
+  "nombre": "3 Amigos",
+  "estilo": "West Coast IPA",
+  "color": "#d9951e",
+  "cerveceria": "Insurgente/Wendlandt/Fauna",
+  "origen": "Tijuana/Ensenada/Mexicali, B.C.",
+  "abv": "5.7%",
+  "ibu": "",
+  "precioCh": 135,
+  "precioG": 165,
+  "badges": [],
+  "descripcion": "West Coast IPA de colaboración entre Insurgente, Wendlandt y Fauna. Una interpretación conjunta del estilo de la costa oeste, con 5.7% de alcohol."
  }
 ]

@@ -30,17 +30,19 @@
   "disponible": true
  },
  {
-  "nombre": "Paseo en Baika",
+  "nombre": "3 Amigos",
   "estilo": "West Coast IPA",
   "color": "#d9951e",
-  "cerveceria": "BuquiBichi/Insurgente",
-  "origen": "Hermosillo/Tijuana",
-  "abv": "6.6%",
+  "cerveceria": "Insurgente/Wendlandt/Fauna",
+  "origen": "Tijuana/Ensenada/Mexicali, B.C.",
+  "abv": "5.7%",
   "ibu": "",
   "precioCh": 135,
   "precioG": 165,
-  "badges": [],
-  "descripcion": "Puro carácter del norte. Amargor resinoso y firme con un perfil vibrante a pino y cítricos. De cuerpo dorado, seca en boca y con esa frescura limpia que pide el calor para disfrutarla en la tarde.",
+  "badges": [
+   "Nueva"
+  ],
+  "descripcion": "West Coast IPA de colaboración entre Insurgente, Wendlandt y Fauna. Una interpretación conjunta del estilo de la costa oeste, con 5.7% de alcohol.",
   "disponible": true,
   "num": 3
  },
@@ -148,7 +150,7 @@
   "precioCh": 120,
   "precioG": 150,
   "badges": [],
-  "disponible": true,
+  "disponible": false,
   "descripcion": "Hefeweizen alemana naturtrüb, sin filtrar y con levadura: turbia, con aroma a plátano y clavo y un toque ligeramente amargo por el lúpulo. Refrescante y de burbuja viva; la primera cerveza de trigo elaborada fuera de Baviera."
  }
 ]
