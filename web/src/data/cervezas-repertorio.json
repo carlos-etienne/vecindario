@@ -1655,5 +1655,18 @@
   "precioG": 145,
   "badges": [],
   "descripcion": "Stout de avena con notas de café, chocolate y cacao. De cuerpo sedoso y espuma cremosa, combina el carácter tostado con un dulzor suave. Contiene lactosa."
+ },
+ {
+  "nombre": "APA",
+  "estilo": "American Pale Ale",
+  "color": "#c0561f",
+  "cerveceria": "Chicatana",
+  "origen": "Ocotepec, Cuernavaca, Morelos",
+  "abv": "5.6%",
+  "ibu": "45–50",
+  "precioCh": 95,
+  "precioG": 115,
+  "badges": [],
+  "descripcion": "De color naranja traslúcido y espuma marfil, esta APA de Ocotepec combina aromas cítricos y de fruta tropical con notas de caramelo. Su cuerpo medio-ligero y dulzor maltoso acompañan un amargor pronunciado que le da carácter."
  }
 ]

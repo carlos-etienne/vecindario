@@ -62,19 +62,19 @@
   "num": 4
  },
  {
-  "nombre": "Jarnit Family Beer",
-  "estilo": "Imperial Stout",
-  "color": "#2e1b10",
-  "cerveceria": "Evil Twin",
-  "origen": "Nueva York, EUA",
-  "abv": "12%",
-  "ibu": "",
-  "precioCh": 185,
-  "precioG": 230,
+  "nombre": "APA",
+  "estilo": "American Pale Ale",
+  "color": "#c0561f",
+  "cerveceria": "Chicatana",
+  "origen": "Ocotepec, Cuernavaca, Morelos",
+  "abv": "5.6%",
+  "ibu": "45–50",
+  "precioCh": 95,
+  "precioG": 115,
   "badges": [],
-  "descripcion": "Imperial Stout de Evil Twin elaborada con nibs de cacao, ciruela y un toque de pimienta tellicherry: chocolate amargo, frutos oscuros y una calidez alcohólica bien integrada.",
+  "descripcion": "De color naranja traslúcido y espuma marfil, esta APA de Ocotepec combina aromas cítricos y de fruta tropical con notas de caramelo. Su cuerpo medio-ligero y dulzor maltoso acompañan un amargor pronunciado que le da carácter.",
   "num": 5,
-  "disponible": false
+  "disponible": true
  },
  {
   "num": 6,
