@@ -1,17 +1,17 @@
 [
  {
-  "nombre": "Dragula",
-  "estilo": "Oatmeal Stout",
+  "nombre": "Talega",
+  "estilo": "Coffee Stout",
   "color": "#2e1b10",
-  "cerveceria": "Insurgente",
-  "origen": "Tijuana, B.C.",
-  "abv": "6.5%",
+  "cerveceria": "Buqui Bichi",
+  "origen": "Hermosillo, Son.",
+  "abv": "6%",
   "ibu": "",
-  "descripcion": "Stout de avena con notas de café, chocolate y cacao. De cuerpo sedoso y espuma cremosa, combina el carácter tostado con un dulzor suave. Contiene lactosa.",
-  "num": 1,
-  "precioCh": 115,
-  "precioG": 145,
+  "precioCh": 110,
+  "precioG": 130,
   "badges": [],
+  "descripcion": "Coffee Stout de Buqui Bichi: malta oscura con café recién hecho, chocolate negro y granos tostados. Tostada y amarga, de final seco, pensada para postres, platillos dulces y quesos.",
+  "num": 1,
   "disponible": true
  },
  {
