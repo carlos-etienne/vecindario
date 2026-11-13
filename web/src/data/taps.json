@@ -30,21 +30,19 @@
   "disponible": true
  },
  {
-  "nombre": "3 Amigos",
-  "estilo": "West Coast IPA",
-  "color": "#d9951e",
-  "cerveceria": "Insurgente/Wendlandt/Fauna",
-  "origen": "Tijuana/Ensenada/Mexicali, B.C.",
-  "abv": "5.7%",
+  "nombre": "Hazy IPA",
+  "estilo": "Hazy IPA",
+  "color": "#f0c95a",
+  "cerveceria": "Rámuri",
+  "origen": "Tijuana, B.C.",
+  "abv": "6.2%",
   "ibu": "",
-  "precioCh": 135,
-  "precioG": 165,
-  "badges": [
-   "Nueva"
-  ],
-  "descripcion": "West Coast IPA de colaboración entre Insurgente, Wendlandt y Fauna. Una interpretación conjunta del estilo de la costa oeste, con 5.7% de alcohol.",
-  "disponible": true,
-  "num": 3
+  "precioCh": 125,
+  "precioG": 145,
+  "badges": [],
+  "descripcion": "Rámuri nos entrega una IPA de perfil moderno con un cuerpo ligero y brillante. Destaca por sus notas a piña y melón maduro, con un carácter menos denso que una NEIPA tradicional, lo que la hace sumamente ágil en paladar. Una opción equilibrada para quienes buscan aroma frutal sin una saturación de cuerpo.",
+  "num": 3,
+  "disponible": true
  },
  {
   "nombre": "Hardy",
