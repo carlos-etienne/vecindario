@@ -1668,5 +1668,18 @@
   "precioG": 115,
   "badges": [],
   "descripcion": "De color naranja traslúcido y espuma marfil, esta APA de Ocotepec combina aromas cítricos y de fruta tropical con notas de caramelo. Su cuerpo medio-ligero y dulzor maltoso acompañan un amargor pronunciado que le da carácter."
+ },
+ {
+  "nombre": "Pianito",
+  "estilo": "Light Lager",
+  "color": "#f2d94f",
+  "cerveceria": "Falling Piano",
+  "origen": "Ciudad de México",
+  "abv": "3.8%",
+  "ibu": "",
+  "precioCh": 85,
+  "precioG": 95,
+  "badges": [],
+  "descripcion": "Una lager ligera y refrescante, de perfil suave y bajo contenido de alcohol. Una opción para quienes buscan una cerveza sencilla y fácil de beber."
  }
 ]
