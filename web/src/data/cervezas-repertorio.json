@@ -1681,5 +1681,18 @@
   "precioG": 95,
   "badges": [],
   "descripcion": "Una lager ligera y refrescante, de perfil suave y bajo contenido de alcohol. Una opción para quienes buscan una cerveza sencilla y fácil de beber."
+ },
+ {
+  "nombre": "Coffee IPA",
+  "estilo": "Coffee IPA",
+  "color": "#d9951e",
+  "cerveceria": "Falling Piano",
+  "origen": "Ciudad de México",
+  "abv": "6%",
+  "ibu": "",
+  "precioCh": 110,
+  "precioG": 135,
+  "badges": [],
+  "descripcion": "Una IPA con café que reúne dos mundos en un mismo vaso: el carácter del lúpulo y el del café, con 6% de alcohol."
  }
 ]
