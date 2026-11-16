@@ -4,6 +4,7 @@ import TapWall from '../components/TapWall.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import FAQ from '../components/FAQ.astro';
 import site from '../data/site.json';
+import resenas from '../data/resenas.json';
 import eventos from '../data/eventos.json';
 import EventImage from '../components/EventImage.astro';
 
@@ -204,12 +205,9 @@ const faqSchema = {
     <div class="section-head"><SectionLabel text={site.rating + ' en Google'} /><h2 class="section-title">Lo que dicen nuestros clientes</h2></div>
     <div class="reviews-summary"><div class="reviews-score">{site.rating}<small>/5</small></div><div class="reviews-meta"><div class="stars">★★★★★</div><div class="count">{site.reseñas} reseñas en Google</div></div><a class="reviews-source" href={site.redes.google} target="_blank" rel="noopener noreferrer">Ver Google Business Profile ↗</a></div>
     <div class="reviews-slider" id="reviewsSlider">
-      <div class="review-card"><p>"Súper genial la atención y el lugar, te da una vibra tan agradable que en serio quiero volver más veces."</p><div class="review-author">Ernesto Morales</div></div>
-      <div class="review-card"><p>"Un lugar muy agradable con gran variedad de cervezas internacionales y nacionales para probar, la pizza estuvo muy deliciosa y el ambiente es tranquilo."</p><div class="review-author">Kike Aranda</div></div>
-      <div class="review-card"><p>"Excelente servicio, excelente cocina, cervezas frías."</p><div class="review-author">Cándido Mendoza</div></div>
-      <div class="review-card"><p>"Tuve una experiencia muy agradable en este tap room, los alimentos, el servicio y los barriles de cerveza 10/10. Además tienen más cervezas en lata y botella por si no es suficiente con sus 10 barriles."</p><div class="review-author">Jessica Acevedo</div></div>
-      <div class="review-card"><p>"De los mejores lugares a los que he ido en muchos aspectos (calidad, variedad, precio, ambiente y eventos), pero la principal es: la atención. Realmente un trato muy bueno, gente conocedora sobre el ramo cervecero. La comida es muy buena. Ampliamente recomendado."</p><div class="review-author">Antonio González Pineda</div></div>
-      <div class="review-card"><p>"El mejor lugar de chelas internacionales de Morelos, no le pide nada a los mejores de CDMX. Además la comida es buenísima y la atención de lo mejor."</p><div class="review-author">Rodrigo Villamil</div></div>
+      {resenas.slice(0, 6).map((resena) => (
+        <div class="review-card"><p>“{resena.texto}”</p><div class="review-author">{resena.autor}</div></div>
+      ))}
     </div>
     <div class="slider-nav">
       <button onclick="document.getElementById('reviewsSlider').scrollBy({left:-320,behavior:'smooth'})" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -339,8 +337,23 @@ const faqSchema = {
 </style>
 
 <script>
+  import resenas from '../data/resenas.json';
+
   const slider = document.getElementById('reviewsSlider');
   if (slider) {
+    const selection = [...resenas];
+    for (let i = selection.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [selection[i], selection[j]] = [selection[j], selection[i]];
+    }
+    const prototype = slider.querySelector('.review-card');
+    const cards = selection.slice(0, 6).map(({ texto, autor }) => {
+      const card = prototype.cloneNode(true);
+      card.querySelector('p').textContent = `“${texto}”`;
+      card.querySelector('.review-author').textContent = autor;
+      return card;
+    });
+    slider.replaceChildren(...cards);
     let auto;
     const start = () => { auto = setInterval(() => { if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) slider.scrollTo({left:0,behavior:'smooth'}); else slider.scrollBy({left:320,behavior:'smooth'}); }, 5000); };
     start(); slider.addEventListener('mouseenter', () => clearInterval(auto)); slider.addEventListener('mouseleave', start);
