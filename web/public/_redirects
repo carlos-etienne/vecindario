@@ -4,6 +4,10 @@
 https://www.vecindariobeergarden.com/* https://vecindariobeergarden.com/:splat 301
 /terminos-y-condiciones/ /terminos/ 301
 
+# QR de reseñas de Google
+/reviews https://search.google.com/local/writereview?placeid=ChIJsTbbXQDfzYURxFhKOFJplz0 302
+/reviews/ https://search.google.com/local/writereview?placeid=ChIJsTbbXQDfzYURxFhKOFJplz0 302
+
 # Eventos pasados del WP → agenda actual
 /eventos/concierto-de-funk-con-los-piters/ /eventos/ 301
 /eventos/cata-gratuita-con-cerveceria-icono/ /eventos/ 301
