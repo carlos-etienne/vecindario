@@ -45,19 +45,19 @@
   "disponible": true
  },
  {
-  "nombre": "Hardy",
+  "nombre": "Hops on Board",
   "estilo": "Double IPA",
   "color": "#e0a234",
-  "cerveceria": "Ícono",
-  "origen": "Mexicali, B.C.",
-  "abv": "8%",
+  "cerveceria": "Falling Piano",
+  "origen": "Ciudad de México",
+  "abv": "8.5%",
   "ibu": "",
-  "precioCh": 95,
-  "precioG": 115,
+  "precioCh": 120,
+  "precioG": 145,
   "badges": [],
-  "descripcion": "Cerveza robusta y cargada de lúpulo, con sabores resinosos y cítricos provenientes de los lúpulos Mosaic y Simcoe. Su final seco permite que el lúpulo sea el protagonista, perfecta para quienes buscan una IPA intensa y bien definida.",
-  "disponible": false,
-  "num": 4
+  "descripcion": "Cítricos y resina al frente: Hops on Board de Falling Piano apuesta por el carácter clásico del lúpulo en una Double IPA de 8.5%. Una cerveza intensa y expresiva para quienes disfrutan las IPAs de la vieja escuela y buscan que el lúpulo sea protagonista en cada trago.",
+  "num": 4,
+  "disponible": true
  },
  {
   "nombre": "Pianito",

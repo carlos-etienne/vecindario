@@ -1694,5 +1694,18 @@
   "precioG": 135,
   "badges": [],
   "descripcion": "Una IPA con café que reúne dos mundos en un mismo vaso: el carácter del lúpulo y el del café, con 6% de alcohol."
+ },
+ {
+  "nombre": "Hops on Board",
+  "estilo": "Double IPA",
+  "color": "#e0a234",
+  "cerveceria": "Falling Piano",
+  "origen": "Ciudad de México",
+  "abv": "8.5%",
+  "ibu": "",
+  "precioCh": 120,
+  "precioG": 145,
+  "badges": [],
+  "descripcion": "Cítricos y resina al frente: Hops on Board de Falling Piano apuesta por el carácter clásico del lúpulo en una Double IPA de 8.5%. Una cerveza intensa y expresiva para quienes disfrutan las IPAs de la vieja escuela y buscan que el lúpulo sea protagonista en cada trago."
  }
 ]
