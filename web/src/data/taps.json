@@ -12,7 +12,7 @@
   "badges": [],
   "descripcion": "Stout de avena con notas de café, chocolate y cacao. De cuerpo sedoso y espuma cremosa, combina el carácter tostado con un dulzor suave. Contiene lactosa.",
   "num": 1,
-  "disponible": true
+  "disponible": false
  },
  {
   "nombre": "Macanuda",
@@ -105,17 +105,17 @@
   "disponible": true
  },
  {
-  "nombre": "Silly Scotch",
-  "estilo": "Scotch Ale",
-  "color": "#8a4d1e",
-  "cerveceria": "Brasserie de Silly",
-  "origen": "Bélgica",
-  "abv": "8%",
+  "nombre": "Cuervayork",
+  "estilo": "Robust Porter",
+  "color": "#452916",
+  "cerveceria": "Ícono",
+  "origen": "Mexicali, B.C.",
+  "abv": "7%",
   "ibu": "",
-  "precioCh": 160,
-  "precioG": 185,
+  "precioCh": 85,
+  "precioG": 95,
   "badges": [],
-  "descripcion": "Scotch ale belga de 8%: ámbar oscuro con notas de malta caramelizada, miel y ciruela, cuerpo generoso y final tostado con un punto licoroso. Receta de 1918, elaborada con lúpulo inglés Kent Golding.",
+  "descripcion": "Esta robusta porter de 7% destaca por su cuerpo medio-alto y una compleja combinación de sabores tostados que evocan chocolate amargo y café. Su final suave y ligeramente dulce equilibra las notas intensas, ofreciendo una experiencia redonda y reconfortante. Galardonada con medalla de oro en la categoría Robust Porter en la Copa Cervecera del Pacífico 2025, Cuervayork es un tributo al carácter fuerte de Mexicali.",
   "num": 8,
   "disponible": true
  },
