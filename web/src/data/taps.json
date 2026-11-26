@@ -27,7 +27,7 @@
   "badges": [],
   "descripcion": "Corta la tarde con un clásico reconfortante de Querétaro. Destaca por sus notas limpias a avellana tostada, corteza de pan horneado y un sutil destello de caramelo oscuro. De cuerpo ligero, amargor bajo y un final seco que limpia el paladar en cada trago. Ideal para arrancar la sesión en el jardín.",
   "num": 2,
-  "disponible": true
+  "disponible": false
  },
  {
   "nombre": "Hazy IPA",
@@ -135,17 +135,17 @@
   "descripcion": "Märzen de la casa hecha con Tebana: lager de color cobre, aroma a malta tostada y caramelo, cuerpo medio y final limpio y seco. La clásica lager de malta, lista para el otoño."
  },
  {
-  "nombre": "American Stout",
-  "estilo": "American Stout",
-  "color": "#2e1b10",
+  "nombre": "APA",
+  "estilo": "American Pale Ale",
+  "color": "#c0561f",
   "cerveceria": "Chicatana",
-  "origen": "Cuernavaca, Morelos",
+  "origen": "Ocotepec, Cuernavaca, Morelos",
   "abv": "5.7%",
-  "ibu": "",
+  "ibu": "45–50",
   "precioCh": 90,
   "precioG": 110,
   "badges": [],
-  "descripcion": "Stout intensa pero balanceada, con notas marcadas a café tostado, cacao y un amargor firme que limpia el paladar. De cuerpo medio y final seco, esta cerveza resalta los sabores torrefactos sin ser abrumadora. Ideal para quienes buscan una stout con carácter pero fácil de beber.",
+  "descripcion": "De color naranja traslúcido y espuma marfil, esta APA de Ocotepec combina aromas cítricos y de fruta tropical con notas de caramelo. Su cuerpo medio-ligero y dulzor maltoso acompañan un amargor pronunciado que le da carácter.",
   "num": 10,
   "disponible": true
  }
