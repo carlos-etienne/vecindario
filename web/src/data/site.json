@@ -20,7 +20,7 @@
     { "dia": "Martes", "abierto": false },
     { "dia": "Miércoles", "abierto": true, "apertura": "17:00", "cierre": "23:30" },
     { "dia": "Jueves", "abierto": true, "apertura": "17:00", "cierre": "23:30" },
-    { "dia": "Viernes", "abierto": true, "apertura": "17:00", "cierre": "23:30" },
+    { "dia": "Viernes", "abierto": true, "apertura": "15:00", "cierre": "23:30" },
     { "dia": "Sábado", "abierto": true, "apertura": "15:00", "cierre": "23:30" },
     { "dia": "Domingo", "abierto": true, "apertura": "15:00", "cierre": "22:00" }
   ],

@@ -17,8 +17,8 @@
 
 - Lunes: Cerrado
 - Martes: Cerrado
-- Miércoles a Viernes: 17:00–23:30
-- Sábado: 15:00–23:30
+- Miércoles y Jueves: 17:00–23:30
+- Viernes y Sábado: 15:00–23:30
 - Domingo: 15:00–22:00
 
 ## Propuesta de valor
