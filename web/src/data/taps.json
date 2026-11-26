@@ -15,19 +15,19 @@
   "disponible": false
  },
  {
-  "nombre": "Macanuda",
-  "estilo": "English Brown Ale",
-  "color": "#8a4d1e",
-  "cerveceria": "Hércules",
-  "origen": "Querétaro",
-  "abv": "5.3%",
+  "nombre": "Dunkel",
+  "estilo": "Munich Dunkel",
+  "color": "#7c4a1e",
+  "cerveceria": "ABK",
+  "origen": "Alemania",
+  "abv": "5%",
   "ibu": "",
-  "precioCh": 88,
+  "precioCh": 90,
   "precioG": 110,
   "badges": [],
-  "descripcion": "Corta la tarde con un clásico reconfortante de Querétaro. Destaca por sus notas limpias a avellana tostada, corteza de pan horneado y un sutil destello de caramelo oscuro. De cuerpo ligero, amargor bajo y un final seco que limpia el paladar en cada trago. Ideal para arrancar la sesión en el jardín.",
+  "descripcion": "Lager oscura alemana elegante y tradicional, con un perfil dominado por maltas tostadas suaves. Presenta aromas a pan recién horneado, caramelo ligero y un toque de cacao. En boca es sedosa, con notas a pan dulce, nuez, caramelo tostado y un final limpio, ligeramente seco, típico de las lagers bávaras. Equilibrada, profunda y muy bebible: una Dunkel hecha al estilo clásico de Múnich.",
   "num": 2,
-  "disponible": false
+  "disponible": true
  },
  {
   "nombre": "Hazy IPA",
